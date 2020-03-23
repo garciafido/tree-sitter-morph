@@ -11,7 +11,6 @@ const PREC = {
 module.exports = grammar({
   name: 'morph',
 
-
   externals: $ => [
     $._automatic_semicolon,
     $._template_chars
@@ -32,11 +31,8 @@ module.exports = grammar({
   ],
 
   inline: $ => [
-    $.generic_arg,
     $.factor,
     $.identifier,
-    $.generic_args,
-    $.decorator_args,
   ],
 
   rules: {
@@ -179,7 +175,7 @@ module.exports = grammar({
       array_accessor: $ => prec.left(PREC.FACTOR, seq(
           $.non_literal_factor,
           "[",
-              optional($.expression_args),
+              $.expression_args,
           "]")),
 
       unary_expression: $ => prec.left(PREC.FACTOR, seq(
