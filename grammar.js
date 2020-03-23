@@ -46,8 +46,23 @@ module.exports = grammar({
       block: $ => seq(
         choice(
           $.interface_definition,
+          $.func,
         )
       ),
+
+      func: $ => seq(
+        "func", $.identifier, "(", optional($.typed_arg_list), ")", "=>", $._expression
+      ),
+
+      typed_arg_list: $ => seq(
+        $.typed_arg, repeat(seq(",", $.typed_arg)), optional(",")
+      ),
+
+      typed_arg: $ => seq(
+        $.arg, ":", $.type_identifier
+      ),
+
+      arg: $ => $.identifier,
 
       interface_definition: $ => seq(
         repeat($.decorator),
