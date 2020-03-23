@@ -48,7 +48,31 @@ module.exports = grammar({
           $.interface_definition,
           $.func,
           $.constant_definition,
+          $.class,
         )
+      ),
+
+      class: $ => seq(
+        repeat($.decorator),
+        "class",
+        $.identifier,
+        "derives",
+        $.derived,
+        repeat(seq("*", $.derived)),
+        optional(seq("implements", $.identifier)),
+        seq('{', repeat($.class_prop), '}'),
+      ),
+
+      derived: $ => seq(
+        $.identifier, optional(seq("[", $.anonymous_function, "]"))
+      ),
+
+      anonymous_function: $ => seq(
+        "(", optional(choice($.arg_list, $.typed_arg_list)), ")", "=>", $._expression
+      ),
+
+      class_prop: $ => seq(
+        $.identifier, optional(seq(":", $.type_identifier)), "=", $.anonymous_function,
       ),
 
       constant_definition: $ => seq(
@@ -57,6 +81,10 @@ module.exports = grammar({
 
       func: $ => seq(
         "func", $.identifier, "(", optional($.typed_arg_list), ")", "=>", $._expression
+      ),
+
+      arg_list: $ => seq(
+        $.arg, repeat(seq(",", $.arg)), optional(",")
       ),
 
       typed_arg_list: $ => seq(
