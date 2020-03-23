@@ -1,0 +1,26 @@
+{
+  "name": "tree-sitter-morph",
+  "version": "1.0.0",
+  "description": "Morph",
+  "main": "index.js",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fido García",
+  "tree-sitter": [
+    {
+      "scope": "source.morph",
+      "file-types": [
+        "morph"
+      ]
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.14.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.16.5"
+  }
+}
