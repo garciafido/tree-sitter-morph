@@ -47,7 +47,12 @@ module.exports = grammar({
         choice(
           $.interface_definition,
           $.func,
+          $.constant_definition,
         )
+      ),
+
+      constant_definition: $ => seq(
+        "const", $.identifier, optional(seq(":", $.identifier)), "=", $._expression
       ),
 
       func: $ => seq(
