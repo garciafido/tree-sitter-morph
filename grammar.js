@@ -71,7 +71,7 @@ module.exports = grammar({
       ),
 
       decorator: $ => seq(
-        $.identifier,
+        $.decorator_identifier,
         optional($.decorator_args),
       ),
 
@@ -150,6 +150,7 @@ module.exports = grammar({
           $.left_arrow_accessor,
           $.right_arrow_accessor,
           $.dot_accessor,
+          $.identifier,
           $.function_call,
           $.array_accessor,
           seq("(", $.expression_args, ")"),
@@ -261,7 +262,7 @@ module.exports = grammar({
       repeat(choice(
         $._template_chars,
         $.escape_sequence,
-        $.template_substitution
+        $.template_substitution,
       )),
       '`'
     ),
@@ -281,6 +282,8 @@ module.exports = grammar({
       snake_identifier: $ => token(/[a-z_][a-z0-9_]*/),
 
       pascal_identifier: $ => token(/[A-Z][a-zA-Z0-9_]*/),
+
+      decorator_identifier: $ => token(/[@][a-z_][a-zA-Z0-9_]*/),
 
       integer: $ => token(choice(
           seq(
