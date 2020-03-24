@@ -46,6 +46,10 @@
         "named": true
       },
       {
+        "type": "graph_literal",
+        "named": true
+      },
+      {
         "type": "true",
         "named": true
       }
@@ -115,22 +119,34 @@
           "named": true
         },
         {
-          "type": "arg_list",
+          "type": "args",
           "named": true
         },
         {
-          "type": "typed_arg_list",
+          "type": "camel_identifier",
+          "named": true
+        },
+        {
+          "type": "pascal_identifier",
+          "named": true
+        },
+        {
+          "type": "snake_identifier",
+          "named": true
+        },
+        {
+          "type": "typed_args",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "arg",
+    "type": "args",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -143,21 +159,6 @@
         },
         {
           "type": "snake_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "arg_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arg",
           "named": true
         }
       ]
@@ -187,7 +188,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -195,15 +196,31 @@
           "named": true
         },
         {
-          "type": "constant_definition",
+          "type": "constant_declaration",
           "named": true
         },
         {
-          "type": "func",
+          "type": "enum_definition",
           "named": true
         },
         {
-          "type": "interface_definition",
+          "type": "foreach_function",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "if_function",
+          "named": true
+        },
+        {
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "newclass",
           "named": true
         }
       ]
@@ -222,15 +239,11 @@
           "named": true
         },
         {
-          "type": "class_prop",
+          "type": "class_property",
           "named": true
         },
         {
           "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "derived",
           "named": true
         },
         {
@@ -245,7 +258,7 @@
     }
   },
   {
-    "type": "class_prop",
+    "type": "class_property",
     "named": true,
     "fields": {},
     "children": {
@@ -253,11 +266,11 @@
       "required": true,
       "types": [
         {
-          "type": "anonymous_function",
+          "type": "camel_identifier",
           "named": true
         },
         {
-          "type": "camel_identifier",
+          "type": "decorator",
           "named": true
         },
         {
@@ -269,7 +282,7 @@
           "named": true
         },
         {
-          "type": "type_identifier",
+          "type": "types",
           "named": true
         }
       ]
@@ -299,7 +312,7 @@
     }
   },
   {
-    "type": "constant_definition",
+    "type": "constant_declaration",
     "named": true,
     "fields": {},
     "children": {
@@ -360,33 +373,6 @@
     }
   },
   {
-    "type": "derived",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "anonymous_function",
-          "named": true
-        },
-        {
-          "type": "camel_identifier",
-          "named": true
-        },
-        {
-          "type": "pascal_identifier",
-          "named": true
-        },
-        {
-          "type": "snake_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "disjunction_expression",
     "named": true,
     "fields": {},
@@ -437,6 +423,33 @@
     }
   },
   {
+    "type": "enum_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_literal",
+          "named": true
+        },
+        {
+          "type": "camel_identifier",
+          "named": true
+        },
+        {
+          "type": "pascal_identifier",
+          "named": true
+        },
+        {
+          "type": "snake_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expression_args",
     "named": true,
     "fields": {},
@@ -452,13 +465,17 @@
     }
   },
   {
-    "type": "extends",
+    "type": "filterable_type",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "anonymous_function",
+          "named": true
+        },
         {
           "type": "camel_identifier",
           "named": true
@@ -475,7 +492,7 @@
     }
   },
   {
-    "type": "func",
+    "type": "foreach_function",
     "named": true,
     "fields": {},
     "children": {
@@ -487,7 +504,26 @@
           "named": true
         },
         {
+          "type": "foreach_iteration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "foreach_iteration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
           "type": "camel_identifier",
+          "named": true
+        },
+        {
+          "type": "filterable_type",
           "named": true
         },
         {
@@ -496,10 +532,6 @@
         },
         {
           "type": "snake_identifier",
-          "named": true
-        },
-        {
-          "type": "typed_arg_list",
           "named": true
         }
       ]
@@ -525,7 +557,38 @@
     }
   },
   {
-    "type": "interface_definition",
+    "type": "function_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "camel_identifier",
+          "named": true
+        },
+        {
+          "type": "pascal_identifier",
+          "named": true
+        },
+        {
+          "type": "snake_identifier",
+          "named": true
+        },
+        {
+          "type": "typed_args",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "graph_literal",
     "named": true,
     "fields": {},
     "children": {
@@ -537,15 +600,38 @@
           "named": true
         },
         {
-          "type": "decorator",
+          "type": "graph_literal_property",
           "named": true
         },
         {
-          "type": "extends",
+          "type": "pascal_identifier",
           "named": true
         },
         {
-          "type": "interface_prop",
+          "type": "snake_identifier",
+          "named": true
+        },
+        {
+          "type": "typed_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "graph_literal_property",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "camel_identifier",
           "named": true
         },
         {
@@ -560,7 +646,22 @@
     }
   },
   {
-    "type": "interface_prop",
+    "type": "if_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import",
     "named": true,
     "fields": {},
     "children": {
@@ -572,19 +673,11 @@
           "named": true
         },
         {
-          "type": "decorator",
-          "named": true
-        },
-        {
           "type": "pascal_identifier",
           "named": true
         },
         {
           "type": "snake_identifier",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
           "named": true
         }
       ]
@@ -673,6 +766,72 @@
         },
         {
           "type": "relational_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "newclass",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "camel_identifier",
+          "named": true
+        },
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "filterable_type",
+          "named": true
+        },
+        {
+          "type": "newclass_mutation",
+          "named": true
+        },
+        {
+          "type": "pascal_identifier",
+          "named": true
+        },
+        {
+          "type": "snake_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "newclass_mutation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "camel_identifier",
+          "named": true
+        },
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "pascal_identifier",
+          "named": true
+        },
+        {
+          "type": "snake_identifier",
           "named": true
         }
       ]
@@ -848,11 +1007,26 @@
     }
   },
   {
-    "type": "type_identifier",
+    "type": "typed_args",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "typed_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typed_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -871,7 +1045,7 @@
     }
   },
   {
-    "type": "typed_arg",
+    "type": "types",
     "named": true,
     "fields": {},
     "children": {
@@ -879,26 +1053,15 @@
       "required": true,
       "types": [
         {
-          "type": "arg",
+          "type": "camel_identifier",
           "named": true
         },
         {
-          "type": "type_identifier",
+          "type": "pascal_identifier",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "typed_arg_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
+        },
         {
-          "type": "typed_arg",
+          "type": "snake_identifier",
           "named": true
         }
       ]
@@ -965,6 +1128,10 @@
   },
   {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": "../",
     "named": false
   },
   {
@@ -1036,6 +1203,10 @@
     "named": true
   },
   {
+    "type": "enum",
+    "named": false
+  },
+  {
     "type": "escape_sequence",
     "named": true
   },
@@ -1052,11 +1223,23 @@
     "named": true
   },
   {
-    "type": "func",
+    "type": "foreach",
     "named": false
   },
   {
-    "type": "implements",
+    "type": "from",
+    "named": false
+  },
+  {
+    "type": "function",
+    "named": false
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "import",
     "named": false
   },
   {
@@ -1064,15 +1247,23 @@
     "named": true
   },
   {
-    "type": "interface",
-    "named": false
-  },
-  {
     "type": "multiplicative_operator",
     "named": true
   },
   {
+    "type": "new",
+    "named": false
+  },
+  {
+    "type": "newclass",
+    "named": false
+  },
+  {
     "type": "not",
+    "named": false
+  },
+  {
+    "type": "of",
     "named": false
   },
   {
@@ -1092,11 +1283,19 @@
     "named": true
   },
   {
+    "type": "type",
+    "named": false
+  },
+  {
     "type": "unary_operator",
     "named": true
   },
   {
     "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {

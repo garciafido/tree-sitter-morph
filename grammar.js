@@ -44,78 +44,30 @@ module.exports = grammar({
       program: $ => repeat($.block),
 
       block: $ => seq(
+        repeat($.import),
         choice(
-          $.interface_definition,
-          $.func,
-          $.constant_definition,
           $.class,
+          $.function_definition,
+          $.enum_definition,
+          $.constant_declaration,
+          $.newclass,
+          $.foreach_function,
+          $.if_function,
         )
+      ),
+
+      import: $ => seq(
+        "from", optional(choice(".", repeat("../"))), $.identifier,
+        "import", $.identifier, repeat(seq(",", $.identifier))
       ),
 
       class: $ => seq(
         repeat($.decorator),
+        optional("abstract"),
         "class",
         $.identifier,
-        "derives",
-        $.derived,
-        repeat(seq("*", $.derived)),
-        optional(seq("implements", $.identifier)),
-        seq('{', repeat($.class_prop), '}'),
-      ),
-
-      derived: $ => seq(
-        $.identifier, optional(seq("[", $.anonymous_function, "]"))
-      ),
-
-      anonymous_function: $ => seq(
-        "(", optional(choice($.arg_list, $.typed_arg_list)), ")", "=>", $._expression
-      ),
-
-      class_prop: $ => seq(
-        $.identifier, optional(seq(":", $.type_identifier)), "=", $.anonymous_function,
-      ),
-
-      constant_definition: $ => seq(
-        "const", $.identifier, optional(seq(":", $.identifier)), "=", $._expression
-      ),
-
-      func: $ => seq(
-        "func", $.identifier, "(", optional($.typed_arg_list), ")", "=>", $._expression
-      ),
-
-      arg_list: $ => seq(
-        $.arg, repeat(seq(",", $.arg)), optional(",")
-      ),
-
-      typed_arg_list: $ => seq(
-        $.typed_arg, repeat(seq(",", $.typed_arg)), optional(",")
-      ),
-
-      typed_arg: $ => seq(
-        $.arg, ":", $.type_identifier
-      ),
-
-      arg: $ => $.identifier,
-
-      interface_definition: $ => seq(
-        repeat($.decorator),
-        optional("abstract"),
-        "interface",
-        $.identifier,
-        optional($.extends),
-        seq('{', repeat($.interface_prop), '}'),
-      ),
-
-      interface_prop: $ => seq(
-        repeat($.decorator),
-        $.identifier,
-        optional(choice("[]", "!")),
-        ":", $.type_identifier,
-      ),
-
-      type_identifier: $ => seq(
-        $.identifier,
-        optional("[]"),
+        optional(seq("extends", $.identifier)),
+        seq('{', repeat($.class_property), '}'),
       ),
 
       decorator: $ => seq(
@@ -129,8 +81,87 @@ module.exports = grammar({
         ")"
       ),
 
-      extends: $ => seq(
-        "extends", $.identifier),
+      filterable_type: $ => seq(
+        $.identifier, optional(seq("[", $.anonymous_function, "]")),
+      ),
+
+      class_property: $ => seq(
+        repeat($.decorator),
+        $.identifier,
+        optional(choice("!", "[]")), ":", $.types
+      ),
+
+      types: $ => seq(
+        $.identifier,
+        repeat(seq("|", $.identifier)),
+      ),
+
+      type_definition: $ => seq(
+        "type",
+        $.identifier, "=", $.types,
+      ),
+
+      function_definition: $ => seq(
+        "function", $.identifier, "(", $.typed_args, ")",
+        optional(seq(":", $.identifier)),
+        "=>", $._expression,
+      ),
+
+      typed_args: $ => seq(
+        $.typed_identifier,
+        repeat(seq(",", $.typed_identifier)),
+      ),
+
+      enum_definition: $ => seq(
+        "enum", $.identifier, ":", $.identifier, "{",  $._literal, "}",
+      ),
+
+      constant_declaration: $ => seq(
+        "const", $.identifier, optional(seq(":", $.identifier)), "=", $._expression
+      ),
+
+      newclass: $ => seq(
+        repeat($.decorator),
+        "newclass", $.identifier,
+        "derives", $.filterable_type,
+        repeat(seq("*", $.filterable_type)),
+        "{", repeat($.newclass_mutation), "}"
+      ),
+
+      newclass_mutation: $ => seq(
+        repeat($.decorator),
+        optional("new"),
+        $.identifier, ":", $._expression,
+      ),
+
+      anonymous_function: $ => seq(
+        "(", optional(choice($.args, $.typed_args)), ")", optional(seq(":", $.identifier)), "=>", $._expression,
+      ),
+
+      args: $ => seq(
+        $.identifier, repeat(seq(",", $.identifier)),
+      ),
+
+      typed_identifier: $ => seq(
+        $.identifier, ":", $.identifier,
+      ),
+
+      foreach_function: $ => seq(
+        "foreach",
+        "(",
+        $.foreach_iteration,
+        repeat(seq(",", $.foreach_iteration)),
+        ")",
+        "=>", $._expression,
+      ),
+
+      foreach_iteration: $ => seq(
+        $.identifier, "of", $.filterable_type,
+      ),
+
+      if_function: $ => seq(
+        "if", "(", $._expression, ")", "=>", $._expression
+      ),
 
       //------------
       // Expressions
@@ -253,7 +284,17 @@ module.exports = grammar({
           $._number,
           $.false,
           $.true,
+          $.graph_literal,
           $._string),
+
+      graph_literal: $ => seq(
+        choice($.identifier, $.typed_identifier),
+        "{", repeat($.graph_literal_property), "}",
+      ),
+
+      graph_literal_property: $ => seq(
+        $.identifier, ":", $._expression,
+      ),
 
       false: $ => "false",
 
