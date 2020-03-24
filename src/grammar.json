@@ -971,12 +971,20 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "non_literal_factor"
+          "type": "PREC_LEFT",
+          "value": 30,
+          "content": {
+            "type": "SYMBOL",
+            "name": "non_literal_factor"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "_literal"
+          "type": "PREC_LEFT",
+          "value": 10,
+          "content": {
+            "type": "SYMBOL",
+            "name": "_literal"
+          }
         }
       ]
     },
@@ -1006,6 +1014,10 @@
         {
           "type": "SYMBOL",
           "name": "array_accessor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "anonymous_function"
         },
         {
           "type": "SEQ",

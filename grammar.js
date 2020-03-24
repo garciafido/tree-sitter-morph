@@ -6,6 +6,7 @@ const PREC = {
 
   RELATIONAL: 1,
   FACTOR: 10,
+  NON_LITERAL_FACTOR: 30,
 };
 
 module.exports = grammar({
@@ -232,6 +233,7 @@ module.exports = grammar({
           $.identifier,
           $.function_call,
           $.array_accessor,
+          $.anonymous_function,
           seq("(", $.expression_args, ")"),
           $.list,
           $.unary_expression),
