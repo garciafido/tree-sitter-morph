@@ -114,7 +114,7 @@ module.exports = grammar({
       ),
 
       enum_definition: $ => seq(
-        "enum", $.identifier, ":", $.identifier, "{",  repeat1($.identifier), "}",
+        "enum", $.identifier, ":", $.identifier, "{",  repeat($.identifier), "}",
       ),
 
       constant_declaration: $ => seq(
