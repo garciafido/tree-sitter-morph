@@ -230,7 +230,6 @@ module.exports = grammar({
 
       factor: $ => seq(choice(
             $.non_literal_factor,
-            $.chained_factor,
             $.literal),
       ),
 
