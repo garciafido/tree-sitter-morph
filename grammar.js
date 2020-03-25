@@ -24,7 +24,7 @@ module.exports = grammar({
 
   conflicts: ($, previous) => previous.concat([
     [$.non_literal_factor, $.args],
-    [$.unary_expression, $.chained_factor],
+    [$.unary_expression, $.function_call],
     [$.unary_expression, $.non_literal_factor],
     [$.disjunction_expression, $.boolean_expression],
     [$.disjunction_expression, $.conjuction_expression],
@@ -32,7 +32,7 @@ module.exports = grammar({
     [$.additive_expression, $.arithmetic_expression],
     [$.non_literal_factor, $.multiplicative_expression],
     [$.multiplicative_expression, $.additive_expression],
-    [$.chained_factor, $.multiplicative_expression],
+    [$.function_call, $.multiplicative_expression],
   ]),
 
   supertypes: $ => [
@@ -241,7 +241,7 @@ module.exports = grammar({
           seq($.non_literal_factor, $.chained),
           $.unary_expression),
 
-      chained_factor: $ => choice(
+      function_call: $ => choice(
           $.non_literal_factor,
           optional($.rule_expression),
           choice($.array_accessor_args, $.function_call_args),

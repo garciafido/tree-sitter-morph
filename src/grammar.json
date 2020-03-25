@@ -982,10 +982,6 @@
             },
             {
               "type": "SYMBOL",
-              "name": "chained_factor"
-            },
-            {
-              "type": "SYMBOL",
               "name": "literal"
             }
           ]
