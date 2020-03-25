@@ -24,7 +24,6 @@ module.exports = grammar({
 
   conflicts: ($, previous) => previous.concat([
     [$.non_literal_factor, $.args],
-    [$.unary_expression, $.dot_accessor],
     [$.unary_expression, $.function_call],
     [$.unary_expression, $.array_accessor],
     [$.disjunction_expression, $.boolean_expression],
@@ -32,10 +31,8 @@ module.exports = grammar({
     [$.negation_expression, $.relational_expression],
     [$.additive_expression, $.arithmetic_expression],
     [$.multiplicative_expression, $.additive_expression],
-    [$.dot_accessor, $.multiplicative_expression],
     [$.function_call, $.multiplicative_expression],
     [$.array_accessor, $.multiplicative_expression],
-    // [$.unary_expression, $.function_call, $.array_accessor],
   ]),
 
   supertypes: $ => [
@@ -231,13 +228,13 @@ module.exports = grammar({
           ),
           $.factor),
 
-      factor: $ => choice(
-          $.non_literal_factor,
-          $.literal,
+      factor: $ => seq(choice(
+            $.non_literal_factor,
+            $.literal),
+          optional($.chained_factor),
       ),
 
       non_literal_factor: $ => choice(
-          $.dot_accessor,
           $.identifier,
           $.function_call,
           $.array_accessor,
@@ -246,23 +243,34 @@ module.exports = grammar({
           $.list,
           $.unary_expression),
 
-      dot_accessor: $ => seq(
-        $.non_literal_factor, ".", choice($.function_call, $.array_accessor),
+      chained_factor: $ => seq(
+        choice('.', $.function_call_args, $.array_accessor_args),
+        choice($.function_call, $.array_accessor),
       ),
 
       function_call: $ => seq(
           $.non_literal_factor,
           optional($.rule_expression),
+          $.function_call_args,
+        ),
+
+      function_call_args: $ => seq(
           "(",
               optional($.expression_list),
-          ")"),
+          ")",
+      ),
 
       array_accessor: $ => seq(
           $.non_literal_factor,
           optional($.rule_expression),
+          $.array_accessor_args,
+      ),
+
+      array_accessor_args: $ => seq(
           "[",
-              $.expression_list,
-          "]"),
+              optional($.expression_list),
+          "]",
+      ),
 
       rule_expression: $ => seq(
         '<', $.expression, '>'),
