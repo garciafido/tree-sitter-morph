@@ -70,6 +70,6 @@ bool tree_sitter_morph_external_scanner_scan(void *payload, TSLexer *lexer,
           advance(lexer);
       }
     }
-    return false;
   }
+  return false;
 }
