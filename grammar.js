@@ -23,25 +23,22 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    [$.non_literal_factor, $.args],
-    [$.unary_expression, $.function_call],
-    [$.unary_expression, $.non_literal_factor],
-    [$.disjunction_expression, $.boolean_expression],
-    [$.disjunction_expression, $.conjuction_expression],
-    [$.negation_expression, $.relational_expression],
-    [$.additive_expression, $.arithmetic_expression],
-    [$.non_literal_factor, $.multiplicative_expression],
     [$.multiplicative_expression, $.additive_expression],
-    [$.function_call, $.multiplicative_expression],
-    [$.bracket_accesor, $.function_call],
+    [$.additive_expression, $.arithmetic_expression],
+    [$.negation_expression, $.relational_expression],
+    [$.conjuction_expression, $.disjunction_expression],
+    [$.disjunction_expression, $.boolean_expression],
+    [$.function_call, $.bracket_accesor],
+    [$.non_literal_factor, $.factor],
+    [$.non_literal_factor, $.args],
   ]),
 
   supertypes: $ => [
   ],
 
   inline: $ => [
-    $.factor,
-    $.identifier,
+    // $.factor,
+    // $.identifier,
   ],
 
   rules: {
@@ -236,10 +233,13 @@ module.exports = grammar({
 
       callable_expression: $ => choice(
           $.identifier,
+          $.bracket_accesor,
+          $.function_call,
           seq("(", $.expression, ")"),
       ),
 
       non_literal_factor: $ => choice(
+          $.identifier,
           $.anonymous_function,
           $.list,
           $.bracket_accesor,
@@ -273,7 +273,7 @@ module.exports = grammar({
 
       array_accessor_args: $ => seq(
           "[",
-              optional($.expression_list),
+              $.expression_list,
           "]",
       ),
 

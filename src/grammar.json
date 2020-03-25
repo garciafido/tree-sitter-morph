@@ -991,6 +991,14 @@
           "name": "identifier"
         },
         {
+          "type": "SYMBOL",
+          "name": "bracket_accesor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_call"
+        },
+        {
           "type": "SEQ",
           "members": [
             {
@@ -1012,6 +1020,10 @@
     "non_literal_factor": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
         {
           "type": "SYMBOL",
           "name": "anonymous_function"
@@ -1165,16 +1177,8 @@
           "value": "["
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "expression_list"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "expression_list"
         },
         {
           "type": "STRING",
@@ -2156,48 +2160,36 @@
   ],
   "conflicts": [
     [
-      "non_literal_factor",
-      "args"
-    ],
-    [
-      "unary_expression",
-      "function_call"
-    ],
-    [
-      "unary_expression",
-      "non_literal_factor"
-    ],
-    [
-      "disjunction_expression",
-      "boolean_expression"
-    ],
-    [
-      "disjunction_expression",
-      "conjuction_expression"
-    ],
-    [
-      "negation_expression",
-      "relational_expression"
+      "multiplicative_expression",
+      "additive_expression"
     ],
     [
       "additive_expression",
       "arithmetic_expression"
     ],
     [
-      "non_literal_factor",
-      "multiplicative_expression"
+      "negation_expression",
+      "relational_expression"
     ],
     [
-      "multiplicative_expression",
-      "additive_expression"
+      "conjuction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "disjunction_expression",
+      "boolean_expression"
     ],
     [
       "function_call",
-      "multiplicative_expression"
+      "bracket_accesor"
     ],
     [
-      "bracket_accesor",
-      "function_call"
+      "non_literal_factor",
+      "factor"
+    ],
+    [
+      "non_literal_factor",
+      "args"
     ]
   ],
   "externals": [
@@ -2210,10 +2202,7 @@
       "name": "_template_chars"
     }
   ],
-  "inline": [
-    "factor",
-    "identifier"
-  ],
+  "inline": [],
   "supertypes": []
 }
 
