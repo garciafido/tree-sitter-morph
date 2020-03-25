@@ -27,10 +27,10 @@ module.exports = grammar({
     [$.unary_expression, $.dot_accessor],
     [$.unary_expression, $.function_call],
     [$.unary_expression, $.array_accessor],
-    [$.disjunction_expression, $._boolean_expression],
+    [$.disjunction_expression, $.boolean_expression],
     [$.disjunction_expression, $.conjuction_expression],
     [$.negation_expression, $.relational_expression],
-    [$.additive_expression, $._arithmetic_expression],
+    [$.additive_expression, $.arithmetic_expression],
     [$.multiplicative_expression, $.additive_expression],
     [$.dot_accessor, $.multiplicative_expression],
     [$.function_call, $.multiplicative_expression],
@@ -38,12 +38,6 @@ module.exports = grammar({
   ]),
 
   supertypes: $ => [
-    $._arithmetic_expression,
-    $._boolean_expression,
-    $._expression,
-    $._literal,
-    $._number,
-    $._string,
   ],
 
   inline: $ => [
@@ -120,7 +114,7 @@ module.exports = grammar({
       function_definition: $ => seq(
         "function", $.identifier, "(", $.typed_args, ")",
         optional(seq(":", $.identifier)),
-        "=>", $._expression,
+        "=>", $.expression,
       ),
 
       typed_args: $ => seq(
@@ -129,11 +123,11 @@ module.exports = grammar({
       ),
 
       enum_definition: $ => seq(
-        "enum", $.identifier, ":", $.identifier, "{",  repeat1($._literal), "}",
+        "enum", $.identifier, ":", $.identifier, "{",  repeat1($.literal), "}",
       ),
 
       constant_declaration: $ => seq(
-        "const", $.identifier, optional(seq(":", $.identifier)), "=", $._expression
+        "const", $.identifier, optional(seq(":", $.identifier)), "=", $.expression
       ),
 
       newclass: $ => seq(
@@ -147,11 +141,11 @@ module.exports = grammar({
       newclass_mutation: $ => seq(
         repeat($.decorator),
         optional("new"),
-        $.identifier, ":", $._expression,
+        $.identifier, ":", $.expression,
       ),
 
       anonymous_function: $ => seq(
-        "(", optional(choice($.args, $.typed_args)), ")", optional(seq(":", $.identifier)), "=>", $._expression,
+        "(", optional(choice($.args, $.typed_args)), ")", optional(seq(":", $.identifier)), "=>", $.expression,
       ),
 
       args: $ => seq(
@@ -168,7 +162,7 @@ module.exports = grammar({
         $.foreach_iteration,
         repeat(seq(",", $.foreach_iteration)),
         ")",
-        "=>", $._expression,
+        "=>", $.expression,
       ),
 
       foreach_iteration: $ => seq(
@@ -176,17 +170,17 @@ module.exports = grammar({
       ),
 
       if_function: $ => seq(
-        "if", "(", $._expression, ")", "=>", $._expression
+        "if", "(", $.expression, ")", "=>", $.expression
       ),
 
       //------------
       // Expressions
       //------------
 
-      _expression: $ =>
-        $._boolean_expression,
+      expression: $ =>
+        $.boolean_expression,
 
-      _boolean_expression: $ =>
+      boolean_expression: $ =>
         $.disjunction_expression,
 
       disjunction_expression: $ => choice(
@@ -213,11 +207,11 @@ module.exports = grammar({
           seq(
             $.relational_expression,
             $.relational_operator,
-            $._arithmetic_expression
+            $.arithmetic_expression
           ),
-          $._arithmetic_expression),
+          $.arithmetic_expression),
 
-      _arithmetic_expression: $ =>
+      arithmetic_expression: $ =>
         $.additive_expression,
 
       additive_expression: $ => choice(
@@ -238,7 +232,7 @@ module.exports = grammar({
 
       factor: $ => choice(
           $.non_literal_factor,
-          $._literal,
+          $.literal,
       ),
 
       non_literal_factor: $ => choice(
@@ -247,7 +241,7 @@ module.exports = grammar({
           $.function_call,
           $.array_accessor,
           $.anonymous_function,
-          seq("(", $._expression, ")"),
+          seq("(", $.expression, ")"),
           $.list,
           $.unary_expression),
 
@@ -275,8 +269,8 @@ module.exports = grammar({
           "[", optional($.expression_list), "]"),
 
       expression_list: $ => seq(
-        $._expression,
-        repeat(seq(",", $._expression)),
+        $.expression,
+        repeat(seq(",", $.expression)),
         optional(",")
       ),
 
@@ -289,12 +283,12 @@ module.exports = grammar({
       // Literals
       //---------
 
-      _literal: $ => choice(
-          $._number,
+      literal: $ => choice(
+          $.number,
           $.false,
           $.true,
           $.graph_literal,
-          $._string),
+          $.string),
 
       graph_literal: $ => seq(
         choice($.identifier, $.typed_identifier),
@@ -302,18 +296,18 @@ module.exports = grammar({
       ),
 
       graph_literal_property: $ => seq(
-        $.identifier, ":", $._expression,
+        $.identifier, ":", $.expression,
       ),
 
       false: $ => "False",
 
       true: $ => "True",
 
-      _number: $ => choice(
+      number: $ => choice(
           $.integer,
           $.float),
 
-      _string: $ => choice(
+      string: $ => choice(
         $.simple_string,
         $.template_string,
       ),
@@ -367,7 +361,7 @@ module.exports = grammar({
 
     template_substitution: $ => seq(
       '${',
-      $._expression,
+      $.expression,
       '}'
     ),
 
