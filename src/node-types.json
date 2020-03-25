@@ -103,10 +103,6 @@
       "required": true,
       "types": [
         {
-          "type": "class",
-          "named": true
-        },
-        {
           "type": "constant_declaration",
           "named": true
         },
@@ -131,7 +127,11 @@
           "named": true
         },
         {
-          "type": "newclass",
+          "type": "morph",
+          "named": true
+        },
+        {
+          "type": "node",
           "named": true
         }
       ]
@@ -220,52 +220,6 @@
         },
         {
           "type": "rule_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "class",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "class_property",
-          "named": true
-        },
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "class_property",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "types",
           "named": true
         }
       ]
@@ -725,6 +679,56 @@
     }
   },
   {
+    "type": "morph",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "filterable_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "morph_mutation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "morph_mutation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "multiplicative_expression",
     "named": true,
     "fields": {},
@@ -767,7 +771,7 @@
     }
   },
   {
-    "type": "newclass",
+    "type": "node",
     "named": true,
     "fields": {},
     "children": {
@@ -779,22 +783,18 @@
           "named": true
         },
         {
-          "type": "filterable_type",
-          "named": true
-        },
-        {
           "type": "identifier",
           "named": true
         },
         {
-          "type": "newclass_mutation",
+          "type": "node_edge",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "newclass_mutation",
+    "type": "node_edge",
     "named": true,
     "fields": {},
     "children": {
@@ -806,11 +806,11 @@
           "named": true
         },
         {
-          "type": "expression",
+          "type": "identifier",
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "types",
           "named": true
         }
       ]
@@ -1096,6 +1096,10 @@
     "named": false
   },
   {
+    "type": "->",
+    "named": false
+  },
+  {
     "type": ".",
     "named": false
   },
@@ -1150,10 +1154,6 @@
   {
     "type": "camel_identifier",
     "named": true
-  },
-  {
-    "type": "class",
-    "named": false
   },
   {
     "type": "conjuction_operator",
@@ -1224,6 +1224,10 @@
     "named": true
   },
   {
+    "type": "morph",
+    "named": false
+  },
+  {
     "type": "multiplicative_operator",
     "named": true
   },
@@ -1232,7 +1236,7 @@
     "named": false
   },
   {
-    "type": "newclass",
+    "type": "node",
     "named": false
   },
   {

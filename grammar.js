@@ -52,11 +52,11 @@ module.exports = grammar({
       block: $ => seq(
         repeat($.import),
         choice(
-          $.class,
+          $.node,
           $.function_definition,
           $.enum_definition,
           $.constant_declaration,
-          $.newclass,
+          $.morph,
           $.foreach_function,
           $.if_function,
         )
@@ -67,13 +67,13 @@ module.exports = grammar({
         "import", $.identifier, repeat(seq(",", $.identifier))
       ),
 
-      class: $ => seq(
+      node: $ => seq(
         repeat($.decorator),
         optional("abstract"),
-        "class",
+        "node",
         $.identifier,
         optional(seq("extends", $.identifier)),
-        seq('{', repeat($.class_property), '}'),
+        seq('{', repeat($.node_edge), '}'),
       ),
 
       decorator: $ => seq(
@@ -91,10 +91,10 @@ module.exports = grammar({
         $.identifier, optional(seq("[", $.anonymous_function, "]")),
       ),
 
-      class_property: $ => seq(
+      node_edge: $ => seq(
         repeat($.decorator),
         $.identifier,
-        optional(choice("!", "[]")), ":", $.types
+        optional(choice("!", "[]")), "->", $.types
       ),
 
       types: $ => seq(
@@ -126,15 +126,15 @@ module.exports = grammar({
         "const", $.identifier, optional(seq(":", $.identifier)), "=", $.expression
       ),
 
-      newclass: $ => seq(
+      morph: $ => seq(
         repeat($.decorator),
-        "newclass", $.identifier,
+        "morph", $.identifier,
         "derives", $.filterable_type,
         repeat(seq("*", $.filterable_type)),
-        "{", repeat($.newclass_mutation), "}"
+        "{", repeat($.morph_mutation), "}"
       ),
 
-      newclass_mutation: $ => seq(
+      morph_mutation: $ => seq(
         repeat($.decorator),
         optional("new"),
         $.identifier, ":", $.expression,

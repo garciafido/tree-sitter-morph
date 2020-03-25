@@ -23,7 +23,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "class"
+              "name": "node"
             },
             {
               "type": "SYMBOL",
@@ -39,7 +39,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "newclass"
+              "name": "morph"
             },
             {
               "type": "SYMBOL",
@@ -114,7 +114,7 @@
         }
       ]
     },
-    "class": {
+    "node": {
       "type": "SEQ",
       "members": [
         {
@@ -138,7 +138,7 @@
         },
         {
           "type": "STRING",
-          "value": "class"
+          "value": "node"
         },
         {
           "type": "SYMBOL",
@@ -176,7 +176,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
-                "name": "class_property"
+                "name": "node_edge"
               }
             },
             {
@@ -267,7 +267,7 @@
         }
       ]
     },
-    "class_property": {
+    "node_edge": {
       "type": "SEQ",
       "members": [
         {
@@ -304,7 +304,7 @@
         },
         {
           "type": "STRING",
-          "value": ":"
+          "value": "->"
         },
         {
           "type": "SYMBOL",
@@ -515,7 +515,7 @@
         }
       ]
     },
-    "newclass": {
+    "morph": {
       "type": "SEQ",
       "members": [
         {
@@ -527,7 +527,7 @@
         },
         {
           "type": "STRING",
-          "value": "newclass"
+          "value": "morph"
         },
         {
           "type": "SYMBOL",
@@ -565,7 +565,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "newclass_mutation"
+            "name": "morph_mutation"
           }
         },
         {
@@ -574,7 +574,7 @@
         }
       ]
     },
-    "newclass_mutation": {
+    "morph_mutation": {
       "type": "SEQ",
       "members": [
         {
