@@ -408,7 +408,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         }
       ]
     },
@@ -464,7 +464,7 @@
           "type": "REPEAT1",
           "content": {
             "type": "SYMBOL",
-            "name": "_literal"
+            "name": "literal"
           }
         },
         {
@@ -511,7 +511,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         }
       ]
     },
@@ -606,7 +606,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         }
       ]
     },
@@ -669,7 +669,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         }
       ]
     },
@@ -756,7 +756,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         }
       ]
     },
@@ -790,7 +790,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         },
         {
           "type": "STRING",
@@ -802,15 +802,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         }
       ]
     },
-    "_expression": {
+    "expression": {
       "type": "SYMBOL",
-      "name": "_boolean_expression"
+      "name": "boolean_expression"
     },
-    "_boolean_expression": {
+    "boolean_expression": {
       "type": "SYMBOL",
       "name": "disjunction_expression"
     },
@@ -904,17 +904,17 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_arithmetic_expression"
+              "name": "arithmetic_expression"
             }
           ]
         },
         {
           "type": "SYMBOL",
-          "name": "_arithmetic_expression"
+          "name": "arithmetic_expression"
         }
       ]
     },
-    "_arithmetic_expression": {
+    "arithmetic_expression": {
       "type": "SYMBOL",
       "name": "additive_expression"
     },
@@ -979,7 +979,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_literal"
+          "name": "literal"
         }
       ]
     },
@@ -1015,7 +1015,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_expression"
+              "name": "expression"
             },
             {
               "type": "STRING",
@@ -1143,7 +1143,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         },
         {
           "type": "REPEAT",
@@ -1156,7 +1156,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_expression"
+                "name": "expression"
               }
             ]
           }
@@ -1192,12 +1192,12 @@
         }
       ]
     },
-    "_literal": {
+    "literal": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_number"
+          "name": "number"
         },
         {
           "type": "SYMBOL",
@@ -1213,7 +1213,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_string"
+          "name": "string"
         }
       ]
     },
@@ -1263,7 +1263,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         }
       ]
     },
@@ -1275,7 +1275,7 @@
       "type": "STRING",
       "value": "True"
     },
-    "_number": {
+    "number": {
       "type": "CHOICE",
       "members": [
         {
@@ -1288,7 +1288,7 @@
         }
       ]
     },
-    "_string": {
+    "string": {
       "type": "CHOICE",
       "members": [
         {
@@ -1499,7 +1499,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "expression"
         },
         {
           "type": "STRING",
@@ -2037,7 +2037,7 @@
     ],
     [
       "disjunction_expression",
-      "_boolean_expression"
+      "boolean_expression"
     ],
     [
       "disjunction_expression",
@@ -2049,7 +2049,7 @@
     ],
     [
       "additive_expression",
-      "_arithmetic_expression"
+      "arithmetic_expression"
     ],
     [
       "multiplicative_expression",
@@ -2082,13 +2082,6 @@
     "factor",
     "identifier"
   ],
-  "supertypes": [
-    "_arithmetic_expression",
-    "_boolean_expression",
-    "_expression",
-    "_literal",
-    "_number",
-    "_string"
-  ]
+  "supertypes": []
 }
 

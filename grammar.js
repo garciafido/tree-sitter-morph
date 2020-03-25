@@ -246,20 +246,25 @@ module.exports = grammar({
           $.unary_expression),
 
       dot_accessor: $ => seq(
-        $.non_literal_factor, ".", $.identifier,
+        $.non_literal_factor, ".", choice($.function_call, $.array_accessor),
       ),
 
       function_call: $ => seq(
           $.non_literal_factor,
+          optional($.rule_expression),
           "(",
               optional($.expression_list),
           ")"),
 
       array_accessor: $ => seq(
           $.non_literal_factor,
+          optional($.rule_expression),
           "[",
               $.expression_list,
           "]"),
+
+      rule_expression: $ => seq(
+        '<', $.expression, '>'),
 
       unary_expression: $ => seq(
           $.unary_operator,
@@ -350,7 +355,7 @@ module.exports = grammar({
         )))),
 
     template_string: $ => seq(
-      '`',
+      optional('`', 'ebnf`'),
       repeat(choice(
         $._template_chars,
         $.escape_sequence,
