@@ -56,7 +56,7 @@ module.exports = grammar({
           $.function_definition,
           $.enum_definition,
           $.constant_declaration,
-          $.morph,
+          $.morph_declaration,
           $.if_function,
         )
       ),
@@ -121,10 +121,10 @@ module.exports = grammar({
         "const", $.identifier, optional(seq(":", $.identifier)), "=", $.expression
       ),
 
-      morph: $ => seq(
+      morph_declaration: $ => seq(
         repeat($.decorator),
         "morph", $.identifier,
-        '(', $.expression, ')',
+        "(", $.expression, ")",
         "{", repeat($.morph_mutation), "}"
       ),
 

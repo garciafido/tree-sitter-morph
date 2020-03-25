@@ -123,7 +123,7 @@
           "named": true
         },
         {
-          "type": "morph",
+          "type": "morph_declaration",
           "named": true
         },
         {
@@ -614,7 +614,7 @@
     }
   },
   {
-    "type": "morph",
+    "type": "morph_declaration",
     "named": true,
     "fields": {},
     "children": {

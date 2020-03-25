@@ -39,7 +39,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "morph"
+              "name": "morph_declaration"
             },
             {
               "type": "SYMBOL",
@@ -477,7 +477,7 @@
         }
       ]
     },
-    "morph": {
+    "morph_declaration": {
       "type": "SEQ",
       "members": [
         {
