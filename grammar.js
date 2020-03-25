@@ -24,15 +24,15 @@ module.exports = grammar({
 
   conflicts: ($, previous) => previous.concat([
     [$.non_literal_factor, $.args],
-    [$.unary_expression, $.function_call],
-    [$.unary_expression, $.array_accessor],
+    [$.unary_expression, $.chained_factor],
+    [$.unary_expression, $.non_literal_factor],
     [$.disjunction_expression, $.boolean_expression],
     [$.disjunction_expression, $.conjuction_expression],
     [$.negation_expression, $.relational_expression],
     [$.additive_expression, $.arithmetic_expression],
+    [$.non_literal_factor, $.multiplicative_expression],
     [$.multiplicative_expression, $.additive_expression],
-    [$.function_call, $.multiplicative_expression],
-    [$.array_accessor, $.multiplicative_expression],
+    [$.chained_factor, $.multiplicative_expression],
   ]),
 
   supertypes: $ => [
@@ -231,39 +231,33 @@ module.exports = grammar({
       factor: $ => seq(choice(
             $.non_literal_factor,
             $.literal),
-          optional($.chained_factor),
       ),
 
       non_literal_factor: $ => choice(
           $.identifier,
-          $.function_call,
-          $.array_accessor,
           $.anonymous_function,
           seq("(", $.expression, ")"),
           $.list,
+          seq($.non_literal_factor, $.chained),
           $.unary_expression),
 
-      chained_factor: $ => seq(
-        choice('.', $.function_call_args, $.array_accessor_args),
-        choice($.function_call, $.array_accessor),
-      ),
-
-      function_call: $ => seq(
+      chained_factor: $ => choice(
           $.non_literal_factor,
           optional($.rule_expression),
-          $.function_call_args,
+          choice($.array_accessor_args, $.function_call_args),
+      ),
+
+      chained: $ => seq(
+          '.',
+          $.identifier,
+          optional($.rule_expression),
+          choice($.array_accessor_args, $.function_call_args),
         ),
 
       function_call_args: $ => seq(
           "(",
               optional($.expression_list),
           ")",
-      ),
-
-      array_accessor: $ => seq(
-          $.non_literal_factor,
-          optional($.rule_expression),
-          $.array_accessor_args,
       ),
 
       array_accessor_args: $ => seq(

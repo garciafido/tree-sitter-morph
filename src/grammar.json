@@ -985,18 +985,6 @@
               "name": "literal"
             }
           ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "chained_factor"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         }
       ]
     },
@@ -1006,14 +994,6 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function_call"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "array_accessor"
         },
         {
           "type": "SYMBOL",
@@ -1041,48 +1021,26 @@
           "name": "list"
         },
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "non_literal_factor"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "chained"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "unary_expression"
         }
       ]
     },
     "chained_factor": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "."
-            },
-            {
-              "type": "SYMBOL",
-              "name": "function_call_args"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "array_accessor_args"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "function_call"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "array_accessor"
-            }
-          ]
-        }
-      ]
-    },
-    "function_call": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
@@ -1101,8 +1059,55 @@
           ]
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "array_accessor_args"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_call_args"
+            }
+          ]
+        }
+      ]
+    },
+    "chained": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
           "type": "SYMBOL",
-          "name": "function_call_args"
+          "name": "identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "rule_expression"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "array_accessor_args"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_call_args"
+            }
+          ]
         }
       ]
     },
@@ -1128,31 +1133,6 @@
         {
           "type": "STRING",
           "value": ")"
-        }
-      ]
-    },
-    "array_accessor": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "non_literal_factor"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "rule_expression"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "array_accessor_args"
         }
       ]
     },
@@ -2160,11 +2140,11 @@
     ],
     [
       "unary_expression",
-      "function_call"
+      "chained_factor"
     ],
     [
       "unary_expression",
-      "array_accessor"
+      "non_literal_factor"
     ],
     [
       "disjunction_expression",
@@ -2183,15 +2163,15 @@
       "arithmetic_expression"
     ],
     [
+      "non_literal_factor",
+      "multiplicative_expression"
+    ],
+    [
       "multiplicative_expression",
       "additive_expression"
     ],
     [
-      "function_call",
-      "multiplicative_expression"
-    ],
-    [
-      "array_accessor",
+      "chained_factor",
       "multiplicative_expression"
     ]
   ],

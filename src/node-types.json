@@ -96,19 +96,15 @@
     }
   },
   {
-    "type": "array_accessor",
+    "type": "array_accessor_args",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "expression_list",
-          "named": true
-        },
-        {
-          "type": "non_literal_factor",
           "named": true
         }
       ]
@@ -167,6 +163,41 @@
       "types": [
         {
           "type": "disjunction_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "chained",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "array_accessor_args",
+          "named": true
+        },
+        {
+          "type": "camel_identifier",
+          "named": true
+        },
+        {
+          "type": "function_call_args",
+          "named": true
+        },
+        {
+          "type": "pascal_identifier",
+          "named": true
+        },
+        {
+          "type": "rule_expression",
+          "named": true
+        },
+        {
+          "type": "snake_identifier",
           "named": true
         }
       ]
@@ -342,27 +373,19 @@
     }
   },
   {
-    "type": "dot_accessor",
+    "type": "ebnf_literal",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "camel_identifier",
+          "type": "escape_sequence",
           "named": true
         },
         {
-          "type": "non_literal_factor",
-          "named": true
-        },
-        {
-          "type": "pascal_identifier",
-          "named": true
-        },
-        {
-          "type": "snake_identifier",
+          "type": "template_substitution",
           "named": true
         }
       ]
@@ -499,19 +522,15 @@
     }
   },
   {
-    "type": "function_call",
+    "type": "function_call_args",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "expression_list",
-          "named": true
-        },
-        {
-          "type": "non_literal_factor",
           "named": true
         }
       ]
@@ -668,6 +687,10 @@
       "required": true,
       "types": [
         {
+          "type": "ebnf_literal",
+          "named": true
+        },
+        {
           "type": "false",
           "named": true
         },
@@ -807,7 +830,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -815,15 +838,11 @@
           "named": true
         },
         {
-          "type": "array_accessor",
-          "named": true
-        },
-        {
           "type": "camel_identifier",
           "named": true
         },
         {
-          "type": "dot_accessor",
+          "type": "chained",
           "named": true
         },
         {
@@ -831,11 +850,11 @@
           "named": true
         },
         {
-          "type": "function_call",
+          "type": "list",
           "named": true
         },
         {
-          "type": "list",
+          "type": "non_literal_factor",
           "named": true
         },
         {
@@ -905,6 +924,21 @@
         },
         {
           "type": "relational_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
           "named": true
         }
       ]
@@ -1107,11 +1141,19 @@
     "named": false
   },
   {
+    "type": "<",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
   {
     "type": "=>",
+    "named": false
+  },
+  {
+    "type": ">",
     "named": false
   },
   {
@@ -1165,6 +1207,10 @@
   {
     "type": "disjunction_operator",
     "named": true
+  },
+  {
+    "type": "ebnf`",
+    "named": false
   },
   {
     "type": "enum",
