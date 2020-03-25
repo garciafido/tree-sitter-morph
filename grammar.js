@@ -33,6 +33,7 @@ module.exports = grammar({
     [$.non_literal_factor, $.multiplicative_expression],
     [$.multiplicative_expression, $.additive_expression],
     [$.function_call, $.multiplicative_expression],
+    [$.bracket_accesor, $.function_call],
   ]),
 
   supertypes: $ => [
@@ -228,26 +229,36 @@ module.exports = grammar({
           ),
           $.factor),
 
-      factor: $ => seq(choice(
+      factor: $ => choice(
             $.non_literal_factor,
-            $.literal),
+            $.literal,
+      ),
+
+      callable_expression: $ => choice(
+          $.identifier,
+          seq("(", $.expression, ")"),
       ),
 
       non_literal_factor: $ => choice(
-          $.identifier,
           $.anonymous_function,
-          seq("(", $.expression, ")"),
           $.list,
-          seq($.non_literal_factor, $.chained),
+          $.bracket_accesor,
+          $.function_call,
+          seq($.non_literal_factor, $.chained_call),
           $.unary_expression),
 
-      function_call: $ => choice(
-          $.non_literal_factor,
+      function_call: $ => seq(
+          $.callable_expression,
           optional($.rule_expression),
           choice($.array_accessor_args, $.function_call_args),
       ),
 
-      chained: $ => seq(
+      bracket_accesor: $ => seq(
+          $.callable_expression,
+          $.array_accessor_args,
+      ),
+
+      chained_call: $ => seq(
           '.',
           $.identifier,
           optional($.rule_expression),

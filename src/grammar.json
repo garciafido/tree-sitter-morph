@@ -971,33 +971,24 @@
       ]
     },
     "factor": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "non_literal_factor"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "literal"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "non_literal_factor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "literal"
         }
       ]
     },
-    "non_literal_factor": {
+    "callable_expression": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
           "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "anonymous_function"
         },
         {
           "type": "SEQ",
@@ -1015,10 +1006,27 @@
               "value": ")"
             }
           ]
+        }
+      ]
+    },
+    "non_literal_factor": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "anonymous_function"
         },
         {
           "type": "SYMBOL",
           "name": "list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bracket_accesor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_call"
         },
         {
           "type": "SEQ",
@@ -1029,7 +1037,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "chained"
+              "name": "chained_call"
             }
           ]
         },
@@ -1039,12 +1047,12 @@
         }
       ]
     },
-    "chained_factor": {
-      "type": "CHOICE",
+    "function_call": {
+      "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "non_literal_factor"
+          "name": "callable_expression"
         },
         {
           "type": "CHOICE",
@@ -1073,7 +1081,20 @@
         }
       ]
     },
-    "chained": {
+    "bracket_accesor": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "callable_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array_accessor_args"
+        }
+      ]
+    },
+    "chained_call": {
       "type": "SEQ",
       "members": [
         {
@@ -2140,7 +2161,7 @@
     ],
     [
       "unary_expression",
-      "chained_factor"
+      "function_call"
     ],
     [
       "unary_expression",
@@ -2171,8 +2192,12 @@
       "additive_expression"
     ],
     [
-      "chained_factor",
+      "function_call",
       "multiplicative_expression"
+    ],
+    [
+      "bracket_accesor",
+      "function_call"
     ]
   ],
   "externals": [
