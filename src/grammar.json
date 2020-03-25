@@ -1045,8 +1045,17 @@
           "value": "."
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_call"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "array_accessor"
+            }
+          ]
         }
       ]
     },
@@ -1056,6 +1065,18 @@
         {
           "type": "SYMBOL",
           "name": "non_literal_factor"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "rule_expression"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -1087,6 +1108,18 @@
           "name": "non_literal_factor"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "rule_expression"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "["
         },
@@ -1097,6 +1130,23 @@
         {
           "type": "STRING",
           "value": "]"
+        }
+      ]
+    },
+    "rule_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
         }
       ]
     },
@@ -1210,6 +1260,10 @@
         {
           "type": "SYMBOL",
           "name": "graph_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ebnf_literal"
         },
         {
           "type": "SYMBOL",
@@ -1463,6 +1517,39 @@
         {
           "type": "STRING",
           "value": "`"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_template_chars"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "escape_sequence"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "template_substitution"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "`"
+        }
+      ]
+    },
+    "ebnf_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ebnf`"
         },
         {
           "type": "REPEAT",

@@ -35,6 +35,7 @@ module.exports = grammar({
     [$.dot_accessor, $.multiplicative_expression],
     [$.function_call, $.multiplicative_expression],
     [$.array_accessor, $.multiplicative_expression],
+    // [$.unary_expression, $.function_call, $.array_accessor],
   ]),
 
   supertypes: $ => [
@@ -293,6 +294,7 @@ module.exports = grammar({
           $.false,
           $.true,
           $.graph_literal,
+          $.ebnf_literal,
           $.string),
 
       graph_literal: $ => seq(
@@ -355,7 +357,17 @@ module.exports = grammar({
         )))),
 
     template_string: $ => seq(
-      optional('`', 'ebnf`'),
+      '`',
+      repeat(choice(
+        $._template_chars,
+        $.escape_sequence,
+        $.template_substitution,
+      )),
+      '`'
+    ),
+
+    ebnf_literal: $ => seq(
+      'ebnf`',
       repeat(choice(
         $._template_chars,
         $.escape_sequence,
