@@ -22,19 +22,18 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    // [$.args, $.non_literal_factor],
+    [$.non_literal_factor, $.args],
     [$.unary_expression, $.dot_accessor],
     [$.unary_expression, $.function_call],
     [$.unary_expression, $.array_accessor],
-    [$.function_call, $.multiplicative_expression],
-    [$.array_accessor, $.multiplicative_expression],
-    [$.non_literal_factor, $.args],
     [$.disjunction_expression, $._boolean_expression],
     [$.disjunction_expression, $.conjuction_expression],
     [$.negation_expression, $.relational_expression],
     [$.additive_expression, $._arithmetic_expression],
     [$.multiplicative_expression, $.additive_expression],
     [$.dot_accessor, $.multiplicative_expression],
+    [$.function_call, $.multiplicative_expression],
+    [$.array_accessor, $.multiplicative_expression],
   ]),
 
   supertypes: $ => [

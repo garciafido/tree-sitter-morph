@@ -2020,6 +2020,10 @@
   ],
   "conflicts": [
     [
+      "non_literal_factor",
+      "args"
+    ],
+    [
       "unary_expression",
       "dot_accessor"
     ],
@@ -2030,18 +2034,6 @@
     [
       "unary_expression",
       "array_accessor"
-    ],
-    [
-      "function_call",
-      "multiplicative_expression"
-    ],
-    [
-      "array_accessor",
-      "multiplicative_expression"
-    ],
-    [
-      "non_literal_factor",
-      "args"
     ],
     [
       "disjunction_expression",
@@ -2065,6 +2057,14 @@
     ],
     [
       "dot_accessor",
+      "multiplicative_expression"
+    ],
+    [
+      "function_call",
+      "multiplicative_expression"
+    ],
+    [
+      "array_accessor",
       "multiplicative_expression"
     ]
   ],
