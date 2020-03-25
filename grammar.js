@@ -13,7 +13,6 @@ module.exports = grammar({
   name: 'morph',
 
   externals: $ => [
-    $._automatic_semicolon,
     $._template_chars
   ],
 
@@ -21,6 +20,22 @@ module.exports = grammar({
     $.comment,
     /[\s\uFEFF\u2060\u200B\u00A0]/
   ],
+
+  conflicts: ($, previous) => previous.concat([
+    // [$.args, $.non_literal_factor],
+    [$.unary_expression, $.dot_accessor],
+    [$.unary_expression, $.function_call],
+    [$.unary_expression, $.array_accessor],
+    [$.function_call, $.multiplicative_expression],
+    [$.array_accessor, $.multiplicative_expression],
+    [$.non_literal_factor, $.args],
+    [$.disjunction_expression, $._boolean_expression],
+    [$.disjunction_expression, $.conjuction_expression],
+    [$.negation_expression, $.relational_expression],
+    [$.additive_expression, $._arithmetic_expression],
+    [$.multiplicative_expression, $.additive_expression],
+    [$.dot_accessor, $.multiplicative_expression],
+  ]),
 
   supertypes: $ => [
     $._arithmetic_expression,
@@ -78,7 +93,7 @@ module.exports = grammar({
 
       decorator_args: $ => seq(
         "(",
-        $.expression_args,
+        optional($.expression_list),
         ")"
       ),
 
@@ -114,7 +129,7 @@ module.exports = grammar({
       ),
 
       enum_definition: $ => seq(
-        "enum", $.identifier, ":", $.identifier, "{",  $._literal, "}",
+        "enum", $.identifier, ":", $.identifier, "{",  repeat1($._literal), "}",
       ),
 
       constant_declaration: $ => seq(
@@ -190,17 +205,17 @@ module.exports = grammar({
           ),
          $.negation_expression),
 
-      negation_expression: $ => prec.left(PREC.FACTOR, choice(
+      negation_expression: $ => choice(
           seq("not", $.negation_expression),
-          $.relational_expression)),
+          $.relational_expression),
 
-      relational_expression: $ => prec.left(PREC.RELATIONAL, choice(
+      relational_expression: $ => choice(
           seq(
             $.relational_expression,
             $.relational_operator,
             $._arithmetic_expression
           ),
-          $._arithmetic_expression)),
+          $._arithmetic_expression),
 
       _arithmetic_expression: $ =>
         $.additive_expression,
@@ -227,49 +242,41 @@ module.exports = grammar({
       ),
 
       non_literal_factor: $ => choice(
-          $.left_arrow_accessor,
-          $.right_arrow_accessor,
           $.dot_accessor,
           $.identifier,
           $.function_call,
           $.array_accessor,
           $.anonymous_function,
-          seq("(", $.expression_args, ")"),
+          seq("(", $._expression, ")"),
           $.list,
           $.unary_expression),
-
-      left_arrow_accessor: $ => seq(
-        $.non_literal_factor, "->", $.identifier),
-
-      right_arrow_accessor: $ => seq(
-        $.non_literal_factor, "<-", $.identifier),
 
       dot_accessor: $ => seq(
         $.non_literal_factor, ".", $.identifier,
       ),
 
-      function_call: $ => prec.left(PREC.FACTOR, seq(
+      function_call: $ => seq(
           $.non_literal_factor,
           "(",
-              optional($.expression_args),
-          ")")),
+              optional($.expression_list),
+          ")"),
 
-      array_accessor: $ => prec.left(PREC.FACTOR, seq(
+      array_accessor: $ => seq(
           $.non_literal_factor,
           "[",
-              $.expression_args,
-          "]")),
+              $.expression_list,
+          "]"),
 
-      unary_expression: $ => prec.left(PREC.FACTOR, seq(
+      unary_expression: $ => seq(
           $.unary_operator,
-          $.factor)),
+          $.factor),
 
       list: $ => seq(
-          "[", optional($.expression_args), "]"),
+          "[", optional($.expression_list), "]"),
 
-      expression_args: $ => seq(
+      expression_list: $ => seq(
         $._expression,
-        optional(seq(",", repeat($._expression))),
+        repeat(seq(",", $._expression)),
         optional(",")
       ),
 
@@ -298,9 +305,9 @@ module.exports = grammar({
         $.identifier, ":", $._expression,
       ),
 
-      false: $ => "false",
+      false: $ => "False",
 
-      true: $ => "true",
+      true: $ => "True",
 
       _number: $ => choice(
           $.integer,
