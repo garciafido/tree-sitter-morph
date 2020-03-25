@@ -111,10 +111,6 @@
           "named": true
         },
         {
-          "type": "foreach_function",
-          "named": true
-        },
-        {
           "type": "function_definition",
           "named": true
         },
@@ -354,10 +350,6 @@
         {
           "type": "identifier",
           "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
         }
       ]
     }
@@ -406,63 +398,6 @@
         },
         {
           "type": "non_literal_factor",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "filterable_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "anonymous_function",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "foreach_function",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "foreach_iteration",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "foreach_iteration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "filterable_type",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         }
       ]
@@ -691,7 +626,7 @@
           "named": true
         },
         {
-          "type": "filterable_type",
+          "type": "expression",
           "named": true
         },
         {
@@ -1088,10 +1023,6 @@
     "named": false
   },
   {
-    "type": "*",
-    "named": false
-  },
-  {
     "type": ",",
     "named": false
   },
@@ -1168,10 +1099,6 @@
     "named": true
   },
   {
-    "type": "derives",
-    "named": false
-  },
-  {
     "type": "disjunction_operator",
     "named": true
   },
@@ -1198,10 +1125,6 @@
   {
     "type": "float",
     "named": true
-  },
-  {
-    "type": "foreach",
-    "named": false
   },
   {
     "type": "from",
@@ -1241,10 +1164,6 @@
   },
   {
     "type": "not",
-    "named": false
-  },
-  {
-    "type": "of",
     "named": false
   },
   {

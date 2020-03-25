@@ -57,7 +57,6 @@ module.exports = grammar({
           $.enum_definition,
           $.constant_declaration,
           $.morph,
-          $.foreach_function,
           $.if_function,
         )
       ),
@@ -85,10 +84,6 @@ module.exports = grammar({
         "(",
         optional($.expression_list),
         ")"
-      ),
-
-      filterable_type: $ => seq(
-        $.identifier, optional(seq("[", $.anonymous_function, "]")),
       ),
 
       node_edge: $ => seq(
@@ -119,7 +114,7 @@ module.exports = grammar({
       ),
 
       enum_definition: $ => seq(
-        "enum", $.identifier, ":", $.identifier, "{",  repeat1($.literal), "}",
+        "enum", $.identifier, ":", $.identifier, "{",  repeat1($.identifier), "}",
       ),
 
       constant_declaration: $ => seq(
@@ -129,8 +124,7 @@ module.exports = grammar({
       morph: $ => seq(
         repeat($.decorator),
         "morph", $.identifier,
-        "derives", $.filterable_type,
-        repeat(seq("*", $.filterable_type)),
+        '(', $.expression, ')',
         "{", repeat($.morph_mutation), "}"
       ),
 
@@ -150,19 +144,6 @@ module.exports = grammar({
 
       typed_identifier: $ => seq(
         $.identifier, ":", $.identifier,
-      ),
-
-      foreach_function: $ => seq(
-        "foreach",
-        "(",
-        $.foreach_iteration,
-        repeat(seq(",", $.foreach_iteration)),
-        ")",
-        "=>", $.expression,
-      ),
-
-      foreach_iteration: $ => seq(
-        $.identifier, "of", $.filterable_type,
       ),
 
       if_function: $ => seq(

@@ -43,10 +43,6 @@
             },
             {
               "type": "SYMBOL",
-              "name": "foreach_function"
-            },
-            {
-              "type": "SYMBOL",
               "name": "if_function"
             }
           ]
@@ -230,40 +226,6 @@
         {
           "type": "STRING",
           "value": ")"
-        }
-      ]
-    },
-    "filterable_type": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "["
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "anonymous_function"
-                },
-                {
-                  "type": "STRING",
-                  "value": "]"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         }
       ]
     },
@@ -464,7 +426,7 @@
           "type": "REPEAT1",
           "content": {
             "type": "SYMBOL",
-            "name": "literal"
+            "name": "identifier"
           }
         },
         {
@@ -535,27 +497,15 @@
         },
         {
           "type": "STRING",
-          "value": "derives"
+          "value": "("
         },
         {
           "type": "SYMBOL",
-          "name": "filterable_type"
+          "name": "expression"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "*"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "filterable_type"
-              }
-            ]
-          }
+          "type": "STRING",
+          "value": ")"
         },
         {
           "type": "STRING",
@@ -712,68 +662,6 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
-        }
-      ]
-    },
-    "foreach_function": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "foreach"
-        },
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "foreach_iteration"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "SYMBOL",
-                "name": "foreach_iteration"
-              }
-            ]
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        },
-        {
-          "type": "STRING",
-          "value": "=>"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression"
-        }
-      ]
-    },
-    "foreach_iteration": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "STRING",
-          "value": "of"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "filterable_type"
         }
       ]
     },
