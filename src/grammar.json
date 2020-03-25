@@ -2071,6 +2071,10 @@
   "externals": [
     {
       "type": "SYMBOL",
+      "name": "_automatic_semicolon"
+    },
+    {
+      "type": "SYMBOL",
       "name": "_template_chars"
     }
   ],
