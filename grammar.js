@@ -13,6 +13,7 @@ module.exports = grammar({
   name: 'morph',
 
   externals: $ => [
+    $._automatic_semicolon,
     $._template_chars
   ],
 
