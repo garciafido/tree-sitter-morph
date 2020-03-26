@@ -12,15 +12,15 @@ const PREC = {
 module.exports = grammar({
   name: 'morph',
 
-  // externals: $ => [
-  //   $._automatic_semicolon,
-  //   $._template_chars
-  // ],
+  externals: $ => [
+    $._automatic_semicolon,
+    $._template_chars
+  ],
 
-  // extras: $ => [
-  //   $.comment,
-  //   /[\s\uFEFF\u2060\u200B\u00A0]/
-  // ],
+  extras: $ => [
+    $.comment,
+    /[\s\uFEFF\u2060\u200B\u00A0]/
+  ],
 
   // conflicts: ($, previous) => previous.concat([
   //   [$.multiplicative_expression, $.additive_expression],
@@ -342,14 +342,14 @@ module.exports = grammar({
   //         /u{[0-9a-fA-F]+}/
   //       ))),
   //
-  //     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
-  //     comment: $ => token(prec(PREC.COMMENT, choice(
-  //       seq('//', /.*/),
-  //       seq(
-  //         '/*',
-  //         /[^*]*\*+([^/*][^*]*\*+)*/,
-  //         '/'
-  //       )))),
+      // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
+      comment: $ => token(prec(PREC.COMMENT, choice(
+        seq('//', /.*/),
+        seq(
+          '/*',
+          /[^*]*\*+([^/*][^*]*\*+)*/,
+          '/'
+        )))),
   //
   //   template_string: $ => seq(
   //     '`',

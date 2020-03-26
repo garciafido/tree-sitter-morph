@@ -6,9 +6,9 @@
 #endif
 
 #define LANGUAGE_VERSION 11
-#define STATE_COUNT 8
+#define STATE_COUNT 6
 #define LARGE_STATE_COUNT 2
-#define SYMBOL_COUNT 10
+#define SYMBOL_COUNT 8
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 7
 #define EXTERNAL_TOKEN_COUNT 2
@@ -23,8 +23,6 @@ enum {
   sym__automatic_semicolon = 5,
   sym__template_chars = 6,
   sym_program = 7,
-  sym_block = 8,
-  aux_sym_program_repeat1 = 9,
 };
 
 static const char *ts_symbol_names[] = {
@@ -36,8 +34,6 @@ static const char *ts_symbol_names[] = {
   [sym__automatic_semicolon] = "_automatic_semicolon",
   [sym__template_chars] = "_template_chars",
   [sym_program] = "program",
-  [sym_block] = "block",
-  [aux_sym_program_repeat1] = "program_repeat1",
 };
 
 static TSSymbol ts_symbol_map[] = {
@@ -49,8 +45,6 @@ static TSSymbol ts_symbol_map[] = {
   [sym__automatic_semicolon] = sym__automatic_semicolon,
   [sym__template_chars] = sym__template_chars,
   [sym_program] = sym_program,
-  [sym_block] = sym_block,
-  [aux_sym_program_repeat1] = aux_sym_program_repeat1,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -85,14 +79,6 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
   [sym_program] = {
     .visible = true,
     .named = true,
-  },
-  [sym_block] = {
-    .visible = true,
-    .named = true,
-  },
-  [aux_sym_program_repeat1] = {
-    .visible = false,
-    .named = false,
   },
 };
 
@@ -197,8 +183,6 @@ static TSLexMode ts_lex_modes[STATE_COUNT] = {
   [3] = {.lex_state = 0},
   [4] = {.lex_state = 0},
   [5] = {.lex_state = 0},
-  [6] = {.lex_state = 0},
-  [7] = {.lex_state = 0},
 };
 
 enum {
@@ -229,81 +213,51 @@ static uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym__template_chars] = ACTIONS(1),
   },
   [1] = {
-    [sym_program] = STATE(6),
-    [sym_block] = STATE(2),
-    [aux_sym_program_repeat1] = STATE(2),
-    [ts_builtin_sym_end] = ACTIONS(5),
-    [anon_sym_function] = ACTIONS(7),
+    [sym_program] = STATE(3),
+    [anon_sym_function] = ACTIONS(5),
     [sym_comment] = ACTIONS(3),
   },
 };
 
 static uint16_t ts_small_parse_table[] = {
-  [0] = 4,
+  [0] = 2,
     ACTIONS(3), 1,
       sym_comment,
     ACTIONS(7), 1,
-      anon_sym_function,
+      anon_sym_EQ_GT,
+  [7] = 2,
+    ACTIONS(3), 1,
+      sym_comment,
     ACTIONS(9), 1,
       ts_builtin_sym_end,
-    STATE(3), 2,
-      sym_block,
-      aux_sym_program_repeat1,
-  [14] = 4,
+  [14] = 2,
     ACTIONS(3), 1,
       sym_comment,
     ACTIONS(11), 1,
-      ts_builtin_sym_end,
-    ACTIONS(13), 1,
-      anon_sym_function,
-    STATE(3), 2,
-      sym_block,
-      aux_sym_program_repeat1,
-  [28] = 2,
-    ACTIONS(3), 1,
-      sym_comment,
-    ACTIONS(16), 2,
-      ts_builtin_sym_end,
-      anon_sym_function,
-  [36] = 2,
-    ACTIONS(3), 1,
-      sym_comment,
-    ACTIONS(18), 1,
-      anon_sym_EQ_GT,
-  [43] = 2,
-    ACTIONS(3), 1,
-      sym_comment,
-    ACTIONS(20), 1,
-      ts_builtin_sym_end,
-  [50] = 2,
-    ACTIONS(3), 1,
-      sym_comment,
-    ACTIONS(22), 1,
       anon_sym_hola,
+  [21] = 2,
+    ACTIONS(3), 1,
+      sym_comment,
+    ACTIONS(13), 1,
+      ts_builtin_sym_end,
 };
 
 static uint32_t ts_small_parse_table_map[] = {
   [SMALL_STATE(2)] = 0,
-  [SMALL_STATE(3)] = 14,
-  [SMALL_STATE(4)] = 28,
-  [SMALL_STATE(5)] = 36,
-  [SMALL_STATE(6)] = 43,
-  [SMALL_STATE(7)] = 50,
+  [SMALL_STATE(3)] = 7,
+  [SMALL_STATE(4)] = 14,
+  [SMALL_STATE(5)] = 21,
 };
 
 static TSParseActionEntry ts_parse_actions[] = {
   [0] = {.count = 0, .reusable = false},
   [1] = {.count = 1, .reusable = false}, RECOVER(),
   [3] = {.count = 1, .reusable = true}, SHIFT_EXTRA(),
-  [5] = {.count = 1, .reusable = true}, REDUCE(sym_program, 0),
-  [7] = {.count = 1, .reusable = true}, SHIFT(5),
-  [9] = {.count = 1, .reusable = true}, REDUCE(sym_program, 1),
-  [11] = {.count = 1, .reusable = true}, REDUCE(aux_sym_program_repeat1, 2),
-  [13] = {.count = 2, .reusable = true}, REDUCE(aux_sym_program_repeat1, 2), SHIFT_REPEAT(5),
-  [16] = {.count = 1, .reusable = true}, REDUCE(sym_block, 3),
-  [18] = {.count = 1, .reusable = true}, SHIFT(7),
-  [20] = {.count = 1, .reusable = true},  ACCEPT_INPUT(),
-  [22] = {.count = 1, .reusable = true}, SHIFT(4),
+  [5] = {.count = 1, .reusable = true}, SHIFT(2),
+  [7] = {.count = 1, .reusable = true}, SHIFT(4),
+  [9] = {.count = 1, .reusable = true},  ACCEPT_INPUT(),
+  [11] = {.count = 1, .reusable = true}, SHIFT(5),
+  [13] = {.count = 1, .reusable = true}, REDUCE(sym_program, 3),
 };
 
 #ifdef __cplusplus
