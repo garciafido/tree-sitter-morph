@@ -45,16 +45,16 @@ module.exports = grammar({
         choice(
           $.node,
           $.tree,
-          $.function_definition,
-          $.enum_definition,
-          $.constant_declaration,
-          $.morph_declaration,
+          $.function,
+          $.enum,
+          $.const,
+          $.morph,
           $.if_function,
         )
       ),
 
       import: $ => seq(
-        "from", repeat("."), $.identifier,
+        optional(seq("from", repeat("."), $.identifier)),
         "import", $.identifier, repeat(seq(",", $.identifier)),
       ),
 
@@ -97,26 +97,26 @@ module.exports = grammar({
         repeat(seq("|", $.identifier)),
       ),
 
-      type_definition: $ => seq(
+      type: $ => seq(
         "type",
         $.identifier, "=", $.types,
       ),
 
-      function_definition: $ => seq(
+      function: $ => seq(
         "function", $.identifier, "(", $.typed_args, ")",
         optional(seq(":", $.identifier)),
         "=>", $.expression,
       ),
 
-      enum_definition: $ => seq(
+      enum: $ => seq(
         "enum", $.identifier, ":", $.identifier, "{",  repeat($.identifier), "}",
       ),
 
-      constant_declaration: $ => seq(
+      const: $ => seq(
         "const", $.identifier, optional(seq(":", $.identifier)), "=", $.expression
       ),
 
-      morph_declaration: $ => seq(
+      morph: $ => seq(
         repeat($.decorator),
         "morph", $.identifier,
         "(", $.expression, ")",
