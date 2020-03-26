@@ -44,6 +44,7 @@ module.exports = grammar({
         repeat($.import),
         choice(
           $.node,
+          $.tree,
           $.function_definition,
           $.enum_definition,
           $.constant_declaration,
@@ -53,17 +54,25 @@ module.exports = grammar({
       ),
 
       import: $ => seq(
-        "from", optional(choice(".", repeat("../"))), $.identifier,
+        "from", repeat("."), $.identifier,
         "import", $.identifier, repeat(seq(",", $.identifier)),
       ),
 
       node: $ => seq(
         repeat($.decorator),
+        optional("export"),
         optional("abstract"),
         "node",
         $.identifier,
         optional(seq("extends", $.identifier)),
         seq('{', repeat($.node_edge), '}'),
+      ),
+
+      tree: $ => seq(
+        repeat($.decorator),
+        optional("export"),
+        "tree",
+        $.identifier,
       ),
 
       decorator: $ => seq(

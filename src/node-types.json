@@ -129,6 +129,10 @@
         {
           "type": "node",
           "named": true
+        },
+        {
+          "type": "tree",
+          "named": true
         }
       ]
     }
@@ -935,6 +939,25 @@
     }
   },
   {
+    "type": "tree",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "typed_args",
     "named": true,
     "fields": {},
@@ -1035,10 +1058,6 @@
     "named": false
   },
   {
-    "type": "../",
-    "named": false
-  },
-  {
     "type": ":",
     "named": false
   },
@@ -1115,6 +1134,10 @@
     "named": true
   },
   {
+    "type": "export",
+    "named": false
+  },
+  {
     "type": "extends",
     "named": false
   },
@@ -1177,6 +1200,10 @@
   {
     "type": "snake_identifier",
     "named": true
+  },
+  {
+    "type": "tree",
+    "named": false
   },
   {
     "type": "true",
