@@ -7,8 +7,8 @@ module.exports = grammar({
   name: 'morph',
 
   externals: $ => [
-    // $._automatic_semicolon,
-    // $._template_chars
+    $._automatic_semicolon,
+    $._template_chars
   ],
 
   extras: $ => [
@@ -352,7 +352,7 @@ module.exports = grammar({
     template_string: $ => seq(
       '`',
       repeat(choice(
-        // $._template_chars,
+        $._template_chars,
         $.escape_sequence,
         $.template_substitution,
       )),
@@ -362,7 +362,7 @@ module.exports = grammar({
     ebnf_literal: $ => seq(
       'ebnf`',
       repeat(choice(
-        // $._template_chars,
+        $._template_chars,
         $.escape_sequence,
         $.template_substitution,
       )),
@@ -457,8 +457,6 @@ module.exports = grammar({
           seq("not", "in"),
           "is",
           seq("is", "not"))),
-
-
   }
 });
 
