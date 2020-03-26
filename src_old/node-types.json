@@ -1,0 +1,19 @@
+[
+  {
+    "type": "program",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": "function",
+    "named": false
+  },
+  {
+    "type": "hola",
+    "named": false
+  }
+]
