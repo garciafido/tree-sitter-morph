@@ -23,14 +23,14 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    [$.multiplicative_expression, $.additive_expression],
-    [$.additive_expression, $.arithmetic_expression],
-    [$.negation_expression, $.relational_expression],
-    [$.conjuction_expression, $.disjunction_expression],
-    [$.disjunction_expression, $.boolean_expression],
-    [$.function_call, $.bracket_accesor],
-    [$.non_literal_factor, $.factor],
-    [$.non_literal_factor, $.args],
+    // [$.multiplicative_expression, $.additive_expression],
+    // [$.additive_expression, $.arithmetic_expression],
+    // [$.negation_expression, $.relational_expression],
+    // [$.conjuction_expression, $.disjunction_expression],
+    // [$.disjunction_expression, $.boolean_expression],
+    // [$.function_call, $.bracket_accesor],
+    // [$.non_literal_factor, $.factor],
+    // [$.non_literal_factor, $.args],
   ]),
 
   supertypes: $ => [
@@ -49,106 +49,91 @@ module.exports = grammar({
 
       program: $ => repeat($.block),
 
-      block: $ => seq(
-        repeat($.import),
-        choice(
-          $.node,
-          $.function_definition,
-          $.enum_definition,
-          $.constant_declaration,
-          $.morph_declaration,
-          $.if_function,
-        )
-      ),
+      block: $ => seq('function', '=>', 'hola'),
 
-      import: $ => seq(
-        "from", optional(choice(".", repeat("../"))), $.identifier,
-        "import", $.identifier, repeat(seq(",", $.identifier))
-      ),
-
-      node: $ => seq(
-        repeat($.decorator),
-        optional("abstract"),
-        "node",
-        $.identifier,
-        optional(seq("extends", $.identifier)),
-        seq('{', repeat($.node_edge), '}'),
-      ),
-
-      decorator: $ => seq(
-        $.decorator_identifier,
-        optional($.decorator_args),
-      ),
-
-      decorator_args: $ => seq(
-        "(",
-        optional($.expression_list),
-        ")"
-      ),
-
-      node_edge: $ => seq(
-        repeat($.decorator),
-        $.identifier,
-        optional(choice("!", "[]")), "->", $.types
-      ),
-
-      types: $ => seq(
-        $.identifier,
-        repeat(seq("|", $.identifier)),
-      ),
-
-      type_definition: $ => seq(
-        "type",
-        $.identifier, "=", $.types,
-      ),
-
-      function_definition: $ => seq(
-        "function", $.identifier, "(", $.typed_args, ")",
-        optional(seq(":", $.identifier)),
-        "=>", $.expression,
-      ),
-
-      typed_args: $ => seq(
-        $.typed_identifier,
-        repeat(seq(",", $.typed_identifier)),
-      ),
-
-      enum_definition: $ => seq(
-        "enum", $.identifier, ":", $.identifier, "{",  repeat($.identifier), "}",
-      ),
-
-      constant_declaration: $ => seq(
-        "const", $.identifier, optional(seq(":", $.identifier)), "=", $.expression
-      ),
-
-      morph_declaration: $ => seq(
-        repeat($.decorator),
-        "morph", $.identifier,
-        "(", $.expression, ")",
-        "{", repeat($.morph_mutation), "}"
-      ),
-
-      morph_mutation: $ => seq(
-        repeat($.decorator),
-        optional("new"),
-        $.identifier, ":", $.expression,
-      ),
-
-      anonymous_function: $ => seq(
-        "(", optional(choice($.args, $.typed_args)), ")", optional(seq(":", $.identifier)), "=>", $.expression,
-      ),
-
-      args: $ => seq(
-        $.identifier, repeat(seq(",", $.identifier)),
-      ),
-
-      typed_identifier: $ => seq(
-        $.identifier, ":", $.identifier,
-      ),
-
-      if_function: $ => seq(
-        "if", "(", $.expression, ")", "=>", $.expression
-      ),
+      // block: $ => seq(
+      //   repeat($.import),
+      //   choice(
+      //     $.node,
+      //     $.function_definition,
+      //     $.enum_definition,
+      //     $.constant_declaration,
+      //     $.morph_declaration,
+      //     $.if_function,
+      //   )
+      // ),
+      //
+      // import: $ => seq(
+      //   "from", optional(choice(".", repeat("../"))), $.identifier,
+      //   "import", $.identifier, repeat(seq(",", $.identifier))
+      // ),
+      //
+      // node: $ => seq(
+      //   repeat($.decorator),
+      //   optional("abstract"),
+      //   "node",
+      //   $.identifier,
+      //   optional(seq("extends", $.identifier)),
+      //   seq('{', repeat($.node_edge), '}'),
+      // ),
+      //
+      // decorator: $ => seq(
+      //   $.decorator_identifier,
+      //   optional($.decorator_args),
+      // ),
+      //
+      // decorator_args: $ => seq(
+      //   "(",
+      //   optional($.expression_list),
+      //   ")"
+      // ),
+      //
+      // node_edge: $ => seq(
+      //   repeat($.decorator),
+      //   $.identifier,
+      //   optional(choice("!", "[]")), "->", $.types
+      // ),
+      //
+      // types: $ => seq(
+      //   $.identifier,
+      //   repeat(seq("|", $.identifier)),
+      // ),
+      //
+      // type_definition: $ => seq(
+      //   "type",
+      //   $.identifier, "=", $.types,
+      // ),
+      //
+      // function_definition: $ => seq(
+      //   "function", $.identifier, "(", $.typed_args, ")",
+      //   optional(seq(":", $.identifier)),
+      //   "=>", $.expression,
+      // ),
+      //
+      // enum_definition: $ => seq(
+      //   "enum", $.identifier, ":", $.identifier, "{",  repeat($.identifier), "}",
+      // ),
+      //
+      // constant_declaration: $ => seq(
+      //   "const", $.identifier, optional(seq(":", $.identifier)), "=", $.expression
+      // ),
+      //
+      // morph_declaration: $ => seq(
+      //   repeat($.decorator),
+      //   "morph", $.identifier,
+      //   "(", $.expression, ")",
+      //   "{", repeat($.morph_mutation), "}"
+      // ),
+      //
+      // morph_mutation: $ => seq(
+      //   repeat($.decorator),
+      //   optional("new"),
+      //   $.identifier, ":", $.expression,
+      // ),
+      //
+      // if_function: $ => seq(
+      //   "if", "(", $.expression, ")", "=>", $.expression
+      // ),
 
       //------------
       // Expressions
@@ -227,6 +212,24 @@ module.exports = grammar({
           $.function_call,
           seq($.non_literal_factor, $.chained_call),
           $.unary_expression),
+
+      anonymous_function: $ => seq(
+        "(", optional(choice($.args, $.typed_args)), ")", optional(seq(":", $.identifier)), "=>", $.expression,
+      ),
+
+      typed_args: $ => seq(
+        $.typed_identifier,
+        repeat(seq(",", $.typed_identifier)),
+      ),
+
+      args: $ => seq(
+        $.identifier, repeat(seq(",", $.identifier)),
+      ),
+
+      typed_identifier: $ => seq(
+        $.identifier, ":", $.identifier,
+      ),
+
 
       function_call: $ => seq(
           $.callable_expression,

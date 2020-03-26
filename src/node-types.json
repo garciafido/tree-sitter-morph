@@ -97,41 +97,7 @@
   {
     "type": "block",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "constant_declaration",
-          "named": true
-        },
-        {
-          "type": "enum_definition",
-          "named": true
-        },
-        {
-          "type": "function_definition",
-          "named": true
-        },
-        {
-          "type": "if_function",
-          "named": true
-        },
-        {
-          "type": "import",
-          "named": true
-        },
-        {
-          "type": "morph_declaration",
-          "named": true
-        },
-        {
-          "type": "node",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "boolean_expression",
@@ -245,59 +211,6 @@
     }
   },
   {
-    "type": "constant_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "decorator",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "decorator_args",
-          "named": true
-        },
-        {
-          "type": "decorator_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "decorator_args",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "expression_list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "disjunction_expression",
     "named": true,
     "fields": {},
@@ -334,21 +247,6 @@
         },
         {
           "type": "template_substitution",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "enum_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
           "named": true
         }
       ]
@@ -446,29 +344,6 @@
     }
   },
   {
-    "type": "function_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "typed_args",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "graph_literal",
     "named": true,
     "fields": {},
@@ -534,36 +409,6 @@
     }
   },
   {
-    "type": "if_function",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "import",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "list",
     "named": true,
     "fields": {},
@@ -614,56 +459,6 @@
     }
   },
   {
-    "type": "morph_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "morph_mutation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "morph_mutation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "multiplicative_expression",
     "named": true,
     "fields": {},
@@ -700,52 +495,6 @@
         },
         {
           "type": "relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "node",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "node_edge",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "node_edge",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "types",
           "named": true
         }
       ]
@@ -965,21 +714,6 @@
     }
   },
   {
-    "type": "types",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "unary_expression",
     "named": true,
     "fields": {},
@@ -997,10 +731,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "!",
-    "named": false
   },
   {
     "type": "\"",
@@ -1027,15 +757,7 @@
     "named": false
   },
   {
-    "type": "->",
-    "named": false
-  },
-  {
     "type": ".",
-    "named": false
-  },
-  {
-    "type": "../",
     "named": false
   },
   {
@@ -1044,10 +766,6 @@
   },
   {
     "type": "<",
-    "named": false
-  },
-  {
-    "type": "=",
     "named": false
   },
   {
@@ -1063,19 +781,11 @@
     "named": false
   },
   {
-    "type": "[]",
-    "named": false
-  },
-  {
     "type": "]",
     "named": false
   },
   {
     "type": "`",
-    "named": false
-  },
-  {
-    "type": "abstract",
     "named": false
   },
   {
@@ -1091,14 +801,6 @@
     "named": true
   },
   {
-    "type": "const",
-    "named": false
-  },
-  {
-    "type": "decorator_identifier",
-    "named": true
-  },
-  {
     "type": "disjunction_operator",
     "named": true
   },
@@ -1107,16 +809,8 @@
     "named": false
   },
   {
-    "type": "enum",
-    "named": false
-  },
-  {
     "type": "escape_sequence",
     "named": true
-  },
-  {
-    "type": "extends",
-    "named": false
   },
   {
     "type": "false",
@@ -1127,19 +821,11 @@
     "named": true
   },
   {
-    "type": "from",
-    "named": false
-  },
-  {
     "type": "function",
     "named": false
   },
   {
-    "type": "if",
-    "named": false
-  },
-  {
-    "type": "import",
+    "type": "hola",
     "named": false
   },
   {
@@ -1147,20 +833,8 @@
     "named": true
   },
   {
-    "type": "morph",
-    "named": false
-  },
-  {
     "type": "multiplicative_operator",
     "named": true
-  },
-  {
-    "type": "new",
-    "named": false
-  },
-  {
-    "type": "node",
-    "named": false
   },
   {
     "type": "not",
@@ -1183,19 +857,11 @@
     "named": true
   },
   {
-    "type": "type",
-    "named": false
-  },
-  {
     "type": "unary_operator",
     "named": true
   },
   {
     "type": "{",
-    "named": false
-  },
-  {
-    "type": "|",
     "named": false
   },
   {
