@@ -76,7 +76,6 @@ module.exports = grammar({
       $.function_declaration_statement,
       $.rule_declaration_statement,
       $.type_declaration_statement,
-      $.export_statement,
     ),
 
     import_statement: $ => choice(
@@ -94,6 +93,7 @@ module.exports = grammar({
 
     node_declaration_statement: $ => seq(
       repeat($.decorator),
+      optional($.export),
       optional("abstract"),
       "node",
       $.identifier,
@@ -104,7 +104,7 @@ module.exports = grammar({
     ),
 
     decorator: $ => seq(
-      "@", $.identifier, optional(seq("(", $.expression, ")")),
+      $.decorator_identifier, optional(seq("(", $.expression, ")")),
     ),
 
     node_member: $ => $.node_edge_declaration,
@@ -118,7 +118,12 @@ module.exports = grammar({
     ),
 
     morph_declaration_statement: $ => seq(
-      repeat($.decorator), "morph", $.identifier, "(", $.expression, ")", "{", repeat($.morph_member), "}",
+      repeat($.decorator),
+      optional($.export),
+      "morph",
+      $.identifier,
+      "(", $.expression, ")",
+      "{", repeat($.morph_member), "}",
     ),
 
     morph_member: $ => choice(
@@ -135,23 +140,23 @@ module.exports = grammar({
     ),
 
     tree_declaration_statement: $ => seq(
-      "tree", $.identifier,
+      optional($.export), "tree", $.identifier,
     ),
 
     symbol_declaration_statement: $ => seq(
-      "symbol", $.identifier,
+      optional($.export), "symbol", $.identifier,
     ),
 
     enum_declaration_statement: $ => seq(
-      "enum", $.identifier, "{", repeat($.identifier), "}",
+      optional($.export), "enum", $.identifier, "{", repeat($.identifier), "}",
     ),
 
     constant_declaration_statement: $ => seq(
-      "const", $.identifier, optional($.type_annotation), "=", $.expression,
+      optional($.export), "const", $.identifier, optional($.type_annotation), "=", $.expression,
     ),
 
     function_declaration_statement: $ => seq(
-      "func", $.identifier, $.function_signature, optional($.type_annotation), "=>", $.expression,
+      optional($.export), "func", $.identifier, $.function_signature, optional($.type_annotation), "=>", $.expression,
     ),
 
     function_signature: $ => seq(
@@ -163,7 +168,7 @@ module.exports = grammar({
     ),
 
     rule_declaration_statement: $ => seq(
-      "rule", optional($.type_parameters), $.identifier, $.function_signature, "=>", $.rule_expression,
+      optional($.export), "rule", optional($.type_parameters), $.identifier, $.function_signature, "=>", $.rule_expression,
     ),
 
     type_parameters: $ => seq(
@@ -171,24 +176,10 @@ module.exports = grammar({
     ),
 
     type_declaration_statement: $ => seq(
-      "type", $.identifier, "=", $.type,
+      optional($.export), "type", $.identifier, "=", $.type,
     ),
 
-    export_statement: $ => seq(
-      "export",
-      choice(
-        $.import_statement,
-        $.node_declaration_statement,
-        $.morph_declaration_statement,
-        $.tree_declaration_statement,
-        $.symbol_declaration_statement,
-        $.enum_declaration_statement,
-        $.constant_declaration_statement,
-        $.function_declaration_statement,
-        $.rule_declaration_statement,
-        $.type_declaration_statement,
-      ),
-    ),
+    export: $ => "export",
 
     type: $ => seq(
       $.single_type, repeat(seq("|", $.single_type)),
@@ -554,6 +545,8 @@ module.exports = grammar({
     snake_identifier: $ => token(/[a-z_][a-z0-9_]*/),
 
     pascal_identifier: $ => token(/[A-Z][a-zA-Z0-9_]*/),
+
+    decorator_identifier: $ => token(/[@][A-Za-z_][a-zA-Z0-9_]*/),
 
     integer: $ => token(choice(
       seq(
