@@ -469,7 +469,7 @@ module.exports = grammar({
     ),
 
     graph_literal_property: $ => seq(
-      $.identifier, ":", $.expression,
+      $.identifier, "->", $.expression,
     ),
 
     ebnf_literal: $ => seq(
