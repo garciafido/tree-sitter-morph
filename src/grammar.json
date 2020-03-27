@@ -25,10 +25,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "tree_declaration_statement"
-        },
-        {
-          "type": "SYMBOL",
           "name": "symbol_declaration_statement"
         },
         {
@@ -245,8 +241,17 @@
       ]
     },
     "node_member": {
-      "type": "SYMBOL",
-      "name": "node_edge_declaration"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "node_edge_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "node_static_constant_declaration"
+        }
+      ]
     },
     "node_edge_declaration": {
       "type": "SEQ",
@@ -286,6 +291,18 @@
         {
           "type": "SYMBOL",
           "name": "type"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "node_edge_initializer"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -302,7 +319,41 @@
         }
       ]
     },
-    "morphism_declaration_statement": {
+    "node_edge_initializer": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
+    "node_static_constant_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "static"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
+    "morph_declaration_statement": {
       "type": "SEQ",
       "members": [
         {
@@ -409,31 +460,6 @@
         {
           "type": "SYMBOL",
           "name": "anonymous_function"
-        }
-      ]
-    },
-    "tree_declaration_statement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "export"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "tree"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
         }
       ]
     },
@@ -1843,7 +1869,7 @@
         },
         {
           "type": "STRING",
-          "value": ":"
+          "value": "->"
         },
         {
           "type": "SYMBOL",
