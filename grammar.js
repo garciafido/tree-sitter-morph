@@ -69,7 +69,6 @@ module.exports = grammar({
       $.import_statement,
       $.node_declaration_statement,
       $.morph_declaration_statement,
-      $.tree_declaration_statement,
       $.symbol_declaration_statement,
       $.enum_declaration_statement,
       $.constant_declaration_statement,
@@ -107,14 +106,25 @@ module.exports = grammar({
       $.decorator_identifier, optional(seq("(", $.expression, ")")),
     ),
 
-    node_member: $ => $.node_edge_declaration,
+    node_member: $ => choice(
+      $.node_edge_declaration,
+      $.node_static_constant_declaration,
+    ),
 
     node_edge_declaration: $ => seq(
-      optional($.decorator), $.identifier, optional($.node_edge_modifier), "->", $.type,
+      optional($.decorator), $.identifier, optional($.node_edge_modifier), "->", $.type, optional($.node_edge_initializer)
     ),
 
     node_edge_modifier: $ => choice(
       "!", "[]",
+    ),
+
+    node_edge_initializer: $ => seq(
+      "=", $.expression,
+    ),
+
+    node_static_constant_declaration: $ => seq(
+      "static", $.identifier, "=", $.expression,
     ),
 
     morph_declaration_statement: $ => seq(
@@ -137,10 +147,6 @@ module.exports = grammar({
 
     morph_creation_declaration: $ => seq(
       "new", $.identifier, "->", $.anonymous_function,
-    ),
-
-    tree_declaration_statement: $ => seq(
-      optional($.export), "tree", $.identifier,
     ),
 
     symbol_declaration_statement: $ => seq(
