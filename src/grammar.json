@@ -302,7 +302,7 @@
         }
       ]
     },
-    "morph_declaration_statement": {
+    "morphism_declaration_statement": {
       "type": "SEQ",
       "members": [
         {

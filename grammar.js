@@ -68,7 +68,7 @@ module.exports = grammar({
     statement: $ => choice(
       $.import_statement,
       $.node_declaration_statement,
-      $.morph_declaration_statement,
+      $.morphism_declaration_statement,
       $.symbol_declaration_statement,
       $.enum_declaration_statement,
       $.constant_declaration_statement,
@@ -127,7 +127,7 @@ module.exports = grammar({
       "static", $.identifier, "=", $.expression,
     ),
 
-    morph_declaration_statement: $ => seq(
+    morphism_declaration_statement: $ => seq(
       repeat($.decorator),
       optional($.export),
       "morph",
@@ -142,11 +142,11 @@ module.exports = grammar({
     ),
 
     morph_mutation_declaration: $ => seq(
-      $.identifier, "->", $.anonymous_function,
+      $.identifier, "->", $.expression,
     ),
 
     morph_creation_declaration: $ => seq(
-      "new", $.identifier, "->", $.anonymous_function,
+      "new", $.identifier, "->", $.expression,
     ),
 
     symbol_declaration_statement: $ => seq(
