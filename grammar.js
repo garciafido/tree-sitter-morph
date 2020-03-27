@@ -555,8 +555,6 @@ module.exports = grammar({
 
     pascal_identifier: $ => token(/[A-Z][a-zA-Z0-9_]*/),
 
-    decorator_identifier: $ => token(/[@][a-z_][a-zA-Z0-9_]*/),
-
     integer: $ => token(choice(
       seq(
         choice('0x', '0X'),
