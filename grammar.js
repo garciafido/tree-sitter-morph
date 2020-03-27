@@ -17,14 +17,42 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    [$.multiplicative_expression, $.additive_expression],
-    [$.additive_expression, $.arithmetic_expression],
-    [$.negation_expression, $.relational_expression],
-    [$.conjuction_expression, $.disjunction_expression],
-    [$.disjunction_expression, $.boolean_expression],
-    [$.function_call, $.bracket_accesor],
-    [$.non_literal_factor, $.factor],
-    [$.non_literal_factor, $.args],
+    [$.factor, $.callable_expression],
+    [$.factor, $.function_signature, $.function_untyped_signature],
+    [$.function_signature, $.function_untyped_signature],
+    [$.factor, $.function_parameter, $.function_untyped_parameter],
+    [$.function_parameter, $.function_untyped_parameter],
+    [$.positive, $.factor],
+    [$.negative, $.factor],
+    [$.disjunction, $.boolean_expression],
+    [$.conjunction, $.disjunction],
+    [$.conjunction, $.disjunction_expression],
+    [$.negation_expression, $.less_than],
+    [$.negation_expression, $.less_than_equal_to],
+    [$.negation_expression, $.greater_than],
+    [$.negation_expression, $.greater_than_equal_to],
+    [$.negation_expression, $.equal_to],
+    [$.negation_expression, $.not_equal_to],
+    [$.is_not, $.is, $.negation_expression],
+    [$.bitwise_disjunction, $.arithmetic_expression],
+    [$.addition, $.arithmetic_expression],
+    [$.subtraction, $.arithmetic_expression],
+    [$.multiplication, $.additive_expression],
+    [$.division, $.additive_expression],
+    [$.bitwise_conjunction, $.additive_expression],
+    [$.factor, $.multiplicative_expression],
+    [$.multiplication, $.bitwise_disjunction],
+    [$.division, $.bitwise_disjunction],
+    [$.bitwise_disjunction, $.bitwise_conjunction],
+    [$.multiplication, $.addition],
+    [$.division, $.addition],
+    [$.bitwise_conjunction, $.addition],
+    [$.multiplication, $.subtraction],
+    [$.division, $.subtraction],
+    [$.bitwise_conjunction, $.subtraction],
+    [$.factor, $.multiplication],
+    [$.factor, $.division],
+    [$.factor, $.bitwise_conjunction],
   ]),
   //
   // supertypes: $ => [
@@ -34,332 +62,427 @@ module.exports = grammar({
   // ],
 
   rules: {
-      //--------------
-      // Morph grammar
-      //--------------
 
-      program: $ => repeat($.block),
+    program: $ => repeat($.statement),
 
-      block: $ => seq(
-        repeat($.import),
-        choice(
-          $.node,
-          $.tree,
-          $.function,
-          $.enum,
-          $.const,
-          $.morph,
-          $.if_function,
-        )
+    statement: $ => choice(
+      $.import_statement,
+      $.node_declaration_statement,
+      $.morph_declaration_statement,
+      $.tree_declaration_statement,
+      $.symbol_declaration_statement,
+      $.enum_declaration_statement,
+      $.constant_declaration_statement,
+      $.function_declaration_statement,
+      $.rule_declaration_statement,
+      $.type_declaration_statement,
+      $.export_statement,
+    ),
+
+    import_statement: $ => choice(
+      $.import_from_statement,
+      $.import_module_statement,
+    ),
+
+    import_from_statement: $ => seq(
+      "from", repeat("."), $.identifier, "import", $.identifier, repeat(seq(",", $.identifier)),
+    ),
+
+    import_module_statement: $ => seq(
+      "import", repeat("."), $.identifier,
+    ),
+
+    node_declaration_statement: $ => seq(
+      repeat($.decorator),
+      optional("abstract"),
+      "node",
+      $.identifier,
+      optional(seq("extends", $.identifier)),
+      "{",
+      repeat($.node_member),
+      "}",
+    ),
+
+    decorator: $ => seq(
+      "@", $.identifier, optional(seq("(", $.expression, ")")),
+    ),
+
+    node_member: $ => $.node_edge_declaration,
+
+    node_edge_declaration: $ => seq(
+      optional($.decorator), $.identifier, optional($.node_edge_modifier), "->", $.type,
+    ),
+
+    node_edge_modifier: $ => choice(
+      "!", "[]",
+    ),
+
+    morph_declaration_statement: $ => seq(
+      repeat($.decorator), "morph", $.identifier, "(", $.expression, ")", "{", repeat($.morph_member), "}",
+    ),
+
+    morph_member: $ => choice(
+      $.morph_mutation_declaration,
+      $.morph_creation_declaration,
+    ),
+
+    morph_mutation_declaration: $ => seq(
+      $.identifier, "->", $.anonymous_function,
+    ),
+
+    morph_creation_declaration: $ => seq(
+      "new", $.identifier, "->", $.anonymous_function,
+    ),
+
+    tree_declaration_statement: $ => seq(
+      "tree", $.identifier,
+    ),
+
+    symbol_declaration_statement: $ => seq(
+      "symbol", $.identifier,
+    ),
+
+    enum_declaration_statement: $ => seq(
+      "enum", $.identifier, "{", repeat($.identifier), "}",
+    ),
+
+    constant_declaration_statement: $ => seq(
+      "const", $.identifier, optional($.type_annotation), "=", $.expression,
+    ),
+
+    function_declaration_statement: $ => seq(
+      "func", $.identifier, $.function_signature, optional($.type_annotation), "=>", $.expression,
+    ),
+
+    function_signature: $ => seq(
+      "(", optional(seq($.function_parameter, repeat(seq(",", $.function_parameter)))), ")",
+    ),
+
+    function_parameter: $ => seq(
+      $.identifier, optional($.type_annotation),
+    ),
+
+    rule_declaration_statement: $ => seq(
+      "rule", optional($.type_parameters), $.identifier, $.function_signature, "=>", $.rule_expression,
+    ),
+
+    type_parameters: $ => seq(
+      "<", $.type, optional(seq(",", $.type)), ">",
+    ),
+
+    type_declaration_statement: $ => seq(
+      "type", $.identifier, "=", $.type,
+    ),
+
+    export_statement: $ => seq(
+      "export",
+      choice(
+        $.import_statement,
+        $.node_declaration_statement,
+        $.morph_declaration_statement,
+        $.tree_declaration_statement,
+        $.symbol_declaration_statement,
+        $.enum_declaration_statement,
+        $.constant_declaration_statement,
+        $.function_declaration_statement,
+        $.rule_declaration_statement,
+        $.type_declaration_statement,
       ),
+    ),
 
-      import: $ => seq(
-        optional(seq("from", repeat("."), $.identifier)),
-        "import", $.identifier, repeat(seq(",", $.identifier)),
-      ),
+    type: $ => seq(
+      $.single_type, repeat(seq("|", $.single_type)),
+    ),
 
-      node: $ => seq(
-        repeat($.decorator),
-        optional("export"),
-        optional("abstract"),
-        "node",
-        $.identifier,
-        optional(seq("extends", $.identifier)),
-        seq('{', repeat($.node_edge), '}'),
-      ),
+    single_type: $ => choice(
+      $.identifier,
+      $.predefined_type,
+    ),
 
-      tree: $ => seq(
-        repeat($.decorator),
-        optional("export"),
-        "tree",
-        $.identifier,
-      ),
+    predefined_type: $ => choice(
+      "string",
+      "boolean",
+      "integer",
+      "float",
+    ),
 
-      decorator: $ => seq(
-        $.decorator_identifier,
-        optional($.decorator_args),
-      ),
+    type_annotation: $ => seq(
+      ":", $.type,
+    ),
 
-      decorator_args: $ => seq(
-        "(",
-        optional($.expression_list),
-        ")"
-      ),
+    rule_parameters: $ => seq(
+      "<", $.rule_expression, ">",
+    ),
 
-      node_edge: $ => seq(
-        repeat($.decorator),
-        $.identifier,
-        optional(choice("!", "[]")), "->", $.types
-      ),
+    rule_expression: $ => seq(
+      $.expression, optional(seq(":", $.expression)),
+    ),
 
-      types: $ => seq(
-        $.identifier,
-        repeat(seq("|", $.identifier)),
-      ),
+    expression: $ => $.boolean_expression,
 
-      type: $ => seq(
-        "type",
-        $.identifier, "=", $.types,
-      ),
+    boolean_expression: $ => $.disjunction_expression,
 
-      function: $ => seq(
-        "function", $.identifier, "(", $.typed_args, ")",
-        optional(seq(":", $.identifier)),
-        "=>", $.expression,
-      ),
+    disjunction_expression: $ => choice(
+      $.disjunction,
+      $.conjunction_expression,
+    ),
 
-      enum: $ => seq(
-        "enum", $.identifier, ":", $.identifier, "{",  repeat($.identifier), "}",
-      ),
+    disjunction: $ => seq(
+      $.disjunction_expression,
+      "||",
+      $.conjunction_expression
+    ),
 
-      const: $ => seq(
-        "const", $.identifier, optional(seq(":", $.identifier)), "=", $.expression
-      ),
+    conjunction_expression: $ => choice(
+      $.conjunction,
+      $.negation_expression,
+    ),
 
-      morph: $ => seq(
-        repeat($.decorator),
-        "morph", $.identifier,
-        "(", $.expression, ")",
-        "{", repeat($.morph_mutation), "}"
-      ),
+    conjunction: $ => seq(
+      $.conjunction_expression,
+      "&&",
+      $.negation_expression,
+    ),
 
-      morph_mutation: $ => seq(
-        repeat($.decorator),
-        optional("new"),
-        $.identifier, ":", $.expression,
-      ),
+    negation_expression: $ => choice(
+      $.negation,
+      $.relational_expression,
+    ),
 
-      if_function: $ => seq(
-        "if", "(", $.expression, ")", "=>", $.expression
-      ),
+    negation: $ => seq(
+      "not", $.negation_expression,
+    ),
 
-      //------------
-      // Expressions
-      //------------
+    relational_expression: $ => choice(
+      $.equal_to,
+      $.not_equal_to,
+      $.less_than,
+      $.less_than_equal_to,
+      $.greater_than,
+      $.greater_than_equal_to,
+      $.is,
+      $.is_not,
+      $.arithmetic_expression,
+    ),
 
-      // identifier: $ => 'ident',
-      // decorator_identifier: $ => '@deco',
-      // expression: $ => 'expr',
-      // expression_list: $ => seq('e1', ',', 'e2'),
-      // typed_args: $ => seq('e1: t1', ',', 'e2: t2'),
+    equal_to: $ => seq(
+      $.relational_expression,
+      "==",
+      $.arithmetic_expression,
+    ),
 
+    not_equal_to: $ => seq(
+      $.relational_expression,
+      "!=",
+      $.arithmetic_expression,
+    ),
 
-      expression: $ =>
-        $.boolean_expression,
+    less_than: $ => seq(
+      $.relational_expression,
+      "<",
+      $.arithmetic_expression,
+    ),
 
-      boolean_expression: $ =>
-        $.disjunction_expression,
+    less_than_equal_to: $ => seq(
+      $.relational_expression,
+      "<=",
+      $.arithmetic_expression,
+    ),
 
-      disjunction_expression: $ => choice(
-          seq(
-            $.disjunction_expression,
-            $.disjunction_operator,
-            $.conjuction_expression
-          ),
-          $.conjuction_expression),
+    greater_than: $ => seq(
+      $.relational_expression,
+      ">",
+      $.arithmetic_expression,
+    ),
 
-      conjuction_expression: $ => choice(
-          seq(
-            $.conjuction_expression,
-            $.conjuction_operator,
-            $.negation_expression
-          ),
-         $.negation_expression),
+    greater_than_equal_to: $ => seq(
+      $.relational_expression,
+      ">=",
+      $.arithmetic_expression,
+    ),
 
-      negation_expression: $ => choice(
-          seq("not", $.negation_expression),
-          $.relational_expression),
+    is: $ => seq(
+      $.relational_expression,
+      "is",
+      $.arithmetic_expression,
+    ),
 
-      relational_expression: $ => choice(
-          seq(
-            $.relational_expression,
-            $.relational_operator,
-            $.arithmetic_expression
-          ),
-          $.arithmetic_expression),
+    is_not: $ => seq(
+      $.relational_expression,
+      seq("is", "not"),
+      $.arithmetic_expression,
+    ),
 
-      arithmetic_expression: $ =>
-        $.additive_expression,
+    arithmetic_expression: $ => $.additive_expression,
 
-      additive_expression: $ => choice(
-          seq(
-            $.additive_expression,
-            $.additive_operator,
-            $.multiplicative_expression
-          ),
-          $.multiplicative_expression),
+    additive_expression: $ => choice(
+      $.addition,
+      $.subtraction,
+      $.bitwise_disjunction,
+      $.multiplicative_expression
+    ),
 
-      multiplicative_expression: $ => choice(
-          seq(
-            $.multiplicative_expression,
-            $.multiplicative_operator,
-            $.factor
-          ),
-          $.factor),
+    addition: $ => seq(
+      $.additive_expression,
+      "+",
+      $.multiplicative_expression,
+    ),
 
-      factor: $ => choice(
-            $.non_literal_factor,
-            $.literal,
-      ),
+    subtraction: $ => seq(
+      $.additive_expression,
+      "-",
+      $.multiplicative_expression,
+    ),
 
-      callable_expression: $ => choice(
-          $.identifier,
-          $.bracket_accesor,
-          $.function_call,
-          seq("(", $.expression, ")"),
-      ),
+    bitwise_disjunction: $ => seq(
+      $.additive_expression,
+      "|",
+      $.multiplicative_expression,
+    ),
 
-      non_literal_factor: $ => choice(
-          $.identifier,
-          $.anonymous_function,
-          $.list,
-          $.bracket_accesor,
-          $.function_call,
-          seq($.non_literal_factor, $.chained_call),
-          $.unary_expression),
+    multiplicative_expression: $ => choice(
+      $.multiplication,
+      $.division,
+      $.bitwise_conjunction,
+      $.factor
+    ),
 
-      anonymous_function: $ => seq(
-        "(", optional(choice($.args, $.typed_args)), ")", optional(seq(":", $.identifier)), "=>", $.expression,
-      ),
+    multiplication: $ => seq(
+      $.multiplicative_expression,
+      "*",
+      $.factor,
+    ),
 
-      typed_args: $ => seq(
-        $.typed_identifier,
-        repeat(seq(",", $.typed_identifier)),
-      ),
+    division: $ => seq(
+      $.multiplicative_expression,
+      "/",
+      $.factor,
+    ),
 
-      args: $ => seq(
-        $.identifier, repeat(seq(",", $.identifier)),
-      ),
+    bitwise_conjunction: $ => seq(
+      $.multiplicative_expression,
+      "&",
+      $.factor,
+    ),
 
-      typed_identifier: $ => seq(
-        $.identifier, ":", $.identifier,
-      ),
+    factor: $ => choice(
+      $.identifier,
+      $.anonymous_function,
+      $.list,
+      $.function_call,
+      seq($.factor, $.chained_call),
+      $.unary_factor,
+      $.literal,
+    ),
 
+    callable_expression: $ => choice(
+      $.identifier,
+      $.function_call,
+      seq("(", $.expression, ")"),
+    ),
 
-      function_call: $ => seq(
-          $.callable_expression,
-          optional($.rule_expression),
-          choice($.array_accessor_args, $.function_call_args),
-      ),
+    anonymous_function: $ => seq(
+      choice($.function_signature, $.function_untyped_signature), optional($.type_annotation), "=>", $.expression,
+    ),
 
-      bracket_accesor: $ => seq(
-          $.callable_expression,
-          $.array_accessor_args,
-      ),
+    function_untyped_signature: $ => seq(
+      "(", optional(seq($.function_untyped_parameter, repeat(seq(",", $.function_untyped_parameter)))), ")",
+    ),
 
-      chained_call: $ => seq(
-          '.',
-          $.identifier,
-          optional($.rule_expression),
-          choice($.array_accessor_args, $.function_call_args),
-        ),
+    function_untyped_parameter: $ => $.identifier,
 
-      function_call_args: $ => seq(
-          "(",
-              optional($.expression_list),
-          ")",
-      ),
+    function_call: $ => seq(
+      $.callable_expression,
+      optional($.rule_parameters),
+      choice($.array_accessor_args, $.function_call_args),
+    ),
 
-      array_accessor_args: $ => seq(
-          "[",
-              $.expression_list,
-          "]",
-      ),
+    chained_call: $ => seq(
+      '.',
+      $.identifier,
+      optional($.rule_parameters),
+      choice($.array_accessor_args, $.function_call_args),
+    ),
 
-      rule_expression: $ => seq(
-        '<', $.expression, '>'),
+    function_call_args: $ => seq(
+      "(",
+      optional($.expression_list),
+      ")",
+    ),
 
-      unary_expression: $ => seq(
-          $.unary_operator,
-          $.factor),
+    array_accessor_args: $ => seq(
+      "[",
+      $.expression_list,
+      "]",
+    ),
 
-      list: $ => seq(
-          "[", optional($.expression_list), "]"),
+    unary_factor: $ => choice(
+      $.positive,
+      $.negative
+    ),
 
-      expression_list: $ => seq(
-        $.expression,
-        repeat(seq(",", $.expression)),
-        optional(",")
-      ),
+    positive: $ => seq(
+      "+", $.factor,
+    ),
 
-      identifier: $ => choice(
-          $.camel_identifier,
-          $.snake_identifier,
-          $.pascal_identifier),
+    negative: $ => seq(
+      "-", $.factor,
+    ),
 
-      //---------
-      // Literals
-      //---------
+    list: $ => seq(
+      "[", optional($.expression_list), "]"
+    ),
 
-      literal: $ => choice(
-          $.number,
-          $.false,
-          $.true,
-          $.graph_literal,
-          $.ebnf_literal,
-          $.string),
+    expression_list: $ => seq(
+      $.expression,
+      repeat(seq(",", $.expression)),
+      optional(",")
+    ),
 
-      graph_literal: $ => seq(
-        choice($.identifier, $.typed_identifier),
-        "{", repeat($.graph_literal_property), "}",
-      ),
+    identifier: $ => choice(
+      $.camel_identifier,
+      $.snake_identifier,
+      $.pascal_identifier
+    ),
 
-      graph_literal_property: $ => seq(
-        $.identifier, ":", $.expression,
-      ),
+    literal: $ => choice(
+      $.number,
+      $.boolean_literal,
+      $.graph_literal,
+      $.ebnf_literal,
+      $.string
+    ),
 
-      false: $ => "False",
+    number: $ => choice(
+      $.integer,
+      $.float
+    ),
 
-      true: $ => "True",
+    boolean_literal: $ => choice(
+      $.true,
+      $.false,
+    ),
 
-      number: $ => choice(
-          $.integer,
-          $.float),
+    false: $ => "false",
 
-      string: $ => choice(
-        $.simple_string,
-        $.template_string,
-      ),
+    true: $ => "true",
 
-      simple_string: $ => choice(
-        seq(
-          '"',
-          repeat(choice(
-            token.immediate(prec(PREC.STRING, /[^"\\\n]+|\\\r?\n/)),
-            $.escape_sequence
-          )),
-          '"'
-        ),
-        seq(
-          "'",
-          repeat(choice(
-            token.immediate(prec(PREC.STRING, /[^'\\\n]+|\\\r?\n/)),
-            $.escape_sequence
-          )),
-          "'"
-        )),
+    graph_literal: $ => seq(
+      $.identifier,
+      optional($.graph_literal_alias),
+      "{", repeat($.graph_literal_property), "}",
+    ),
 
-      escape_sequence: $ => token.immediate(seq(
-        '\\',
-        choice(
-          /[^xu0-7]/,
-          /[0-7]{1,3}/,
-          /x[0-9a-fA-F]{2}/,
-          /u[0-9a-fA-F]{4}/,
-          /u{[0-9a-fA-F]+}/
-        ))),
+    graph_literal_alias: $ => seq(
+      "as", $.identifier,
+    ),
 
-      // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
-      comment: $ => token(prec(PREC.COMMENT, choice(
-        seq('//', /.*/),
-        seq(
-          '/*',
-          /[^*]*\*+([^/*][^*]*\*+)*/,
-          '/'
-        )))),
+    graph_literal_property: $ => seq(
+      $.identifier, ":", $.expression,
+    ),
 
-    template_string: $ => seq(
-      '`',
+    ebnf_literal: $ => seq(
+      'ebnf`',
       repeat(choice(
         $._template_chars,
         $.escape_sequence,
@@ -368,8 +491,50 @@ module.exports = grammar({
       '`'
     ),
 
-    ebnf_literal: $ => seq(
-      'ebnf`',
+    string: $ => choice(
+      $.simple_string,
+      $.template_string,
+    ),
+
+    simple_string: $ => choice(
+      seq(
+        '"',
+        repeat(choice(
+          token.immediate(prec(PREC.STRING, /[^"\\\n]+|\\\r?\n/)),
+          $.escape_sequence
+        )),
+        '"'
+      ),
+      seq(
+        "'",
+        repeat(choice(
+          token.immediate(prec(PREC.STRING, /[^'\\\n]+|\\\r?\n/)),
+          $.escape_sequence
+        )),
+        "'"
+      )),
+
+    escape_sequence: $ => token.immediate(seq(
+      '\\',
+      choice(
+        /[^xu0-7]/,
+        /[0-7]{1,3}/,
+        /x[0-9a-fA-F]{2}/,
+        /u[0-9a-fA-F]{4}/,
+        /u{[0-9a-fA-F]+}/
+      ))),
+
+    // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
+    comment: $ => token(prec(PREC.COMMENT, choice(
+      seq('//', /.*/),
+      seq(
+        '/*',
+        /[^*]*\*+([^/*][^*]*\*+)*/,
+        '/'
+      )))),
+
+    template_string: $ => seq(
+      '`',
       repeat(choice(
         $._template_chars,
         $.escape_sequence,
@@ -384,88 +549,51 @@ module.exports = grammar({
       '}'
     ),
 
-      //-------
-      // Tokens
-      //-------
+    camel_identifier: $ => token(/[a-z][a-zA-Z0-9_]*/),
 
-      camel_identifier: $ => token(/[a-z][a-zA-Z0-9_]*/),
+    snake_identifier: $ => token(/[a-z_][a-z0-9_]*/),
 
-      snake_identifier: $ => token(/[a-z_][a-z0-9_]*/),
+    pascal_identifier: $ => token(/[A-Z][a-zA-Z0-9_]*/),
 
-      pascal_identifier: $ => token(/[A-Z][a-zA-Z0-9_]*/),
+    decorator_identifier: $ => token(/[@][a-z_][a-zA-Z0-9_]*/),
 
-      decorator_identifier: $ => token(/[@][a-z_][a-zA-Z0-9_]*/),
+    integer: $ => token(choice(
+      seq(
+        choice('0x', '0X'),
+        repeat1(/_?[A-Fa-f0-9]+/),
+        optional(/[Ll]/)
+      ),
+      seq(
+        choice('0o', '0O'),
+        repeat1(/_?[0-7]+/),
+        optional(/[Ll]/)
+      ),
+      seq(
+        choice('0b', '0B'),
+        repeat1(/_?[0-1]+/),
+        optional(/[Ll]/)
+      ),
+      seq(
+        repeat1(/[0-9]+_?/),
+        choice(
+          optional(/[Ll]/), // long numbers
+          optional(/[jJ]/) // complex numbers
+        )
+      ))),
 
-      integer: $ => token(choice(
-          seq(
-            choice('0x', '0X'),
-            repeat1(/_?[A-Fa-f0-9]+/),
-            optional(/[Ll]/)
-          ),
-          seq(
-            choice('0o', '0O'),
-            repeat1(/_?[0-7]+/),
-            optional(/[Ll]/)
-          ),
-          seq(
-            choice('0b', '0B'),
-            repeat1(/_?[0-1]+/),
-            optional(/[Ll]/)
-          ),
-          seq(
-            repeat1(/[0-9]+_?/),
-            choice(
-              optional(/[Ll]/), // long numbers
-              optional(/[jJ]/) // complex numbers
-            )
-          ))),
+    float: $ => {
+      const digits = repeat1(/[0-9]+_?/);
+      const exponent = seq(/[eE][\+-]?/, digits);
 
-      float: $ => {
-          const digits = repeat1(/[0-9]+_?/);
-          const exponent = seq(/[eE][\+-]?/, digits);
-
-          return token(seq(
-            choice(
-              seq(digits, '.', optional(digits), optional(exponent)),
-              seq(optional(digits), '.', digits, optional(exponent)),
-              seq(digits, exponent)
-            ),
-            optional(choice(/[Ll]/, /[jJ]/))
-          ))
-        },
-
-      additive_operator: $ => token(choice(
-          "+",
-          "-",
-          "|")),
-
-      disjunction_operator: $ => token(
-          "||"),
-
-      conjuction_operator: $ => token(
-          "&&"),
-
-      unary_operator: $ => token(choice(
-          "+",
-          "-")),
-
-      multiplicative_operator: $ => token(choice(
-          "*",
-          "/",
-          "%",
-          "&")),
-
-      relational_operator: $ => token(choice(
-          "==",
-          "!=",
-          "<",
-          ">",
-          ">=",
-          "<=",
-          "in",
-          seq("not", "in"),
-          "is",
-          seq("is", "not"))),
+      return token(seq(
+        choice(
+          seq(digits, '.', optional(digits), optional(exponent)),
+          seq(optional(digits), '.', digits, optional(exponent)),
+          seq(digits, exponent)
+        ),
+        optional(choice(/[Ll]/, /[jJ]/))
+      ))
+    },
   }
 });
 
