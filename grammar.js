@@ -399,6 +399,7 @@ module.exports = grammar({
         '.',
         $.identifier,
         optional($.rule_parameters),
+        $.function_call_args,
       ),
       seq(
         optional($.rule_parameters),
