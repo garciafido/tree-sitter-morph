@@ -564,6 +564,10 @@
         {
           "type": "type_annotation",
           "named": true
+        },
+        {
+          "type": "type_parameters",
+          "named": true
         }
       ]
     }
@@ -930,42 +934,11 @@
       "required": true,
       "types": [
         {
-          "type": "anonymous_function",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "morph_declaration_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "export",
-          "named": true
-        },
-        {
           "type": "expression",
           "named": true
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "morph_member",
           "named": true
         }
       ]
@@ -999,11 +972,42 @@
       "required": true,
       "types": [
         {
-          "type": "anonymous_function",
+          "type": "expression",
           "named": true
         },
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "morphism_declaration_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "decorator",
+          "named": true
+        },
+        {
+          "type": "export",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "morph_member",
           "named": true
         }
       ]
@@ -1421,9 +1425,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "decorator",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -1460,7 +1468,7 @@
           "named": true
         },
         {
-          "type": "morph_declaration_statement",
+          "type": "morphism_declaration_statement",
           "named": true
         },
         {

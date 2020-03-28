@@ -103,7 +103,7 @@ module.exports = grammar({
     ),
 
     decorator: $ => seq(
-      $.decorator_identifier, optional(seq("(", $.expression, ")")),
+      $.decorator_identifier, optional(seq("(", optional($.expression), ")")),
     ),
 
     node_member: $ => choice(
@@ -162,7 +162,14 @@ module.exports = grammar({
     ),
 
     function_declaration_statement: $ => seq(
-      optional($.export), "func", optional($.type_parameters), $.identifier, $.function_signature, optional($.type_annotation), "=>", $.expression,
+      optional($.export),
+      "func",
+      optional($.type_parameters),
+      $.identifier,
+      $.function_signature,
+      optional($.type_annotation),
+      "=>",
+      $.expression,
     ),
 
     function_signature: $ => seq(
@@ -174,7 +181,13 @@ module.exports = grammar({
     ),
 
     rule_declaration_statement: $ => seq(
-      optional($.export), "rule", optional($.type_parameters), $.identifier, $.function_signature, "=>", $.rule_expression,
+      optional($.export),
+      "rule",
+      optional($.type_parameters),
+      $.identifier,
+      $.function_signature,
+      "=>",
+      $.rule_expression,
     ),
 
     type_parameters: $ => seq(
@@ -191,9 +204,12 @@ module.exports = grammar({
       $.single_type, repeat(seq("|", $.single_type)),
     ),
 
-    single_type: $ => choice(
-      $.identifier,
-      $.predefined_type,
+    single_type: $ => seq(
+      repeat($.decorator),
+      choice(
+        $.identifier,
+        $.predefined_type,
+      )
     ),
 
     predefined_type: $ => choice(

@@ -21,7 +21,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "morph_declaration_statement"
+          "name": "morphism_declaration_statement"
         },
         {
           "type": "SYMBOL",
@@ -224,8 +224,16 @@
                   "value": "("
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "expression"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "expression"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
                 },
                 {
                   "type": "STRING",
@@ -353,7 +361,7 @@
         }
       ]
     },
-    "morph_declaration_statement": {
+    "morphism_declaration_statement": {
       "type": "SEQ",
       "members": [
         {
@@ -438,7 +446,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "anonymous_function"
+          "name": "expression"
         }
       ]
     },
@@ -459,7 +467,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "anonymous_function"
+          "name": "expression"
         }
       ]
     },
@@ -591,6 +599,18 @@
         {
           "type": "STRING",
           "value": "func"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "type_parameters"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -839,15 +859,27 @@
       ]
     },
     "single_type": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "decorator"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "predefined_type"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "predefined_type"
+            }
+          ]
         }
       ]
     },
@@ -1555,38 +1587,55 @@
       ]
     },
     "chained_call": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "."
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "rule_parameters"
+              "type": "STRING",
+              "value": "."
             },
             {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
               "type": "SYMBOL",
-              "name": "array_accessor_args"
+              "name": "identifier"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "rule_parameters"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
               "name": "function_call_args"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "rule_parameters"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "array_accessor_args"
             }
           ]
         }
