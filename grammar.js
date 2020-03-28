@@ -162,7 +162,7 @@ module.exports = grammar({
     ),
 
     function_declaration_statement: $ => seq(
-      optional($.export), "func", $.identifier, $.function_signature, optional($.type_annotation), "=>", $.expression,
+      optional($.export), "func", optional($.type_parameters), $.identifier, $.function_signature, optional($.type_annotation), "=>", $.expression,
     ),
 
     function_signature: $ => seq(
