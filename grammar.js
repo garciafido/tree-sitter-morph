@@ -164,8 +164,8 @@ module.exports = grammar({
     function_declaration_statement: $ => seq(
       optional($.export),
       "func",
-      optional($.type_parameters),
       $.identifier,
+      optional($.type_parameters),
       $.function_signature,
       optional($.type_annotation),
       "=>",
@@ -183,15 +183,19 @@ module.exports = grammar({
     rule_declaration_statement: $ => seq(
       optional($.export),
       "rule",
-      optional($.type_parameters),
       $.identifier,
+      optional($.type_parameters),
       $.function_signature,
       "=>",
       $.rule_expression,
     ),
 
     type_parameters: $ => seq(
-      "<", $.type, optional(seq(",", $.type)), ">",
+      "<", $.single_type_parameter, repeat(seq("|", $.single_type_parameter)), ">",
+    ),
+
+    single_type_parameter: $ => seq(
+      $.identifier, optional(seq("extends", $.identifier))
     ),
 
     type_declaration_statement: $ => seq(

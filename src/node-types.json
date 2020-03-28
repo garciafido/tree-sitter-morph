@@ -1444,6 +1444,21 @@
     }
   },
   {
+    "type": "single_type_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "statement",
     "named": true,
     "fields": {},
@@ -1643,7 +1658,7 @@
       "required": true,
       "types": [
         {
-          "type": "type",
+          "type": "single_type_parameter",
           "named": true
         }
       ]
@@ -1830,11 +1845,11 @@
   },
   {
     "type": "float",
-    "named": false
+    "named": true
   },
   {
     "type": "float",
-    "named": true
+    "named": false
   },
   {
     "type": "from",
@@ -1850,11 +1865,11 @@
   },
   {
     "type": "integer",
-    "named": false
+    "named": true
   },
   {
     "type": "integer",
-    "named": true
+    "named": false
   },
   {
     "type": "is",
