@@ -394,11 +394,16 @@ module.exports = grammar({
       choice($.array_accessor_args, $.function_call_args),
     ),
 
-    chained_call: $ => seq(
-      '.',
-      $.identifier,
-      optional($.rule_parameters),
-      choice($.array_accessor_args, $.function_call_args),
+    chained_call: $ => choice(
+      seq(
+        '.',
+        $.identifier,
+        optional($.rule_parameters),
+      ),
+      seq(
+        optional($.rule_parameters),
+        $.array_accessor_args
+      )
     ),
 
     function_call_args: $ => seq(
