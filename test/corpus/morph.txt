@@ -1,0 +1,33 @@
+=======================================
+Creation morphism_declaration_statement
+=======================================
+
+@Bar
+export morph Foo(bar) {
+  new bar -> "bar"
+}
+
+---
+
+(program (statement (morphism_declaration_statement
+    (decorator (decorator_identifier))
+    (export) (pascal_identifier)
+    (factor (camel_identifier))
+        (morph_creation_declaration (camel_identifier) (factor (simple_string))))))
+
+=======================================
+Mutation morphism_declaration_statement
+=======================================
+
+@Bar
+export morph Foo(bar) {
+  bar -> "bar"
+}
+
+---
+
+(program (statement (morphism_declaration_statement
+    (decorator (decorator_identifier))
+    (export) (pascal_identifier)
+    (factor (camel_identifier))
+        (morph_mutation_declaration (camel_identifier) (factor (simple_string))))))
