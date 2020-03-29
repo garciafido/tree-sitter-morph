@@ -1,0 +1,9 @@
+==========================
+type_declaration_statement
+==========================
+
+export type foo = Foo
+
+---
+
+(program (statement (type_declaration_statement (export) (camel_identifier) (type (single_type (pascal_identifier))))))
