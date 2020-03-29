@@ -1,0 +1,16 @@
+==========================
+enum_declaration_statement
+==========================
+
+export enum foo {
+    a
+    b
+    c
+}
+
+---
+
+ (program (statement (enum_declaration_statement (export) (camel_identifier)
+    (camel_identifier)
+    (camel_identifier)
+    (camel_identifier))))
