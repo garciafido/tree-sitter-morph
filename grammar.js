@@ -77,6 +77,24 @@ module.exports = grammar({
   ],
 
   inline: $ => [
+    $._statement,
+    $._import_statement,
+    $._node_member,
+    $._morph_member,
+    $._predefined_type,
+    $._expression,
+    $._boolean_expression,
+    $._disjunction_expression,
+    $._conjunction_expression,
+    $._negation_expression,
+    $._relational_expression,
+    $._arithmetic_expression,
+    $._additive_expression,
+    $._multiplicative_expression,
+    $._identifier,
+    $._literal,
+    $._number,
+    $._string,
   ],
 
   rules: {
