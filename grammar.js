@@ -113,7 +113,7 @@ module.exports = grammar({
       optional("abstract"),
       "node",
       $._identifier,
-      optional(seq("extends", $._identifier)),
+      optional($.extends),
       "{",
       repeat($._node_member),
       "}",
@@ -142,6 +142,10 @@ module.exports = grammar({
 
     node_static_constant_declaration: $ => seq(
       "static", $._identifier, "=", $._expression,
+    ),
+
+    extends: $ => seq(
+      "extends", $._identifier,
     ),
 
     morphism_declaration_statement: $ => seq(
@@ -212,7 +216,7 @@ module.exports = grammar({
     ),
 
     single_type_parameter: $ => seq(
-      $._identifier, optional(seq("extends", $._identifier))
+      $._identifier, optional($.extends)
     ),
 
     type_declaration_statement: $ => seq(

@@ -609,6 +609,21 @@
     }
   },
   {
+    "type": "extends",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "factor",
     "named": true,
     "fields": {},
@@ -1121,6 +1136,10 @@
         {
           "type": "export",
           "named": true
+        },
+        {
+          "type": "extends",
+          "named": true
         }
       ]
     }
@@ -1349,6 +1368,10 @@
       "types": [
         {
           "type": "_identifier",
+          "named": true
+        },
+        {
+          "type": "extends",
           "named": true
         }
       ]

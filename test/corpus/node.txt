@@ -1,0 +1,66 @@
+=================================
+Simple node_declaration_statement
+=================================
+
+node foo {}
+
+---
+
+(program (statement (node_declaration_statement (camel_identifier))))
+
+==================================
+Extends node_declaration_statement
+==================================
+
+node foo extends FooBase {}
+
+---
+
+(program (statement (node_declaration_statement
+    (camel_identifier) (extends (pascal_identifier)))))
+
+====================================
+Decorator node_declaration_statement
+====================================
+
+@fooDeco()
+node foo extends FooBase {}
+
+---
+
+(program (statement (node_declaration_statement
+    (decorator (decorator_identifier))
+    (camel_identifier) (extends (pascal_identifier)))))
+
+==========================================
+Export abstract node_declaration_statement
+==========================================
+
+@fooDeco()
+export abstract node foo extends FooBase {}
+
+---
+
+(program (statement (node_declaration_statement
+    (decorator (decorator_identifier))
+    (export) (camel_identifier) (extends (pascal_identifier)))))
+
+=================================
+Member node_declaration_statement
+=================================
+
+@fooDeco()
+export abstract node foo extends FooBase {
+    @parental(HaikuProgramTree)
+    blocks[] -> Block
+}
+
+---
+
+(program (statement (node_declaration_statement
+    (decorator (decorator_identifier))
+    (export) (camel_identifier) (extends (pascal_identifier))
+        (node_edge_declaration
+            (decorator (decorator_identifier) (factor (pascal_identifier)))
+            (camel_identifier) (node_edge_modifier) (type (single_type (pascal_identifier)))))))
+
