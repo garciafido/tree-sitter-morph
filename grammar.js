@@ -1,6 +1,24 @@
 const PREC = {
   COMMENT: 1, // Prefer comments over regexes
   STRING: 2,  // In a string, prefer string characters over comments
+
+  FUNCTION_SIGNATURE: -1,
+  FUNCTION_UNTYPED_SIGNATURE: -2,
+  FUNCTION_PARAMETER: -3,
+  FUNCTION_UNTYPED_PARAMETER: -4,
+
+  NEGATION: 1,
+  BOOL_EXPRESSION: 2,
+  RELATIONAL: 10,
+
+  DISJUNCTION: 24,
+  CONJUNCTION: 25,
+
+  ARITHMETIC_EXPRESSION: 50,
+  ADDITIVE: 51,
+  MUTILPLICATIVE: 60,
+
+  FACTOR: 100,
 };
 
 module.exports = grammar({
@@ -17,54 +35,19 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    [$.factor, $.callable_expression],
-    [$.factor, $.function_signature, $.function_untyped_signature],
-    [$.function_signature, $.function_untyped_signature],
-    [$.factor, $.function_parameter, $.function_untyped_parameter],
-    [$.function_parameter, $.function_untyped_parameter],
-    [$.positive, $.factor],
-    [$.negative, $.factor],
-    [$.disjunction, $._boolean_expression],
-    [$.conjunction, $.disjunction],
-    [$.conjunction, $._disjunction_expression],
-    [$._negation_expression, $.less_than],
-    [$._negation_expression, $.less_than_equal_to],
-    [$._negation_expression, $.greater_than],
-    [$._negation_expression, $.greater_than_equal_to],
-    [$._negation_expression, $.equal_to],
-    [$._negation_expression, $.not_equal_to],
-    [$.is_not, $.is, $._negation_expression],
-    [$.bitwise_disjunction, $._arithmetic_expression],
-    [$.addition, $._arithmetic_expression],
-    [$.subtraction, $._arithmetic_expression],
-    [$.multiplication, $._additive_expression],
-    [$.division, $._additive_expression],
-    [$.bitwise_conjunction, $._additive_expression],
-    [$.factor, $._multiplicative_expression],
-    [$.multiplication, $.bitwise_disjunction],
-    [$.division, $.bitwise_disjunction],
-    [$.bitwise_disjunction, $.bitwise_conjunction],
-    [$.multiplication, $.addition],
-    [$.division, $.addition],
-    [$.bitwise_conjunction, $.addition],
-    [$.multiplication, $.subtraction],
-    [$.division, $.subtraction],
-    [$.bitwise_conjunction, $.subtraction],
-    [$.factor, $.multiplication],
-    [$.factor, $.division],
-    [$.factor, $.bitwise_conjunction],
   ]),
 
   supertypes: $ => [
+    $._statement,
     $._import_statement,
     $._node_member,
     $._morph_member,
     $._predefined_type,
     $._expression,
     $._boolean_expression,
+    $._comparison_operator,
     $._disjunction_expression,
     $._conjunction_expression,
-    $._negation_expression,
     $._relational_expression,
     $._arithmetic_expression,
     $._additive_expression,
@@ -80,9 +63,9 @@ module.exports = grammar({
 
   rules: {
 
-    program: $ => repeat($.statement),
+    program: $ => repeat($._statement),
 
-    statement: $ => choice(
+    _statement: $ => choice(
       $._import_statement,
       $.node_declaration_statement,
       $.morphism_declaration_statement,
@@ -193,13 +176,13 @@ module.exports = grammar({
       $._expression,
     ),
 
-    function_signature: $ => seq(
+    function_signature: $ => prec.left(PREC.FUNCTION_SIGNATURE, seq(
       "(", optional(seq($.function_parameter, repeat(seq(",", $.function_parameter)))), ")",
-    ),
+    )),
 
-    function_parameter: $ => seq(
+    function_parameter: $ => prec.left(PREC.FUNCTION_PARAMETER, seq(
       $._identifier, optional($.type_annotation),
-    ),
+    )),
 
     rule_declaration_statement: $ => seq(
       optional($.export),
@@ -266,132 +249,131 @@ module.exports = grammar({
 
     _expression: $ => $._boolean_expression,
 
-    _boolean_expression: $ => $._disjunction_expression,
+    // _boolean_expression: $ => prec.left(PREC.BOOL_EXPRESSION, $._disjunction_expression),
+    _boolean_expression: $ => $.factor,
 
-    _disjunction_expression: $ => choice(
+    _disjunction_expression: $ => prec.left(PREC.DISJUNCTION, choice(
       $.disjunction,
       $._conjunction_expression,
-    ),
+    )),
 
-    disjunction: $ => seq(
+    disjunction: $ => prec.left(PREC.DISJUNCTION, seq(
       $._disjunction_expression,
       "||",
       $._conjunction_expression
-    ),
+    )),
 
-    _conjunction_expression: $ => choice(
+    _conjunction_expression: $ => prec.left(PREC.CONJUNCTION, choice(
       $.conjunction,
-      $._negation_expression,
-    ),
+      $._relational_expression,
+    )),
 
-    conjunction: $ => seq(
+    conjunction: $ => prec.left(PREC.CONJUNCTION, seq(
       $._conjunction_expression,
       "&&",
-      $._negation_expression,
-    ),
-
-    _negation_expression: $ => choice(
-      $.negation,
       $._relational_expression,
-    ),
-
-    negation: $ => seq(
-      "not", $._negation_expression,
-    ),
+    )),
 
     _relational_expression: $ => choice(
+      $._comparison_operator,
+      $.negation,
+      $._arithmetic_expression,
+    ),
+
+    _comparison_operator: $ => prec.left(PREC.RELATIONAL, choice(
       $.equal_to,
       $.not_equal_to,
       $.less_than,
       $.less_than_equal_to,
       $.greater_than,
       $.greater_than_equal_to,
-      $.is,
-      $.is_not,
-      $._arithmetic_expression,
-    ),
+    )),
 
-    equal_to: $ => seq(
+    negation: $ => prec.left(PREC.NEGATION, seq(
+      "not", $._relational_expression,
+    )),
+
+    equal_to: $ => prec.left(PREC.RELATIONAL+1, seq(
       $._relational_expression,
       "==",
       $._arithmetic_expression,
-    ),
+    )),
 
-    not_equal_to: $ => seq(
+    not_equal_to: $ => prec.left(PREC.RELATIONAL+1, seq(
       $._relational_expression,
       "!=",
       $._arithmetic_expression,
-    ),
+    )),
 
-    less_than: $ => seq(
+    less_than: $ => prec.left(PREC.RELATIONAL+1, seq(
       $._relational_expression,
       "<",
       $._arithmetic_expression,
-    ),
+    )),
 
-    less_than_equal_to: $ => seq(
+    less_than_equal_to: $ => prec.left(PREC.RELATIONAL+1, seq(
       $._relational_expression,
       "<=",
       $._arithmetic_expression,
-    ),
+    )),
 
-    greater_than: $ => seq(
+    greater_than: $ => prec.left(PREC.RELATIONAL+1, seq(
       $._relational_expression,
       ">",
       $._arithmetic_expression,
-    ),
+    )),
 
-    greater_than_equal_to: $ => seq(
+    greater_than_equal_to: $ => prec.left(PREC.RELATIONAL+1, seq(
       $._relational_expression,
       ">=",
       $._arithmetic_expression,
-    ),
+    )),
 
-    is: $ => seq(
+    is: $ => prec.left(PREC.FACTOR, seq(
       $._relational_expression,
       "is",
       $._arithmetic_expression,
-    ),
+    )),
 
-    is_not: $ => seq(
+    is_not: $ =>  prec.left(PREC.FACTOR, seq(
       $._relational_expression,
       seq("is", "not"),
       $._arithmetic_expression,
-    ),
+    )),
 
-    _arithmetic_expression: $ => $._additive_expression,
+    _arithmetic_expression: $ => prec.left(PREC.ARITHMETIC_EXPRESSION, $._additive_expression),
 
-    _additive_expression: $ => choice(
+    _additive_expression: $ => prec.left(PREC.ADDITIVE, choice(
       $.addition,
       $.subtraction,
       $.bitwise_disjunction,
       $._multiplicative_expression
-    ),
+    )),
 
-    addition: $ => seq(
+    addition: $ => prec.left(PREC.ADDITIVE+1, seq(
       $._additive_expression,
       "+",
       $._multiplicative_expression,
-    ),
+    )),
 
-    subtraction: $ => seq(
+    subtraction: $ => prec.left(PREC.ADDITIVE+1, seq(
       $._additive_expression,
       "-",
       $._multiplicative_expression,
-    ),
+    )),
 
-    bitwise_disjunction: $ => seq(
+    bitwise_disjunction: $ => prec.left(PREC.ADDITIVE+1, seq(
       $._additive_expression,
       "|",
       $._multiplicative_expression,
-    ),
+    )),
 
-    _multiplicative_expression: $ => choice(
+    _multiplicative_expression: $ => prec.left(PREC.MUTILPLICATIVE, choice(
       $.multiplication,
       $.division,
       $.bitwise_conjunction,
       $.factor,
-    ),
+    )),
 
     multiplication: $ => seq(
       $._multiplicative_expression,
@@ -411,15 +393,17 @@ module.exports = grammar({
       $.factor,
     ),
 
-    factor: $ => choice(
+    factor: $ => prec.left(PREC.FACTOR, choice(
       $._identifier,
       $.anonymous_function,
       $.list,
       $.function_call,
       seq($.factor, $.chained_call),
-      $.unaryfactor,
       $._literal,
-    ),
+      $.is,
+      $.is_not,
+      $.unaryfactor,
+    )),
 
     callable_expression: $ => choice(
       $._identifier,
@@ -431,11 +415,11 @@ module.exports = grammar({
       choice($.function_signature, $.function_untyped_signature), optional($.type_annotation), "=>", $._expression,
     ),
 
-    function_untyped_signature: $ => seq(
+    function_untyped_signature: $ => prec.left(PREC.FUNCTION_UNTYPED_SIGNATURE, seq(
       "(", optional(seq($.function_untyped_parameter, repeat(seq(",", $.function_untyped_parameter)))), ")",
-    ),
+    )),
 
-    function_untyped_parameter: $ => $._identifier,
+    function_untyped_parameter: $ => prec.left(PREC.FUNCTION_UNTYPED_PARAMETER, $._identifier),
 
     function_call: $ => seq(
       $.callable_expression,
@@ -601,13 +585,13 @@ module.exports = grammar({
       '}'
     ),
 
-    camel_identifier: $ => token(/[a-z][a-zA-Z0-9_]*/),
+    camel_identifier: $ => /[a-z][a-zA-Z0-9_]*/,
 
-    snake_identifier: $ => token(/[a-z_][a-z0-9_]*/),
+    snake_identifier: $ => /[a-z_][a-z0-9_]*/,
 
-    pascal_identifier: $ => token(/[A-Z][a-zA-Z0-9_]*/),
+    pascal_identifier: $ => /[A-Z][a-zA-Z0-9_]*/,
 
-    decorator_identifier: $ => token(/[@][A-Za-z_][a-zA-Z0-9_]*/),
+    decorator_identifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
     integer: $ => token(choice(
       seq(
