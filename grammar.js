@@ -56,6 +56,7 @@ module.exports = grammar({
   ]),
 
   supertypes: $ => [
+    $._statement,
     $._import_statement,
     $._node_member,
     $._morph_member,
@@ -80,9 +81,9 @@ module.exports = grammar({
 
   rules: {
 
-    program: $ => repeat($.statement),
+    program: $ => repeat($._statement),
 
-    statement: $ => choice(
+    _statement: $ => choice(
       $._import_statement,
       $.node_declaration_statement,
       $.morphism_declaration_statement,
