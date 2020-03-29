@@ -70,7 +70,6 @@ module.exports = grammar({
     $._arithmetic_expression,
     $._additive_expression,
     $._multiplicative_expression,
-    $._identifier,
     $._literal,
     $._number,
     $._string,
@@ -91,7 +90,7 @@ module.exports = grammar({
     $._arithmetic_expression,
     $._additive_expression,
     $._multiplicative_expression,
-    $._identifier,
+    $.identifier,
     $._literal,
     $._number,
     $._string,
@@ -119,11 +118,11 @@ module.exports = grammar({
     ),
 
     import_from_statement: $ => seq(
-      "from", repeat("."), $._identifier, "import", $._identifier, repeat(seq(",", $._identifier)),
+      "from", repeat("."), $.identifier, "import", $.identifier, repeat(seq(",", $.identifier)),
     ),
 
     import_module_statement: $ => seq(
-      "import", repeat("."), $._identifier,
+      "import", repeat("."), $.identifier,
     ),
 
     node_declaration_statement: $ => seq(
@@ -132,13 +131,13 @@ module.exports = grammar({
       optional("abstract"),
       "node",
       $.node_declaration_identifier,
-      optional(seq("extends", $._identifier)),
+      optional(seq("extends", $.identifier)),
       "{",
       repeat($._node_member),
       "}",
     ),
 
-    node_declaration_identifier: $ => $._identifier,
+    node_declaration_identifier: $ => $.identifier,
 
     decorator: $ => seq(
       $.decorator_identifier, optional(seq("(", optional($._expression), ")")),
@@ -150,7 +149,7 @@ module.exports = grammar({
     ),
 
     node_edge_declaration: $ => seq(
-      optional($.decorator), $._identifier, optional($.node_edge_modifier), "->", $.type, optional($.node_edge_initializer)
+      optional($.decorator), $.identifier, optional($.node_edge_modifier), "->", $.type, optional($.node_edge_initializer)
     ),
 
     node_edge_modifier: $ => choice(
@@ -162,14 +161,14 @@ module.exports = grammar({
     ),
 
     node_static_constant_declaration: $ => seq(
-      "static", $._identifier, "=", $._expression,
+      "static", $.identifier, "=", $._expression,
     ),
 
     morphism_declaration_statement: $ => seq(
       repeat($.decorator),
       optional($.export),
       "morph",
-      $._identifier,
+      $.identifier,
       "(", $._expression, ")",
       "{", repeat($._morph_member), "}",
     ),
@@ -180,29 +179,29 @@ module.exports = grammar({
     ),
 
     morph_mutation_declaration: $ => seq(
-      $._identifier, "->", $._expression,
+      $.identifier, "->", $._expression,
     ),
 
     morph_creation_declaration: $ => seq(
-      "new", $._identifier, "->", $._expression,
+      "new", $.identifier, "->", $._expression,
     ),
 
     symbol_declaration_statement: $ => seq(
-      optional($.export), "symbol", $._identifier,
+      optional($.export), "symbol", $.identifier,
     ),
 
     enum_declaration_statement: $ => seq(
-      optional($.export), "enum", $._identifier, "{", repeat($._identifier), "}",
+      optional($.export), "enum", $.identifier, "{", repeat($.identifier), "}",
     ),
 
     constant_declaration_statement: $ => seq(
-      optional($.export), "const", $._identifier, optional($.type_annotation), "=", $._expression,
+      optional($.export), "const", $.identifier, optional($.type_annotation), "=", $._expression,
     ),
 
     function_declaration_statement: $ => seq(
       optional($.export),
       "func",
-      $._identifier,
+      $.identifier,
       optional($.type_parameters),
       $.function_signature,
       optional($.type_annotation),
@@ -215,13 +214,13 @@ module.exports = grammar({
     ),
 
     function_parameter: $ => seq(
-      $._identifier, optional($.type_annotation),
+      $.identifier, optional($.type_annotation),
     ),
 
     rule_declaration_statement: $ => seq(
       optional($.export),
       "rule",
-      $._identifier,
+      $.identifier,
       optional($.type_parameters),
       $.function_signature,
       "=>",
@@ -233,11 +232,11 @@ module.exports = grammar({
     ),
 
     single_type_parameter: $ => seq(
-      $._identifier, optional(seq("extends", $._identifier))
+      $.identifier, optional(seq("extends", $.identifier))
     ),
 
     type_declaration_statement: $ => seq(
-      optional($.export), "type", $._identifier, "=", $.type,
+      optional($.export), "type", $.identifier, "=", $.type,
     ),
 
     export: $ => "export",
@@ -249,7 +248,7 @@ module.exports = grammar({
     single_type: $ => seq(
       repeat($.decorator),
       choice(
-        $._identifier,
+        $.identifier,
         $._predefined_type,
       )
     ),
@@ -429,7 +428,7 @@ module.exports = grammar({
     ),
 
     factor: $ => choice(
-      $._identifier,
+      $.identifier,
       $.anonymous_function,
       $.list,
       $.function_call,
@@ -439,7 +438,7 @@ module.exports = grammar({
     ),
 
     callable_expression: $ => choice(
-      $._identifier,
+      $.identifier,
       $.function_call,
       seq("(", $._expression, ")"),
     ),
@@ -452,7 +451,7 @@ module.exports = grammar({
       "(", optional(seq($.function_untyped_parameter, repeat(seq(",", $.function_untyped_parameter)))), ")",
     ),
 
-    function_untyped_parameter: $ => $._identifier,
+    function_untyped_parameter: $ => $.identifier,
 
     function_call: $ => seq(
       $.callable_expression,
@@ -463,7 +462,7 @@ module.exports = grammar({
     chained_call: $ => choice(
       seq(
         '.',
-        $._identifier,
+        $.identifier,
         optional($.rule_parameters),
         $.function_call_args,
       ),
@@ -508,7 +507,7 @@ module.exports = grammar({
       optional(",")
     ),
 
-    _identifier: $ => choice(
+    identifier: $ => choice(
       $.camel_identifier,
       $.snake_identifier,
       $.pascal_identifier
@@ -537,17 +536,17 @@ module.exports = grammar({
     true: $ => "true",
 
     graph_literal: $ => seq(
-      $._identifier,
+      $.identifier,
       optional($.graph_literal_alias),
       "{", repeat($.graph_literal_property), "}",
     ),
 
     graph_literal_alias: $ => seq(
-      "as", $._identifier,
+      "as", $.identifier,
     ),
 
     graph_literal_property: $ => seq(
-      $._identifier, "->", $._expression,
+      $.identifier, "->", $._expression,
     ),
 
     ebnf_literal: $ => seq(
