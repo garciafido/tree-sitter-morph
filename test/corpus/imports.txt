@@ -1,0 +1,19 @@
+=======================
+import_module_statement
+=======================
+
+import ..foo
+
+---
+
+(program (statement (import_module_statement (camel_identifier))))
+
+=====================
+import_from_statement
+=====================
+
+from bar import Bar
+
+---
+
+ (program (statement (import_from_statement (camel_identifier) (pascal_identifier))))
