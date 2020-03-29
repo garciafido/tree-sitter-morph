@@ -90,7 +90,6 @@ module.exports = grammar({
     $._arithmetic_expression,
     $._additive_expression,
     $._multiplicative_expression,
-    $.identifier,
     $._literal,
     $._number,
     $._string,
