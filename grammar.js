@@ -240,13 +240,13 @@ module.exports = grammar({
       $.float_type,
     ),
 
-    string_type : $ => "string",
+    string_type: $ => "string",
 
-    boolean_type : $ => "boolean",
+    boolean_type: $ => "boolean",
 
-    integer_type : $ => "integer",
+    integer_type: $ => "integer",
 
-    float_type : $ => "float",
+    float_type: $ => "float",
 
     type_annotation: $ => seq(
       ":", $.type,
@@ -386,7 +386,7 @@ module.exports = grammar({
       $.multiplication,
       $.division,
       $.bitwise_conjunction,
-      $.factor
+      $.factor,
     ),
 
     multiplication: $ => seq(
