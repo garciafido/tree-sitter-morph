@@ -113,7 +113,7 @@ module.exports = grammar({
       optional($.export),
       optional("abstract"),
       "node",
-      $._identifier,
+      field("identifier", $._identifier),
       optional(seq("extends", $._identifier)),
       "{",
       repeat($._node_member),
