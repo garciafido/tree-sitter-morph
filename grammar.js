@@ -131,12 +131,14 @@ module.exports = grammar({
       optional($.export),
       optional("abstract"),
       "node",
-      field("identifier", $._identifier),
+      $.node_declaration_identifier,
       optional(seq("extends", $._identifier)),
       "{",
       repeat($._node_member),
       "}",
     ),
+
+    node_declaration_identifier: $ => $._identifier,
 
     decorator: $ => seq(
       $.decorator_identifier, optional(seq("(", optional($._expression), ")")),
