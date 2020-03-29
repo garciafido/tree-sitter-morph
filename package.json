@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-morph",
-  "version": "1.0.33",
+  "version": "1.0.31",
   "description": "",
   "main": "index.js",
   "scripts": {
