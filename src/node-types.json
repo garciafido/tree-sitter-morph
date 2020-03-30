@@ -988,6 +988,41 @@
       "required": true,
       "types": [
         {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "FunctionExpression",
+          "named": true
+        },
+        {
+          "type": "FunctionName",
+          "named": true
+        },
+        {
+          "type": "FunctionSignature",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "TypeParameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "BinaryExpression",
           "named": true
         },
@@ -1000,19 +1035,11 @@
           "named": true
         },
         {
-          "type": "Export",
-          "named": true
-        },
-        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
-          "named": true
-        },
-        {
-          "type": "FunctionSignature",
           "named": true
         },
         {
@@ -1058,13 +1085,28 @@
         {
           "type": "TrueLiteral",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
-          "type": "Type",
+          "type": "CamelIdentifier",
           "named": true
         },
         {
-          "type": "TypeParameters",
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
@@ -1079,6 +1121,25 @@
       "required": true,
       "types": [
         {
+          "type": "FunctionParameterName",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionParameterName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "CamelIdentifier",
           "named": true
         },
@@ -1088,10 +1149,6 @@
         },
         {
           "type": "SnakeIdentifier",
-          "named": true
-        },
-        {
-          "type": "Type",
           "named": true
         }
       ]
@@ -2630,7 +2687,7 @@
           "named": true
         },
         {
-          "type": "TypeParameters",
+          "type": "TypeParameter",
           "named": true
         }
       ]
@@ -2735,19 +2792,11 @@
       "required": true,
       "types": [
         {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
           "type": "PredefinedType",
           "named": true
         },
         {
-          "type": "SnakeIdentifier",
+          "type": "TypeName",
           "named": true
         }
       ]
@@ -2918,10 +2967,6 @@
       "required": true,
       "types": [
         {
-          "type": "SingleType",
-          "named": true
-        },
-        {
           "type": "TypeUnion",
           "named": true
         }
@@ -2960,11 +3005,11 @@
     }
   },
   {
-    "type": "TypeParameter",
+    "type": "TypeName",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -2978,9 +3023,24 @@
         {
           "type": "SnakeIdentifier",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeParameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
         {
           "type": "TypeParameterConstraint",
+          "named": true
+        },
+        {
+          "type": "TypeParameterName",
           "named": true
         }
       ]
@@ -3002,15 +3062,23 @@
     }
   },
   {
-    "type": "TypeParameters",
+    "type": "TypeParameterName",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "TypeParameter",
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]

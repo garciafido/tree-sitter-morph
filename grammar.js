@@ -56,6 +56,7 @@ module.exports = grammar({
     $.AssignmentSign,
     $.Extends,
     $.TypeAnnotation,
+    $.TypeParameters,
   ],
 
   rules: {
@@ -229,7 +230,9 @@ module.exports = grammar({
     ),
 
     ConstantName: $ => $.Identifier,
+
     AssignmentSign: $ => "=",
+
     ConstantValue: $ => $.Expression,
 
     ConstantDeclarationStatement: $ => seq(
@@ -241,59 +244,55 @@ module.exports = grammar({
       $.ConstantValue,
     ),
 
-//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
+    FunctionName: $ => $.Identifier,
+
+    FunctionExpression: $ => $.Expression,
 
     FunctionDeclarationStatement: $ => seq(
       optional($.Export),
       "func",
-      $.Identifier,
+      $.FunctionName,
       optional($.TypeParameters),
       $.FunctionSignature,
       optional($.TypeAnnotation),
       "=>",
-      $.Expression,
+      $.FunctionExpression,
     ),
 
     FunctionSignature: $ => seq(
       "(", optional(seq($.FunctionParameter, repeat(seq(",", $.FunctionParameter)), optional(","))), ")",
     ),
 
-    FunctionParameter: $ => seq(
-      $.Identifier, optional($.TypeAnnotation),
-    ),
+    FunctionParameterName: $ => $.Identifier,
 
-    RuleDeclarationStatement: $ => seq(
-      optional($.Export), "rule", $.Identifier, optional($.TypeParameters), $.FunctionSignature, "=>", $.RuleExpression,
+    FunctionParameter: $ => seq(
+      $.FunctionParameterName, optional($.TypeAnnotation),
     ),
 
     TypeParameters: $ => seq(
       "<", $.TypeParameter, repeat(seq(",", $.TypeParameter)), optional(","), ">",
     ),
 
+    TypeParameterName: $ => $.Identifier,
+
     TypeParameter: $ => seq(
-      $.Identifier, optional($.TypeParameterConstraint),
+      $.TypeParameterName, optional($.TypeParameterConstraint),
     ),
 
     TypeParameterConstraint: $ => seq(
       "extends", $.Type,
     ),
 
-    TypeDeclarationStatement: $ => seq(
-      optional($.Export), "type", $.Identifier, "=", $.Type),
-
-    Export: $ => "export",
-
-    Type: $ => choice(
-        $.TypeUnion,
-        $.SingleType,
-    ),
+    Type: $ => $.TypeUnion,
 
     TypeUnion: $ => seq(
-      $.SingleType, repeat1(seq("|", $.SingleType)),
+      $.SingleType, repeat(seq("|", $.SingleType)),
     ),
 
+    TypeName: $ => $.Identifier,
+
     SingleType: $ => choice(
-      $.Identifier,
+      $.TypeName,
       $.PredefinedType,
     ),
 
@@ -311,6 +310,17 @@ module.exports = grammar({
     IntegerType: $ => "integer",
 
     FloatType: $ => "float",
+
+//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
+
+    RuleDeclarationStatement: $ => seq(
+      optional($.Export), "rule", $.Identifier, optional($.TypeParameters), $.FunctionSignature, "=>", $.RuleExpression,
+    ),
+
+    TypeDeclarationStatement: $ => seq(
+      optional($.Export), "type", $.Identifier, "=", $.Type),
+
+    Export: $ => "export",
 
     TypeAnnotation: $ => seq(
       ":", $.Type,

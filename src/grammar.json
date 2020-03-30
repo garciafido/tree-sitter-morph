@@ -732,6 +732,14 @@
         }
       ]
     },
+    "FunctionName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "FunctionExpression": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
     "FunctionDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -753,7 +761,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "FunctionName"
         },
         {
           "type": "CHOICE",
@@ -789,7 +797,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Expression"
+          "name": "FunctionExpression"
         }
       ]
     },
@@ -851,12 +859,16 @@
         }
       ]
     },
+    "FunctionParameterName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
     "FunctionParameter": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "FunctionParameterName"
         },
         {
           "type": "CHOICE",
@@ -871,6 +883,172 @@
           ]
         }
       ]
+    },
+    "TypeParameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "TypeParameter"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "TypeParameter"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ","
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "TypeParameterName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "TypeParameter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeParameterName"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "TypeParameterConstraint"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "TypeParameterConstraint": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "extends"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Type"
+        }
+      ]
+    },
+    "Type": {
+      "type": "SYMBOL",
+      "name": "TypeUnion"
+    },
+    "TypeUnion": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "SingleType"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "|"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "SingleType"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "TypeName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "SingleType": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeName"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "PredefinedType"
+        }
+      ]
+    },
+    "PredefinedType": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "StringType"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "BooleanType"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "IntegerType"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FloatType"
+        }
+      ]
+    },
+    "StringType": {
+      "type": "STRING",
+      "value": "string"
+    },
+    "BooleanType": {
+      "type": "STRING",
+      "value": "boolean"
+    },
+    "IntegerType": {
+      "type": "STRING",
+      "value": "integer"
+    },
+    "FloatType": {
+      "type": "STRING",
+      "value": "float"
     },
     "RuleDeclarationStatement": {
       "type": "SEQ",
@@ -921,85 +1099,6 @@
         }
       ]
     },
-    "TypeParameters": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "<"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "TypeParameter"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "SYMBOL",
-                "name": "TypeParameter"
-              }
-            ]
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": ","
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": ">"
-        }
-      ]
-    },
-    "TypeParameter": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "TypeParameterConstraint"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "TypeParameterConstraint": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "extends"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Type"
-        }
-      ]
-    },
     "TypeDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -1036,94 +1135,6 @@
     "Export": {
       "type": "STRING",
       "value": "export"
-    },
-    "Type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "TypeUnion"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "SingleType"
-        }
-      ]
-    },
-    "TypeUnion": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "SingleType"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "|"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "SingleType"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "SingleType": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "PredefinedType"
-        }
-      ]
-    },
-    "PredefinedType": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "StringType"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "BooleanType"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "IntegerType"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "FloatType"
-        }
-      ]
-    },
-    "StringType": {
-      "type": "STRING",
-      "value": "string"
-    },
-    "BooleanType": {
-      "type": "STRING",
-      "value": "boolean"
-    },
-    "IntegerType": {
-      "type": "STRING",
-      "value": "integer"
-    },
-    "FloatType": {
-      "type": "STRING",
-      "value": "float"
     },
     "TypeAnnotation": {
       "type": "SEQ",
@@ -2911,7 +2922,8 @@
     "NegativeSign",
     "AssignmentSign",
     "Extends",
-    "TypeAnnotation"
+    "TypeAnnotation",
+    "TypeParameters"
   ],
   "supertypes": []
 }
