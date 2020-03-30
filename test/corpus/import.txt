@@ -6,13 +6,15 @@ import ..foo
 
 ---
 
+(Program (ImportModuleStatement (PrefixedDots) (ImportFrom (CamelIdentifier))))
 
 
 =====================
 import_from_statement
 =====================
 
-from bar import Bar
+from ...bar import Bar
 
 ---
 
+(Program (ImportFromStatement (PrefixedDots) (ImportFrom (CamelIdentifier)) (ImportItem (PascalIdentifier))))

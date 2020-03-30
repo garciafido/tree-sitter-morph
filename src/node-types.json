@@ -594,6 +594,25 @@
       "required": true,
       "types": [
         {
+          "type": "DecoratorArg",
+          "named": true
+        },
+        {
+          "type": "DecoratorIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "DecoratorArg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "BinaryExpression",
           "named": true
         },
@@ -603,10 +622,6 @@
         },
         {
           "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "DecoratorIdentifier",
           "named": true
         },
         {
@@ -720,7 +735,7 @@
     }
   },
   {
-    "type": "Factor",
+    "type": "ExtendsName",
     "named": true,
     "fields": {},
     "children": {
@@ -737,6 +752,69 @@
         },
         {
           "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Factor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
           "named": true
         }
       ]
@@ -1071,11 +1149,62 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ImportFrom",
+          "named": true
+        },
+        {
+          "type": "PrefixedDots",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "InitializerExpression",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
           "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
           "named": true
         },
         {
@@ -1083,7 +1212,27 @@
           "named": true
         },
         {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
           "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
           "named": true
         }
       ]
@@ -1625,10 +1774,6 @@
       "required": true,
       "types": [
         {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
           "type": "Decorator",
           "named": true
         },
@@ -1637,15 +1782,15 @@
           "named": true
         },
         {
+          "type": "ExtendsName",
+          "named": true
+        },
+        {
           "type": "NodeDeclarationMember",
           "named": true
         },
         {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
+          "type": "NodeName",
           "named": true
         }
       ]
@@ -1735,10 +1880,6 @@
       "required": true,
       "types": [
         {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
           "type": "Decorator",
           "named": true
         },
@@ -1751,11 +1892,7 @@
           "named": true
         },
         {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
+          "type": "NodeEdgeName",
           "named": true
         },
         {
@@ -1774,67 +1911,7 @@
       "required": true,
       "types": [
         {
-          "type": "BinaryExpression",
-          "named": true
-        },
-        {
-          "type": "BooleanExpression",
-          "named": true
-        },
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "FalseLiteral",
-          "named": true
-        },
-        {
-          "type": "FloatLiteral",
-          "named": true
-        },
-        {
-          "type": "IntegerLiteral",
-          "named": true
-        },
-        {
-          "type": "Negation",
-          "named": true
-        },
-        {
-          "type": "NegativeFactor",
-          "named": true
-        },
-        {
-          "type": "ParenthesizedExpression",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "PositiveFactor",
-          "named": true
-        },
-        {
-          "type": "RelationalExpression",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        },
-        {
-          "type": "StringLiteral",
-          "named": true
-        },
-        {
-          "type": "StringTemplateLiteral",
-          "named": true
-        },
-        {
-          "type": "TrueLiteral",
+          "type": "InitializerExpression",
           "named": true
         }
       ]
@@ -1860,11 +1937,76 @@
     }
   },
   {
+    "type": "NodeEdgeName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "NodeStaticConstantDeclaration",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NodeStaticExpression",
+          "named": true
+        },
+        {
+          "type": "NodeStaticName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeStaticExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1929,6 +2071,29 @@
         },
         {
           "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeStaticName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]

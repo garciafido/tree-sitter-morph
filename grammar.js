@@ -54,6 +54,7 @@ module.exports = grammar({
     $.PositiveSign,
     $.NegativeSign,
     $.AssignmentSign,
+    $.Extends,
   ],
 
   rules: {
@@ -99,16 +100,36 @@ module.exports = grammar({
       "import", optional($.PrefixedDots), $.ImportFrom,
     ),
 
+    NodeName: $ => $.Identifier,
+
     NodeDeclarationStatement: $ => seq(
       repeat($.Decorator),
       optional($.Export),
       optional("abstract"),
       "node",
-      $.Identifier,
-      optional(seq("extends", $.Identifier)),
-      "{",
-      repeat($.NodeDeclarationMember),
-      "}",
+      $.NodeName,
+      optional($.Extends),
+      "{", repeat($.NodeDeclarationMember), "}",
+    ),
+
+    ExtendsName: $ => $.Identifier,
+
+    Extends: $ => seq(
+      "extends", $.ExtendsName
+    ),
+
+    DecoratorArg: $ => $.Expression,
+
+    Decorator: $ => prec.left(seq(
+      $.DecoratorIdentifier,
+      optional(seq(
+        "(",
+          optional(seq(
+            $.DecoratorArg,
+            repeat(seq(",", $.DecoratorArg)),
+            optional(","))),
+        ")"))
+      ),
     ),
 
     NodeDeclarationMember: $ => choice(
@@ -116,9 +137,11 @@ module.exports = grammar({
         $.NodeStaticConstantDeclaration,
     ),
 
+    NodeEdgeName: $ => $.Identifier,
+
     NodeEdgeDeclaration: $ => seq(
       repeat($.Decorator),
-      $.Identifier,
+      $.NodeEdgeName,
       optional($.NodeEdgeModifier),
       "->",
       $.Type,
@@ -134,18 +157,21 @@ module.exports = grammar({
 
     NodeEdgeArrayModifier: $ => "[]",
 
+    InitializerExpression: $ => $.Expression,
+
     NodeEdgeInitializer: $ => seq(
-      "=", $.Expression,
+      "=", $.InitializerExpression,
     ),
+
+    NodeStaticName: $ => $.Identifier,
+
+    NodeStaticExpression: $ => $.Expression,
 
     NodeStaticConstantDeclaration: $ => seq(
-      "static", $.Identifier, "=", $.Expression,
+      "static", $.NodeStaticName, "=", $.NodeStaticExpression,
     ),
 
-    Decorator: $ => prec.left(seq(
-      $.DecoratorIdentifier,
-      optional(seq("(", optional(seq($.Expression, repeat(seq(",", $.Expression)), optional(","), ")")))),
-    )),
+//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
 
     MorphismDeclarationStatement: $ => seq(
       repeat($.Decorator),
@@ -332,7 +358,7 @@ module.exports = grammar({
       ))
     ),
 
-    Factor: $ => $.Identifier,
+    Factor: $ => $.PrimaryExpression,
 
     PrimaryExpression: $ => choice(
       $.BinaryExpression,
@@ -769,3 +795,11 @@ module.exports = grammar({
   }
 });
 
+
+function commaSep1 (rule) {
+  return sep1(rule, ",")
+}
+
+function sep1 (rule, separator) {
+  return seq(rule, repeat(seq(separator, rule)))
+}
