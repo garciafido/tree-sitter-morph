@@ -311,12 +311,27 @@ module.exports = grammar({
 
     FloatType: $ => "float",
 
-//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
+    RuleName: $ => $.Identifier,
 
     RuleDeclarationStatement: $ => seq(
-      optional($.Export), "rule", $.Identifier, optional($.TypeParameters), $.FunctionSignature, "=>", $.RuleExpression,
+      optional($.Export),
+      "rule",
+      $.RuleName,
+      optional($.TypeParameters),
+      $.FunctionSignature,
+      "=>",
+      $.RuleExpression,
     ),
 
+    Rule: $ => $.Expression,
+
+    Message: $ => $.Expression,
+
+    RuleExpression: $ => seq(
+      $.Rule, optional(seq(":", $.Message)),
+    ),
+
+//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
     TypeDeclarationStatement: $ => seq(
       optional($.Export), "type", $.Identifier, "=", $.Type),
 
@@ -636,16 +651,8 @@ module.exports = grammar({
       $.ParenthesizedExpression,
     )),
 
-    // ParenthesizedExpression: $ => seq(
-    //   "(", $.Expression, ")",
-    // ),
-
     RuleParameters: $ => seq(
       "<", $.RuleExpression, ">",
-    ),
-
-    RuleExpression: $ => seq(
-      "<", $.Expression, optional(seq(":", $.Expression)), ">",
     ),
 
     FunctionCallParameters: $ => seq(

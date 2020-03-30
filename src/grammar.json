@@ -1050,6 +1050,10 @@
       "type": "STRING",
       "value": "float"
     },
+    "RuleName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
     "RuleDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -1071,7 +1075,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "RuleName"
         },
         {
           "type": "CHOICE",
@@ -1096,6 +1100,44 @@
         {
           "type": "SYMBOL",
           "name": "RuleExpression"
+        }
+      ]
+    },
+    "Rule": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
+    "Message": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
+    "RuleExpression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Rule"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "Message"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -1901,44 +1943,6 @@
         {
           "type": "SYMBOL",
           "name": "RuleExpression"
-        },
-        {
-          "type": "STRING",
-          "value": ">"
-        }
-      ]
-    },
-    "RuleExpression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "<"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Expression"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ":"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Expression"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         },
         {
           "type": "STRING",

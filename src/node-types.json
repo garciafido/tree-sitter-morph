@@ -1428,6 +1428,81 @@
     }
   },
   {
+    "type": "Message",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "MorphismCreationDeclaration",
     "named": true,
     "fields": {},
@@ -2655,50 +2730,11 @@
     }
   },
   {
-    "type": "RuleDeclarationStatement",
+    "type": "Rule",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "Export",
-          "named": true
-        },
-        {
-          "type": "FunctionSignature",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "RuleExpression",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        },
-        {
-          "type": "TypeParameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "RuleExpression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -2763,6 +2799,79 @@
         },
         {
           "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RuleDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "FunctionSignature",
+          "named": true
+        },
+        {
+          "type": "RuleExpression",
+          "named": true
+        },
+        {
+          "type": "RuleName",
+          "named": true
+        },
+        {
+          "type": "TypeParameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RuleExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Message",
+          "named": true
+        },
+        {
+          "type": "Rule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RuleName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]

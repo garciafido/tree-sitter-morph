@@ -9,5 +9,5 @@ export const foo: Foo = "foo"
 (Program (ConstantDeclarationStatement
     (Export)
     (ConstantName (CamelIdentifier))
-    (Type (SingleType (PascalIdentifier)))
+    (Type (TypeUnion (SingleType (TypeName (PascalIdentifier)))))
     (ConstantValue (StringLiteral))))
