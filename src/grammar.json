@@ -627,6 +627,14 @@
         }
       ]
     },
+    "EnumName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "EnumValue": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
     "EnumDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -648,7 +656,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "EnumName"
         },
         {
           "type": "STRING",
@@ -658,7 +666,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "EnumValue"
           }
         },
         {
@@ -2902,7 +2910,8 @@
     "PositiveSign",
     "NegativeSign",
     "AssignmentSign",
-    "Extends"
+    "Extends",
+    "TypeAnnotation"
   ],
   "supertypes": []
 }

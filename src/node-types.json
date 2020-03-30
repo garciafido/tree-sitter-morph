@@ -481,7 +481,7 @@
           "named": true
         },
         {
-          "type": "TypeAnnotation",
+          "type": "Type",
           "named": true
         }
       ]
@@ -716,11 +716,53 @@
       "required": true,
       "types": [
         {
-          "type": "CamelIdentifier",
+          "type": "EnumName",
+          "named": true
+        },
+        {
+          "type": "EnumValue",
           "named": true
         },
         {
           "type": "Export",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EnumName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EnumValue",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
           "named": true
         },
         {
@@ -1018,7 +1060,7 @@
           "named": true
         },
         {
-          "type": "TypeAnnotation",
+          "type": "Type",
           "named": true
         },
         {
@@ -1049,7 +1091,7 @@
           "named": true
         },
         {
-          "type": "TypeAnnotation",
+          "type": "Type",
           "named": true
         }
       ]
@@ -2881,21 +2923,6 @@
         },
         {
           "type": "TypeUnion",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeAnnotation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Type",
           "named": true
         }
       ]

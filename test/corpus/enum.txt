@@ -10,3 +10,4 @@ export enum foo {
 
 ---
 
+ (Program (EnumDeclarationStatement (Export) (EnumName (CamelIdentifier)) (EnumValue (CamelIdentifier)) (EnumValue (CamelIdentifier)) (EnumValue (CamelIdentifier))))

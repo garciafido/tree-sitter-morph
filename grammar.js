@@ -55,6 +55,7 @@ module.exports = grammar({
     $.NegativeSign,
     $.AssignmentSign,
     $.Extends,
+    $.TypeAnnotation,
   ],
 
   rules: {
@@ -219,10 +220,12 @@ module.exports = grammar({
       optional($.Export), "symbol", $.SymbolName,
     ),
 
-//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
+    EnumName: $ => $.Identifier,
+
+    EnumValue: $ => $.Identifier,
 
     EnumDeclarationStatement: $ => seq(
-      optional($.Export), "enum", $.Identifier, "{", repeat($.Identifier), "}",
+      optional($.Export), "enum", $.EnumName, "{", repeat($.EnumValue), "}",
     ),
 
     ConstantName: $ => $.Identifier,
@@ -237,6 +240,8 @@ module.exports = grammar({
       $.AssignmentSign,
       $.ConstantValue,
     ),
+
+//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
 
     FunctionDeclarationStatement: $ => seq(
       optional($.Export),

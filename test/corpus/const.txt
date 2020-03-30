@@ -6,3 +6,8 @@ export const foo: Foo = "foo"
 
 ---
 
+(Program (ConstantDeclarationStatement
+    (Export)
+    (ConstantName (CamelIdentifier))
+    (Type (SingleType (PascalIdentifier)))
+    (ConstantValue (StringLiteral))))
