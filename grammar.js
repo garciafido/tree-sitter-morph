@@ -4,24 +4,24 @@ const PREC = {
 
   // this resolves a conflict between the usage of ':' in a lambda vs in a
   // typed parameter. In the case of a lambda, we don't allow typed parameters.
-  lambda: -2,
-  typed_parameter: -1,
-  conditional: -1,
+  lambda: -20,
+  typed_parameter: -10,
+  conditional: -10,
 
-  parenthesized_expression: 1,
-  not: 1,
-  compare: 2,
-  or: 10,
-  and: 11,
-  bitwise_or: 12,
-  bitwise_and: 13,
-  xor: 14,
-  shift: 15,
-  plus: 16,
-  times: 17,
-  unary: 18,
-  power: 19,
-  call: 20,
+  parenthesized_expression: 10,
+  not: 10,
+  compare: 20,
+  or: 100,
+  and: 110,
+  bitwise_or: 120,
+  bitwise_and: 130,
+  xor: 140,
+  shift: 150,
+  plus: 160,
+  times: 170,
+  unary: 180,
+  power: 190,
+  call: 200,
 
 };
 
@@ -34,7 +34,7 @@ module.exports = grammar({
   ],
 
   extras: $ => [
-    $.comment,
+    $.Comment,
     /[\s\uFEFF\u2060\u200B\u00A0]/
   ],
 
@@ -48,6 +48,12 @@ module.exports = grammar({
     $.ImportStatement,
     $.Identifier,
     $.Expression,
+    $.PrimaryExpression,
+    $.UnaryFactor,
+    $.Statement,
+    $.PositiveSign,
+    $.NegativeSign,
+    $.AssignmentSign,
   ],
 
   rules: {
@@ -75,18 +81,22 @@ module.exports = grammar({
       $.ImportModuleStatement,
     ),
 
+    PrefixedDots: $ => /[.]+_?/,
+    ImportFrom: $ => $.Identifier,
+    ImportItem: $ => $.Identifier,
+
     ImportFromStatement: $ => seq(
       "from",
-      repeat("."),
-      $.Identifier,
+      optional($.PrefixedDots),
+      $.ImportFrom,
       "import",
-      $.Identifier,
-      repeat(seq(",", $.Identifier)),
+      $.ImportItem,
+      repeat(seq(",", $.ImportItem)),
       optional(","),
     ),
 
     ImportModuleStatement: $ => seq(
-      "import", repeat("."), $.Identifier,
+      "import", optional($.PrefixedDots), $.ImportFrom,
     ),
 
     NodeDeclarationStatement: $ => seq(
@@ -173,13 +183,17 @@ module.exports = grammar({
       optional($.Export), "enum", $.Identifier, "{", repeat($.Identifier), "}",
     ),
 
+    ConstantName: $ => $.Identifier,
+    AssignmentSign: $ => "=",
+    ConstantValue: $ => $.Expression,
+
     ConstantDeclarationStatement: $ => seq(
       optional($.Export),
       "const",
-      field('name', $.Identifier) ,
+      $.ConstantName,
       optional($.TypeAnnotation),
-      "=",
-      $.Expression,
+      $.AssignmentSign,
+      $.ConstantValue,
     ),
 
     FunctionDeclarationStatement: $ => seq(
@@ -266,7 +280,7 @@ module.exports = grammar({
       $.Negation,
       $.BooleanExpression,
       // $.lambda,
-      $._primary_expression,
+      $.PrimaryExpression,
       // $.conditional_expression,
       // $.named_expression
     ),
@@ -281,7 +295,7 @@ module.exports = grammar({
     IsNot: $ => seq("is", "not"),
 
     RelationalExpression: $ => prec.left(PREC.compare, seq(
-      $._primary_expression,
+      $.PrimaryExpression,
       repeat1(seq(
         choice(
           $.EqualTo,
@@ -293,7 +307,7 @@ module.exports = grammar({
           $.Is,
           $.IsNot,
         ),
-        $._primary_expression
+        $.PrimaryExpression
       ))
     )),
 
@@ -318,7 +332,9 @@ module.exports = grammar({
       ))
     ),
 
-    _primary_expression: $ => choice(
+    Factor: $ => $.Identifier,
+
+    PrimaryExpression: $ => choice(
       $.BinaryExpression,
       $.Identifier,
       $.StringLiteral,
@@ -329,7 +345,7 @@ module.exports = grammar({
       $.FloatLiteral,
       // $.keyword_identifier,
       // $.none,
-      // $.unary_operator,
+      $.UnaryFactor,
       // $.attribute,
       // $.subscript,
       // $.call,
@@ -366,9 +382,9 @@ module.exports = grammar({
         [$.ExclusiveDisjunction, PREC.xor],
       ].map(([operator, precedence]) =>
         prec.left(precedence, seq(
-          field('left', $._primary_expression),
+          field('left', $.PrimaryExpression),
           field('operator', operator),
-          field('right', $._primary_expression)
+          field('right', $.PrimaryExpression)
         ))
       )
     ),
@@ -378,6 +394,34 @@ module.exports = grammar({
       $.Expression,
       ")"
     )),
+
+    PositiveSign: $ => "+",
+    NegativeSign: $ => "-",
+
+    UnaryFactor: $ => choice(
+      $.PositiveFactor,
+      $.NegativeFactor,
+    ),
+
+    PositiveFactor: $ => prec.left(PREC.unary, seq(
+      $.PositiveSign,
+      $.PrimaryExpression,
+    )),
+
+    NegativeFactor: $ => prec.left(PREC.unary, seq(
+      $.NegativeSign,
+      $.PrimaryExpression,
+    )),
+
+    // UnaryFactor: $ => prec(PREC.unary, seq(
+    //   field('operator', choice($.Positive, $.Negative, $.Complement)),
+    //   field('argument', $.PrimaryExpression)
+    // )),
+
+    // UnaryFactor: $ => prec(PREC.unary, seq(
+    //   choice($.Positive, $.Negative, $.Complement),
+    //   $.PrimaryExpression,
+    // )),
 
     // BooleanExpression: $ => $.DisjunctionExpression,
 
@@ -494,17 +538,17 @@ module.exports = grammar({
     // )),
     //
 
-    Factor: $ => choice(
-      $.Identifier,
-      $.FunctionCallOrEdgeAccess,
-      $.AnonymousFunction,
-      $.ChainedFunctionCallOrEdgeAccess,
-      $.ListIndexAccess_EdgeAccessParameter,
-      $.UnaryFactor,
-      $.List,
-      $.Node,
-      $.Literal,
-    ),
+    // Factor: $ => choice(
+    //   $.Identifier,
+    //   $.FunctionCallOrEdgeAccess,
+    //   $.AnonymousFunction,
+    //   $.ChainedFunctionCallOrEdgeAccess,
+    //   $.ListIndexAccess_EdgeAccessParameter,
+    //   $.UnaryFactor,
+    //   $.List,
+    //   $.Node,
+    //   $.Literal,
+    // ),
 
     Identifier: $ => choice(
       $.CamelIdentifier,
@@ -535,9 +579,9 @@ module.exports = grammar({
       $.ParenthesizedExpression,
     )),
 
-    ParenthesizedExpression: $ => seq(
-      "(", $.Expression, ")",
-    ),
+    // ParenthesizedExpression: $ => seq(
+    //   "(", $.Expression, ")",
+    // ),
 
     RuleParameters: $ => seq(
       "<", $.RuleExpression, ">",
@@ -582,18 +626,18 @@ module.exports = grammar({
       $.Factor, optional($.RuleParameters), $.ListIndexAccess_EdgeAccessParameter,
     )),
 
-    UnaryFactor: $ => choice(
-        $.Positive,
-        $.Negative,
-    ),
-
-    Positive: $ => seq(
-      "+", $.Factor,
-    ),
-
-    Negative: $ => seq(
-      "-", $.Factor,
-    ),
+    // UnaryFactor: $ => choice(
+    //     $.Positive,
+    //     $.Negative,
+    // ),
+    //
+    // Positive: $ => seq(
+    //   "+", $.Factor,
+    // ),
+    //
+    // Negative: $ => seq(
+    //   "-", $.Factor,
+    // ),
 
     List: $ => prec(PREC.call, seq(
       "[", $.Expression, "]",
@@ -661,13 +705,13 @@ module.exports = grammar({
       ))),
 
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
-    comment: $ => token(prec(PREC.COMMENT, choice(
+    Comment: $ => prec(PREC.COMMENT, choice(
       seq('//', /.*/),
       seq(
         '/*',
         /[^*]*\*+([^/*][^*]*\*+)*/,
         '/'
-      )))),
+      ))),
 
     StringTemplateLiteral: $ => seq(
       '`',
