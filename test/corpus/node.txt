@@ -6,7 +6,8 @@ node foo {}
 
 ---
 
-(Program (NodeDeclarationStatement (NodeName (CamelIdentifier))))
+(Program (NodeDeclarationStatement (NodeDeclarationStatement_name (CamelIdentifier))))
+
 
 ==================================
 Extends node_declaration_statement
@@ -16,7 +17,8 @@ node foo extends FooBase {}
 
 ---
 
-(Program (NodeDeclarationStatement (NodeName (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
+ (Program (NodeDeclarationStatement (NodeDeclarationStatement_name (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
+
 
 ====================================
 Decorator node_declaration_statement
@@ -27,7 +29,7 @@ node foo extends FooBase {}
 
 ---
 
-(Program (NodeDeclarationStatement (Decorator (DecoratorIdentifier)) (NodeName (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
+ (Program (NodeDeclarationStatement (Decorator (DecoratorIdentifier)) (NodeDeclarationStatement_name (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
 
 ==========================================
 Export abstract node_declaration_statement
@@ -38,11 +40,7 @@ export abstract node foo extends FooBase {}
 
 ---
 
- (Program (NodeDeclarationStatement
-    (Decorator (DecoratorIdentifier))
-    (Export)
-    (NodeName (CamelIdentifier))
-    (ExtendsName (PascalIdentifier))))
+(Program (NodeDeclarationStatement (Decorator (DecoratorIdentifier)) (Export) (NodeDeclarationStatement_name (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
 
 =================================
 Member node_declaration_statement
@@ -56,14 +54,4 @@ export abstract node foo extends FooBase {
 
 ---
 
-(Program (NodeDeclarationStatement
-    (Decorator (DecoratorIdentifier))
-    (Export)
-    (NodeName (CamelIdentifier))
-    (ExtendsName (PascalIdentifier))
-    (NodeDeclarationMember
-    (NodeEdgeDeclaration
-        (Decorator (DecoratorIdentifier) (DecoratorArg (PascalIdentifier)))
-        (NodeEdgeName (CamelIdentifier))
-        (NodeEdgeModifier (NodeEdgeArrayModifier))
-        (TypeUnion (SingleType (TypeName (PascalIdentifier))))))))
+(Program (NodeDeclarationStatement (Decorator (DecoratorIdentifier)) (Export) (NodeDeclarationStatement_name (CamelIdentifier)) (ExtendsName (PascalIdentifier)) (NodeDeclarationMember (NodeEdgeDeclaration (Decorator (DecoratorIdentifier) (DecoratorArg (PascalIdentifier))) (NodeEdgeName (CamelIdentifier)) (NodeEdgeModifier (NodeEdgeArrayModifier)) (TypeUnion (SingleType (TypeName (PascalIdentifier))))))))

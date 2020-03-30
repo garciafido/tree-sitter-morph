@@ -62,48 +62,20 @@
         }
       ]
     },
-    "PrefixedDots": {
+    "ImportFromStatement_path": {
       "type": "PATTERN",
       "value": "[.]+_?"
     },
-    "ImportFrom": {
+    "ImportFromStatement_module": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "ImportItem": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "ImportFromStatement": {
+    "ImportFromStatement_items": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "from"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "PrefixedDots"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "SYMBOL",
-          "name": "ImportFrom"
-        },
-        {
-          "type": "STRING",
-          "value": "import"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImportItem"
+          "name": "Identifier"
         },
         {
           "type": "REPEAT",
@@ -116,7 +88,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "ImportItem"
+                "name": "Identifier"
               }
             ]
           }
@@ -135,6 +107,47 @@
         }
       ]
     },
+    "ImportFromStatement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "from"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "ImportFromStatement_path"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImportFromStatement_module"
+        },
+        {
+          "type": "STRING",
+          "value": "import"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImportFromStatement_items"
+        }
+      ]
+    },
+    "ImportModuleStatement_path": {
+      "type": "PATTERN",
+      "value": "[.]+_?"
+    },
+    "ImportModuleStatement_from": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
     "ImportModuleStatement": {
       "type": "SEQ",
       "members": [
@@ -147,7 +160,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "PrefixedDots"
+              "name": "ImportModuleStatement_path"
             },
             {
               "type": "BLANK"
@@ -156,11 +169,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "ImportFrom"
+          "name": "ImportModuleStatement_from"
         }
       ]
     },
-    "NodeName": {
+    "NodeDeclarationStatement_name": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
@@ -204,7 +217,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "NodeName"
+          "name": "NodeDeclarationStatement_name"
         },
         {
           "type": "CHOICE",

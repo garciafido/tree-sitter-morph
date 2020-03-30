@@ -2,12 +2,8 @@
 ConstantDeclarationStatement
 ============================
 
-export const foo: Foo = "foo"
+const foo: Foo = "foo"
 
 ---
 
-(Program (ConstantDeclarationStatement
-    (Export)
-    (ConstantName (CamelIdentifier))
-    (TypeUnion (SingleType (TypeName (PascalIdentifier))))
-    (ConstantValue (StringLiteral))))
+(Program (ConstantDeclarationStatement (ConstantName (CamelIdentifier)) (TypeUnion (SingleType (TypeName (PascalIdentifier)))) (ConstantValue (StringLiteral))))

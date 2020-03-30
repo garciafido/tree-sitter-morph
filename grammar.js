@@ -86,34 +86,40 @@ module.exports = grammar({
       $.ImportModuleStatement,
     ),
 
-    PrefixedDots: $ => /[.]+_?/,
+    ImportFromStatement_path: $ => /[.]+_?/,
 
-    ImportFrom: $ => $.Identifier,
+    ImportFromStatement_module: $ => $.Identifier,
 
-    ImportItem: $ => $.Identifier,
-
-    ImportFromStatement: $ => seq(
-      "from",
-      optional($.PrefixedDots),
-      $.ImportFrom,
-      "import",
-      $.ImportItem,
-      repeat(seq(",", $.ImportItem)),
+    ImportFromStatement_items: $ => seq(
+      $.Identifier,
+      repeat(seq(",", $.Identifier)),
       optional(","),
     ),
 
-    ImportModuleStatement: $ => seq(
-      "import", optional($.PrefixedDots), $.ImportFrom,
+    ImportFromStatement: $ => seq(
+      "from",
+      optional($.ImportFromStatement_path),
+      $.ImportFromStatement_module,
+      "import",
+      $.ImportFromStatement_items,
     ),
 
-    NodeName: $ => $.Identifier,
+    ImportModuleStatement_path: $ => /[.]+_?/,
+
+    ImportModuleStatement_from: $ => $.Identifier,
+
+    ImportModuleStatement: $ => seq(
+      "import", optional($.ImportModuleStatement_path), $.ImportModuleStatement_from,
+    ),
+
+    NodeDeclarationStatement_name: $ => $.Identifier,
 
     NodeDeclarationStatement: $ => seq(
       repeat($.Decorator),
       optional($.Export),
       optional("abstract"),
       "node",
-      $.NodeName,
+      $.NodeDeclarationStatement_name,
       optional($.Extends),
       "{", repeat($.NodeDeclarationMember), "}",
     ),

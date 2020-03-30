@@ -1429,29 +1429,6 @@
     "fields": {}
   },
   {
-    "type": "ImportFrom",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "ImportFromStatement",
     "named": true,
     "fields": {},
@@ -1460,22 +1437,45 @@
       "required": true,
       "types": [
         {
-          "type": "ImportFrom",
+          "type": "ImportFromStatement_items",
           "named": true
         },
         {
-          "type": "ImportItem",
+          "type": "ImportFromStatement_module",
           "named": true
         },
         {
-          "type": "PrefixedDots",
+          "type": "ImportFromStatement_path",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "ImportItem",
+    "type": "ImportFromStatement_items",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ImportFromStatement_module",
     "named": true,
     "fields": {},
     "children": {
@@ -1496,6 +1496,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "ImportFromStatement_path",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "ImportModuleStatement",
@@ -1506,15 +1511,43 @@
       "required": true,
       "types": [
         {
-          "type": "ImportFrom",
+          "type": "ImportModuleStatement_from",
           "named": true
         },
         {
-          "type": "PrefixedDots",
+          "type": "ImportModuleStatement_path",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "ImportModuleStatement_from",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ImportModuleStatement_path",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "InitializerExpression",
@@ -2368,7 +2401,30 @@
           "named": true
         },
         {
-          "type": "NodeName",
+          "type": "NodeDeclarationStatement_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeDeclarationStatement_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
@@ -2528,29 +2584,6 @@
   },
   {
     "type": "NodeEdgeName",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeName",
     "named": true,
     "fields": {},
     "children": {
@@ -3819,10 +3852,6 @@
   },
   {
     "type": "PascalIdentifier",
-    "named": true
-  },
-  {
-    "type": "PrefixedDots",
     "named": true
   },
   {
