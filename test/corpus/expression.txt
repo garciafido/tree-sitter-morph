@@ -28,3 +28,30 @@ const foo = not a or b
     (ConstantName (CamelIdentifier))
     (ConstantValue (Negation
         (BooleanExpression (CamelIdentifier) (Disjunction) (CamelIdentifier))))))
+
+============
+FunctionCall
+============
+
+const foo = f(a)
+
+---
+
+(Program (ConstantDeclarationStatement (ConstantName (CamelIdentifier)) (ConstantValue
+    (FunctionCall
+        (CallableExpression (CallableName (CamelIdentifier)))
+        (FunctionCallParameters (ParameterExpression (CamelIdentifier)))))))
+
+===========
+ChainedCall
+===========
+
+const foo = f(a).f(b)
+
+---
+
+(Program (ConstantDeclarationStatement (ConstantName (CamelIdentifier)) (ConstantValue
+    (ChainedFunctionCallOrEdgeAccess (ChainedFunctionCall
+        (FunctionCall (CallableExpression (CallableName (CamelIdentifier))) (FunctionCallParameters (ParameterExpression (CamelIdentifier))))
+            (CamelIdentifier)
+            (FunctionCallParameters (ParameterExpression (CamelIdentifier))))))))

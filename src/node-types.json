@@ -1,8 +1,182 @@
 [
   {
+    "type": "AccessExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "Addition",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "AnonymousFunctionName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "AnonymousFunctionSignature",
@@ -13,15 +187,7 @@
       "required": false,
       "types": [
         {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
+          "type": "ParameterName",
           "named": true
         }
       ]
@@ -44,11 +210,23 @@
             "named": true
           },
           {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
             "type": "FalseLiteral",
             "named": true
           },
           {
             "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
             "named": true
           },
           {
@@ -140,11 +318,23 @@
             "named": true
           },
           {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
             "type": "FalseLiteral",
             "named": true
           },
           {
             "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
             "named": true
           },
           {
@@ -213,11 +403,23 @@
             "named": true
           },
           {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
             "type": "FalseLiteral",
             "named": true
           },
           {
             "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
             "named": true
           },
           {
@@ -297,11 +499,23 @@
             "named": true
           },
           {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
             "type": "FalseLiteral",
             "named": true
           },
           {
             "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
             "named": true
           },
           {
@@ -380,15 +594,34 @@
       "required": true,
       "types": [
         {
-          "type": "CamelIdentifier",
+          "type": "CallableName",
           "named": true
         },
         {
-          "type": "FunctionCallOrEdgeAccess",
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
           "type": "ParenthesizedExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CallableName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
           "named": true
         },
         {
@@ -411,7 +644,35 @@
       "required": true,
       "types": [
         {
-          "type": "Factor",
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
           "named": true
         },
         {
@@ -419,7 +680,39 @@
           "named": true
         },
         {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
           "type": "RuleParameters",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
           "named": true
         }
       ]
@@ -434,11 +727,31 @@
       "required": true,
       "types": [
         {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
           "type": "CamelIdentifier",
           "named": true
         },
         {
-          "type": "Factor",
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -446,7 +759,23 @@
           "named": true
         },
         {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
           "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
           "named": true
         },
         {
@@ -455,6 +784,37 @@
         },
         {
           "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ChainedFunctionCallOrEdgeAccess",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ChainedEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCall",
           "named": true
         }
       ]
@@ -531,11 +891,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -625,11 +997,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -800,69 +1184,6 @@
     }
   },
   {
-    "type": "Factor",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "BinaryExpression",
-          "named": true
-        },
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "FalseLiteral",
-          "named": true
-        },
-        {
-          "type": "FloatLiteral",
-          "named": true
-        },
-        {
-          "type": "IntegerLiteral",
-          "named": true
-        },
-        {
-          "type": "NegativeFactor",
-          "named": true
-        },
-        {
-          "type": "ParenthesizedExpression",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "PositiveFactor",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        },
-        {
-          "type": "StringLiteral",
-          "named": true
-        },
-        {
-          "type": "StringTemplateLiteral",
-          "named": true
-        },
-        {
-          "type": "TrueLiteral",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "FunctionCall",
     "named": true,
     "fields": {},
@@ -886,25 +1207,6 @@
     }
   },
   {
-    "type": "FunctionCallOrEdgeAccess",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "EdgeAccess",
-          "named": true
-        },
-        {
-          "type": "FunctionCall",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "FunctionCallParameters",
     "named": true,
     "fields": {},
@@ -913,67 +1215,7 @@
       "required": false,
       "types": [
         {
-          "type": "BinaryExpression",
-          "named": true
-        },
-        {
-          "type": "BooleanExpression",
-          "named": true
-        },
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "FalseLiteral",
-          "named": true
-        },
-        {
-          "type": "FloatLiteral",
-          "named": true
-        },
-        {
-          "type": "IntegerLiteral",
-          "named": true
-        },
-        {
-          "type": "Negation",
-          "named": true
-        },
-        {
-          "type": "NegativeFactor",
-          "named": true
-        },
-        {
-          "type": "ParenthesizedExpression",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "PositiveFactor",
-          "named": true
-        },
-        {
-          "type": "RelationalExpression",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        },
-        {
-          "type": "StringLiteral",
-          "named": true
-        },
-        {
-          "type": "StringTemplateLiteral",
-          "named": true
-        },
-        {
-          "type": "TrueLiteral",
+          "type": "ParameterExpression",
           "named": true
         }
       ]
@@ -1035,11 +1277,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -1283,11 +1537,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -1361,67 +1627,7 @@
       "required": true,
       "types": [
         {
-          "type": "BinaryExpression",
-          "named": true
-        },
-        {
-          "type": "BooleanExpression",
-          "named": true
-        },
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "FalseLiteral",
-          "named": true
-        },
-        {
-          "type": "FloatLiteral",
-          "named": true
-        },
-        {
-          "type": "IntegerLiteral",
-          "named": true
-        },
-        {
-          "type": "Negation",
-          "named": true
-        },
-        {
-          "type": "NegativeFactor",
-          "named": true
-        },
-        {
-          "type": "ParenthesizedExpression",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "PositiveFactor",
-          "named": true
-        },
-        {
-          "type": "RelationalExpression",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        },
-        {
-          "type": "StringLiteral",
-          "named": true
-        },
-        {
-          "type": "StringTemplateLiteral",
-          "named": true
-        },
-        {
-          "type": "TrueLiteral",
+          "type": "AccessExpression",
           "named": true
         }
       ]
@@ -1448,11 +1654,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -1592,11 +1810,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -1686,11 +1916,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -1807,11 +2049,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -1905,11 +2159,23 @@
             "named": true
           },
           {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
             "type": "FalseLiteral",
             "named": true
           },
           {
             "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
             "named": true
           },
           {
@@ -1977,11 +2243,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -2117,11 +2395,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -2322,11 +2612,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -2419,6 +2721,116 @@
     }
   },
   {
+    "type": "ParameterExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ParameterName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "ParenthesizedExpression",
     "named": true,
     "fields": {},
@@ -2439,11 +2851,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -2510,11 +2934,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -2651,6 +3087,14 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "EqualTo",
           "named": true
         },
@@ -2660,6 +3104,10 @@
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -2750,11 +3198,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {
@@ -2882,7 +3342,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -3013,11 +3473,23 @@
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
           "type": "FalseLiteral",
           "named": true
         },
         {
           "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         },
         {

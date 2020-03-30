@@ -58,6 +58,7 @@ module.exports = grammar({
     $.Type,
     $.TypeAnnotation,
     $.TypeParameters,
+    $.FunctionCallOrEdgeAccess,
   ],
 
   rules: {
@@ -406,8 +407,6 @@ module.exports = grammar({
       ))
     ),
 
-    Factor: $ => $.PrimaryExpression,
-
     PrimaryExpression: $ => choice(
       $.BinaryExpression,
       $.Identifier,
@@ -423,6 +422,8 @@ module.exports = grammar({
       // $.attribute,
       // $.subscript,
       // $.call,
+      $.FunctionCallOrEdgeAccess,
+      $.ChainedFunctionCallOrEdgeAccess,
       // $.list,
       // $.list_comprehension,
       // $.dictionary,
@@ -647,18 +648,26 @@ module.exports = grammar({
       $.CallableExpression, optional($.RuleParameters), $.FunctionCallParameters,
     ),
 
-    CallableExpression: $ =>  prec(PREC.call, choice(
-      $.Identifier,
+    CallableName: $ => prec(PREC.call, $.Identifier),
+
+    CallableExpression: $ => prec(PREC.call, choice(
+      $.CallableName,
       $.FunctionCallOrEdgeAccess,
       $.ParenthesizedExpression,
     )),
 
-    RuleParameters: $ => seq(
-      "<", $.RuleExpression, ">",
-    ),
+    ChainedEdgeAccess: $ => prec.left(PREC.lambda, seq(
+      $.PrimaryExpression, optional($.RuleParameters), $.ListIndexAccess_EdgeAccessParameter,
+    )),
+
+    RuleParameters: $ => prec(PREC.call, seq(
+      "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
+    )),
+
+    ParameterExpression: $ => $.Expression,
 
     FunctionCallParameters: $ => seq(
-      "(", optional(seq($.Expression, repeat(seq(",", $.Expression)), optional(","))), ")",
+      "(", optional(seq($.ParameterExpression, repeat(seq(",", $.ParameterExpression)), optional(","))), ")",
     ),
 
     EdgeAccess: $ => seq(
@@ -667,16 +676,22 @@ module.exports = grammar({
 
     //  This expression has no parameters allowed in its factors and the expression must yield a string
     // ListIndexAccess EdgeAccessParameter
+    AccessExpression: $ => $.Expression,
+
     ListIndexAccess_EdgeAccessParameter: $ => seq(
-      "[", $.Expression, "]"
+      "[", $.AccessExpression, "]"
     ),
+
+    AnonymousFunctionName: $ => $.Expression,
 
     AnonymousFunction: $ => seq(
-      $.AnonymousFunctionSignature, optional($.TypeAnnotation), "=>", $.Expression,
+      $.AnonymousFunctionSignature, optional($.TypeAnnotation), "=>", $.AnonymousFunctionName,
     ),
 
+    ParameterName: $ => $.Identifier,
+
     AnonymousFunctionSignature: $ => seq(
-      "(", optional(seq($.Identifier, repeat(seq(",", $.Identifier)), optional(","))), ")",
+      "(", optional(seq($.ParameterName, repeat(seq(",", $.ParameterName)), optional(","))), ")",
     ),
 
     ChainedFunctionCallOrEdgeAccess: $ =>choice(
@@ -685,25 +700,8 @@ module.exports = grammar({
     ),
 
     ChainedFunctionCall: $ => prec(PREC.call, seq(
-      $.Factor, ".", $.Identifier, optional($.RuleParameters), $.FunctionCallParameters,
+      $.PrimaryExpression, ".", $.Identifier, optional($.RuleParameters), $.FunctionCallParameters,
     )),
-
-    ChainedEdgeAccess: $ => prec(PREC.call, seq(
-      $.Factor, optional($.RuleParameters), $.ListIndexAccess_EdgeAccessParameter,
-    )),
-
-    // UnaryFactor: $ => choice(
-    //     $.Positive,
-    //     $.Negative,
-    // ),
-    //
-    // Positive: $ => seq(
-    //   "+", $.Factor,
-    // ),
-    //
-    // Negative: $ => seq(
-    //   "-", $.Factor,
-    // ),
 
     List: $ => prec(PREC.call, seq(
       "[", $.Expression, "]",

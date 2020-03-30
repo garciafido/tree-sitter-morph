@@ -1415,10 +1415,6 @@
         }
       ]
     },
-    "Factor": {
-      "type": "SYMBOL",
-      "name": "PrimaryExpression"
-    },
     "PrimaryExpression": {
       "type": "CHOICE",
       "members": [
@@ -1457,6 +1453,14 @@
         {
           "type": "SYMBOL",
           "name": "UnaryFactor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FunctionCallOrEdgeAccess"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ChainedFunctionCallOrEdgeAccess"
         },
         {
           "type": "SYMBOL",
@@ -1912,6 +1916,14 @@
         }
       ]
     },
+    "CallableName": {
+      "type": "PREC",
+      "value": 200,
+      "content": {
+        "type": "SYMBOL",
+        "name": "Identifier"
+      }
+    },
     "CallableExpression": {
       "type": "PREC",
       "value": 200,
@@ -1920,7 +1932,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "CallableName"
           },
           {
             "type": "SYMBOL",
@@ -1933,22 +1945,87 @@
         ]
       }
     },
+    "ChainedEdgeAccess": {
+      "type": "PREC_LEFT",
+      "value": -20,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "PrimaryExpression"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "RuleParameters"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ListIndexAccess_EdgeAccessParameter"
+          }
+        ]
+      }
+    },
     "RuleParameters": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "<"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "RuleExpression"
-        },
-        {
-          "type": "STRING",
-          "value": ">"
-        }
-      ]
+      "type": "PREC",
+      "value": 200,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "<"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "RuleExpression"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "RuleExpression"
+                }
+              ]
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": ">"
+          }
+        ]
+      }
+    },
+    "ParameterExpression": {
+      "type": "SYMBOL",
+      "name": "Expression"
     },
     "FunctionCallParameters": {
       "type": "SEQ",
@@ -1965,7 +2042,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "ParameterExpression"
                 },
                 {
                   "type": "REPEAT",
@@ -1978,7 +2055,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "Expression"
+                        "name": "ParameterExpression"
                       }
                     ]
                   }
@@ -2033,6 +2110,10 @@
         }
       ]
     },
+    "AccessExpression": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
     "ListIndexAccess_EdgeAccessParameter": {
       "type": "SEQ",
       "members": [
@@ -2042,13 +2123,17 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Expression"
+          "name": "AccessExpression"
         },
         {
           "type": "STRING",
           "value": "]"
         }
       ]
+    },
+    "AnonymousFunctionName": {
+      "type": "SYMBOL",
+      "name": "Expression"
     },
     "AnonymousFunction": {
       "type": "SEQ",
@@ -2075,9 +2160,13 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Expression"
+          "name": "AnonymousFunctionName"
         }
       ]
+    },
+    "ParameterName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
     },
     "AnonymousFunctionSignature": {
       "type": "SEQ",
@@ -2094,7 +2183,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "Identifier"
+                  "name": "ParameterName"
                 },
                 {
                   "type": "REPEAT",
@@ -2107,7 +2196,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "Identifier"
+                        "name": "ParameterName"
                       }
                     ]
                   }
@@ -2158,7 +2247,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "Factor"
+            "name": "PrimaryExpression"
           },
           {
             "type": "STRING",
@@ -2183,35 +2272,6 @@
           {
             "type": "SYMBOL",
             "name": "FunctionCallParameters"
-          }
-        ]
-      }
-    },
-    "ChainedEdgeAccess": {
-      "type": "PREC",
-      "value": 200,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "Factor"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "RuleParameters"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "ListIndexAccess_EdgeAccessParameter"
           }
         ]
       }
@@ -2928,7 +2988,8 @@
     "Extends",
     "Type",
     "TypeAnnotation",
-    "TypeParameters"
+    "TypeParameters",
+    "FunctionCallOrEdgeAccess"
   ],
   "supertypes": []
 }
