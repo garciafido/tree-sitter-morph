@@ -83,7 +83,9 @@ module.exports = grammar({
     ),
 
     PrefixedDots: $ => /[.]+_?/,
+
     ImportFrom: $ => $.Identifier,
+
     ImportItem: $ => $.Identifier,
 
     ImportFromStatement: $ => seq(
@@ -171,15 +173,17 @@ module.exports = grammar({
       "static", $.NodeStaticName, "=", $.NodeStaticExpression,
     ),
 
-//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
+    MorphismName: $ => $.Identifier,
+
+    MorphismFrom: $ => $.Expression,
 
     MorphismDeclarationStatement: $ => seq(
       repeat($.Decorator),
       optional($.Export),
       "morph",
-      $.Identifier,
+      $.MorphismName,
       "(",
-      $.Expression,
+      $.MorphismFrom,
       ")",
       "{",
       $.MorphismDeclarationMember,
@@ -191,19 +195,31 @@ module.exports = grammar({
       $.MorphismCreationDeclaration,
     ),
 
+    MorphismMutationName: $ => $.Identifier,
+
+    MorphismMutationExpression: $ => $.Expression,
+
     MorphismMutationDeclaration: $ => seq(
-      $.Identifier,
+      $.MorphismMutationName,
       "->",
-      $.Expression,
+      $.MorphismMutationExpression,
     ),
+
+    MorphismNewName: $ => $.Identifier,
+
+    MorphismNewExpression: $ => $.Expression,
 
     MorphismCreationDeclaration: $ => seq(
-      "new", $.Identifier, "->", $.Expression,
+      "new", $.MorphismNewName, "->", $.MorphismNewExpression,
     ),
 
+    SymbolName: $ => $.Identifier,
+
     SymbolDeclarationStatement: $ => seq(
-      optional($.Export), "symbol", $.Identifier,
+      optional($.Export), "symbol", $.SymbolName,
     ),
+
+//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
 
     EnumDeclarationStatement: $ => seq(
       optional($.Export), "enum", $.Identifier, "{", repeat($.Identifier), "}",

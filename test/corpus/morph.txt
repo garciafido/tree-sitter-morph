@@ -9,6 +9,14 @@ export morph Foo(bar) {
 
 ---
 
+(Program (MorphismDeclarationStatement
+    (Decorator (DecoratorIdentifier))
+    (Export)
+    (MorphismName (PascalIdentifier))
+    (MorphismFrom (CamelIdentifier))
+    (MorphismDeclarationMember
+        (MorphismCreationDeclaration (MorphismNewName (CamelIdentifier)) (MorphismNewExpression (StringLiteral))))))
+
 =======================================
 Mutation morphism_declaration_statement
 =======================================
@@ -20,3 +28,10 @@ export morph Foo(bar) {
 
 ---
 
+(Program (MorphismDeclarationStatement
+    (Decorator (DecoratorIdentifier))
+    (Export)
+    (MorphismName (PascalIdentifier))
+    (MorphismFrom (CamelIdentifier))
+    (MorphismDeclarationMember
+        (MorphismMutationDeclaration (MorphismMutationName (CamelIdentifier)) (MorphismMutationExpression (StringLiteral))))))

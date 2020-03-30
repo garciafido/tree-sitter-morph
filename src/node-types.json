@@ -1337,67 +1337,11 @@
       "required": true,
       "types": [
         {
-          "type": "BinaryExpression",
+          "type": "MorphismNewExpression",
           "named": true
         },
         {
-          "type": "BooleanExpression",
-          "named": true
-        },
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "FalseLiteral",
-          "named": true
-        },
-        {
-          "type": "FloatLiteral",
-          "named": true
-        },
-        {
-          "type": "IntegerLiteral",
-          "named": true
-        },
-        {
-          "type": "Negation",
-          "named": true
-        },
-        {
-          "type": "NegativeFactor",
-          "named": true
-        },
-        {
-          "type": "ParenthesizedExpression",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "PositiveFactor",
-          "named": true
-        },
-        {
-          "type": "RelationalExpression",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        },
-        {
-          "type": "StringLiteral",
-          "named": true
-        },
-        {
-          "type": "StringTemplateLiteral",
-          "named": true
-        },
-        {
-          "type": "TrueLiteral",
+          "type": "MorphismNewName",
           "named": true
         }
       ]
@@ -1431,6 +1375,37 @@
       "required": true,
       "types": [
         {
+          "type": "Decorator",
+          "named": true
+        },
+        {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "MorphismDeclarationMember",
+          "named": true
+        },
+        {
+          "type": "MorphismFrom",
+          "named": true
+        },
+        {
+          "type": "MorphismName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismFrom",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "BinaryExpression",
           "named": true
         },
@@ -1443,14 +1418,6 @@
           "named": true
         },
         {
-          "type": "Decorator",
-          "named": true
-        },
-        {
-          "type": "Export",
-          "named": true
-        },
-        {
           "type": "FalseLiteral",
           "named": true
         },
@@ -1460,10 +1427,6 @@
         },
         {
           "type": "IntegerLiteral",
-          "named": true
-        },
-        {
-          "type": "MorphismDeclarationMember",
           "named": true
         },
         {
@@ -1518,6 +1481,25 @@
       "required": true,
       "types": [
         {
+          "type": "MorphismMutationExpression",
+          "named": true
+        },
+        {
+          "type": "MorphismMutationName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismMutationExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "BinaryExpression",
           "named": true
         },
@@ -1579,6 +1561,150 @@
         },
         {
           "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismMutationName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismNewExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismNewName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
@@ -2633,11 +2759,26 @@
       "required": true,
       "types": [
         {
-          "type": "CamelIdentifier",
+          "type": "Export",
           "named": true
         },
         {
-          "type": "Export",
+          "type": "SymbolName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SymbolName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
           "named": true
         },
         {

@@ -467,6 +467,14 @@
         }
       ]
     },
+    "MorphismName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "MorphismFrom": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
     "MorphismDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -495,7 +503,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "MorphismName"
         },
         {
           "type": "STRING",
@@ -503,7 +511,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Expression"
+          "name": "MorphismFrom"
         },
         {
           "type": "STRING",
@@ -536,12 +544,20 @@
         }
       ]
     },
+    "MorphismMutationName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "MorphismMutationExpression": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
     "MorphismMutationDeclaration": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "MorphismMutationName"
         },
         {
           "type": "STRING",
@@ -549,9 +565,17 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Expression"
+          "name": "MorphismMutationExpression"
         }
       ]
+    },
+    "MorphismNewName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "MorphismNewExpression": {
+      "type": "SYMBOL",
+      "name": "Expression"
     },
     "MorphismCreationDeclaration": {
       "type": "SEQ",
@@ -562,7 +586,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "MorphismNewName"
         },
         {
           "type": "STRING",
@@ -570,9 +594,13 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Expression"
+          "name": "MorphismNewExpression"
         }
       ]
+    },
+    "SymbolName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
     },
     "SymbolDeclarationStatement": {
       "type": "SEQ",
@@ -595,7 +623,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "SymbolName"
         }
       ]
     },
