@@ -6,4 +6,3 @@ export type foo = Foo
 
 ---
 
-(program (Statement (TypeDeclarationStatement (Export) (Identifier (CamelIdentifier)) (Type (SingleType (Identifier (PascalIdentifier)))))))

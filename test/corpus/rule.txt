@@ -6,10 +6,3 @@ export rule bar<A extends B | C extends D>(a: A) => "bar"
 
 ---
 
-(program (statement (rule_declaration_statement
-    (export) (camel_identifier)
-    (type_parameters (single_type_parameter (pascal_identifier) (extends (pascal_identifier)))
-        (single_type_parameter (pascal_identifier) (extends (pascal_identifier))))
-    (function_signature (function_parameter (camel_identifier)
-    (type_annotation (type (single_type (pascal_identifier))))))
-    (rule_expression (factor (simple_string))))))

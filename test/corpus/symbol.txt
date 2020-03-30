@@ -6,4 +6,3 @@ export symbol foo
 
 ---
 
-(program (Statement (SymbolDeclarationStatement (Export) (Identifier (CamelIdentifier)))))
