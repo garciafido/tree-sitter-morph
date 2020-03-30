@@ -58,8 +58,8 @@ export abstract node foo extends FooBase {
     (NodeName (CamelIdentifier))
     (ExtendsName (PascalIdentifier))
     (NodeDeclarationMember
-        (NodeEdgeDeclaration
+    (NodeEdgeDeclaration
         (Decorator (DecoratorIdentifier) (DecoratorArg (PascalIdentifier)))
         (NodeEdgeName (CamelIdentifier))
         (NodeEdgeModifier (NodeEdgeArrayModifier))
-        (Type (SingleType (PascalIdentifier)))))))
+        (Type (TypeUnion (SingleType (TypeName (PascalIdentifier)))))))))
