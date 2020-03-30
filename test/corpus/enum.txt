@@ -10,7 +10,4 @@ export enum foo {
 
 ---
 
- (program (statement (enum_declaration_statement (export) (camel_identifier)
-    (camel_identifier)
-    (camel_identifier)
-    (camel_identifier))))
+ (program (Statement (EnumDeclarationStatement  (Export) (Identifier (CamelIdentifier)) (Identifier (CamelIdentifier)) (Identifier (CamelIdentifier)) (Identifier (CamelIdentifier)))))

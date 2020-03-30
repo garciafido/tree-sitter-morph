@@ -6,7 +6,7 @@ node foo {}
 
 ---
 
-(program (statement (node_declaration_statement (camel_identifier))))
+(program (Statement (NodeDeclarationStatement (Identifier (CamelIdentifier)))))
 
 ==================================
 Extends node_declaration_statement
@@ -16,8 +16,7 @@ node foo extends FooBase {}
 
 ---
 
-(program (statement (node_declaration_statement
-    (camel_identifier) (extends (pascal_identifier)))))
+(program (Statement (NodeDeclarationStatement (Identifier (CamelIdentifier)) (Identifier (PascalIdentifier)))))
 
 ====================================
 Decorator node_declaration_statement
@@ -28,9 +27,7 @@ node foo extends FooBase {}
 
 ---
 
-(program (statement (node_declaration_statement
-    (decorator (decorator_identifier))
-    (camel_identifier) (extends (pascal_identifier)))))
+
 
 ==========================================
 Export abstract node_declaration_statement
@@ -41,9 +38,6 @@ export abstract node foo extends FooBase {}
 
 ---
 
-(program (statement (node_declaration_statement
-    (decorator (decorator_identifier))
-    (export) (camel_identifier) (extends (pascal_identifier)))))
 
 =================================
 Member node_declaration_statement
@@ -56,11 +50,4 @@ export abstract node foo extends FooBase {
 }
 
 ---
-
-(program (statement (node_declaration_statement
-    (decorator (decorator_identifier))
-    (export) (camel_identifier) (extends (pascal_identifier))
-        (node_edge_declaration
-            (decorator (decorator_identifier) (factor (pascal_identifier)))
-            (camel_identifier) (node_edge_modifier) (type (single_type (pascal_identifier)))))))
 

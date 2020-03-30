@@ -6,9 +6,6 @@ const foo = 5
 
 ---
 
-(program (statement (constant_declaration_statement (camel_identifier)
-    (conjunction (factor (camel_identifier)) (factor (camel_identifier))))))
-
 ========
 negation
 ========

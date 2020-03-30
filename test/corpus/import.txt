@@ -6,7 +6,7 @@ import ..foo
 
 ---
 
-(program (statement (import_module_statement (camel_identifier))))
+(program (Statement (ImportStatement (ImportModuleStatement (Identifier (CamelIdentifier))))))
 
 =====================
 import_from_statement
@@ -16,4 +16,4 @@ from bar import Bar
 
 ---
 
- (program (statement (import_from_statement (camel_identifier) (pascal_identifier))))
+(program (Statement (ImportStatement (ImportFromStatement (Identifier (CamelIdentifier)) (Identifier (PascalIdentifier))))))
