@@ -1,12 +1,8 @@
-==============================
-constant_declaration_statement
-==============================
+============================
+ConstantDeclarationStatement
+============================
 
 export const foo: Foo = "foo"
 
 ---
 
-(program (statement (constant_declaration_statement
-    (export) (camel_identifier)
-    (type_annotation (type (single_type (pascal_identifier))))
-        (factor (simple_string)))))
