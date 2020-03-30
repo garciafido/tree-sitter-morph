@@ -9,7 +9,7 @@ export rule bar<A extends B | C>(a: A) => "bar"
 (Program (RuleDeclarationStatement
     (Export)
     (RuleName (CamelIdentifier))
-    (TypeParameter (TypeParameterName (PascalIdentifier)) (TypeParameterConstraint (Type (TypeUnion
-        (SingleType (TypeName (PascalIdentifier))) (SingleType (TypeName (PascalIdentifier)))))))
-    (FunctionSignature (FunctionParameter (FunctionParameterName (CamelIdentifier)) (Type (TypeUnion
-        (SingleType (TypeName (PascalIdentifier))))))) (RuleExpression (Rule (StringLiteral)))))
+    (TypeParameter (TypeParameterName (PascalIdentifier)) (TypeParameterConstraint (TypeUnion
+        (SingleType (TypeName (PascalIdentifier))) (SingleType (TypeName (PascalIdentifier))))))
+    (FunctionSignature (FunctionParameter (FunctionParameterName (CamelIdentifier)) (TypeUnion
+        (SingleType (TypeName (PascalIdentifier)))))) (RuleExpression (Rule (StringLiteral)))))

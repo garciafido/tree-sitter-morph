@@ -732,6 +732,19 @@
         }
       ]
     },
+    "TypeAnnotation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Type"
+        }
+      ]
+    },
     "FunctionName": {
       "type": "SYMBOL",
       "name": "Identifier"
@@ -1162,7 +1175,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "TypeName"
         },
         {
           "type": "STRING",
@@ -1177,19 +1190,6 @@
     "Export": {
       "type": "STRING",
       "value": "export"
-    },
-    "TypeAnnotation": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Type"
-        }
-      ]
     },
     "Expression": {
       "type": "CHOICE",
@@ -2926,6 +2926,7 @@
     "NegativeSign",
     "AssignmentSign",
     "Extends",
+    "Type",
     "TypeAnnotation",
     "TypeParameters"
   ],

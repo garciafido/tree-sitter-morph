@@ -6,3 +6,7 @@ export type foo = Foo
 
 ---
 
+(Program (TypeDeclarationStatement
+    (Export)
+    (TypeName (CamelIdentifier))
+    (TypeUnion (SingleType (TypeName (PascalIdentifier))))))

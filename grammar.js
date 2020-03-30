@@ -55,6 +55,7 @@ module.exports = grammar({
     $.NegativeSign,
     $.AssignmentSign,
     $.Extends,
+    $.Type,
     $.TypeAnnotation,
     $.TypeParameters,
   ],
@@ -244,6 +245,10 @@ module.exports = grammar({
       $.ConstantValue,
     ),
 
+    TypeAnnotation: $ => seq(
+      ":", $.Type,
+    ),
+
     FunctionName: $ => $.Identifier,
 
     FunctionExpression: $ => $.Expression,
@@ -331,19 +336,16 @@ module.exports = grammar({
       $.Rule, optional(seq(":", $.Message)),
     ),
 
-//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
     TypeDeclarationStatement: $ => seq(
-      optional($.Export), "type", $.Identifier, "=", $.Type),
+      optional($.Export), "type", $.TypeName, "=", $.Type),
 
     Export: $ => "export",
 
-    TypeAnnotation: $ => seq(
-      ":", $.Type,
-    ),
-    
     // *****************
     // ** Expressions **
     // *****************
+
+//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
 
     // Expression: $ => $.BooleanExpression,
 

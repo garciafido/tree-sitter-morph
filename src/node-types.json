@@ -481,7 +481,7 @@
           "named": true
         },
         {
-          "type": "Type",
+          "type": "TypeUnion",
           "named": true
         }
       ]
@@ -1004,11 +1004,11 @@
           "named": true
         },
         {
-          "type": "Type",
+          "type": "TypeParameter",
           "named": true
         },
         {
-          "type": "TypeParameter",
+          "type": "TypeUnion",
           "named": true
         }
       ]
@@ -1125,7 +1125,7 @@
           "named": true
         },
         {
-          "type": "Type",
+          "type": "TypeUnion",
           "named": true
         }
       ]
@@ -2196,7 +2196,7 @@
           "named": true
         },
         {
-          "type": "Type",
+          "type": "TypeUnion",
           "named": true
         }
       ]
@@ -3068,21 +3068,6 @@
     }
   },
   {
-    "type": "Type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeUnion",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "TypeDeclarationStatement",
     "named": true,
     "fields": {},
@@ -3091,23 +3076,15 @@
       "required": true,
       "types": [
         {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
           "type": "Export",
           "named": true
         },
         {
-          "type": "PascalIdentifier",
+          "type": "TypeName",
           "named": true
         },
         {
-          "type": "SnakeIdentifier",
-          "named": true
-        },
-        {
-          "type": "Type",
+          "type": "TypeUnion",
           "named": true
         }
       ]
@@ -3164,7 +3141,7 @@
       "required": true,
       "types": [
         {
-          "type": "Type",
+          "type": "TypeUnion",
           "named": true
         }
       ]
