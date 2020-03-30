@@ -38,7 +38,11 @@ export abstract node foo extends FooBase {}
 
 ---
 
- (Program (NodeDeclarationStatement (Decorator (DecoratorIdentifier)) (Export) (NodeName (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
+ (Program (NodeDeclarationStatement
+    (Decorator (DecoratorIdentifier))
+    (Export)
+    (NodeName (CamelIdentifier))
+    (ExtendsName (PascalIdentifier))))
 
 =================================
 Member node_declaration_statement

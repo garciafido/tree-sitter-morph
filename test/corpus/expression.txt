@@ -2,15 +2,29 @@
 boolean_expression
 ==================
 
-const foo = 5
+const a = b + 8 * 9 and 101 > 0 < 19
 
 ---
+
+ (Program (ConstantDeclarationStatement
+    (ConstantName (CamelIdentifier))
+    (ConstantValue (BooleanExpression
+        (BinaryExpression (CamelIdentifier) (Addition) (BinaryExpression (IntegerLiteral) (Multiplication) (IntegerLiteral)))
+        (Conjunction)
+        (RelationalExpression
+            (IntegerLiteral) (GraterThan)
+            (IntegerLiteral) (LessThan)
+            (IntegerLiteral))))))
 
 ========
 negation
 ========
 
-const foo = 5
+const foo = not a or b
 
 ---
 
+(Program (ConstantDeclarationStatement
+    (ConstantName (CamelIdentifier))
+    (ConstantValue (Negation
+        (BooleanExpression (CamelIdentifier) (Disjunction) (CamelIdentifier))))))
