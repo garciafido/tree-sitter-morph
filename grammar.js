@@ -97,7 +97,7 @@ module.exports = grammar({
 
   rules: {
 
-    program: $ => repeat($._statement),
+    module: $ => repeat($._statement),
 
     _statement: $ => choice(
       $._import_statement,
