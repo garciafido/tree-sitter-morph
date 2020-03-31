@@ -1754,6 +1754,57 @@
     }
   },
   {
+    "type": "Module",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "ConstantDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "EnumDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "FunctionDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "ImportFromStatement",
+          "named": true
+        },
+        {
+          "type": "ImportModuleStatement",
+          "named": true
+        },
+        {
+          "type": "MorphismDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "NodeDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "RuleDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "SymbolDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "TypeDeclarationStatement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "MorphismCreationDeclaration",
     "named": true,
     "fields": {},
@@ -3047,57 +3098,6 @@
         },
         {
           "type": "StringType",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Program",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "ConstantDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "EnumDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "FunctionDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "ImportFromStatement",
-          "named": true
-        },
-        {
-          "type": "ImportModuleStatement",
-          "named": true
-        },
-        {
-          "type": "MorphismDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "NodeDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "RuleDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "SymbolDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "TypeDeclarationStatement",
           "named": true
         }
       ]

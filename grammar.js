@@ -63,7 +63,7 @@ module.exports = grammar({
 
   rules: {
 
-    program: $ => repeat($.Statement),
+    Module: $ => repeat($.Statement),
 
     // *****************
     // ** Statements **
@@ -87,9 +87,7 @@ module.exports = grammar({
     ),
 
     ImportFromStatement_path: $ => /[.]+_?/,
-
     ImportFromStatement_module: $ => $.Identifier,
-
     ImportFromStatement_items: $ => seq(
       $.Identifier,
       repeat(seq(",", $.Identifier)),
@@ -105,29 +103,36 @@ module.exports = grammar({
     ),
 
     ImportModuleStatement_path: $ => /[.]+_?/,
-
     ImportModuleStatement_from: $ => $.Identifier,
-
     ImportModuleStatement: $ => seq(
       "import", optional($.ImportModuleStatement_path), $.ImportModuleStatement_from,
     ),
 
+    NodeDeclarationStatement_decorator: $ => $.Decorator,
+    NodeDeclarationStatement_export: $ => $.Export,
+    NodeDeclarationStatement_abstract: $ => "abstract",
     NodeDeclarationStatement_name: $ => $.Identifier,
-
-    NodeDeclarationStatement: $ => seq(
-      repeat($.Decorator),
-      optional($.Export),
-      optional("abstract"),
-      "node",
-      $.NodeDeclarationStatement_name,
-      optional($.Extends),
-      "{", repeat($.NodeDeclarationMember), "}",
+    NodeDeclarationStatement_extends: $ => $.Extends,
+    NodeDeclarationStatement_member: $ => choice(
+        $.NodeEdgeDeclaration,
+        $.NodeStaticConstantDeclaration,
     ),
 
-    ExtendsName: $ => $.Identifier,
+    NodeDeclarationStatement: $ => seq(
+      repeat($.NodeDeclarationStatement_decorator),
+      optional($.NodeDeclarationStatement_export),
+      optional($.NodeDeclarationStatement_abstract),
+      "node",
+      $.NodeDeclarationStatement_name,
+      optional($.NodeDeclarationStatement_extends),
+      "{", repeat($.NodeDeclarationStatement_member), "}",
+    ),
+
+
+    Extends_name: $ => $.Identifier,
 
     Extends: $ => seq(
-      "extends", $.ExtendsName
+      "extends", $.Extends_name
     ),
 
     DecoratorArg: $ => $.Expression,
@@ -142,11 +147,6 @@ module.exports = grammar({
             optional(","))),
         ")"))
       ),
-    ),
-
-    NodeDeclarationMember: $ => choice(
-        $.NodeEdgeDeclaration,
-        $.NodeStaticConstantDeclaration,
     ),
 
     NodeEdgeName: $ => $.Identifier,
@@ -183,26 +183,26 @@ module.exports = grammar({
       "static", $.NodeStaticName, "=", $.NodeStaticExpression,
     ),
 
-    MorphismName: $ => $.Identifier,
-
-    MorphismFrom: $ => $.Expression,
-
-    MorphismDeclarationStatement: $ => seq(
-      repeat($.Decorator),
-      optional($.Export),
-      "morph",
-      $.MorphismName,
-      "(",
-      $.MorphismFrom,
-      ")",
-      "{",
-      $.MorphismDeclarationMember,
-      "}",
-    ),
-
-    MorphismDeclarationMember: $ => choice(
+    MorphismDeclarationStatement_decorator: $ => $.Decorator,
+    MorphismDeclarationStatement_export: $ => $.Export,
+    MorphismDeclarationStatement_name: $ => $.Identifier,
+    MorphismDeclarationStatement_from: $ => $.Expression,
+    MorphismDeclarationStatement_member: $ => choice(
       $.MorphismMutationDeclaration,
       $.MorphismCreationDeclaration,
+    ),
+
+    MorphismDeclarationStatement: $ => seq(
+      repeat($.MorphismDeclarationStatement_decorator),
+      optional($.MorphismDeclarationStatement_export),
+      "morph",
+      $.MorphismDeclarationStatement_name,
+      "(",
+      $.MorphismDeclarationStatement_from,
+      ")",
+      "{",
+      $.MorphismDeclarationStatement_member,
+      "}",
     ),
 
     MorphismMutationName: $ => $.Identifier,
