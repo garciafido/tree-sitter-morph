@@ -62,13 +62,13 @@ module.exports = grammar({
   ],
 
   rules: {
-    
-    Program: $ => repeat($.Statement),
+
+    program: $ => repeat($.Statement),
 
     // *****************
     // ** Statements **
     // *****************
-    
+
     Statement: $ => choice(
       $.ImportStatement,
       $.NodeDeclarationStatement,
@@ -745,7 +745,7 @@ module.exports = grammar({
         $.IntegerLiteral,
         $.FloatLiteral,
     ),
-    
+
     StringLiteral: $ => choice(
       seq(
         '"',
