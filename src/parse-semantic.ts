@@ -1,5 +1,5 @@
 import * as Parser from 'tree-sitter';
-import * as Morph from '..';
+import * as Morph from '.';
 
 
 class ParseSemantic {
