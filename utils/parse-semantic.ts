@@ -1,8 +1,8 @@
 import * as Parser from 'tree-sitter';
-import * as Morph from 'tree-sitter-morph';
+import * as Morph from '..';
 
 
-class PrettyTree {
+class ParseSemantic {
     parser = new Parser();
     code: string;
 
@@ -108,24 +108,28 @@ class PrettyTree {
     //     return dict_node
 
 
-const sourceCode = `
-abstract node NicePerson extends Person {
-  nice_thing -> Thing
-}
+// const sourceCode = `
+// abstract node NicePerson extends Person {
+//   nice_thing -> Thing
+// }
+//
+// node Person {
+//   first_name! -> string
+//   last_name! -> string
+// }
+//
+// node Thing {
+//   name -> string
+// }
+//
+// morph PersonWithFullName(Person) {
+//   new fullname -> (self) => self['first_name'] + self['last_name']
+// }
+// `;
 
-node Person {
-  first_name! -> string
-  last_name! -> string
-}
+// console.log(JSON.stringify(tree, null, 4));
 
-node Thing {
-  name -> string
+export function parseSemantic(sourceCode: string) {
+    const pt = new ParseSemantic();
+    return pt.parse(sourceCode);
 }
-
-morph PersonWithFullName(Person) {
-  new fullname -> (self) => self['first_name'] + self['last_name']
-}
-`;
-const pt = new PrettyTree();
-const tree = pt.parse(sourceCode);
-console.log(JSON.stringify(tree, null, 4));
