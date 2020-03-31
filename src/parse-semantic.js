@@ -25,21 +25,20 @@
 
 // console.log(JSON.stringify(tree, null, 4));
 
-export function buildParseSemantic(Parser, Morph) {
-    function parseSemantic(sourceCode: string) {
+module.exports.buildParseSemantic = function(Parser, Morph) {
+    function parseSemantic(sourceCode) {
         class ParseSemantic {
             parser = new Parser();
-            code: string;
 
             constructor() {
                 this.parser.setLanguage(Morph);
             }
 
-            private getContent(node) {
+            getContent(node) {
                 return this.code.substring(node.startIndex, node.endIndex);
             }
 
-            private traverse(node) {
+            traverse(node) {
                 const type = node.type;
                 const NewNode = {
                     type: type,
