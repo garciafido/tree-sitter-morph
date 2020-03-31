@@ -26,7 +26,7 @@
 // console.log(JSON.stringify(tree, null, 4));
 
 module.exports.buildParseSemantic = function(Parser, Morph) {
-    function parseSemantic(sourceCode) {
+    return function parseSemantic(sourceCode) {
         class ParseSemantic {
             parser = new Parser();
 
