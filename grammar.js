@@ -23,6 +23,9 @@ const PREC = {
   power: 190,
   call: 200,
 
+  morph_decorator: 1,
+  node_decorator: 2,
+
 };
 
 module.exports = grammar({
@@ -45,31 +48,17 @@ module.exports = grammar({
   ],
 
   inline: $ => [
-    $.ImportStatement,
-    $.Identifier,
-    $.Expression,
-    $.PrimaryExpression,
-    $.UnaryFactor,
-    $.Statement,
-    $.PositiveSign,
-    $.NegativeSign,
-    $.AssignmentSign,
-    $.Extends,
-    $.Type,
-    $.TypeAnnotation,
-    $.TypeParameters,
-    $.FunctionCallOrEdgeAccess,
   ],
 
   rules: {
 
-    Module: $ => repeat($.Statement),
+    Module: $ => repeat($.Module_statements__list),
 
     // *****************
     // ** Statements **
     // *****************
 
-    Statement: $ => choice(
+    Module_statements__list: $ => choice(
       $.ImportStatement,
       $.NodeDeclarationStatement,
       $.MorphismDeclarationStatement,
@@ -108,31 +97,28 @@ module.exports = grammar({
       "import", optional($.ImportModuleStatement_path), $.ImportModuleStatement_from,
     ),
 
-    NodeDeclarationStatement_decorator: $ => $.Decorator,
+    NodeDeclarationStatement_decorators__list: $ => prec(PREC.node_decorator, $.Decorator),
     NodeDeclarationStatement_export: $ => $.Export,
     NodeDeclarationStatement_abstract: $ => "abstract",
     NodeDeclarationStatement_name: $ => $.Identifier,
     NodeDeclarationStatement_extends: $ => $.Extends,
-    NodeDeclarationStatement_member: $ => choice(
+    NodeDeclarationStatement_members__list: $ => choice(
         $.NodeEdgeDeclaration,
         $.NodeStaticConstantDeclaration,
     ),
 
     NodeDeclarationStatement: $ => seq(
-      repeat($.NodeDeclarationStatement_decorator),
+      repeat($.NodeDeclarationStatement_decorators__list),
       optional($.NodeDeclarationStatement_export),
       optional($.NodeDeclarationStatement_abstract),
       "node",
       $.NodeDeclarationStatement_name,
       optional($.NodeDeclarationStatement_extends),
-      "{", repeat($.NodeDeclarationStatement_member), "}",
+      "{", repeat($.NodeDeclarationStatement_members__list), "}",
     ),
 
-
-    Extends_name: $ => $.Identifier,
-
     Extends: $ => seq(
-      "extends", $.Extends_name
+      "extends", $.Identifier
     ),
 
     DecoratorArg: $ => $.Expression,
@@ -183,7 +169,7 @@ module.exports = grammar({
       "static", $.NodeStaticName, "=", $.NodeStaticExpression,
     ),
 
-    MorphismDeclarationStatement_decorator: $ => $.Decorator,
+    MorphismDeclarationStatement_decorators__list: $ => prec(PREC.morph_decorator, $.Decorator),
     MorphismDeclarationStatement_export: $ => $.Export,
     MorphismDeclarationStatement_name: $ => $.Identifier,
     MorphismDeclarationStatement_from: $ => $.Expression,
@@ -193,7 +179,7 @@ module.exports = grammar({
     ),
 
     MorphismDeclarationStatement: $ => seq(
-      repeat($.MorphismDeclarationStatement_decorator),
+      repeat($.MorphismDeclarationStatement_decorators__list),
       optional($.MorphismDeclarationStatement_export),
       "morph",
       $.MorphismDeclarationStatement_name,

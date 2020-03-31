@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-morph",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "tree-sitter": "^0.16.0",
-    "tree-sitter-cli": "^0.16.5"
+    "tree-sitter-cli": "^0.16.5",
+    "tree-sitter-morph": "^1.0.36"
   }
 }

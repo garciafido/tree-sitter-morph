@@ -5,10 +5,10 @@
       "type": "REPEAT",
       "content": {
         "type": "SYMBOL",
-        "name": "Statement"
+        "name": "Module_statements__list"
       }
     },
-    "Statement": {
+    "Module_statements__list": {
       "type": "CHOICE",
       "members": [
         {
@@ -173,25 +173,42 @@
         }
       ]
     },
-    "NodeDeclarationStatement_name": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "NodeDeclarationStatement_decorator": {
-      "type": "SYMBOL",
-      "name": "Decorator"
+    "NodeDeclarationStatement_decorators__list": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SYMBOL",
+        "name": "Decorator"
+      }
     },
     "NodeDeclarationStatement_export": {
       "type": "SYMBOL",
       "name": "Export"
     },
+    "NodeDeclarationStatement_abstract": {
+      "type": "STRING",
+      "value": "abstract"
+    },
+    "NodeDeclarationStatement_name": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
     "NodeDeclarationStatement_extends": {
       "type": "SYMBOL",
       "name": "Extends"
     },
-    "NodeDeclarationStatement_abstract": {
-      "type": "STRING",
-      "value": "abstract"
+    "NodeDeclarationStatement_members__list": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "NodeEdgeDeclaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "NodeStaticConstantDeclaration"
+        }
+      ]
     },
     "NodeDeclarationStatement": {
       "type": "SEQ",
@@ -200,7 +217,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "NodeDeclarationStatement_decorator"
+            "name": "NodeDeclarationStatement_decorators__list"
           }
         },
         {
@@ -255,7 +272,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "NodeDeclarationStatement_member"
+            "name": "NodeDeclarationStatement_members__list"
           }
         },
         {
@@ -263,23 +280,6 @@
           "value": "}"
         }
       ]
-    },
-    "NodeDeclarationStatement_member": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "NodeEdgeDeclaration"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "NodeStaticConstantDeclaration"
-        }
-      ]
-    },
-    "Extends_name": {
-      "type": "SYMBOL",
-      "name": "Identifier"
     },
     "Extends": {
       "type": "SEQ",
@@ -290,7 +290,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Extends_name"
+          "name": "Identifier"
         }
       ]
     },
@@ -496,6 +496,18 @@
         }
       ]
     },
+    "MorphismDeclarationStatement_decorators__list": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SYMBOL",
+        "name": "Decorator"
+      }
+    },
+    "MorphismDeclarationStatement_export": {
+      "type": "SYMBOL",
+      "name": "Export"
+    },
     "MorphismDeclarationStatement_name": {
       "type": "SYMBOL",
       "name": "Identifier"
@@ -504,13 +516,18 @@
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "MorphismDeclarationStatement_decorator": {
-      "type": "SYMBOL",
-      "name": "Decorator"
-    },
-    "MorphismDeclarationStatement_export": {
-      "type": "SYMBOL",
-      "name": "Export"
+    "MorphismDeclarationStatement_member": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "MorphismMutationDeclaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "MorphismCreationDeclaration"
+        }
+      ]
     },
     "MorphismDeclarationStatement": {
       "type": "SEQ",
@@ -519,7 +536,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "MorphismDeclarationStatement_decorator"
+            "name": "MorphismDeclarationStatement_decorators__list"
           }
         },
         {
@@ -565,19 +582,6 @@
         {
           "type": "STRING",
           "value": "}"
-        }
-      ]
-    },
-    "MorphismDeclarationStatement_member": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "MorphismMutationDeclaration"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "MorphismCreationDeclaration"
         }
       ]
     },
@@ -3012,22 +3016,7 @@
       "name": "_template_chars"
     }
   ],
-  "inline": [
-    "ImportStatement",
-    "Identifier",
-    "Expression",
-    "PrimaryExpression",
-    "UnaryFactor",
-    "Statement",
-    "PositiveSign",
-    "NegativeSign",
-    "AssignmentSign",
-    "Extends",
-    "Type",
-    "TypeAnnotation",
-    "TypeParameters",
-    "FunctionCallOrEdgeAccess"
-  ],
+  "inline": [],
   "supertypes": []
 }
 
