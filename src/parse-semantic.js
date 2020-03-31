@@ -1,29 +1,4 @@
-// const Parser = require("tree-sitter");
-// import * as Morph from '.';
-
-
-
-
-// const sourceCode = `
-// abstract node NicePerson extends Person {
-//   nice_thing -> Thing
-// }
-//
-// node Person {
-//   first_name! -> string
-//   last_name! -> string
-// }
-//
-// node Thing {
-//   name -> string
-// }
-//
-// morph PersonWithFullName(Person) {
-//   new fullname -> (self) => self['first_name'] + self['last_name']
-// }
-// `;
-
-// console.log(JSON.stringify(tree, null, 4));
+const LIST_POSTFIX = "__list";
 
 module.exports.buildParseSemantic = function(Parser, Morph) {
     return function parseSemantic(sourceCode) {
@@ -55,9 +30,9 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                 const NewChildren = {};
                 for (const child of children) {
                     let childType = child.type;
-                    const isList = childType.lastIndexOf('__list') > 0;
+                    const isList = childType.lastIndexOf(LIST_POSTFIX) > 0;
                     if (isList) {
-                        childType = childType.substring(0, childType.lastIndexOf('__list'));
+                        childType = childType.substring(0, childType.lastIndexOf(LIST_POSTFIX));
                     }
                     const index = childType.lastIndexOf('_');
                     if (index > 0 && node.type === childType.substring(0, index)) {
@@ -69,7 +44,7 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                             NewChildren[item].push(this.traverse(child));
                         } else {
                             if (item in NewChildren) {
-                                throw new Error(`${child.type} is not declared as list and there are many items`);
+                                throw new Error(`There is more than one child "${child.type}" and it is not declared as a list. Postfix the rule name with "${LIST_POSTFIX}"`);
                             }
                             NewChildren[item] = this.traverse(child);
                         }
@@ -92,7 +67,7 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
 
         }
 
-        const pt = new ParseSemantic();
-        return pt.parse(sourceCode);
+        const ps = new ParseSemantic();
+        return ps.parse(sourceCode);
     }
-}
+};
