@@ -1,0 +1,20 @@
+==============================
+function_declaration_statement
+==============================
+
+export func bar<A extends B | C, S extends D>(a: A) => "bar"
+
+---
+
+(Program (FunctionDeclarationStatement
+    (Export)
+    (FunctionName (CamelIdentifier))
+    (TypeParameter (TypeParameterName (PascalIdentifier)) (TypeParameterConstraint (TypeUnion
+            (SingleType (TypeName (PascalIdentifier)))
+            (SingleType (TypeName (PascalIdentifier))))))
+    (TypeParameter (TypeParameterName (PascalIdentifier)) (TypeParameterConstraint (TypeUnion
+            (SingleType (TypeName (PascalIdentifier))))))
+    (FunctionSignature (FunctionParameter (FunctionParameterName (CamelIdentifier)) (TypeUnion
+            (SingleType (TypeName (PascalIdentifier))))))
+    (FunctionExpression (StringLiteral))))
+

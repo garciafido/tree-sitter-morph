@@ -1,0 +1,37 @@
+=======================================
+Creation morphism_declaration_statement
+=======================================
+
+@Bar
+export morph Foo(bar) {
+  new bar -> "bar"
+}
+
+---
+
+(Program (MorphismDeclarationStatement
+    (Decorator (DecoratorIdentifier))
+    (Export)
+    (MorphismName (PascalIdentifier))
+    (MorphismFrom (CamelIdentifier))
+    (MorphismDeclarationMember
+        (MorphismCreationDeclaration (MorphismNewName (CamelIdentifier)) (MorphismNewExpression (StringLiteral))))))
+
+=======================================
+Mutation morphism_declaration_statement
+=======================================
+
+@Bar
+export morph Foo(bar) {
+  bar -> "bar"
+}
+
+---
+
+(Program (MorphismDeclarationStatement
+    (Decorator (DecoratorIdentifier))
+    (Export)
+    (MorphismName (PascalIdentifier))
+    (MorphismFrom (CamelIdentifier))
+    (MorphismDeclarationMember
+        (MorphismMutationDeclaration (MorphismMutationName (CamelIdentifier)) (MorphismMutationExpression (StringLiteral))))))

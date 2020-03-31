@@ -1,0 +1,9 @@
+============================
+symbol_declaration_statement
+============================
+
+export symbol foo
+
+---
+
+(Program (SymbolDeclarationStatement (Export) (SymbolName (CamelIdentifier))))

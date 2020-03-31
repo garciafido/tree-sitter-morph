@@ -1,0 +1,57 @@
+=================================
+Simple node_declaration_statement
+=================================
+
+node foo {}
+
+---
+
+(Program (NodeDeclarationStatement (NodeDeclarationStatement_name (CamelIdentifier))))
+
+
+==================================
+Extends node_declaration_statement
+==================================
+
+node foo extends FooBase {}
+
+---
+
+ (Program (NodeDeclarationStatement (NodeDeclarationStatement_name (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
+
+
+====================================
+Decorator node_declaration_statement
+====================================
+
+@fooDeco()
+node foo extends FooBase {}
+
+---
+
+ (Program (NodeDeclarationStatement (Decorator (DecoratorIdentifier)) (NodeDeclarationStatement_name (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
+
+==========================================
+Export abstract node_declaration_statement
+==========================================
+
+@fooDeco()
+export abstract node foo extends FooBase {}
+
+---
+
+(Program (NodeDeclarationStatement (Decorator (DecoratorIdentifier)) (Export) (NodeDeclarationStatement_name (CamelIdentifier)) (ExtendsName (PascalIdentifier))))
+
+=================================
+Member node_declaration_statement
+=================================
+
+@fooDeco()
+export abstract node foo extends FooBase {
+    @parental(HaikuProgramTree)
+    blocks[] -> Block
+}
+
+---
+
+(Program (NodeDeclarationStatement (Decorator (DecoratorIdentifier)) (Export) (NodeDeclarationStatement_name (CamelIdentifier)) (ExtendsName (PascalIdentifier)) (NodeDeclarationMember (NodeEdgeDeclaration (Decorator (DecoratorIdentifier) (DecoratorArg (PascalIdentifier))) (NodeEdgeName (CamelIdentifier)) (NodeEdgeModifier (NodeEdgeArrayModifier)) (TypeUnion (SingleType (TypeName (PascalIdentifier))))))))

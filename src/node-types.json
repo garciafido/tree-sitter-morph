@@ -1,342 +1,6 @@
 [
   {
-    "type": "_additive_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_multiplicative_expression",
-        "named": true
-      },
-      {
-        "type": "addition",
-        "named": true
-      },
-      {
-        "type": "bitwise_disjunction",
-        "named": true
-      },
-      {
-        "type": "subtraction",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_arithmetic_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_additive_expression",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_boolean_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_disjunction_expression",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_conjunction_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_negation_expression",
-        "named": true
-      },
-      {
-        "type": "conjunction",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_disjunction_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_conjunction_expression",
-        "named": true
-      },
-      {
-        "type": "disjunction",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_boolean_expression",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_identifier",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "camel_identifier",
-        "named": true
-      },
-      {
-        "type": "pascal_identifier",
-        "named": true
-      },
-      {
-        "type": "snake_identifier",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_import_statement",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "import_from_statement",
-        "named": true
-      },
-      {
-        "type": "import_module_statement",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_literal",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_number",
-        "named": true
-      },
-      {
-        "type": "_string",
-        "named": true
-      },
-      {
-        "type": "boolean_literal",
-        "named": true
-      },
-      {
-        "type": "ebnf_literal",
-        "named": true
-      },
-      {
-        "type": "graph_literal",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_morph_member",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "morph_creation_declaration",
-        "named": true
-      },
-      {
-        "type": "morph_mutation_declaration",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_multiplicative_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "bitwise_conjunction",
-        "named": true
-      },
-      {
-        "type": "division",
-        "named": true
-      },
-      {
-        "type": "factor",
-        "named": true
-      },
-      {
-        "type": "multiplication",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_negation_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_relational_expression",
-        "named": true
-      },
-      {
-        "type": "negation",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_node_member",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "node_edge_declaration",
-        "named": true
-      },
-      {
-        "type": "node_static_constant_declaration",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_number",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "float",
-        "named": true
-      },
-      {
-        "type": "integer",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_predefined_type",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "boolean_type",
-        "named": true
-      },
-      {
-        "type": "float_type",
-        "named": true
-      },
-      {
-        "type": "integer_type",
-        "named": true
-      },
-      {
-        "type": "string_type",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_relational_expression",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "_arithmetic_expression",
-        "named": true
-      },
-      {
-        "type": "equal_to",
-        "named": true
-      },
-      {
-        "type": "greater_than",
-        "named": true
-      },
-      {
-        "type": "greater_than_equal_to",
-        "named": true
-      },
-      {
-        "type": "is",
-        "named": true
-      },
-      {
-        "type": "is_not",
-        "named": true
-      },
-      {
-        "type": "less_than",
-        "named": true
-      },
-      {
-        "type": "less_than_equal_to",
-        "named": true
-      },
-      {
-        "type": "not_equal_to",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "_string",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "simple_string",
-        "named": true
-      },
-      {
-        "type": "template_string",
-        "named": true
-      }
-    ]
-  },
-  {
-    "type": "addition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_additive_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "anonymous_function",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "function_signature",
-          "named": true
-        },
-        {
-          "type": "function_untyped_signature",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "array_accessor_args",
+    "type": "AccessExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -344,874 +8,91 @@
       "required": true,
       "types": [
         {
-          "type": "expression_list",
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "bitwise_conjunction",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_multiplicative_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "bitwise_disjunction",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_additive_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "boolean_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "false",
-          "named": true
-        },
-        {
-          "type": "true",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "callable_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "chained_call",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "array_accessor_args",
-          "named": true
-        },
-        {
-          "type": "function_call_args",
-          "named": true
-        },
-        {
-          "type": "rule_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "conjunction",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_conjunction_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "constant_declaration_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "export",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "decorator",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "decorator_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "disjunction",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_disjunction_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "division",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_multiplicative_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ebnf_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "escape_sequence",
-          "named": true
-        },
-        {
-          "type": "template_substitution",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "enum_declaration_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "export",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "equal_to",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "expression_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "factor",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "anonymous_function",
-          "named": true
-        },
-        {
-          "type": "chained_call",
-          "named": true
-        },
-        {
-          "type": "factor",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "unaryfactor",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_call",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "array_accessor_args",
-          "named": true
-        },
-        {
-          "type": "callable_expression",
-          "named": true
-        },
-        {
-          "type": "function_call_args",
-          "named": true
-        },
-        {
-          "type": "rule_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_call_args",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "expression_list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_declaration_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "export",
-          "named": true
-        },
-        {
-          "type": "function_signature",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
-          "named": true
-        },
-        {
-          "type": "type_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_parameter",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "type_annotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_signature",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "function_parameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_untyped_parameter",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_untyped_signature",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "function_untyped_parameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "graph_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "graph_literal_alias",
-          "named": true
-        },
-        {
-          "type": "graph_literal_property",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "graph_literal_alias",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "graph_literal_property",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "greater_than",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "greater_than_equal_to",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "import_from_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "import_module_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "is",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "is_not",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "less_than",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "less_than_equal_to",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "expression_list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "morph_creation_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "morph_mutation_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "morphism_declaration_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "_morph_member",
-          "named": true
-        },
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "export",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "multiplication",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_multiplicative_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "negation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_negation_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "negative",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "factor",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "node_declaration_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "_node_member",
-          "named": true
-        },
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "export",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "node_edge_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "decorator",
-          "named": true
-        },
-        {
-          "type": "node_edge_initializer",
-          "named": true
-        },
-        {
-          "type": "node_edge_modifier",
-          "named": true
-        },
-        {
-          "type": "type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "node_edge_initializer",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "node_edge_modifier",
+    "type": "Addition",
     "named": true,
     "fields": {}
   },
   {
-    "type": "node_static_constant_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "not_equal_to",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_relational_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "positive",
+    "type": "AnonymousFunctionName",
     "named": true,
     "fields": {},
     "children": {
@@ -1219,14 +100,86 @@
       "required": true,
       "types": [
         {
-          "type": "factor",
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "program",
+    "type": "AnonymousFunctionSignature",
     "named": true,
     "fields": {},
     "children": {
@@ -1234,60 +187,387 @@
       "required": false,
       "types": [
         {
-          "type": "statement",
+          "type": "ParameterName",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "rule_declaration_statement",
+    "type": "BinaryExpression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        },
-        {
-          "type": "export",
-          "named": true
-        },
-        {
-          "type": "function_signature",
-          "named": true
-        },
-        {
-          "type": "rule_expression",
-          "named": true
-        },
-        {
-          "type": "type_parameters",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "BinaryExpression",
+            "named": true
+          },
+          {
+            "type": "CamelIdentifier",
+            "named": true
+          },
+          {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
+            "type": "FalseLiteral",
+            "named": true
+          },
+          {
+            "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
+            "named": true
+          },
+          {
+            "type": "IntegerLiteral",
+            "named": true
+          },
+          {
+            "type": "NegativeFactor",
+            "named": true
+          },
+          {
+            "type": "ParenthesizedExpression",
+            "named": true
+          },
+          {
+            "type": "PascalIdentifier",
+            "named": true
+          },
+          {
+            "type": "PositiveFactor",
+            "named": true
+          },
+          {
+            "type": "SnakeIdentifier",
+            "named": true
+          },
+          {
+            "type": "StringLiteral",
+            "named": true
+          },
+          {
+            "type": "StringTemplateLiteral",
+            "named": true
+          },
+          {
+            "type": "TrueLiteral",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "Addition",
+            "named": true
+          },
+          {
+            "type": "BitwiseConjunction",
+            "named": true
+          },
+          {
+            "type": "BitwiseDisjunction",
+            "named": true
+          },
+          {
+            "type": "Division",
+            "named": true
+          },
+          {
+            "type": "ExclusiveDisjunction",
+            "named": true
+          },
+          {
+            "type": "Modulus",
+            "named": true
+          },
+          {
+            "type": "Multiplication",
+            "named": true
+          },
+          {
+            "type": "Subtraction",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "BinaryExpression",
+            "named": true
+          },
+          {
+            "type": "CamelIdentifier",
+            "named": true
+          },
+          {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
+            "type": "FalseLiteral",
+            "named": true
+          },
+          {
+            "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
+            "named": true
+          },
+          {
+            "type": "IntegerLiteral",
+            "named": true
+          },
+          {
+            "type": "NegativeFactor",
+            "named": true
+          },
+          {
+            "type": "ParenthesizedExpression",
+            "named": true
+          },
+          {
+            "type": "PascalIdentifier",
+            "named": true
+          },
+          {
+            "type": "PositiveFactor",
+            "named": true
+          },
+          {
+            "type": "SnakeIdentifier",
+            "named": true
+          },
+          {
+            "type": "StringLiteral",
+            "named": true
+          },
+          {
+            "type": "StringTemplateLiteral",
+            "named": true
+          },
+          {
+            "type": "TrueLiteral",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
-    "type": "rule_expression",
+    "type": "BitwiseDisjunction",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
+    "fields": {}
+  },
+  {
+    "type": "BooleanExpression",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "BinaryExpression",
+            "named": true
+          },
+          {
+            "type": "BooleanExpression",
+            "named": true
+          },
+          {
+            "type": "CamelIdentifier",
+            "named": true
+          },
+          {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
+            "type": "FalseLiteral",
+            "named": true
+          },
+          {
+            "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
+            "named": true
+          },
+          {
+            "type": "IntegerLiteral",
+            "named": true
+          },
+          {
+            "type": "Negation",
+            "named": true
+          },
+          {
+            "type": "NegativeFactor",
+            "named": true
+          },
+          {
+            "type": "ParenthesizedExpression",
+            "named": true
+          },
+          {
+            "type": "PascalIdentifier",
+            "named": true
+          },
+          {
+            "type": "PositiveFactor",
+            "named": true
+          },
+          {
+            "type": "RelationalExpression",
+            "named": true
+          },
+          {
+            "type": "SnakeIdentifier",
+            "named": true
+          },
+          {
+            "type": "StringLiteral",
+            "named": true
+          },
+          {
+            "type": "StringTemplateLiteral",
+            "named": true
+          },
+          {
+            "type": "TrueLiteral",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "Conjunction",
+            "named": true
+          },
+          {
+            "type": "Disjunction",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "BinaryExpression",
+            "named": true
+          },
+          {
+            "type": "BooleanExpression",
+            "named": true
+          },
+          {
+            "type": "CamelIdentifier",
+            "named": true
+          },
+          {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
+            "type": "FalseLiteral",
+            "named": true
+          },
+          {
+            "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
+            "named": true
+          },
+          {
+            "type": "IntegerLiteral",
+            "named": true
+          },
+          {
+            "type": "Negation",
+            "named": true
+          },
+          {
+            "type": "NegativeFactor",
+            "named": true
+          },
+          {
+            "type": "ParenthesizedExpression",
+            "named": true
+          },
+          {
+            "type": "PascalIdentifier",
+            "named": true
+          },
+          {
+            "type": "PositiveFactor",
+            "named": true
+          },
+          {
+            "type": "RelationalExpression",
+            "named": true
+          },
+          {
+            "type": "SnakeIdentifier",
+            "named": true
+          },
+          {
+            "type": "StringLiteral",
+            "named": true
+          },
+          {
+            "type": "StringTemplateLiteral",
+            "named": true
+          },
+          {
+            "type": "TrueLiteral",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
-    "type": "rule_parameters",
+    "type": "BooleanLiteral",
     "named": true,
     "fields": {},
     "children": {
@@ -1295,14 +575,639 @@
       "required": true,
       "types": [
         {
-          "type": "rule_expression",
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "simple_string",
+    "type": "CallableExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CallableName",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CallableName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ChainedEdgeAccess",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "ListIndexAccess_EdgeAccessParameter",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RuleParameters",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ChainedFunctionCall",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "FunctionCallParameters",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RuleParameters",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ChainedFunctionCallOrEdgeAccess",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ChainedEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCall",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ConstantDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstantName",
+          "named": true
+        },
+        {
+          "type": "ConstantValue",
+          "named": true
+        },
+        {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "TypeUnion",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ConstantName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ConstantValue",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Decorator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "DecoratorArg",
+          "named": true
+        },
+        {
+          "type": "DecoratorIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "DecoratorArg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Division",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "EdgeAccess",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "CallableExpression",
+          "named": true
+        },
+        {
+          "type": "ListIndexAccess_EdgeAccessParameter",
+          "named": true
+        },
+        {
+          "type": "RuleParameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EnumDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "EnumName",
+          "named": true
+        },
+        {
+          "type": "EnumValue",
+          "named": true
+        },
+        {
+          "type": "Export",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EnumName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EnumValue",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ExtendsName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionCall",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "CallableExpression",
+          "named": true
+        },
+        {
+          "type": "FunctionCallParameters",
+          "named": true
+        },
+        {
+          "type": "RuleParameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionCallParameters",
     "named": true,
     "fields": {},
     "children": {
@@ -1310,14 +1215,14 @@
       "required": false,
       "types": [
         {
-          "type": "escape_sequence",
+          "type": "ParameterExpression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "single_type",
+    "type": "FunctionDeclarationStatement",
     "named": true,
     "fields": {},
     "children": {
@@ -1325,37 +1230,34 @@
       "required": true,
       "types": [
         {
-          "type": "_identifier",
+          "type": "Export",
           "named": true
         },
         {
-          "type": "_predefined_type",
+          "type": "FunctionExpression",
           "named": true
         },
         {
-          "type": "decorator",
+          "type": "FunctionName",
+          "named": true
+        },
+        {
+          "type": "FunctionSignature",
+          "named": true
+        },
+        {
+          "type": "TypeParameter",
+          "named": true
+        },
+        {
+          "type": "TypeUnion",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "single_type_parameter",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "statement",
+    "type": "FunctionExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -1363,46 +1265,109 @@
       "required": true,
       "types": [
         {
-          "type": "_import_statement",
+          "type": "BinaryExpression",
           "named": true
         },
         {
-          "type": "constant_declaration_statement",
+          "type": "BooleanExpression",
           "named": true
         },
         {
-          "type": "enum_declaration_statement",
+          "type": "CamelIdentifier",
           "named": true
         },
         {
-          "type": "function_declaration_statement",
+          "type": "ChainedFunctionCallOrEdgeAccess",
           "named": true
         },
         {
-          "type": "morphism_declaration_statement",
+          "type": "EdgeAccess",
           "named": true
         },
         {
-          "type": "node_declaration_statement",
+          "type": "FalseLiteral",
           "named": true
         },
         {
-          "type": "rule_declaration_statement",
+          "type": "FloatLiteral",
           "named": true
         },
         {
-          "type": "symbol_declaration_statement",
+          "type": "FunctionCall",
           "named": true
         },
         {
-          "type": "type_declaration_statement",
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "subtraction",
+    "type": "FunctionName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionParameter",
     "named": true,
     "fields": {},
     "children": {
@@ -1410,33 +1375,41 @@
       "required": true,
       "types": [
         {
-          "type": "_additive_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "symbol_declaration_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_identifier",
+          "type": "FunctionParameterName",
           "named": true
         },
         {
-          "type": "export",
+          "type": "TypeUnion",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "template_string",
+    "type": "FunctionParameterName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionSignature",
     "named": true,
     "fields": {},
     "children": {
@@ -1444,33 +1417,19 @@
       "required": false,
       "types": [
         {
-          "type": "escape_sequence",
-          "named": true
-        },
-        {
-          "type": "template_substitution",
+          "type": "FunctionParameter",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "template_substitution",
+    "type": "GraterThan",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
-    "type": "type",
+    "type": "ImportFromStatement",
     "named": true,
     "fields": {},
     "children": {
@@ -1478,29 +1437,22 @@
       "required": true,
       "types": [
         {
-          "type": "single_type",
+          "type": "ImportFromStatement_items",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "type_annotation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
+        },
         {
-          "type": "type",
+          "type": "ImportFromStatement_module",
+          "named": true
+        },
+        {
+          "type": "ImportFromStatement_path",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "type_declaration_statement",
+    "type": "ImportFromStatement_items",
     "named": true,
     "fields": {},
     "children": {
@@ -1508,37 +1460,22 @@
       "required": true,
       "types": [
         {
-          "type": "_identifier",
+          "type": "CamelIdentifier",
           "named": true
         },
         {
-          "type": "export",
+          "type": "PascalIdentifier",
           "named": true
         },
         {
-          "type": "type",
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "type_parameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "single_type_parameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "unaryfactor",
+    "type": "ImportFromStatement_module",
     "named": true,
     "fields": {},
     "children": {
@@ -1546,23 +1483,2212 @@
       "required": true,
       "types": [
         {
-          "type": "negative",
+          "type": "CamelIdentifier",
           "named": true
         },
         {
-          "type": "positive",
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "!",
-    "named": false
+    "type": "ImportFromStatement_path",
+    "named": true,
+    "fields": {}
   },
   {
-    "type": "!=",
-    "named": false
+    "type": "ImportModuleStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ImportModuleStatement_from",
+          "named": true
+        },
+        {
+          "type": "ImportModuleStatement_path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ImportModuleStatement_from",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ImportModuleStatement_path",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "InitializerExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Is",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "IsNot",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "LessThan",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "ListIndexAccess_EdgeAccessParameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AccessExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Message",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismCreationDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "MorphismNewExpression",
+          "named": true
+        },
+        {
+          "type": "MorphismNewName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismDeclarationMember",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "MorphismCreationDeclaration",
+          "named": true
+        },
+        {
+          "type": "MorphismMutationDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Decorator",
+          "named": true
+        },
+        {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "MorphismDeclarationMember",
+          "named": true
+        },
+        {
+          "type": "MorphismFrom",
+          "named": true
+        },
+        {
+          "type": "MorphismName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismFrom",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismMutationDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "MorphismMutationExpression",
+          "named": true
+        },
+        {
+          "type": "MorphismMutationName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismMutationExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismMutationName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismNewExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismNewName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Negation",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "BinaryExpression",
+            "named": true
+          },
+          {
+            "type": "BooleanExpression",
+            "named": true
+          },
+          {
+            "type": "CamelIdentifier",
+            "named": true
+          },
+          {
+            "type": "ChainedFunctionCallOrEdgeAccess",
+            "named": true
+          },
+          {
+            "type": "EdgeAccess",
+            "named": true
+          },
+          {
+            "type": "FalseLiteral",
+            "named": true
+          },
+          {
+            "type": "FloatLiteral",
+            "named": true
+          },
+          {
+            "type": "FunctionCall",
+            "named": true
+          },
+          {
+            "type": "IntegerLiteral",
+            "named": true
+          },
+          {
+            "type": "Negation",
+            "named": true
+          },
+          {
+            "type": "NegativeFactor",
+            "named": true
+          },
+          {
+            "type": "ParenthesizedExpression",
+            "named": true
+          },
+          {
+            "type": "PascalIdentifier",
+            "named": true
+          },
+          {
+            "type": "PositiveFactor",
+            "named": true
+          },
+          {
+            "type": "RelationalExpression",
+            "named": true
+          },
+          {
+            "type": "SnakeIdentifier",
+            "named": true
+          },
+          {
+            "type": "StringLiteral",
+            "named": true
+          },
+          {
+            "type": "StringTemplateLiteral",
+            "named": true
+          },
+          {
+            "type": "TrueLiteral",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "NegativeFactor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeAlias",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeDeclarationMember",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NodeEdgeDeclaration",
+          "named": true
+        },
+        {
+          "type": "NodeStaticConstantDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Decorator",
+          "named": true
+        },
+        {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "ExtendsName",
+          "named": true
+        },
+        {
+          "type": "NodeDeclarationMember",
+          "named": true
+        },
+        {
+          "type": "NodeDeclarationStatement_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeDeclarationStatement_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdge",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Decorator",
+          "named": true
+        },
+        {
+          "type": "NodeEdgeInitializer",
+          "named": true
+        },
+        {
+          "type": "NodeEdgeModifier",
+          "named": true
+        },
+        {
+          "type": "NodeEdgeName",
+          "named": true
+        },
+        {
+          "type": "TypeUnion",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeInitializer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "InitializerExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeModifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NodeEdgeArrayModifier",
+          "named": true
+        },
+        {
+          "type": "NodeEdgeRequiredModifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeStaticConstantDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NodeStaticExpression",
+          "named": true
+        },
+        {
+          "type": "NodeStaticName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeStaticExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeStaticName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NumberLiteral",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ParameterExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ParameterName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ParenthesizedExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PositiveFactor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PredefinedType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanType",
+          "named": true
+        },
+        {
+          "type": "FloatType",
+          "named": true
+        },
+        {
+          "type": "IntegerType",
+          "named": true
+        },
+        {
+          "type": "StringType",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Program",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "ConstantDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "EnumDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "FunctionDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "ImportFromStatement",
+          "named": true
+        },
+        {
+          "type": "ImportModuleStatement",
+          "named": true
+        },
+        {
+          "type": "MorphismDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "NodeDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "RuleDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "SymbolDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "TypeDeclarationStatement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RelationalExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EqualTo",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "GraterThan",
+          "named": true
+        },
+        {
+          "type": "GreaterThanEqualTo",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Is",
+          "named": true
+        },
+        {
+          "type": "IsNot",
+          "named": true
+        },
+        {
+          "type": "LessThan",
+          "named": true
+        },
+        {
+          "type": "LessThanEqualTo",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "NotEqualTo",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Rule",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RuleDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "FunctionSignature",
+          "named": true
+        },
+        {
+          "type": "RuleExpression",
+          "named": true
+        },
+        {
+          "type": "RuleName",
+          "named": true
+        },
+        {
+          "type": "TypeParameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RuleExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Message",
+          "named": true
+        },
+        {
+          "type": "Rule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RuleName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RuleParameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "RuleExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SingleType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PredefinedType",
+          "named": true
+        },
+        {
+          "type": "TypeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "StringLiteral",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "EscapeSequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "StringTemplateLiteral",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "EscapeSequence",
+          "named": true
+        },
+        {
+          "type": "TemplateSubstitution",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Subtraction",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "SymbolDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "SymbolName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SymbolName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TemplateSubstitution",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "EdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FalseLiteral",
+          "named": true
+        },
+        {
+          "type": "FloatLiteral",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "IntegerLiteral",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "NegativeFactor",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "PositiveFactor",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
+          "named": true
+        },
+        {
+          "type": "TrueLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Export",
+          "named": true
+        },
+        {
+          "type": "TypeName",
+          "named": true
+        },
+        {
+          "type": "TypeUnion",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeParameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeParameterConstraint",
+          "named": true
+        },
+        {
+          "type": "TypeParameterName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeParameterConstraint",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeUnion",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeParameterName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeUnion",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "SingleType",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "\"",
@@ -1570,14 +3696,6 @@
   },
   {
     "type": "${",
-    "named": false
-  },
-  {
-    "type": "&",
-    "named": false
-  },
-  {
-    "type": "&&",
     "named": false
   },
   {
@@ -1590,10 +3708,6 @@
   },
   {
     "type": ")",
-    "named": false
-  },
-  {
-    "type": "*",
     "named": false
   },
   {
@@ -1621,6 +3735,14 @@
     "named": false
   },
   {
+    "type": "/*",
+    "named": false
+  },
+  {
+    "type": "//",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -1629,15 +3751,7 @@
     "named": false
   },
   {
-    "type": "<=",
-    "named": false
-  },
-  {
     "type": "=",
-    "named": false
-  },
-  {
-    "type": "==",
     "named": false
   },
   {
@@ -1649,15 +3763,111 @@
     "named": false
   },
   {
-    "type": ">=",
-    "named": false
+    "type": "BitwiseConjunction",
+    "named": true
+  },
+  {
+    "type": "BooleanType",
+    "named": true
+  },
+  {
+    "type": "CamelIdentifier",
+    "named": true
+  },
+  {
+    "type": "Conjunction",
+    "named": true
+  },
+  {
+    "type": "DecoratorIdentifier",
+    "named": true
+  },
+  {
+    "type": "Disjunction",
+    "named": true
+  },
+  {
+    "type": "EqualTo",
+    "named": true
+  },
+  {
+    "type": "EscapeSequence",
+    "named": true
+  },
+  {
+    "type": "ExclusiveDisjunction",
+    "named": true
+  },
+  {
+    "type": "Export",
+    "named": true
+  },
+  {
+    "type": "FalseLiteral",
+    "named": true
+  },
+  {
+    "type": "FloatLiteral",
+    "named": true
+  },
+  {
+    "type": "FloatType",
+    "named": true
+  },
+  {
+    "type": "GreaterThanEqualTo",
+    "named": true
+  },
+  {
+    "type": "IntegerLiteral",
+    "named": true
+  },
+  {
+    "type": "IntegerType",
+    "named": true
+  },
+  {
+    "type": "LessThanEqualTo",
+    "named": true
+  },
+  {
+    "type": "Modulus",
+    "named": true
+  },
+  {
+    "type": "Multiplication",
+    "named": true
+  },
+  {
+    "type": "NodeEdgeArrayModifier",
+    "named": true
+  },
+  {
+    "type": "NodeEdgeRequiredModifier",
+    "named": true
+  },
+  {
+    "type": "NotEqualTo",
+    "named": true
+  },
+  {
+    "type": "PascalIdentifier",
+    "named": true
+  },
+  {
+    "type": "SnakeIdentifier",
+    "named": true
+  },
+  {
+    "type": "StringType",
+    "named": true
+  },
+  {
+    "type": "TrueLiteral",
+    "named": true
   },
   {
     "type": "[",
-    "named": false
-  },
-  {
-    "type": "[]",
     "named": false
   },
   {
@@ -1677,23 +3887,7 @@
     "named": false
   },
   {
-    "type": "boolean_type",
-    "named": true
-  },
-  {
-    "type": "camel_identifier",
-    "named": true
-  },
-  {
     "type": "const",
-    "named": false
-  },
-  {
-    "type": "decorator_identifier",
-    "named": true
-  },
-  {
-    "type": "ebnf`",
     "named": false
   },
   {
@@ -1701,28 +3895,8 @@
     "named": false
   },
   {
-    "type": "escape_sequence",
-    "named": true
-  },
-  {
-    "type": "export",
-    "named": true
-  },
-  {
     "type": "extends",
     "named": false
-  },
-  {
-    "type": "false",
-    "named": true
-  },
-  {
-    "type": "float",
-    "named": true
-  },
-  {
-    "type": "float_type",
-    "named": true
   },
   {
     "type": "from",
@@ -1735,14 +3909,6 @@
   {
     "type": "import",
     "named": false
-  },
-  {
-    "type": "integer",
-    "named": true
-  },
-  {
-    "type": "integer_type",
-    "named": true
   },
   {
     "type": "is",
@@ -1765,32 +3931,16 @@
     "named": false
   },
   {
-    "type": "pascal_identifier",
-    "named": true
-  },
-  {
     "type": "rule",
     "named": false
-  },
-  {
-    "type": "snake_identifier",
-    "named": true
   },
   {
     "type": "static",
     "named": false
   },
   {
-    "type": "string_type",
-    "named": true
-  },
-  {
     "type": "symbol",
     "named": false
-  },
-  {
-    "type": "true",
-    "named": true
   },
   {
     "type": "type",
@@ -1802,10 +3952,6 @@
   },
   {
     "type": "|",
-    "named": false
-  },
-  {
-    "type": "||",
     "named": false
   },
   {

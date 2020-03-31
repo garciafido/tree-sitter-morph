@@ -1,0 +1,9 @@
+============================
+ConstantDeclarationStatement
+============================
+
+const foo: Foo = "foo"
+
+---
+
+(Program (ConstantDeclarationStatement (ConstantName (CamelIdentifier)) (TypeUnion (SingleType (TypeName (PascalIdentifier)))) (ConstantValue (StringLiteral))))

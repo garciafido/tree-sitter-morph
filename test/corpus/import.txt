@@ -1,0 +1,20 @@
+=======================
+import_module_statement
+=======================
+
+import ..foo
+
+---
+
+(Program (ImportModuleStatement (ImportModuleStatement_path) (ImportModuleStatement_from (CamelIdentifier))))
+
+
+=====================
+import_from_statement
+=====================
+
+from ...bar import Bar
+
+---
+
+(Program (ImportFromStatement (ImportFromStatement_path) (ImportFromStatement_module (CamelIdentifier)) (ImportFromStatement_items (PascalIdentifier))))

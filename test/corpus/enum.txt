@@ -1,0 +1,13 @@
+==========================
+enum_declaration_statement
+==========================
+
+export enum foo {
+    a
+    b
+    c
+}
+
+---
+
+ (Program (EnumDeclarationStatement (Export) (EnumName (CamelIdentifier)) (EnumValue (CamelIdentifier)) (EnumValue (CamelIdentifier)) (EnumValue (CamelIdentifier))))
