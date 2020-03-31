@@ -67,46 +67,6 @@ class ParseSemantic {
     }
 
 }
-    // def get_tree(self, code: str, language):
-    //     parser = Parser()
-    //     parser.set_language(language)
-    //     self.code = code
-    //     return parser.parse(bytes(code, "utf8"))
-    //
-    // def get_content(self, node):
-    //     return self.code[node.start_byte:node.end_byte]
-    //
-    // def traverse(self, node, indent=-1):
-    //     type = node.type
-    //     dict_node = {"type": type}
-    //     children = [x for x in filter(lambda c: c.is_named, node.children)]
-    //     if not len(node.children):
-    //         dict_node['value'] = self.get_content(node)
-    //
-    //     dic_children = {}
-    //     for child in children:
-    //         child_type = child.type
-    //         is_list = child_type.rfind('__list') > 0
-    //         if is_list:
-    //             child_type = child_type[:-len('__list')]
-    //         _index = child_type.rfind('_')
-    //         if _index > 0 and node.type == child_type[0:_index]:
-    //             item = child_type[_index + 1:]
-    //             if is_list:
-    //                 if item not in dic_children:
-    //                     dic_children[item] = []
-    //                 dic_children[item].append(self.traverse(child, indent+1))
-    //             else:
-    //                 if item in dic_children:
-    //                     raise Exception(f'{child.type} is not declared as list and there are many items')
-    //                 dic_children[item] = self.traverse(child, indent + 1)
-    //
-    //     if dic_children:
-    //         dict_node['children'] = dic_children
-    //     elif len(children) == 1:
-    //         return self.traverse(children[0])
-    //     return dict_node
-
 
 // const sourceCode = `
 // abstract node NicePerson extends Person {
