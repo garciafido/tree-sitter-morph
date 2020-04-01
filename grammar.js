@@ -283,22 +283,23 @@ module.exports = grammar({
 
     Type: $ => $.TypeUnion,
 
+    TypeUnion_types__list: $ => $.SingleType,
     TypeUnion: $ => seq(
-      $.SingleType, repeat(seq("|", $.SingleType)),
+      $.TypeUnion_types__list, repeat(seq("|", $.TypeUnion_types__list)),
     ),
 
-    TypeName: $ => $.Identifier,
+    TypeIdentifier: $ => $.Identifier,
 
     SingleType: $ => choice(
-      $.TypeName,
+      $.TypeIdentifier,
       $.PredefinedType,
     ),
 
     PredefinedType: $ => choice(
-        $.StringType,
-        $.BooleanType,
-        $.IntegerType,
-        $.FloatType,
+      $.StringType,
+      $.BooleanType,
+      $.IntegerType,
+      $.FloatType,
     ),
 
     StringType: $ => "string",
@@ -648,8 +649,11 @@ module.exports = grammar({
       $.EdgeAccess,
     ),
 
+    FunctionCall_expression: $ => $.CallableExpression,
+    FunctionCall_rule_parameters: $ => $.RuleParameters,
+    FunctionCall_parameters: $ => $.FunctionCallParameters,
     FunctionCall: $ => seq(
-      $.CallableExpression, optional($.RuleParameters), $.FunctionCallParameters,
+      $.FunctionCall_expression, optional($.FunctionCall_rule_parameters), $.FunctionCall_parameters,
     ),
 
     CallableName: $ => prec(PREC.call, $.Identifier),
@@ -668,14 +672,16 @@ module.exports = grammar({
       "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
     )),
 
-    ParameterExpression: $ => $.Expression,
-
+    FunctionCallParameters_expressions__list: $ => $.Expression,
     FunctionCallParameters: $ => seq(
-      "(", optional(seq($.ParameterExpression, repeat(seq(",", $.ParameterExpression)), optional(","))), ")",
+      "(", optional(seq($.FunctionCallParameters_expressions__list, repeat(seq(",", $.FunctionCallParameters_expressions__list)), optional(","))), ")",
     ),
 
+    EdgeAccess_expression: $ => $.CallableExpression,
+    EdgeAccess_rule_parameters: $ => $.RuleParameters,
+    EdgeAccess_parameter: $ => $.Expression,
     EdgeAccess: $ => seq(
-      $.CallableExpression, optional($.RuleParameters), $.ListIndexAccess_EdgeAccessParameter,
+      $.EdgeAccess_expression, optional($.EdgeAccess_rule_parameters), "[", $.EdgeAccess_parameter, "]",
     ),
 
     //  This expression has no parameters allowed in its factors and the expression must yield a string
@@ -707,20 +713,22 @@ module.exports = grammar({
       $.PrimaryExpression, ".", $.Identifier, optional($.RuleParameters), $.FunctionCallParameters,
     )),
 
+    List_elements__list: $ => $.Expression,
     List: $ => prec(PREC.call, seq(
-      "[", $.Expression, "]",
+      "[", $.List_elements__list, "]",
     )),
 
+    Node_type: $ => $.Identifier,
+    Node_alias: $ => $.Identifier,
+    Node_edges__list: $ => $.NodeEdge,
     Node: $ => seq(
-      $.Identifier, optional($.NodeAlias), "{", repeat($.NodeEdge), "}",
+      $.Node_type, optional(seq("as", $.Node_alias)), "{", repeat($.Node_edges__list), "}",
     ),
 
-    NodeAlias: $ => seq(
-      "as", $.Identifier,
-    ),
-
+    NodeEdge_name: $ => $.Identifier,
+    NodeEdge_value: $ => $.Expression,
     NodeEdge: $ => seq(
-      $.Identifier, "->", $.Expression,
+      $.NodeEdge_name, "->", $.NodeEdge_value,
     ),
 
     Literal: $ => choice(
