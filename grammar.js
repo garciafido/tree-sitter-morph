@@ -194,22 +194,18 @@ module.exports = grammar({
       "}",
     ),
 
-    MorphismMutationName: $ => $.Identifier,
-
-    MorphismMutationExpression: $ => $.Expression,
-
+    MorphismMutationDeclaration_name: $ => $.Identifier,
+    MorphismMutationDeclaration_expression: $ => $.Expression,
     MorphismMutationDeclaration: $ => seq(
-      $.MorphismMutationName,
+      $.MorphismMutationDeclaration_name,
       "->",
-      $.MorphismMutationExpression,
+      $.MorphismMutationDeclaration_expression,
     ),
 
-    MorphismNewName: $ => $.Identifier,
-
-    MorphismNewExpression: $ => $.Expression,
-
+    MorphismCreationDeclaration_name: $ => $.Identifier,
+    MorphismCreationDeclaration_creation: $ => $.Expression,
     MorphismCreationDeclaration: $ => seq(
-      "new", $.MorphismNewName, "->", $.MorphismNewExpression,
+      "new", $.MorphismCreationDeclaration_name, "->", $.MorphismCreationDeclaration_creation,
     ),
 
     SymbolDeclarationStatement_name: $ => $.Identifier,
