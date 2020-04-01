@@ -601,11 +601,11 @@
         }
       ]
     },
-    "MorphismMutationName": {
+    "MorphismMutationDeclaration_name": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "MorphismMutationExpression": {
+    "MorphismMutationDeclaration_expression": {
       "type": "SYMBOL",
       "name": "Expression"
     },
@@ -614,7 +614,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "MorphismMutationName"
+          "name": "MorphismMutationDeclaration_name"
         },
         {
           "type": "STRING",
@@ -622,15 +622,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "MorphismMutationExpression"
+          "name": "MorphismMutationDeclaration_expression"
         }
       ]
     },
-    "MorphismNewName": {
+    "MorphismCreationDeclaration_name": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "MorphismNewExpression": {
+    "MorphismCreationDeclaration_creation": {
       "type": "SYMBOL",
       "name": "Expression"
     },
@@ -643,7 +643,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "MorphismNewName"
+          "name": "MorphismCreationDeclaration_name"
         },
         {
           "type": "STRING",
@@ -651,7 +651,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "MorphismNewExpression"
+          "name": "MorphismCreationDeclaration_creation"
         }
       ]
     },
