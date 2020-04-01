@@ -17,7 +17,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "NodeDeclarationStatement"
+          "name": "NodeTypeDeclarationStatement"
         },
         {
           "type": "SYMBOL",
@@ -173,7 +173,7 @@
         }
       ]
     },
-    "NodeDeclarationStatement_decorators__list": {
+    "NodeTypeDeclarationStatement_decorators__list": {
       "type": "PREC",
       "value": 2,
       "content": {
@@ -181,23 +181,23 @@
         "name": "Decorator"
       }
     },
-    "NodeDeclarationStatement_export": {
+    "NodeTypeDeclarationStatement_export": {
       "type": "SYMBOL",
       "name": "Export"
     },
-    "NodeDeclarationStatement_abstract": {
+    "NodeTypeDeclarationStatement_abstract": {
       "type": "STRING",
       "value": "abstract"
     },
-    "NodeDeclarationStatement_name": {
+    "NodeTypeDeclarationStatement_name": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "NodeDeclarationStatement_extends": {
+    "NodeTypeDeclarationStatement_extends": {
       "type": "SYMBOL",
       "name": "Extends"
     },
-    "NodeDeclarationStatement_members__list": {
+    "NodeTypeDeclarationStatement_members__list": {
       "type": "CHOICE",
       "members": [
         {
@@ -210,14 +210,14 @@
         }
       ]
     },
-    "NodeDeclarationStatement": {
+    "NodeTypeDeclarationStatement": {
       "type": "SEQ",
       "members": [
         {
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "NodeDeclarationStatement_decorators__list"
+            "name": "NodeTypeDeclarationStatement_decorators__list"
           }
         },
         {
@@ -225,7 +225,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "NodeDeclarationStatement_export"
+              "name": "NodeTypeDeclarationStatement_export"
             },
             {
               "type": "BLANK"
@@ -237,7 +237,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "NodeDeclarationStatement_abstract"
+              "name": "NodeTypeDeclarationStatement_abstract"
             },
             {
               "type": "BLANK"
@@ -250,14 +250,14 @@
         },
         {
           "type": "SYMBOL",
-          "name": "NodeDeclarationStatement_name"
+          "name": "NodeTypeDeclarationStatement_name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "NodeDeclarationStatement_extends"
+              "name": "NodeTypeDeclarationStatement_extends"
             },
             {
               "type": "BLANK"
@@ -272,7 +272,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "NodeDeclarationStatement_members__list"
+            "name": "NodeTypeDeclarationStatement_members__list"
           }
         },
         {
