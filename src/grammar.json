@@ -181,9 +181,9 @@
         "name": "Decorator"
       }
     },
-    "NodeTypeDeclarationStatement_export": {
+    "NodeTypeDeclarationStatement_accessibility": {
       "type": "SYMBOL",
-      "name": "Export"
+      "name": "ModuleLevelAccessibilityModifier"
     },
     "NodeTypeDeclarationStatement_abstract": {
       "type": "STRING",
@@ -225,7 +225,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "NodeTypeDeclarationStatement_export"
+              "name": "NodeTypeDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -377,9 +377,25 @@
         ]
       }
     },
-    "NodeEdgeName": {
+    "NodeEdgeDeclaration_name": {
       "type": "SYMBOL",
       "name": "Identifier"
+    },
+    "NodeEdgeDeclaration_type": {
+      "type": "SYMBOL",
+      "name": "Type"
+    },
+    "NodeEdgeDeclaration_decorators__list": {
+      "type": "SYMBOL",
+      "name": "Decorator"
+    },
+    "NodeEdgeDeclaration_modifier": {
+      "type": "SYMBOL",
+      "name": "NodeEdgeModifier"
+    },
+    "NodeEdgeDeclaration_initializer": {
+      "type": "SYMBOL",
+      "name": "NodeEdgeInitializer"
     },
     "NodeEdgeDeclaration": {
       "type": "SEQ",
@@ -388,19 +404,19 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "Decorator"
+            "name": "NodeEdgeDeclaration_decorators__list"
           }
         },
         {
           "type": "SYMBOL",
-          "name": "NodeEdgeName"
+          "name": "NodeEdgeDeclaration_name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "NodeEdgeModifier"
+              "name": "NodeEdgeDeclaration_modifier"
             },
             {
               "type": "BLANK"
@@ -413,14 +429,14 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Type"
+          "name": "NodeEdgeDeclaration_type"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "NodeEdgeInitializer"
+              "name": "NodeEdgeDeclaration_initializer"
             },
             {
               "type": "BLANK"
@@ -504,9 +520,9 @@
         "name": "Decorator"
       }
     },
-    "MorphismDeclarationStatement_export": {
+    "MorphismDeclarationStatement_accessibility": {
       "type": "SYMBOL",
-      "name": "Export"
+      "name": "ModuleLevelAccessibilityModifier"
     },
     "MorphismDeclarationStatement_name": {
       "type": "SYMBOL",
@@ -544,7 +560,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "MorphismDeclarationStatement_export"
+              "name": "MorphismDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -639,9 +655,13 @@
         }
       ]
     },
-    "SymbolName": {
+    "SymbolDeclarationStatement_name": {
       "type": "SYMBOL",
       "name": "Identifier"
+    },
+    "SymbolDeclarationStatement_accessibility": {
+      "type": "SYMBOL",
+      "name": "ModuleLevelAccessibilityModifier"
     },
     "SymbolDeclarationStatement": {
       "type": "SEQ",
@@ -651,7 +671,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "Export"
+              "name": "SymbolDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -664,17 +684,21 @@
         },
         {
           "type": "SYMBOL",
-          "name": "SymbolName"
+          "name": "SymbolDeclarationStatement_name"
         }
       ]
     },
-    "EnumName": {
+    "EnumDeclarationStatement_name": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "EnumValue": {
+    "EnumDeclarationStatement_values__list": {
       "type": "SYMBOL",
       "name": "Identifier"
+    },
+    "EnumDeclarationStatement_accessibility": {
+      "type": "SYMBOL",
+      "name": "ModuleLevelAccessibilityModifier"
     },
     "EnumDeclarationStatement": {
       "type": "SEQ",
@@ -684,7 +708,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "Export"
+              "name": "EnumDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -697,7 +721,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "EnumName"
+          "name": "EnumDeclarationStatement_name"
         },
         {
           "type": "STRING",
@@ -707,7 +731,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "EnumValue"
+            "name": "EnumDeclarationStatement_values__list"
           }
         },
         {
@@ -716,17 +740,25 @@
         }
       ]
     },
-    "ConstantName": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
     "AssignmentSign": {
       "type": "STRING",
       "value": "="
     },
-    "ConstantValue": {
+    "ConstantDeclarationStatement_name": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "ConstantDeclarationStatement_value": {
       "type": "SYMBOL",
       "name": "Expression"
+    },
+    "ConstantDeclarationStatement_type": {
+      "type": "SYMBOL",
+      "name": "TypeAnnotation"
+    },
+    "ConstantDeclarationStatement_accessibility": {
+      "type": "SYMBOL",
+      "name": "ModuleLevelAccessibilityModifier"
     },
     "ConstantDeclarationStatement": {
       "type": "SEQ",
@@ -736,7 +768,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "Export"
+              "name": "ConstantDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -749,14 +781,14 @@
         },
         {
           "type": "SYMBOL",
-          "name": "ConstantName"
+          "name": "ConstantDeclarationStatement_name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "TypeAnnotation"
+              "name": "ConstantDeclarationStatement_type"
             },
             {
               "type": "BLANK"
@@ -769,7 +801,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "ConstantValue"
+          "name": "ConstantDeclarationStatement_value"
         }
       ]
     },
@@ -786,13 +818,29 @@
         }
       ]
     },
-    "FunctionName": {
+    "FunctionDeclarationStatement_name": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "FunctionExpression": {
+    "FunctionDeclarationStatement_expression": {
       "type": "SYMBOL",
       "name": "Expression"
+    },
+    "FunctionDeclarationStatement_accessibility": {
+      "type": "SYMBOL",
+      "name": "ModuleLevelAccessibilityModifier"
+    },
+    "FunctionDeclarationStatement_type": {
+      "type": "SYMBOL",
+      "name": "TypeAnnotation"
+    },
+    "FunctionDeclarationStatement_signature": {
+      "type": "SYMBOL",
+      "name": "FunctionSignature"
+    },
+    "FunctionDeclarationStatement_type_parameters": {
+      "type": "SYMBOL",
+      "name": "TypeParameters"
     },
     "FunctionDeclarationStatement": {
       "type": "SEQ",
@@ -802,7 +850,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "Export"
+              "name": "FunctionDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -815,14 +863,14 @@
         },
         {
           "type": "SYMBOL",
-          "name": "FunctionName"
+          "name": "FunctionDeclarationStatement_name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "TypeParameters"
+              "name": "FunctionDeclarationStatement_type_parameters"
             },
             {
               "type": "BLANK"
@@ -831,14 +879,14 @@
         },
         {
           "type": "SYMBOL",
-          "name": "FunctionSignature"
+          "name": "FunctionDeclarationStatement_signature"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "TypeAnnotation"
+              "name": "FunctionDeclarationStatement_type"
             },
             {
               "type": "BLANK"
@@ -851,7 +899,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "FunctionExpression"
+          "name": "FunctionDeclarationStatement_expression"
         }
       ]
     },
@@ -1108,6 +1156,10 @@
       "type": "SYMBOL",
       "name": "Identifier"
     },
+    "RuleDeclarationStatement_accessibility": {
+      "type": "SYMBOL",
+      "name": "ModuleLevelAccessibilityModifier"
+    },
     "RuleDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -1116,7 +1168,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "Export"
+              "name": "RuleDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -1195,6 +1247,10 @@
         }
       ]
     },
+    "TypeDeclarationStatement_accessibility": {
+      "type": "SYMBOL",
+      "name": "ModuleLevelAccessibilityModifier"
+    },
     "TypeDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -1203,7 +1259,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "Export"
+              "name": "TypeDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -1228,9 +1284,34 @@
         }
       ]
     },
-    "Export": {
+    "ModuleLevelAccessibilityModifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Public"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Private"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Protected"
+        }
+      ]
+    },
+    "Public": {
       "type": "STRING",
-      "value": "export"
+      "value": "public"
+    },
+    "Private": {
+      "type": "STRING",
+      "value": "private"
+    },
+    "Protected": {
+      "type": "STRING",
+      "value": "protected"
     },
     "Expression": {
       "type": "CHOICE",
@@ -2601,7 +2682,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",

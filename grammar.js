@@ -98,7 +98,7 @@ module.exports = grammar({
     ),
 
     NodeTypeDeclarationStatement_decorators__list: $ => prec(PREC.node_decorator, $.Decorator),
-    NodeTypeDeclarationStatement_export: $ => $.Export,
+    NodeTypeDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     NodeTypeDeclarationStatement_abstract: $ => "abstract",
     NodeTypeDeclarationStatement_name: $ => $.Identifier,
     NodeTypeDeclarationStatement_extends: $ => $.Extends,
@@ -109,7 +109,7 @@ module.exports = grammar({
 
     NodeTypeDeclarationStatement: $ => seq(
       repeat($.NodeTypeDeclarationStatement_decorators__list),
-      optional($.NodeTypeDeclarationStatement_export),
+      optional($.NodeTypeDeclarationStatement_accessibility),
       optional($.NodeTypeDeclarationStatement_abstract),
       "node",
       $.NodeTypeDeclarationStatement_name,
@@ -135,20 +135,23 @@ module.exports = grammar({
       ),
     ),
 
-    NodeEdgeName: $ => $.Identifier,
-
+    NodeEdgeDeclaration_name: $ => $.Identifier,
+    NodeEdgeDeclaration_type: $ => $.Type,
+    NodeEdgeDeclaration_decorators__list: $ => $.Decorator,
+    NodeEdgeDeclaration_modifier: $ => $.NodeEdgeModifier,
+    NodeEdgeDeclaration_initializer: $ => $.NodeEdgeInitializer,
     NodeEdgeDeclaration: $ => seq(
-      repeat($.Decorator),
-      $.NodeEdgeName,
-      optional($.NodeEdgeModifier),
+      repeat($.NodeEdgeDeclaration_decorators__list),
+      $.NodeEdgeDeclaration_name,
+      optional($.NodeEdgeDeclaration_modifier),
       "->",
-      $.Type,
-      optional($.NodeEdgeInitializer),
+      $.NodeEdgeDeclaration_type,
+      optional($.NodeEdgeDeclaration_initializer),
     ),
 
     NodeEdgeModifier: $ => choice(
-        $.NodeEdgeRequiredModifier,
-        $.NodeEdgeArrayModifier,
+      $.NodeEdgeRequiredModifier,
+      $.NodeEdgeArrayModifier,
     ),
 
     NodeEdgeRequiredModifier: $ => "!",
@@ -170,7 +173,7 @@ module.exports = grammar({
     ),
 
     MorphismDeclarationStatement_decorators__list: $ => prec(PREC.morph_decorator, $.Decorator),
-    MorphismDeclarationStatement_export: $ => $.Export,
+    MorphismDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     MorphismDeclarationStatement_name: $ => $.Identifier,
     MorphismDeclarationStatement_from: $ => $.Expression,
     MorphismDeclarationStatement_member: $ => choice(
@@ -180,7 +183,7 @@ module.exports = grammar({
 
     MorphismDeclarationStatement: $ => seq(
       repeat($.MorphismDeclarationStatement_decorators__list),
-      optional($.MorphismDeclarationStatement_export),
+      optional($.MorphismDeclarationStatement_accessibility),
       "morph",
       $.MorphismDeclarationStatement_name,
       "(",
@@ -209,52 +212,53 @@ module.exports = grammar({
       "new", $.MorphismNewName, "->", $.MorphismNewExpression,
     ),
 
-    SymbolName: $ => $.Identifier,
-
+    SymbolDeclarationStatement_name: $ => $.Identifier,
+    SymbolDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     SymbolDeclarationStatement: $ => seq(
-      optional($.Export), "symbol", $.SymbolName,
+      optional($.SymbolDeclarationStatement_accessibility), "symbol", $.SymbolDeclarationStatement_name,
     ),
 
-    EnumName: $ => $.Identifier,
-
-    EnumValue: $ => $.Identifier,
-
+    EnumDeclarationStatement_name: $ => $.Identifier,
+    EnumDeclarationStatement_values__list: $ => $.Identifier,
+    EnumDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     EnumDeclarationStatement: $ => seq(
-      optional($.Export), "enum", $.EnumName, "{", repeat($.EnumValue), "}",
+      optional($.EnumDeclarationStatement_accessibility), "enum", $.EnumDeclarationStatement_name, "{", repeat($.EnumDeclarationStatement_values__list), "}",
     ),
-
-    ConstantName: $ => $.Identifier,
 
     AssignmentSign: $ => "=",
 
-    ConstantValue: $ => $.Expression,
-
+    ConstantDeclarationStatement_name: $ => $.Identifier,
+    ConstantDeclarationStatement_value: $ => $.Expression,
+    ConstantDeclarationStatement_type: $ => $.TypeAnnotation,
+    ConstantDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     ConstantDeclarationStatement: $ => seq(
-      optional($.Export),
+      optional($.ConstantDeclarationStatement_accessibility),
       "const",
-      $.ConstantName,
-      optional($.TypeAnnotation),
+      $.ConstantDeclarationStatement_name,
+      optional($.ConstantDeclarationStatement_type),
       $.AssignmentSign,
-      $.ConstantValue,
+      $.ConstantDeclarationStatement_value,
     ),
 
     TypeAnnotation: $ => seq(
       ":", $.Type,
     ),
 
-    FunctionName: $ => $.Identifier,
-
-    FunctionExpression: $ => $.Expression,
-
+    FunctionDeclarationStatement_name: $ => $.Identifier,
+    FunctionDeclarationStatement_expression: $ => $.Expression,
+    FunctionDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
+    FunctionDeclarationStatement_type: $ => $.TypeAnnotation,
+    FunctionDeclarationStatement_signature: $ => $.FunctionSignature,
+    FunctionDeclarationStatement_type_parameters: $ => $.TypeParameters,
     FunctionDeclarationStatement: $ => seq(
-      optional($.Export),
+      optional($.FunctionDeclarationStatement_accessibility),
       "func",
-      $.FunctionName,
-      optional($.TypeParameters),
-      $.FunctionSignature,
-      optional($.TypeAnnotation),
+      $.FunctionDeclarationStatement_name,
+      optional($.FunctionDeclarationStatement_type_parameters),
+      $.FunctionDeclarationStatement_signature,
+      optional($.FunctionDeclarationStatement_type),
       "=>",
-      $.FunctionExpression,
+      $.FunctionDeclarationStatement_expression,
     ),
 
     FunctionSignature: $ => seq(
@@ -311,8 +315,9 @@ module.exports = grammar({
 
     RuleName: $ => $.Identifier,
 
+    RuleDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     RuleDeclarationStatement: $ => seq(
-      optional($.Export),
+      optional($.RuleDeclarationStatement_accessibility),
       "rule",
       $.RuleName,
       optional($.TypeParameters),
@@ -329,10 +334,21 @@ module.exports = grammar({
       $.Rule, optional(seq(":", $.Message)),
     ),
 
+    TypeDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     TypeDeclarationStatement: $ => seq(
-      optional($.Export), "type", $.TypeName, "=", $.Type),
+      optional($.TypeDeclarationStatement_accessibility), "type", $.TypeName, "=", $.Type),
 
-    Export: $ => "export",
+    ModuleLevelAccessibilityModifier: $ => choice(
+      $.Public,
+      $.Private,
+      $.Protected,
+    ),
+
+    Public: $ => "public",
+
+    Private: $ => "private",
+
+    Protected: $ => "protected",
 
     // *****************
     // ** Expressions **
