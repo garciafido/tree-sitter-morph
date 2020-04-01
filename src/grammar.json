@@ -294,7 +294,11 @@
         }
       ]
     },
-    "DecoratorArg": {
+    "Decorator_identifier": {
+      "type": "SYMBOL",
+      "name": "DecoratorIdentifier"
+    },
+    "Decorator_parameters__list": {
       "type": "SYMBOL",
       "name": "Expression"
     },
@@ -306,7 +310,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "DecoratorIdentifier"
+            "name": "Decorator_identifier"
           },
           {
             "type": "CHOICE",
@@ -326,7 +330,7 @@
                         "members": [
                           {
                             "type": "SYMBOL",
-                            "name": "DecoratorArg"
+                            "name": "Decorator_parameters__list"
                           },
                           {
                             "type": "REPEAT",
@@ -339,7 +343,7 @@
                                 },
                                 {
                                   "type": "SYMBOL",
-                                  "name": "DecoratorArg"
+                                  "name": "Decorator_parameters__list"
                                 }
                               ]
                             }

@@ -121,15 +121,15 @@ module.exports = grammar({
       "extends", $.Identifier
     ),
 
-    DecoratorArg: $ => $.Expression,
-
+    Decorator_identifier: $ => $.DecoratorIdentifier,
+    Decorator_parameters__list: $ => $.Expression,
     Decorator: $ => prec.left(seq(
-      $.DecoratorIdentifier,
+      $.Decorator_identifier,
       optional(seq(
         "(",
           optional(seq(
-            $.DecoratorArg,
-            repeat(seq(",", $.DecoratorArg)),
+            $.Decorator_parameters__list,
+            repeat(seq(",", $.Decorator_parameters__list)),
             optional(","))),
         ")"))
       ),
