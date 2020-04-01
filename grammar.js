@@ -332,8 +332,10 @@ module.exports = grammar({
     ),
 
     TypeDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
+    TypeDeclarationStatement_name: $ => $.TypeIdentifier,
+    TypeDeclarationStatement_value: $ => $.Type,
     TypeDeclarationStatement: $ => seq(
-      optional($.TypeDeclarationStatement_accessibility), "type", $.TypeName, "=", $.Type),
+      optional($.TypeDeclarationStatement_accessibility), "type", $.TypeDeclarationStatement_name, "=", $.TypeDeclarationStatement_value),
 
     ModuleLevelAccessibilityModifier: $ => choice(
       $.Public,
@@ -692,21 +694,19 @@ module.exports = grammar({
       "[", $.AccessExpression, "]"
     ),
 
-    AnonymousFunctionName: $ => $.Expression,
-
+    AnonymousFunction_expression: $ => $.Expression,
+    AnonymousFunction_return_type: $ => $.TypeAnnotation,
+    AnonymousFunction_parameters__list: $ => $.Identifier,
     AnonymousFunction: $ => seq(
-      $.AnonymousFunctionSignature, optional($.TypeAnnotation), "=>", $.AnonymousFunctionName,
-    ),
-
-    ParameterName: $ => $.Identifier,
-
-    AnonymousFunctionSignature: $ => seq(
-      "(", optional(seq($.ParameterName, repeat(seq(",", $.ParameterName)), optional(","))), ")",
+      "(", optional(seq($.AnonymousFunction_parameters__list, repeat(seq(",", $.AnonymousFunction_parameters__list)), optional(","))), ")",
+      optional($.AnonymousFunction_return_type),
+      "=>",
+      $.AnonymousFunction_expression,
     ),
 
     ChainedFunctionCallOrEdgeAccess: $ =>choice(
-        $.ChainedFunctionCall,
-        $.ChainedEdgeAccess,
+      $.ChainedFunctionCall,
+      $.ChainedEdgeAccess,
     ),
 
     ChainedFunctionCall: $ => prec(PREC.call, seq(
@@ -739,8 +739,8 @@ module.exports = grammar({
     ),
 
     BooleanLiteral: $ => choice(
-        $.FalseLiteral,
-        $.TrueLiteral,
+      $.FalseLiteral,
+      $.TrueLiteral,
     ),
 
     FalseLiteral: $ => "False",
@@ -748,8 +748,8 @@ module.exports = grammar({
     TrueLiteral: $ => "True",
 
     NumberLiteral: $ => choice(
-        $.IntegerLiteral,
-        $.FloatLiteral,
+      $.IntegerLiteral,
+      $.FloatLiteral,
     ),
 
     StringLiteral: $ => choice(

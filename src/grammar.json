@@ -1080,12 +1080,16 @@
       "type": "SYMBOL",
       "name": "TypeUnion"
     },
+    "TypeUnion_types__list": {
+      "type": "SYMBOL",
+      "name": "SingleType"
+    },
     "TypeUnion": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "SingleType"
+          "name": "TypeUnion_types__list"
         },
         {
           "type": "REPEAT",
@@ -1098,14 +1102,14 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "SingleType"
+                "name": "TypeUnion_types__list"
               }
             ]
           }
         }
       ]
     },
-    "TypeName": {
+    "TypeIdentifier": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
@@ -1114,7 +1118,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "TypeName"
+          "name": "TypeIdentifier"
         },
         {
           "type": "SYMBOL",
@@ -1258,6 +1262,14 @@
       "type": "SYMBOL",
       "name": "ModuleLevelAccessibilityModifier"
     },
+    "TypeDeclarationStatement_name": {
+      "type": "SYMBOL",
+      "name": "TypeIdentifier"
+    },
+    "TypeDeclarationStatement_value": {
+      "type": "SYMBOL",
+      "name": "Type"
+    },
     "TypeDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -1279,7 +1291,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "TypeName"
+          "name": "TypeDeclarationStatement_name"
         },
         {
           "type": "STRING",
@@ -1287,7 +1299,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Type"
+          "name": "TypeDeclarationStatement_value"
         }
       ]
     },
@@ -2020,19 +2032,31 @@
         }
       ]
     },
+    "FunctionCall_expression": {
+      "type": "SYMBOL",
+      "name": "CallableExpression"
+    },
+    "FunctionCall_rule_parameters": {
+      "type": "SYMBOL",
+      "name": "RuleParameters"
+    },
+    "FunctionCall_parameters": {
+      "type": "SYMBOL",
+      "name": "FunctionCallParameters"
+    },
     "FunctionCall": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "CallableExpression"
+          "name": "FunctionCall_expression"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "RuleParameters"
+              "name": "FunctionCall_rule_parameters"
             },
             {
               "type": "BLANK"
@@ -2041,7 +2065,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "FunctionCallParameters"
+          "name": "FunctionCall_parameters"
         }
       ]
     },
@@ -2152,7 +2176,7 @@
         ]
       }
     },
-    "ParameterExpression": {
+    "FunctionCallParameters_expressions__list": {
       "type": "SYMBOL",
       "name": "Expression"
     },
@@ -2171,7 +2195,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "ParameterExpression"
+                  "name": "FunctionCallParameters_expressions__list"
                 },
                 {
                   "type": "REPEAT",
@@ -2184,7 +2208,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "ParameterExpression"
+                        "name": "FunctionCallParameters_expressions__list"
                       }
                     ]
                   }
@@ -2214,19 +2238,31 @@
         }
       ]
     },
+    "EdgeAccess_expression": {
+      "type": "SYMBOL",
+      "name": "CallableExpression"
+    },
+    "EdgeAccess_rule_parameters": {
+      "type": "SYMBOL",
+      "name": "RuleParameters"
+    },
+    "EdgeAccess_parameter": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
     "EdgeAccess": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "CallableExpression"
+          "name": "EdgeAccess_expression"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "RuleParameters"
+              "name": "EdgeAccess_rule_parameters"
             },
             {
               "type": "BLANK"
@@ -2234,8 +2270,16 @@
           ]
         },
         {
+          "type": "STRING",
+          "value": "["
+        },
+        {
           "type": "SYMBOL",
-          "name": "ListIndexAccess_EdgeAccessParameter"
+          "name": "EdgeAccess_parameter"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
@@ -2260,44 +2304,19 @@
         }
       ]
     },
-    "AnonymousFunctionName": {
+    "AnonymousFunction_expression": {
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "AnonymousFunction": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "AnonymousFunctionSignature"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "TypeAnnotation"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "=>"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "AnonymousFunctionName"
-        }
-      ]
+    "AnonymousFunction_return_type": {
+      "type": "SYMBOL",
+      "name": "TypeAnnotation"
     },
-    "ParameterName": {
+    "AnonymousFunction_parameters__list": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "AnonymousFunctionSignature": {
+    "AnonymousFunction": {
       "type": "SEQ",
       "members": [
         {
@@ -2312,7 +2331,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "ParameterName"
+                  "name": "AnonymousFunction_parameters__list"
                 },
                 {
                   "type": "REPEAT",
@@ -2325,7 +2344,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "ParameterName"
+                        "name": "AnonymousFunction_parameters__list"
                       }
                     ]
                   }
@@ -2352,6 +2371,26 @@
         {
           "type": "STRING",
           "value": ")"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "AnonymousFunction_return_type"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "=>"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "AnonymousFunction_expression"
         }
       ]
     },
@@ -2405,6 +2444,10 @@
         ]
       }
     },
+    "List_elements__list": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
     "List": {
       "type": "PREC",
       "value": 200,
@@ -2417,7 +2460,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "List_elements__list"
           },
           {
             "type": "STRING",
@@ -2426,19 +2469,40 @@
         ]
       }
     },
+    "Node_type": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "Node_alias": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "Node_edges__list": {
+      "type": "SYMBOL",
+      "name": "NodeEdge"
+    },
     "Node": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "Node_type"
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "NodeAlias"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "as"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "Node_alias"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -2453,7 +2517,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "NodeEdge"
+            "name": "Node_edges__list"
           }
         },
         {
@@ -2462,25 +2526,20 @@
         }
       ]
     },
-    "NodeAlias": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "as"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
-        }
-      ]
+    "NodeEdge_name": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "NodeEdge_value": {
+      "type": "SYMBOL",
+      "name": "Expression"
     },
     "NodeEdge": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "Identifier"
+          "name": "NodeEdge_name"
         },
         {
           "type": "STRING",
@@ -2488,7 +2547,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Expression"
+          "name": "NodeEdge_value"
         }
       ]
     },
