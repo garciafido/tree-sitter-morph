@@ -1,18 +1,37 @@
 {
   "name": "tree-sitter-morph",
-  "version": "1.0.41",
-  "description": "",
+  "version": "1.0.42",
+  "description": "Morph Language tree-sitter parser",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/tree-sitter test",
+    "generate": "./node_modules/.bin/tree-sitter generate",
+    "parse": "./node_modules/.bin/tree-sitter parse",
+    "highlight": "./node_modules/.bin/tree-sitter highlight"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garciafido/tree-sitter-morph.git"
+  },
+  "keywords": [
+    "parser",
+    "tree-sitter",
+    "morph"
+  ],
+  "author": "Fido Garcia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garciafido/tree-sitter-morph/issues"
+  },
+  "homepage": "https://github.com/garciafido/tree-sitter-morph#readme",
   "dependencies": {
     "nan": "^2.14.0"
   },
   "devDependencies": {
     "tree-sitter": "^0.16.0",
     "tree-sitter-cli": "^0.16.5"
+  },
+    "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
   }
 }
