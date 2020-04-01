@@ -528,11 +528,11 @@
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "MorphismDeclarationStatement_from": {
+    "MorphismDeclarationStatement_source": {
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "MorphismDeclarationStatement_member": {
+    "MorphismDeclarationStatement_members__list": {
       "type": "CHOICE",
       "members": [
         {
@@ -581,7 +581,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "MorphismDeclarationStatement_from"
+          "name": "MorphismDeclarationStatement_source"
         },
         {
           "type": "STRING",
@@ -592,8 +592,11 @@
           "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "MorphismDeclarationStatement_member"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "MorphismDeclarationStatement_members__list"
+          }
         },
         {
           "type": "STRING",

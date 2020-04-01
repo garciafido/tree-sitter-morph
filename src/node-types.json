@@ -1138,15 +1138,15 @@
           "named": true
         },
         {
-          "type": "MorphismDeclarationStatement_from",
-          "named": true
-        },
-        {
-          "type": "MorphismDeclarationStatement_member",
+          "type": "MorphismDeclarationStatement_members__list",
           "named": true
         },
         {
           "type": "MorphismDeclarationStatement_name",
+          "named": true
+        },
+        {
+          "type": "MorphismDeclarationStatement_source",
           "named": true
         }
       ]
@@ -1183,22 +1183,7 @@
     }
   },
   {
-    "type": "MorphismDeclarationStatement_from",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismDeclarationStatement_member",
+    "type": "MorphismDeclarationStatement_members__list",
     "named": true,
     "fields": {},
     "children": {
@@ -1226,6 +1211,21 @@
       "types": [
         {
           "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismDeclarationStatement_source",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
           "named": true
         }
       ]
