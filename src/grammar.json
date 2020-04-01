@@ -377,9 +377,25 @@
         ]
       }
     },
-    "NodeEdgeName": {
+    "NodeEdgeDeclaration_name": {
       "type": "SYMBOL",
       "name": "Identifier"
+    },
+    "NodeEdgeDeclaration_type": {
+      "type": "SYMBOL",
+      "name": "Type"
+    },
+    "NodeEdgeDeclaration_decorators__list": {
+      "type": "SYMBOL",
+      "name": "Decorator"
+    },
+    "NodeEdgeDeclaration_modifier": {
+      "type": "SYMBOL",
+      "name": "NodeEdgeModifier"
+    },
+    "NodeEdgeDeclaration_initializer": {
+      "type": "SYMBOL",
+      "name": "NodeEdgeInitializer"
     },
     "NodeEdgeDeclaration": {
       "type": "SEQ",
@@ -388,19 +404,19 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "Decorator"
+            "name": "NodeEdgeDeclaration_decorators__list"
           }
         },
         {
           "type": "SYMBOL",
-          "name": "NodeEdgeName"
+          "name": "NodeEdgeDeclaration_name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "NodeEdgeModifier"
+              "name": "NodeEdgeDeclaration_modifier"
             },
             {
               "type": "BLANK"
@@ -413,14 +429,14 @@
         },
         {
           "type": "SYMBOL",
-          "name": "Type"
+          "name": "NodeEdgeDeclaration_type"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "NodeEdgeInitializer"
+              "name": "NodeEdgeDeclaration_initializer"
             },
             {
               "type": "BLANK"

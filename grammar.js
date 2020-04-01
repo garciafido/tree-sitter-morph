@@ -135,20 +135,23 @@ module.exports = grammar({
       ),
     ),
 
-    NodeEdgeName: $ => $.Identifier,
-
+    NodeEdgeDeclaration_name: $ => $.Identifier,
+    NodeEdgeDeclaration_type: $ => $.Type,
+    NodeEdgeDeclaration_decorators__list: $ => $.Decorator,
+    NodeEdgeDeclaration_modifier: $ => $.NodeEdgeModifier,
+    NodeEdgeDeclaration_initializer: $ => $.NodeEdgeInitializer,
     NodeEdgeDeclaration: $ => seq(
-      repeat($.Decorator),
-      $.NodeEdgeName,
-      optional($.NodeEdgeModifier),
+      repeat($.NodeEdgeDeclaration_decorators__list),
+      $.NodeEdgeDeclaration_name,
+      optional($.NodeEdgeDeclaration_modifier),
       "->",
-      $.Type,
-      optional($.NodeEdgeInitializer),
+      $.NodeEdgeDeclaration_type,
+      optional($.NodeEdgeDeclaration_initializer),
     ),
 
     NodeEdgeModifier: $ => choice(
-        $.NodeEdgeRequiredModifier,
-        $.NodeEdgeArrayModifier,
+      $.NodeEdgeRequiredModifier,
+      $.NodeEdgeArrayModifier,
     ),
 
     NodeEdgeRequiredModifier: $ => "!",

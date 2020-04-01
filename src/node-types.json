@@ -1363,21 +1363,96 @@
       "required": true,
       "types": [
         {
-          "type": "Decorator",
+          "type": "NodeEdgeDeclaration_decorators__list",
           "named": true
         },
+        {
+          "type": "NodeEdgeDeclaration_initializer",
+          "named": true
+        },
+        {
+          "type": "NodeEdgeDeclaration_modifier",
+          "named": true
+        },
+        {
+          "type": "NodeEdgeDeclaration_name",
+          "named": true
+        },
+        {
+          "type": "NodeEdgeDeclaration_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeDeclaration_decorators__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Decorator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeDeclaration_initializer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
           "type": "NodeEdgeInitializer",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeDeclaration_modifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
           "type": "NodeEdgeModifier",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeDeclaration_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
-          "type": "NodeEdgeName",
+          "type": "Identifier",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdgeDeclaration_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
           "type": "Type",
           "named": true
@@ -1414,21 +1489,6 @@
         },
         {
           "type": "NodeEdgeRequiredModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdgeName",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
           "named": true
         }
       ]
