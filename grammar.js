@@ -60,7 +60,7 @@ module.exports = grammar({
 
     Module_statements__list: $ => choice(
       $.ImportStatement,
-      $.NodeDeclarationStatement,
+      $.NodeTypeDeclarationStatement,
       $.MorphismDeclarationStatement,
       $.SymbolDeclarationStatement,
       $.EnumDeclarationStatement,
@@ -97,24 +97,24 @@ module.exports = grammar({
       "import", optional($.ImportModuleStatement_path), $.ImportModuleStatement_from,
     ),
 
-    NodeDeclarationStatement_decorators__list: $ => prec(PREC.node_decorator, $.Decorator),
-    NodeDeclarationStatement_export: $ => $.Export,
-    NodeDeclarationStatement_abstract: $ => "abstract",
-    NodeDeclarationStatement_name: $ => $.Identifier,
-    NodeDeclarationStatement_extends: $ => $.Extends,
-    NodeDeclarationStatement_members__list: $ => choice(
+    NodeTypeDeclarationStatement_decorators__list: $ => prec(PREC.node_decorator, $.Decorator),
+    NodeTypeDeclarationStatement_export: $ => $.Export,
+    NodeTypeDeclarationStatement_abstract: $ => "abstract",
+    NodeTypeDeclarationStatement_name: $ => $.Identifier,
+    NodeTypeDeclarationStatement_extends: $ => $.Extends,
+    NodeTypeDeclarationStatement_members__list: $ => choice(
         $.NodeEdgeDeclaration,
         $.NodeStaticConstantDeclaration,
     ),
 
-    NodeDeclarationStatement: $ => seq(
-      repeat($.NodeDeclarationStatement_decorators__list),
-      optional($.NodeDeclarationStatement_export),
-      optional($.NodeDeclarationStatement_abstract),
+    NodeTypeDeclarationStatement: $ => seq(
+      repeat($.NodeTypeDeclarationStatement_decorators__list),
+      optional($.NodeTypeDeclarationStatement_export),
+      optional($.NodeTypeDeclarationStatement_abstract),
       "node",
-      $.NodeDeclarationStatement_name,
-      optional($.NodeDeclarationStatement_extends),
-      "{", repeat($.NodeDeclarationStatement_members__list), "}",
+      $.NodeTypeDeclarationStatement_name,
+      optional($.NodeTypeDeclarationStatement_extends),
+      "{", repeat($.NodeTypeDeclarationStatement_members__list), "}",
     ),
 
     Extends: $ => seq(
