@@ -64,6 +64,29 @@
     }
   },
   {
+    "type": "AnonymousFunction",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "AnonymousFunction_expression",
+          "named": true
+        },
+        {
+          "type": "AnonymousFunction_parameters__list",
+          "named": true
+        },
+        {
+          "type": "AnonymousFunction_return_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "AnonymousFunction_expression",
     "named": true,
     "fields": {},
@@ -1357,6 +1380,21 @@
     "fields": {}
   },
   {
+    "type": "List",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "List_elements__list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "ListIndexAccess_EdgeAccessParameter",
     "named": true,
     "fields": {},
@@ -1381,6 +1419,33 @@
       "types": [
         {
           "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanLiteral",
+          "named": true
+        },
+        {
+          "type": "NumberLiteral",
+          "named": true
+        },
+        {
+          "type": "StringLiteral",
+          "named": true
+        },
+        {
+          "type": "StringTemplateLiteral",
           "named": true
         }
       ]
@@ -1845,6 +1910,29 @@
     "type": "NegativeSign",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "Node",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Node_alias",
+          "named": true
+        },
+        {
+          "type": "Node_edges__list",
+          "named": true
+        },
+        {
+          "type": "Node_type",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "NodeEdge",
@@ -2337,19 +2425,15 @@
       "required": true,
       "types": [
         {
+          "type": "AnonymousFunction",
+          "named": true
+        },
+        {
           "type": "BinaryExpression",
           "named": true
         },
         {
           "type": "ChainedFunctionCallOrEdgeAccess",
-          "named": true
-        },
-        {
-          "type": "FalseLiteral",
-          "named": true
-        },
-        {
-          "type": "FloatLiteral",
           "named": true
         },
         {
@@ -2361,23 +2445,19 @@
           "named": true
         },
         {
-          "type": "IntegerLiteral",
+          "type": "List",
+          "named": true
+        },
+        {
+          "type": "Literal",
+          "named": true
+        },
+        {
+          "type": "Node",
           "named": true
         },
         {
           "type": "ParenthesizedExpression",
-          "named": true
-        },
-        {
-          "type": "StringLiteral",
-          "named": true
-        },
-        {
-          "type": "StringTemplateLiteral",
-          "named": true
-        },
-        {
-          "type": "TrueLiteral",
           "named": true
         },
         {
