@@ -557,7 +557,7 @@ module.exports = grammar({
       $.ParenthesizedExpression,
     )),
 
-    ChainedEdgeAccess: $ => prec.left(PREC.lambda, seq(
+    ChainedEdgeAccess: $ => prec.left(PREC.call, seq(
       $.PrimaryExpression, optional($.RuleParameters), $.ListIndexAccess_EdgeAccessParameter,
     )),
 
@@ -587,9 +587,12 @@ module.exports = grammar({
 
     AnonymousFunction_expression: $ => $.Expression,
     AnonymousFunction_return_type: $ => $.TypeAnnotation,
-    AnonymousFunction_parameters__list: $ => $.Identifier,
+    AnonymousFunction_parameters__list: $ => prec(PREC.lambda, $.Identifier),
     AnonymousFunction: $ => seq(
-      "(", optional(seq($.AnonymousFunction_parameters__list, repeat(seq(",", $.AnonymousFunction_parameters__list)), optional(","))), ")",
+      "(", optional(seq(
+          $.AnonymousFunction_parameters__list,
+          repeat(seq(",", $.AnonymousFunction_parameters__list)), optional(","))),
+      ")",
       optional($.AnonymousFunction_return_type),
       "=>",
       $.AnonymousFunction_expression,
