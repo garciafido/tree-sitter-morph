@@ -1,5 +1,16 @@
 const LIST_POSTFIX = "__list";
 
+class SyntaxError extends Error {
+    constructor(node) {
+        super("Syntax Error");
+        this.position = {
+            start: node.startPosition,
+            end: node.endPosition,
+        }
+    }
+
+}
+
 module.exports.buildParseSemantic = function(Parser, Morph) {
     return function parseSemantic(sourceCode) {
         class ParseSemantic {
@@ -33,6 +44,10 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
 
                 const NewChildren = {};
                 for (const child of children) {
+                    if (child.type === "ERROR") {
+                        throw new SyntaxError(child);
+                    }
+
                     let childType = child.type;
                     const isList = childType.lastIndexOf(LIST_POSTFIX) > 0;
                     if (isList) {
