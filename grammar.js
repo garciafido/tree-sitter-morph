@@ -350,10 +350,6 @@ module.exports = grammar({
     // ** Expressions **
     // *****************
 
-//--------------------------------- ReVISANDO ------------------------------------------->>>>>------>>>>>>
-
-    // Expression: $ => $.BooleanExpression,
-
     Expression: $ => choice(
       $.RelationalExpression,
       $.Negation,
