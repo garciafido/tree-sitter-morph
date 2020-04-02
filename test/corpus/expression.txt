@@ -68,7 +68,8 @@ const foo = f(a).f(b)
 Lambda OK
 =========
 
-const x = a + b + ((x) => c)
+const x = lambda (x) => c
 
 ---
 
+(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (AnonymousFunction (AnonymousFunction_parameters__list (Identifier (CamelIdentifier))) (AnonymousFunction_expression (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))

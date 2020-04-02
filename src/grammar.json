@@ -2380,6 +2380,10 @@
         "members": [
           {
             "type": "STRING",
+            "value": "lambda"
+          },
+          {
+            "type": "STRING",
             "value": "("
           },
           {

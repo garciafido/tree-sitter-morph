@@ -3188,6 +3188,10 @@
     "named": false
   },
   {
+    "type": "lambda",
+    "named": false
+  },
+  {
     "type": "morph",
     "named": false
   },

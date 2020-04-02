@@ -15,6 +15,5 @@ lerna-debug.log*
 node_modules/
 
 Sera borrado package-lock.json
-Sera borrado test.js
 Sera borrado test.morph
 Sera borrado yarn.lock
