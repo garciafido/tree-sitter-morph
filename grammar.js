@@ -587,7 +587,7 @@ module.exports = grammar({
 
     AnonymousFunction_expression: $ => $.Expression,
     AnonymousFunction_return_type: $ => $.TypeAnnotation,
-    AnonymousFunction_parameters__list: $ => prec(PREC.lambda, $.Identifier),
+    AnonymousFunction_parameters__list: $ => prec(PREC.call, $.Identifier),
     AnonymousFunction: $ => seq(
       "(", optional(seq(
           $.AnonymousFunction_parameters__list,
