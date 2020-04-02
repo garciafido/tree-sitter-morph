@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-morph",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "description": "A parser for the Morph Language written in tree-sitter",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/garciafido/tree-sitter-morph.git"
+    "url": "git+https://github.com/morphlang/tree-sitter-morph.git"
   },
   "keywords": [
     "parser",
@@ -21,14 +21,13 @@
   "author": "Fido Garcia",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/garciafido/tree-sitter-morph/issues"
+    "url": "https://github.com/morphlang/tree-sitter-morph/issues"
   },
-  "homepage": "https://github.com/garciafido/tree-sitter-morph#readme",
+  "homepage": "https://github.com/morphlang/tree-sitter-morph#readme",
   "dependencies": {
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "tree-sitter": "^0.16.0",
     "tree-sitter-cli": "^0.16.5"
   },
     "publishConfig": {
