@@ -10,6 +10,9 @@
     "highlight": "./node_modules/.bin/tree-sitter highlight",
     "release": "np"
   },
+  "np": {
+    "yarn": false
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/morphlang/tree-sitter-morph.git"
