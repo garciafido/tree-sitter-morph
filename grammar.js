@@ -451,77 +451,77 @@ module.exports = grammar({
 
     Addition_left: $ => $.PrimaryExpression,
     Addition_right: $ => $.PrimaryExpression,
-    Addition: $ => seq(
+    Addition: $ => prec.left(PREC.plus, seq(
       $.Addition_left,
       "+",
       $.Addition_right,
-    ),
+    )),
 
     Subtraction_left: $ => $.PrimaryExpression,
     Subtraction_right: $ => $.PrimaryExpression,
-    Subtraction: $ => seq(
+    Subtraction: $ => prec.left(PREC.plus, seq(
       $.Subtraction_left,
       "-",
       $.Subtraction_right,
-    ),
+    )),
 
     Multiplication_left: $ => $.PrimaryExpression,
     Multiplication_right: $ => $.PrimaryExpression,
-    Multiplication: $ => seq(
+    Multiplication: $ => prec.left(PREC.times, seq(
       $.Multiplication_left,
       "*",
       $.Multiplication_right,
-    ),
+    )),
 
     Division_left: $ => $.PrimaryExpression,
     Division_right: $ => $.PrimaryExpression,
-    Division: $ => seq(
+    Division: $ => prec.left(PREC.times, seq(
       $.Division_left,
       "/",
       $.Division_right,
-    ),
+    )),
 
     Modulus_left: $ => $.PrimaryExpression,
     Modulus_right: $ => $.PrimaryExpression,
-    Modulus: $ => seq(
+    Modulus: $ => prec.left(PREC.times, seq(
       $.Modulus_left,
       "%",
       $.Modulus_right,
-    ),
+    )),
 
     BitwiseDisjunction_left: $ => $.PrimaryExpression,
     BitwiseDisjunction_right: $ => $.PrimaryExpression,
-    BitwiseDisjunction: $ => seq(
+    BitwiseDisjunction: $ => prec.left(PREC.bitwise_or, seq(
       $.BitwiseDisjunction_left,
       "|",
       $.BitwiseDisjunction_right,
-    ),
+    )),
 
     BitwiseConjunction_left: $ => $.PrimaryExpression,
     BitwiseConjunction_right: $ => $.PrimaryExpression,
-    BitwiseConjunction: $ => seq(
+    BitwiseConjunction: $ => prec.left(PREC.bitwise_and, seq(
       $.BitwiseConjunction_left,
       "&",
       $.BitwiseConjunction_right,
-    ),
+    )),
 
     ExclusiveDisjunction_left: $ => $.PrimaryExpression,
     ExclusiveDisjunction_right: $ => $.PrimaryExpression,
-    ExclusiveDisjunction: $ => seq(
+    ExclusiveDisjunction: $ => prec.left(PREC.xor, seq(
       $.ExclusiveDisjunction_left,
       "^",
       $.ExclusiveDisjunction_right,
-    ),
+    )),
 
     BinaryExpression: $ => choice(
-      prec.left(PREC.plus, $.Addition),
-      prec.left(PREC.plus, $.Subtraction),
-      prec.left(PREC.times, $.Multiplication),
-      prec.left(PREC.times, $.Division),
-      prec.left(PREC.times, $.Modulus),
-      prec.left(PREC.bitwise_or, $.BitwiseDisjunction),
-      prec.left(PREC.bitwise_and, $.BitwiseConjunction),
-      prec.left(PREC.xor, $.ExclusiveDisjunction),
+      $.Addition,
+      $.Subtraction,
+      $.Multiplication,
+      $.Division,
+      $.Modulus,
+      $.BitwiseDisjunction,
+      $.BitwiseConjunction,
+      $.ExclusiveDisjunction,
     ),
 
     ParenthesizedExpression: $ => prec(PREC.parenthesized_expression, seq(
