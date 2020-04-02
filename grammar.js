@@ -383,25 +383,30 @@ module.exports = grammar({
       ))
     )),
 
-    Negation_expression: $ => $.Expression,
-    Negation: $ => prec(PREC.not, seq(
+    Negation_expression: $ => prec(PREC.not, $.Expression),
+    Negation: $ => seq(
       "not",
       $.Negation_expression,
-    )),
+    ),
 
     Disjunction: $ => "or",
     Conjunction: $ => "and",
 
+    BooleanConjunctionExpression_left: $ => prec.left(PREC.and+1, $.Expression),
+    BooleanConjunctionExpression_right: $ => prec.left(PREC.and, $.Expression),
+    BooleanDisjunctionExpression_left: $ => prec.left(PREC.or+1, $.Expression),
+    BooleanDisjunctionExpression_right: $ => prec.left(PREC.or, $.Expression),
+
     BooleanExpression: $ => choice(
       prec.left(PREC.and, seq(
-        field('left', $.Expression),
-        field('operator', $.Conjunction),
-        field('right', $.Expression)
+        $.BooleanConjunctionExpression_left,
+        $.Conjunction,
+        $.BooleanConjunctionExpression_right,
       )),
       prec.left(PREC.or, seq(
-        field('left', $.Expression),
-        field('operator', $.Disjunction),
-        field('right', $.Expression)
+        $.BooleanDisjunctionExpression_left,
+        $.Disjunction,
+        $.BooleanDisjunctionExpression_right,
       ))
     ),
 

@@ -1497,25 +1497,25 @@
       }
     },
     "Negation_expression": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "Negation": {
       "type": "PREC",
       "value": 10,
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "not"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Negation_expression"
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "Expression"
       }
+    },
+    "Negation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "not"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Negation_expression"
+        }
+      ]
     },
     "Disjunction": {
       "type": "STRING",
@@ -1524,6 +1524,38 @@
     "Conjunction": {
       "type": "STRING",
       "value": "and"
+    },
+    "BooleanConjunctionExpression_left": {
+      "type": "PREC_LEFT",
+      "value": 111,
+      "content": {
+        "type": "SYMBOL",
+        "name": "Expression"
+      }
+    },
+    "BooleanConjunctionExpression_right": {
+      "type": "PREC_LEFT",
+      "value": 110,
+      "content": {
+        "type": "SYMBOL",
+        "name": "Expression"
+      }
+    },
+    "BooleanDisjunctionExpression_left": {
+      "type": "PREC_LEFT",
+      "value": 101,
+      "content": {
+        "type": "SYMBOL",
+        "name": "Expression"
+      }
+    },
+    "BooleanDisjunctionExpression_right": {
+      "type": "PREC_LEFT",
+      "value": 100,
+      "content": {
+        "type": "SYMBOL",
+        "name": "Expression"
+      }
     },
     "BooleanExpression": {
       "type": "CHOICE",
@@ -1535,28 +1567,16 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "FIELD",
-                "name": "left",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Expression"
-                }
+                "type": "SYMBOL",
+                "name": "BooleanConjunctionExpression_left"
               },
               {
-                "type": "FIELD",
-                "name": "operator",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Conjunction"
-                }
+                "type": "SYMBOL",
+                "name": "Conjunction"
               },
               {
-                "type": "FIELD",
-                "name": "right",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Expression"
-                }
+                "type": "SYMBOL",
+                "name": "BooleanConjunctionExpression_right"
               }
             ]
           }
@@ -1568,28 +1588,16 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "FIELD",
-                "name": "left",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Expression"
-                }
+                "type": "SYMBOL",
+                "name": "BooleanDisjunctionExpression_left"
               },
               {
-                "type": "FIELD",
-                "name": "operator",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Disjunction"
-                }
+                "type": "SYMBOL",
+                "name": "Disjunction"
               },
               {
-                "type": "FIELD",
-                "name": "right",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Expression"
-                }
+                "type": "SYMBOL",
+                "name": "BooleanDisjunctionExpression_right"
               }
             ]
           }
@@ -2832,7 +2840,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",

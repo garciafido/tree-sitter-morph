@@ -255,43 +255,98 @@
     }
   },
   {
+    "type": "BooleanConjunctionExpression_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BooleanConjunctionExpression_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BooleanDisjunctionExpression_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BooleanDisjunctionExpression_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "BooleanExpression",
     "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "Expression",
-            "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "Conjunction",
-            "named": true
-          },
-          {
-            "type": "Disjunction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "Expression",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanConjunctionExpression_left",
+          "named": true
+        },
+        {
+          "type": "BooleanConjunctionExpression_right",
+          "named": true
+        },
+        {
+          "type": "BooleanDisjunctionExpression_left",
+          "named": true
+        },
+        {
+          "type": "BooleanDisjunctionExpression_right",
+          "named": true
+        },
+        {
+          "type": "Conjunction",
+          "named": true
+        },
+        {
+          "type": "Disjunction",
+          "named": true
+        }
+      ]
     }
   },
   {
