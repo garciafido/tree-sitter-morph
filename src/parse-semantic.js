@@ -23,6 +23,8 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
 
                 const children = node.namedChildren;
 
+                console.log(node.type, node.namedChildren);
+
                 if (children.length === 0) {
                     NewNode.value = this.getContent(node);
                 }
