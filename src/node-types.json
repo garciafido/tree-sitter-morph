@@ -17,7 +17,51 @@
   {
     "type": "Addition",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Addition_left",
+          "named": true
+        },
+        {
+          "type": "Addition_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Addition_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Addition_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "AnonymousFunction_expression",
@@ -72,71 +116,143 @@
   {
     "type": "BinaryExpression",
     "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "PrimaryExpression",
-            "named": true
-          }
-        ]
-      },
-      "operator": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "Addition",
-            "named": true
-          },
-          {
-            "type": "BitwiseConjunction",
-            "named": true
-          },
-          {
-            "type": "BitwiseDisjunction",
-            "named": true
-          },
-          {
-            "type": "Division",
-            "named": true
-          },
-          {
-            "type": "ExclusiveDisjunction",
-            "named": true
-          },
-          {
-            "type": "Modulus",
-            "named": true
-          },
-          {
-            "type": "Multiplication",
-            "named": true
-          },
-          {
-            "type": "Subtraction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "PrimaryExpression",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Addition",
+          "named": true
+        },
+        {
+          "type": "BitwiseConjunction",
+          "named": true
+        },
+        {
+          "type": "BitwiseDisjunction",
+          "named": true
+        },
+        {
+          "type": "Division",
+          "named": true
+        },
+        {
+          "type": "ExclusiveDisjunction",
+          "named": true
+        },
+        {
+          "type": "Modulus",
+          "named": true
+        },
+        {
+          "type": "Multiplication",
+          "named": true
+        },
+        {
+          "type": "Subtraction",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BitwiseConjunction",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BitwiseConjunction_left",
+          "named": true
+        },
+        {
+          "type": "BitwiseConjunction_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BitwiseConjunction_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BitwiseConjunction_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
     }
   },
   {
     "type": "BitwiseDisjunction",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BitwiseDisjunction_left",
+          "named": true
+        },
+        {
+          "type": "BitwiseDisjunction_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BitwiseDisjunction_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "BitwiseDisjunction_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "BooleanExpression",
@@ -447,7 +563,51 @@
   {
     "type": "Division",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Division_left",
+          "named": true
+        },
+        {
+          "type": "Division_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Division_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Division_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "EdgeAccess",
@@ -580,6 +740,55 @@
       "types": [
         {
           "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ExclusiveDisjunction",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ExclusiveDisjunction_left",
+          "named": true
+        },
+        {
+          "type": "ExclusiveDisjunction_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ExclusiveDisjunction_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ExclusiveDisjunction_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
           "named": true
         }
       ]
@@ -1223,6 +1432,55 @@
     }
   },
   {
+    "type": "Modulus",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Modulus_left",
+          "named": true
+        },
+        {
+          "type": "Modulus_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Modulus_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Modulus_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "MorphismCreationDeclaration",
     "named": true,
     "fields": {},
@@ -1425,6 +1683,55 @@
       "types": [
         {
           "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Multiplication",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Multiplication_left",
+          "named": true
+        },
+        {
+          "type": "Multiplication_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Multiplication_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Multiplication_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
           "named": true
         }
       ]
@@ -2239,7 +2546,51 @@
   {
     "type": "Subtraction",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Subtraction_left",
+          "named": true
+        },
+        {
+          "type": "Subtraction_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Subtraction_left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Subtraction_right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "SymbolDeclarationStatement",
@@ -2540,6 +2891,14 @@
     "named": false
   },
   {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "'",
     "named": false
   },
@@ -2549,6 +2908,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
     "named": false
   },
   {
@@ -2604,10 +2967,6 @@
     "named": false
   },
   {
-    "type": "BitwiseConjunction",
-    "named": true
-  },
-  {
     "type": "BooleanType",
     "named": true
   },
@@ -2636,10 +2995,6 @@
     "named": true
   },
   {
-    "type": "ExclusiveDisjunction",
-    "named": true
-  },
-  {
     "type": "FalseLiteral",
     "named": true
   },
@@ -2665,14 +3020,6 @@
   },
   {
     "type": "LessThanEqualTo",
-    "named": true
-  },
-  {
-    "type": "Modulus",
-    "named": true
-  },
-  {
-    "type": "Multiplication",
     "named": true
   },
   {
@@ -2725,6 +3072,10 @@
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
     "named": false
   },
   {
