@@ -24,6 +24,7 @@ const PREC = {
   call: 200,
 
   primary: 210,
+  callable: 210,
 
   morph_decorator: 1,
   node_decorator: 2,
@@ -44,8 +45,8 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    [$.Expression, $.ChainedFunctionCallOrEdgeAccess_expression],
-    [$.ChainedFunctionCallOrEdgeAccess_expression, $.RelationalExpression],
+    [$.ChainedFunctionCallOrEdgeAccess_expression, $.Expression],
+    [$.RelationalExpression, $.ChainedFunctionCallOrEdgeAccess_expression],
   ]),
 
   // conflicts: $ => [
@@ -417,7 +418,7 @@ module.exports = grammar({
       ))
     ),
 
-    PrimaryExpression: $ => prec(PREC.primary, choice(
+    PrimaryExpression: $ => choice(
       $.BinaryExpression,
       $.Identifier,
       $.Literal,
@@ -425,10 +426,10 @@ module.exports = grammar({
       $.List,
       $.Node,
       $.AnonymousFunction,
+      $.ParenthesizedExpression,
       $.FunctionCallOrEdgeAccess,
       $.ChainedFunctionCallOrEdgeAccess,
-      $.ParenthesizedExpression,
-    )),
+    ),
 
 
     Addition_left: $ => prec(PREC.plus+1, $.PrimaryExpression),
@@ -559,13 +560,13 @@ module.exports = grammar({
       )
     },
 
-    CallableName: $ => $.Identifier,
+    CallableName: $ => prec(PREC.callable, $.Identifier),
 
-    CallableExpression: $ => choice(
+    CallableExpression: $ => prec.left(PREC.callable, choice(
       $.CallableName,
       $.FunctionCallOrEdgeAccess,
       $.ParenthesizedExpression,
-    ),
+    )),
 
     RuleParameters: $ => prec(PREC.call, seq(
       "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
@@ -581,8 +582,8 @@ module.exports = grammar({
 
     AnonymousFunction_expression: $ => $.Expression,
     AnonymousFunction_return_type: $ => $.TypeAnnotation,
-    AnonymousFunction_parameters__list: $ => $.Identifier,
-    AnonymousFunction: $ => seq(
+    AnonymousFunction_parameters__list: $ => prec(PREC.lambda, $.Identifier),
+    AnonymousFunction: $ => prec(PREC.lambda, seq(
       "lambda",
       "(",
       getCommaSeparatedList($.AnonymousFunction_parameters__list),
@@ -590,7 +591,7 @@ module.exports = grammar({
       optional($.AnonymousFunction_return_type),
       "=>",
       $.AnonymousFunction_expression,
-    ),
+    )),
 
     ChainedFunctionCallOrEdgeAccess_expression: $ => $.PrimaryExpression,
     ChainedFunctionCallOrEdgeAccess_function_call_identifier: $ => $.Identifier,
