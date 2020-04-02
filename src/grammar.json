@@ -1496,6 +1496,10 @@
         ]
       }
     },
+    "Negation_expression": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
     "Negation": {
       "type": "PREC",
       "value": 10,
@@ -1507,12 +1511,8 @@
             "value": "not"
           },
           {
-            "type": "FIELD",
-            "name": "argument",
-            "content": {
-              "type": "SYMBOL",
-              "name": "Expression"
-            }
+            "type": "SYMBOL",
+            "name": "Negation_expression"
           }
         ]
       }

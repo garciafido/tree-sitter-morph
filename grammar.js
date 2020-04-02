@@ -387,9 +387,10 @@ module.exports = grammar({
       ))
     )),
 
+    Negation_expression: $ => $.Expression,
     Negation: $ => prec(PREC.not, seq(
       "not",
-      field('argument', $.Expression)
+      $.Negation_expression,
     )),
 
     Disjunction: $ => "or",
