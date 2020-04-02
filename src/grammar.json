@@ -1816,15 +1816,19 @@
     },
     "BitwiseDisjunction_left": {
       "type": "PREC",
-      "value": 120,
+      "value": 121,
       "content": {
         "type": "SYMBOL",
         "name": "PrimaryExpression"
       }
     },
     "BitwiseDisjunction_right": {
-      "type": "SYMBOL",
-      "name": "PrimaryExpression"
+      "type": "PREC",
+      "value": 120,
+      "content": {
+        "type": "SYMBOL",
+        "name": "PrimaryExpression"
+      }
     },
     "BitwiseDisjunction": {
       "type": "PREC_LEFT",
