@@ -358,10 +358,7 @@ module.exports = grammar({
       $.RelationalExpression,
       $.Negation,
       $.BooleanExpression,
-      // $.lambda,
       $.PrimaryExpression,
-      // $.conditional_expression,
-      // $.named_expression
     ),
 
     EqualTo: $ => "==",
@@ -420,24 +417,10 @@ module.exports = grammar({
       $.FalseLiteral,
       $.IntegerLiteral,
       $.FloatLiteral,
-      // $.keyword_identifier,
-      // $.none,
       $.UnaryFactor,
-      // $.attribute,
-      // $.subscript,
-      // $.call,
       $.FunctionCallOrEdgeAccess,
       $.ChainedFunctionCallOrEdgeAccess,
-      // $.list,
-      // $.list_comprehension,
-      // $.dictionary,
-      // $.dictionary_comprehension,
-      // $.set,
-      // $.set_comprehension,
-      // $.tuple,
       $.ParenthesizedExpression,
-      // $.generator_expression,
-      // $.ellipsis
     ),
 
 
