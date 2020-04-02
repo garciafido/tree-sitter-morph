@@ -6,7 +6,8 @@ const a = b + 8 * 9 and 101 > 0 < 19
 
 ---
 
- (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (BooleanExpression (Expression (PrimaryExpression (BinaryExpression (PrimaryExpression (Identifier (CamelIdentifier))) (Addition) (PrimaryExpression (BinaryExpression (PrimaryExpression (IntegerLiteral)) (Multiplication) (PrimaryExpression (IntegerLiteral))))))) (Conjunction) (Expression (RelationalExpression (PrimaryExpression (IntegerLiteral)) (GraterThan) (PrimaryExpression (IntegerLiteral)) (LessThan) (PrimaryExpression (IntegerLiteral))))))))))
+(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (BooleanExpression (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (Identifier (CamelIdentifier)))) (Addition_right (PrimaryExpression (BinaryExpression (Multiplication (Multiplication_left (PrimaryExpression (IntegerLiteral))) (Multiplication_right (PrimaryExpression (IntegerLiteral))))))))))) (Conjunction) (Expression (RelationalExpression (PrimaryExpression (IntegerLiteral)) (GraterThan) (PrimaryExpression (IntegerLiteral)) (LessThan) (PrimaryExpression (IntegerLiteral))))))))))
+
 
 ========
 negation
@@ -26,21 +27,7 @@ const foo = -1+4
 
 ---
 
-(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign)
-(ConstantDeclarationStatement_value (Expression
-    (PrimaryExpression
-        (BinaryExpression
-            (PrimaryExpression
-                (UnaryFactor
-                    (NegativeFactor
-                        (NegativeSign)
-                        (PrimaryExpression (IntegerLiteral))))
-            )
-            (Addition)
-            (PrimaryExpression (IntegerLiteral)))))))))
-
-
-
+(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (UnaryFactor (NegativeFactor (NegativeSign) (PrimaryExpression (IntegerLiteral)))))) (Addition_right (PrimaryExpression (IntegerLiteral)))))))))))
 
 ============
 FunctionCall
