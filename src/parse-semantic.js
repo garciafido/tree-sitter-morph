@@ -18,7 +18,11 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                 const NewNode = {
                     type: type,
                     value: undefined,
-                    children: {}
+                    children: {},
+                    sourceFilePosition: {
+                        start: node.startPosition,
+                        end: node.endPosition,
+                    }
                 };
 
                 const children = node.namedChildren;
