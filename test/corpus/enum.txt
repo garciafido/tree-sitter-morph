@@ -2,7 +2,7 @@
 enum_declaration_statement
 ==========================
 
-export enum foo {
+enum foo {
     a
     b
     c
@@ -10,4 +10,5 @@ export enum foo {
 
 ---
 
- (Program (EnumDeclarationStatement (Export) (EnumName (CamelIdentifier)) (EnumValue (CamelIdentifier)) (EnumValue (CamelIdentifier)) (EnumValue (CamelIdentifier))))
+ (Module (Module_statements__list (EnumDeclarationStatement (EnumDeclarationStatement_name (Identifier (CamelIdentifier))) (EnumDeclarationStatement_values__list (Identifier (CamelIdentifier))) (EnumDeclarationStatement_values__list (Identifier (CamelIdentifier))) (EnumDeclarationStatement_values__list (Identifier (CamelIdentifier))))))
+

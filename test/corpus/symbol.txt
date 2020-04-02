@@ -2,8 +2,8 @@
 symbol_declaration_statement
 ============================
 
-export symbol foo
+symbol foo
 
 ---
 
-(Program (SymbolDeclarationStatement (Export) (SymbolName (CamelIdentifier))))
+    (Module (Module_statements__list (SymbolDeclarationStatement (SymbolDeclarationStatement_name (Identifier (CamelIdentifier))))))

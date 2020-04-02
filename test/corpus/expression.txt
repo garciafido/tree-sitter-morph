@@ -6,15 +6,7 @@ const a = b + 8 * 9 and 101 > 0 < 19
 
 ---
 
- (Program (ConstantDeclarationStatement
-    (ConstantName (CamelIdentifier))
-    (ConstantValue (BooleanExpression
-        (BinaryExpression (CamelIdentifier) (Addition) (BinaryExpression (IntegerLiteral) (Multiplication) (IntegerLiteral)))
-        (Conjunction)
-        (RelationalExpression
-            (IntegerLiteral) (GraterThan)
-            (IntegerLiteral) (LessThan)
-            (IntegerLiteral))))))
+ (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (BooleanExpression (Expression (PrimaryExpression (BinaryExpression (PrimaryExpression (Identifier (CamelIdentifier))) (Addition) (PrimaryExpression (BinaryExpression (PrimaryExpression (IntegerLiteral)) (Multiplication) (PrimaryExpression (IntegerLiteral))))))) (Conjunction) (Expression (RelationalExpression (PrimaryExpression (IntegerLiteral)) (GraterThan) (PrimaryExpression (IntegerLiteral)) (LessThan) (PrimaryExpression (IntegerLiteral))))))))))
 
 ========
 negation
@@ -24,10 +16,8 @@ const foo = not a or b
 
 ---
 
-(Program (ConstantDeclarationStatement
-    (ConstantName (CamelIdentifier))
-    (ConstantValue (Negation
-        (BooleanExpression (CamelIdentifier) (Disjunction) (CamelIdentifier))))))
+(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (Negation (Expression (BooleanExpression (Expression (PrimaryExpression (Identifier (CamelIdentifier)))) (Disjunction) (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
+
 
 ============
 FunctionCall
@@ -37,10 +27,9 @@ const foo = f(a)
 
 ---
 
-(Program (ConstantDeclarationStatement (ConstantName (CamelIdentifier)) (ConstantValue
-    (FunctionCall
-        (CallableExpression (CallableName (CamelIdentifier)))
-        (FunctionCallParameters (ParameterExpression (CamelIdentifier)))))))
+ (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (FunctionCallOrEdgeAccess (FunctionCall (FunctionCall_expression (CallableExpression (CallableName (Identifier (CamelIdentifier))))) (FunctionCall_parameters (FunctionCallParameters (FunctionCallParameters_expressions__list (Expression (PrimaryExpression (Identifier (CamelIdentifier)))))))))))))))
+
+
 
 ===========
 ChainedCall
@@ -50,8 +39,5 @@ const foo = f(a).f(b)
 
 ---
 
-(Program (ConstantDeclarationStatement (ConstantName (CamelIdentifier)) (ConstantValue
-    (ChainedFunctionCallOrEdgeAccess (ChainedFunctionCall
-        (FunctionCall (CallableExpression (CallableName (CamelIdentifier))) (FunctionCallParameters (ParameterExpression (CamelIdentifier))))
-            (CamelIdentifier)
-            (FunctionCallParameters (ParameterExpression (CamelIdentifier))))))))
+ (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (ChainedFunctionCallOrEdgeAccess (ChainedFunctionCall (PrimaryExpression (FunctionCallOrEdgeAccess (FunctionCall (FunctionCall_expression (CallableExpression (CallableName (Identifier (CamelIdentifier))))) (FunctionCall_parameters (FunctionCallParameters (FunctionCallParameters_expressions__list (Expression (PrimaryExpression (Identifier (CamelIdentifier)))))))))) (Identifier (CamelIdentifier)) (FunctionCallParameters (FunctionCallParameters_expressions__list (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))))
+

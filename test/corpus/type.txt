@@ -2,11 +2,8 @@
 type_declaration_statement
 ==========================
 
-export type foo = Foo
+type foo = Foo
 
 ---
 
-(Program (TypeDeclarationStatement
-    (Export)
-    (TypeName (CamelIdentifier))
-    (TypeUnion (SingleType (TypeName (PascalIdentifier))))))
+(Module (Module_statements__list (TypeDeclarationStatement (TypeDeclarationStatement_name (TypeIdentifier (Identifier (CamelIdentifier)))) (TypeDeclarationStatement_value (Type (TypeUnion (TypeUnion_types__list (SingleType (TypeIdentifier (Identifier (PascalIdentifier)))))))))))
