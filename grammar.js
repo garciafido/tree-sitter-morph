@@ -481,8 +481,8 @@ module.exports = grammar({
       $.Modulus_right,
     ),
 
-    BitwiseDisjunction_left: $ => prec(PREC.bitwise_or, $.PrimaryExpression),
-    BitwiseDisjunction_right: $ => $.PrimaryExpression,
+    BitwiseDisjunction_left: $ => prec(PREC.bitwise_or+1, $.PrimaryExpression),
+    BitwiseDisjunction_right: $ => prec(PREC.bitwise_or, $.PrimaryExpression),
     BitwiseDisjunction: $ => prec.left(seq(
       $.BitwiseDisjunction_left,
       "|",
