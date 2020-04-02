@@ -539,17 +539,17 @@ module.exports = grammar({
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
-    FunctionCallOrEdgeAccess_expression: $ =>  $.CallableExpression,
+    FunctionCallOrEdgeAccess_accessed_expression: $ =>  $.CallableExpression,
     FunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
-    FunctionCallOrEdgeAccess_parameters__list: $ => $.Expression,
+    FunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
+    FunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
     FunctionCallOrEdgeAccess: $ => {
-      const parameters = getCommaSeparatedList($.FunctionCallOrEdgeAccess_parameters__list);
       return seq(
-        $.FunctionCallOrEdgeAccess_expression,
+        $.FunctionCallOrEdgeAccess_accessed_expression,
         optional($.FunctionCallOrEdgeAccess_rule_parameters),
         choice(
-          seq("(", parameters, ")"),
-          seq("[", parameters, "]"),
+          seq("(", getCommaSeparatedList($.FunctionCallOrEdgeAccess_function_call_parameters__list), ")"),
+          seq("[", getCommaSeparatedList($.FunctionCallOrEdgeAccess_edge_access_parameters__list, true), "]"),
         ),
       )
     },
@@ -561,10 +561,6 @@ module.exports = grammar({
       $.FunctionCallOrEdgeAccess,
       $.ParenthesizedExpression,
     ),
-
-    ChainedEdgeAccess: $ => prec.left(PREC.lambda, seq(
-      $.PrimaryExpression, optional($.RuleParameters), $.ListIndexAccess_EdgeAccessParameter,
-    )),
 
     RuleParameters: $ => prec(PREC.call, seq(
       "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
