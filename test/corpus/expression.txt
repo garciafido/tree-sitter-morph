@@ -6,7 +6,7 @@ const a = b + 8 * 9 and 101 > 0 < 19
 
 ---
 
-(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (BooleanExpression (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (Identifier (CamelIdentifier)))) (Addition_right (PrimaryExpression (BinaryExpression (Multiplication (Multiplication_left (PrimaryExpression (IntegerLiteral))) (Multiplication_right (PrimaryExpression (IntegerLiteral))))))))))) (Conjunction) (Expression (RelationalExpression (PrimaryExpression (IntegerLiteral)) (GraterThan) (PrimaryExpression (IntegerLiteral)) (LessThan) (PrimaryExpression (IntegerLiteral))))))))))
+  (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (BooleanExpression (BooleanConjunctionExpression_left (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (Identifier (CamelIdentifier)))) (Addition_right (PrimaryExpression (BinaryExpression (Multiplication (Multiplication_left (PrimaryExpression (IntegerLiteral))) (Multiplication_right (PrimaryExpression (IntegerLiteral)))))))))))) (Conjunction) (BooleanConjunctionExpression_right (Expression (RelationalExpression (PrimaryExpression (IntegerLiteral)) (GraterThan) (PrimaryExpression (IntegerLiteral)) (LessThan) (PrimaryExpression (IntegerLiteral)))))))))))
 
 
 ========
@@ -17,8 +17,7 @@ const foo = not a or b
 
 ---
 
- (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (Negation (Negation_expression (Expression (BooleanExpression (Expression (PrimaryExpression (Identifier (CamelIdentifier)))) (Disjunction) (Expression (PrimaryExpression (Identifier (CamelIdentifier)))))))))))))
-
+ (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (Negation (Negation_expression (Expression (BooleanExpression (BooleanDisjunctionExpression_left (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (Disjunction) (BooleanDisjunctionExpression_right (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))))
 
 ================
 unary_expression
