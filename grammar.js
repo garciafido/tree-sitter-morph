@@ -648,7 +648,7 @@ module.exports = grammar({
       $.EdgeAccess,
     ),
 
-    FunctionCall_expression: $ => $.CallableExpression,
+    FunctionCall_expression: $ =>  prec(PREC.call, $.CallableExpression),
     FunctionCall_rule_parameters: $ => $.RuleParameters,
     FunctionCall_parameters: $ => $.FunctionCallParameters,
     FunctionCall: $ => seq(

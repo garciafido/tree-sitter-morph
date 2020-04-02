@@ -637,7 +637,7 @@
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "MorphismCreationDeclaration_creation": {
+    "MorphismCreationDeclaration_expression": {
       "type": "SYMBOL",
       "name": "Expression"
     },
@@ -658,7 +658,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "MorphismCreationDeclaration_creation"
+          "name": "MorphismCreationDeclaration_expression"
         }
       ]
     },
@@ -841,9 +841,9 @@
       "type": "SYMBOL",
       "name": "TypeAnnotation"
     },
-    "FunctionDeclarationStatement_signature": {
+    "FunctionDeclarationStatement_parameters__list": {
       "type": "SYMBOL",
-      "name": "FunctionSignature"
+      "name": "FunctionParameter"
     },
     "FunctionDeclarationStatement_type_parameters": {
       "type": "SYMBOL",
@@ -885,35 +885,6 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "FunctionDeclarationStatement_signature"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "FunctionDeclarationStatement_type"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "=>"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "FunctionDeclarationStatement_expression"
-        }
-      ]
-    },
-    "FunctionSignature": {
-      "type": "SEQ",
-      "members": [
-        {
           "type": "STRING",
           "value": "("
         },
@@ -925,7 +896,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "FunctionParameter"
+                  "name": "FunctionDeclarationStatement_parameters__list"
                 },
                 {
                   "type": "REPEAT",
@@ -938,7 +909,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "FunctionParameter"
+                        "name": "FunctionDeclarationStatement_parameters__list"
                       }
                     ]
                   }
@@ -965,31 +936,47 @@
         {
           "type": "STRING",
           "value": ")"
-        }
-      ]
-    },
-    "FunctionParameterName": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "FunctionParameter": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "FunctionParameterName"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "TypeAnnotation"
+              "name": "FunctionDeclarationStatement_type"
             },
             {
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": "=>"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FunctionDeclarationStatement_expression"
+        }
+      ]
+    },
+    "FunctionParameter_name": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "FunctionParameter_type": {
+      "type": "SYMBOL",
+      "name": "TypeAnnotation"
+    },
+    "FunctionParameter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "FunctionParameter_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FunctionParameter_type"
         }
       ]
     },
@@ -1171,6 +1158,10 @@
       "type": "SYMBOL",
       "name": "ModuleLevelAccessibilityModifier"
     },
+    "RuleDeclarationStatement_parameters__list": {
+      "type": "SYMBOL",
+      "name": "FunctionParameter"
+    },
     "RuleDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -1207,8 +1198,57 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "FunctionSignature"
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "RuleDeclarationStatement_parameters__list"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "RuleDeclarationStatement_parameters__list"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         },
         {
           "type": "STRING",
@@ -2033,8 +2073,12 @@
       ]
     },
     "FunctionCall_expression": {
-      "type": "SYMBOL",
-      "name": "CallableExpression"
+      "type": "PREC",
+      "value": 200,
+      "content": {
+        "type": "SYMBOL",
+        "name": "CallableExpression"
+      }
     },
     "FunctionCall_rule_parameters": {
       "type": "SYMBOL",
@@ -2748,7 +2792,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",
