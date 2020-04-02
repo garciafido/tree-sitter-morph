@@ -20,7 +20,7 @@
     "fields": {}
   },
   {
-    "type": "AnonymousFunctionName",
+    "type": "AnonymousFunction_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -35,15 +35,30 @@
     }
   },
   {
-    "type": "AnonymousFunctionSignature",
+    "type": "AnonymousFunction_parameters__list",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "ParameterName",
+          "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "AnonymousFunction_return_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeAnnotation",
           "named": true
         }
       ]
@@ -443,13 +458,58 @@
       "required": true,
       "types": [
         {
-          "type": "CallableExpression",
+          "type": "EdgeAccess_expression",
           "named": true
         },
         {
-          "type": "ListIndexAccess_EdgeAccessParameter",
+          "type": "EdgeAccess_parameter",
           "named": true
         },
+        {
+          "type": "EdgeAccess_rule_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EdgeAccess_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CallableExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EdgeAccess_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EdgeAccess_rule_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
           "type": "RuleParameters",
           "named": true
@@ -576,15 +636,15 @@
       "required": true,
       "types": [
         {
-          "type": "CallableExpression",
+          "type": "FunctionCall_expression",
           "named": true
         },
         {
-          "type": "FunctionCallParameters",
+          "type": "FunctionCall_parameters",
           "named": true
         },
         {
-          "type": "RuleParameters",
+          "type": "FunctionCall_rule_parameters",
           "named": true
         }
       ]
@@ -618,7 +678,67 @@
       "required": false,
       "types": [
         {
-          "type": "ParameterExpression",
+          "type": "FunctionCallParameters_expressions__list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionCallParameters_expressions__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionCall_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CallableExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionCall_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "FunctionCallParameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionCall_rule_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "RuleParameters",
           "named": true
         }
       ]
@@ -645,7 +765,7 @@
           "named": true
         },
         {
-          "type": "FunctionDeclarationStatement_signature",
+          "type": "FunctionDeclarationStatement_parameters__list",
           "named": true
         },
         {
@@ -705,7 +825,7 @@
     }
   },
   {
-    "type": "FunctionDeclarationStatement_signature",
+    "type": "FunctionDeclarationStatement_parameters__list",
     "named": true,
     "fields": {},
     "children": {
@@ -713,7 +833,7 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionSignature",
+          "type": "FunctionParameter",
           "named": true
         }
       ]
@@ -758,18 +878,18 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionParameterName",
+          "type": "FunctionParameter_name",
           "named": true
         },
         {
-          "type": "TypeAnnotation",
+          "type": "FunctionParameter_type",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "FunctionParameterName",
+    "type": "FunctionParameter_name",
     "named": true,
     "fields": {},
     "children": {
@@ -784,15 +904,15 @@
     }
   },
   {
-    "type": "FunctionSignature",
+    "type": "FunctionParameter_type",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "FunctionParameter",
+          "type": "TypeAnnotation",
           "named": true
         }
       ]
@@ -988,6 +1108,21 @@
     }
   },
   {
+    "type": "List_elements__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "Message",
     "named": true,
     "fields": {},
@@ -1096,7 +1231,7 @@
       "required": true,
       "types": [
         {
-          "type": "MorphismCreationDeclaration_creation",
+          "type": "MorphismCreationDeclaration_expression",
           "named": true
         },
         {
@@ -1107,7 +1242,7 @@
     }
   },
   {
-    "type": "MorphismCreationDeclaration_creation",
+    "type": "MorphismCreationDeclaration_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -1336,21 +1471,6 @@
     "fields": {}
   },
   {
-    "type": "NodeAlias",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "NodeEdge",
     "named": true,
     "fields": {},
@@ -1359,11 +1479,11 @@
       "required": true,
       "types": [
         {
-          "type": "Expression",
+          "type": "NodeEdge_name",
           "named": true
         },
         {
-          "type": "Identifier",
+          "type": "NodeEdge_value",
           "named": true
         }
       ]
@@ -1504,6 +1624,36 @@
         },
         {
           "type": "NodeEdgeRequiredModifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdge_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NodeEdge_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
           "named": true
         }
       ]
@@ -1673,6 +1823,51 @@
     }
   },
   {
+    "type": "Node_alias",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Node_edges__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NodeEdge",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Node_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "NumberLiteral",
     "named": true,
     "fields": {},
@@ -1686,36 +1881,6 @@
         },
         {
           "type": "IntegerLiteral",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ParameterExpression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ParameterName",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
           "named": true
         }
       ]
@@ -1917,11 +2082,11 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionSignature",
+          "type": "RuleDeclarationStatement_accessibility",
           "named": true
         },
         {
-          "type": "RuleDeclarationStatement_accessibility",
+          "type": "RuleDeclarationStatement_parameters__list",
           "named": true
         },
         {
@@ -1949,6 +2114,21 @@
       "types": [
         {
           "type": "ModuleLevelAccessibilityModifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RuleDeclarationStatement_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "FunctionParameter",
           "named": true
         }
       ]
@@ -2016,7 +2196,7 @@
           "named": true
         },
         {
-          "type": "TypeName",
+          "type": "TypeIdentifier",
           "named": true
         }
       ]
@@ -2164,15 +2344,15 @@
       "required": true,
       "types": [
         {
-          "type": "Type",
-          "named": true
-        },
-        {
           "type": "TypeDeclarationStatement_accessibility",
           "named": true
         },
         {
-          "type": "TypeName",
+          "type": "TypeDeclarationStatement_name",
+          "named": true
+        },
+        {
+          "type": "TypeDeclarationStatement_value",
           "named": true
         }
       ]
@@ -2194,7 +2374,37 @@
     }
   },
   {
-    "type": "TypeName",
+    "type": "TypeDeclarationStatement_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeDeclarationStatement_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeIdentifier",
     "named": true,
     "fields": {},
     "children": {
@@ -2278,6 +2488,21 @@
     "fields": {},
     "children": {
       "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeUnion_types__list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeUnion_types__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
       "required": true,
       "types": [
         {
