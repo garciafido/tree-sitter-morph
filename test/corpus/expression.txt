@@ -18,6 +18,29 @@ const foo = not a or b
 
 (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (Negation (Expression (BooleanExpression (Expression (PrimaryExpression (Identifier (CamelIdentifier)))) (Disjunction) (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
 
+================
+unary_expression
+================
+
+const foo = -1+4
+
+---
+
+(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign)
+(ConstantDeclarationStatement_value (Expression
+    (PrimaryExpression
+        (BinaryExpression
+            (PrimaryExpression
+                (UnaryFactor
+                    (NegativeFactor
+                        (NegativeSign)
+                        (PrimaryExpression (IntegerLiteral))))
+            )
+            (Addition)
+            (PrimaryExpression (IntegerLiteral)))))))))
+
+
+
 
 ============
 FunctionCall
