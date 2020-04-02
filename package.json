@@ -30,9 +30,9 @@
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.16.5",
-      "np": "*"
+    "np": "*"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/"
   }
 }
