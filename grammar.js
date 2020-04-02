@@ -415,13 +415,11 @@ module.exports = grammar({
     PrimaryExpression: $ => prec(PREC.primary, choice(
       $.BinaryExpression,
       $.Identifier,
-      $.StringLiteral,
-      $.StringTemplateLiteral,
-      $.TrueLiteral,
-      $.FalseLiteral,
-      $.IntegerLiteral,
-      $.FloatLiteral,
+      $.Literal,
       $.UnaryFactor,
+      $.AnonymousFunction,
+      $.List,
+      $.Node,
       $.FunctionCallOrEdgeAccess,
       $.ChainedFunctionCallOrEdgeAccess,
       $.ParenthesizedExpression,
@@ -543,19 +541,18 @@ module.exports = grammar({
 
     FunctionCallOrEdgeAccess_expression: $ =>  $.CallableExpression,
     FunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
-    FunctionCallOrEdgeAccess: $ => seq(
-      $.FunctionCallOrEdgeAccess_expression,
-      optional($.FunctionCallOrEdgeAccess_rule_parameters),
-      choice(
-        seq("(", optional($.CallParameters), ")"),
-        seq("[", optional($.CallParameters), "]"),
-      ),
-    ),
-
-    CallParameters_expressions__list: $ => $.Expression,
-    CallParameters: $ => prec.left(seq(
-      seq($.CallParameters_expressions__list, repeat(seq(",", $.CallParameters_expressions__list)), optional(",")),
-    )),
+    FunctionCallOrEdgeAccess_parameters__list: $ => $.Expression,
+    FunctionCallOrEdgeAccess: $ => {
+      const parameters = getCommaSeparatedList($.FunctionCallOrEdgeAccess_parameters__list);
+      return seq(
+        $.FunctionCallOrEdgeAccess_expression,
+        optional($.FunctionCallOrEdgeAccess_rule_parameters),
+        choice(
+          seq("(", parameters, ")"),
+          seq("[", parameters, "]"),
+        ),
+      )
+    },
 
     CallableName: $ => $.Identifier,
 
@@ -591,13 +588,27 @@ module.exports = grammar({
       $.AnonymousFunction_expression,
     ),
 
-    // ChainedFunctionCallOrEdgeAccess: $ =>choice(
-    //   $.ChainedFunctionCall,
-    //   $.ChainedEdgeAccess,
-    // ),
-
+    ChainedFunctionCallOrEdgeAccess_function_call_identifier: $ => $.Identifier,
+    ChainedFunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
+    ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
+    ChainedFunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
     ChainedFunctionCallOrEdgeAccess: $ => prec(PREC.call, seq(
-      $.PrimaryExpression, ".", $.Identifier, optional($.RuleParameters), $.CallParameters,
+      $.PrimaryExpression,
+      choice(
+        seq(
+          ".",
+          $.ChainedFunctionCallOrEdgeAccess_function_call_identifier,
+          optional($.ChainedFunctionCallOrEdgeAccess_rule_parameters),
+          "(",
+          getCommaSeparatedList($.ChainedFunctionCallOrEdgeAccess_function_call_parameters__list),
+          ")",
+        ),
+        seq(
+          "[",
+          getCommaSeparatedList($.ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list, true),
+          "]",
+        ),
+      ),
     )),
 
     List_elements__list: $ => $.Expression,
@@ -732,11 +743,12 @@ module.exports = grammar({
   }
 });
 
-
-function commaSep1 (rule) {
-  return sep1(rule, ",")
-}
-
-function sep1 (rule, separator) {
-  return seq(rule, repeat(seq(separator, rule)))
+function getCommaSeparatedList(parametersRule, oneOrMore= false) {
+  const list =
+    prec.left(seq(
+      parametersRule,
+      repeat(seq(",", parametersRule)),
+      optional(",")
+    ));
+  return oneOrMore ? list : optional(list);
 }

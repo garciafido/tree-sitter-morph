@@ -1620,31 +1620,23 @@
           },
           {
             "type": "SYMBOL",
-            "name": "StringLiteral"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "StringTemplateLiteral"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "TrueLiteral"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "FalseLiteral"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "IntegerLiteral"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "FloatLiteral"
+            "name": "Literal"
           },
           {
             "type": "SYMBOL",
             "name": "UnaryFactor"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "AnonymousFunction"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "List"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "Node"
           },
           {
             "type": "SYMBOL",
@@ -2119,6 +2111,10 @@
       "type": "SYMBOL",
       "name": "RuleParameters"
     },
+    "FunctionCallOrEdgeAccess_parameters__list": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
     "FunctionCallOrEdgeAccess": {
       "type": "SEQ",
       "members": [
@@ -2152,8 +2148,45 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "CallParameters"
+                      "type": "PREC_LEFT",
+                      "value": 0,
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "FunctionCallOrEdgeAccess_parameters__list"
+                          },
+                          {
+                            "type": "REPEAT",
+                            "content": {
+                              "type": "SEQ",
+                              "members": [
+                                {
+                                  "type": "STRING",
+                                  "value": ","
+                                },
+                                {
+                                  "type": "SYMBOL",
+                                  "name": "FunctionCallOrEdgeAccess_parameters__list"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "STRING",
+                                "value": ","
+                              },
+                              {
+                                "type": "BLANK"
+                              }
+                            ]
+                          }
+                        ]
+                      }
                     },
                     {
                       "type": "BLANK"
@@ -2177,8 +2210,45 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "CallParameters"
+                      "type": "PREC_LEFT",
+                      "value": 0,
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "FunctionCallOrEdgeAccess_parameters__list"
+                          },
+                          {
+                            "type": "REPEAT",
+                            "content": {
+                              "type": "SEQ",
+                              "members": [
+                                {
+                                  "type": "STRING",
+                                  "value": ","
+                                },
+                                {
+                                  "type": "SYMBOL",
+                                  "name": "FunctionCallOrEdgeAccess_parameters__list"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "STRING",
+                                "value": ","
+                              },
+                              {
+                                "type": "BLANK"
+                              }
+                            ]
+                          }
+                        ]
+                      }
                     },
                     {
                       "type": "BLANK"
@@ -2194,56 +2264,6 @@
           ]
         }
       ]
-    },
-    "CallParameters_expressions__list": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "CallParameters": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "CallParameters_expressions__list"
-              },
-              {
-                "type": "REPEAT",
-                "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": ","
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "CallParameters_expressions__list"
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
     },
     "CallableName": {
       "type": "SYMBOL",
@@ -2455,6 +2475,22 @@
         }
       ]
     },
+    "ChainedFunctionCallOrEdgeAccess_function_call_identifier": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
+    "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
+    "ChainedFunctionCallOrEdgeAccess_rule_parameters": {
+      "type": "SYMBOL",
+      "name": "RuleParameters"
+    },
     "ChainedFunctionCallOrEdgeAccess": {
       "type": "PREC",
       "value": 200,
@@ -2466,28 +2502,145 @@
             "name": "PrimaryExpression"
           },
           {
-            "type": "STRING",
-            "value": "."
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Identifier"
-          },
-          {
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "RuleParameters"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "."
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "ChainedFunctionCallOrEdgeAccess_function_call_identifier"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "ChainedFunctionCallOrEdgeAccess_rule_parameters"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "("
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "PREC_LEFT",
+                        "value": 0,
+                        "content": {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list"
+                            },
+                            {
+                              "type": "REPEAT",
+                              "content": {
+                                "type": "SEQ",
+                                "members": [
+                                  {
+                                    "type": "STRING",
+                                    "value": ","
+                                  },
+                                  {
+                                    "type": "SYMBOL",
+                                    "name": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "CHOICE",
+                              "members": [
+                                {
+                                  "type": "STRING",
+                                  "value": ","
+                                },
+                                {
+                                  "type": "BLANK"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ")"
+                  }
+                ]
               },
               {
-                "type": "BLANK"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "["
+                  },
+                  {
+                    "type": "PREC_LEFT",
+                    "value": 0,
+                    "content": {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list"
+                        },
+                        {
+                          "type": "REPEAT",
+                          "content": {
+                            "type": "SEQ",
+                            "members": [
+                              {
+                                "type": "STRING",
+                                "value": ","
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": ","
+                            },
+                            {
+                              "type": "BLANK"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "]"
+                  }
+                ]
               }
             ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "CallParameters"
           }
         ]
       }
