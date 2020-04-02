@@ -41,8 +41,17 @@ const foo = f(a)
 
 ---
 
-    (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (FunctionCallOrEdgeAccess (FunctionCallOrEdgeAccess_expression (CallableExpression (CallableName (Identifier (CamelIdentifier))))) (FunctionCallOrEdgeAccess_parameters__list (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
 
+(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign)
+(ConstantDeclarationStatement_value
+    (Expression
+        (PrimaryExpression
+            (FunctionCallOrEdgeAccess
+                (FunctionCallOrEdgeAccess_accessed_expression
+                    (CallableExpression (CallableName (Identifier (CamelIdentifier))))
+                )
+                (FunctionCallOrEdgeAccess_function_call_parameters__list
+                    (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
 
 
 
@@ -55,5 +64,30 @@ const foo = f(a).f(b)
 ---
 
 
-   (Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (ChainedFunctionCallOrEdgeAccess (PrimaryExpression (FunctionCallOrEdgeAccess (FunctionCallOrEdgeAccess_expression (CallableExpression (CallableName (Identifier (CamelIdentifier))))) (FunctionCallOrEdgeAccess_parameters__list (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))) (ChainedFunctionCallOrEdgeAccess_function_call_identifier (Identifier (CamelIdentifier))) (ChainedFunctionCallOrEdgeAccess_function_call_parameters__list (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
+(Module (Module_statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier)))
+(AssignmentSign)
+(ConstantDeclarationStatement_value
+    (Expression
+        (PrimaryExpression
+            (ChainedFunctionCallOrEdgeAccess
+                (ChainedFunctionCallOrEdgeAccess_accessed_expression
+                    (PrimaryExpression
+                        (FunctionCallOrEdgeAccess
+                            (FunctionCallOrEdgeAccess_accessed_expression
+                                (CallableExpression (CallableName (Identifier (CamelIdentifier))))
+                            )
+                            (FunctionCallOrEdgeAccess_function_call_parameters__list
+                                (Expression (PrimaryExpression (Identifier (CamelIdentifier))))
+                            ))))
+                            (ChainedFunctionCallOrEdgeAccess_function_call_identifier (Identifier (CamelIdentifier)))
+                            (ChainedFunctionCallOrEdgeAccess_function_call_parameters__list
+                                (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
+
+=========
+Lambda OK
+=========
+
+const x = a + b + ((x) => c)
+
+---
 

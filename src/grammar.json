@@ -1390,6 +1390,10 @@
         {
           "type": "SYMBOL",
           "name": "PrimaryExpression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "AnonymousFunction"
         }
       ]
     },
@@ -1625,10 +1629,6 @@
           {
             "type": "SYMBOL",
             "name": "UnaryFactor"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "AnonymousFunction"
           },
           {
             "type": "SYMBOL",
@@ -2920,7 +2920,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",

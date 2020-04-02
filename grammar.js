@@ -357,6 +357,7 @@ module.exports = grammar({
       $.Negation,
       $.BooleanExpression,
       $.PrimaryExpression,
+      $.AnonymousFunction,
     ),
 
     EqualTo: $ => "==",
@@ -417,7 +418,6 @@ module.exports = grammar({
       $.Identifier,
       $.Literal,
       $.UnaryFactor,
-      $.AnonymousFunction,
       $.List,
       $.Node,
       $.FunctionCallOrEdgeAccess,

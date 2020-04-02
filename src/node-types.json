@@ -438,6 +438,10 @@
       "required": true,
       "types": [
         {
+          "type": "ChainedFunctionCallOrEdgeAccess_accessed_expression",
+          "named": true
+        },
+        {
           "type": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list",
           "named": true
         },
@@ -452,7 +456,18 @@
         {
           "type": "ChainedFunctionCallOrEdgeAccess_rule_parameters",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "ChainedFunctionCallOrEdgeAccess_accessed_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
           "type": "PrimaryExpression",
           "named": true
@@ -835,6 +850,10 @@
       "required": true,
       "types": [
         {
+          "type": "AnonymousFunction",
+          "named": true
+        },
+        {
           "type": "BooleanExpression",
           "named": true
         },
@@ -877,11 +896,15 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionCallOrEdgeAccess_expression",
+          "type": "FunctionCallOrEdgeAccess_accessed_expression",
           "named": true
         },
         {
-          "type": "FunctionCallOrEdgeAccess_parameters__list",
+          "type": "FunctionCallOrEdgeAccess_edge_access_parameters__list",
+          "named": true
+        },
+        {
+          "type": "FunctionCallOrEdgeAccess_function_call_parameters__list",
           "named": true
         },
         {
@@ -892,7 +915,7 @@
     }
   },
   {
-    "type": "FunctionCallOrEdgeAccess_expression",
+    "type": "FunctionCallOrEdgeAccess_accessed_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -907,7 +930,22 @@
     }
   },
   {
-    "type": "FunctionCallOrEdgeAccess_parameters__list",
+    "type": "FunctionCallOrEdgeAccess_edge_access_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionCallOrEdgeAccess_function_call_parameters__list",
     "named": true,
     "fields": {},
     "children": {
@@ -1294,21 +1332,6 @@
       "types": [
         {
           "type": "List_elements__list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ListIndexAccess_EdgeAccessParameter",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "AccessExpression",
           "named": true
         }
       ]
@@ -2329,10 +2352,6 @@
       "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "AnonymousFunction",
-          "named": true
-        },
         {
           "type": "BinaryExpression",
           "named": true
