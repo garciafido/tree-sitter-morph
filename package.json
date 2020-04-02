@@ -7,7 +7,8 @@
     "test": "./node_modules/.bin/tree-sitter test",
     "generate": "./node_modules/.bin/tree-sitter generate",
     "parse": "./node_modules/.bin/tree-sitter parse",
-    "highlight": "./node_modules/.bin/tree-sitter highlight"
+    "highlight": "./node_modules/.bin/tree-sitter highlight",
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,10 @@
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.16.5"
+    "tree-sitter-cli": "^0.16.5",
+      "np": "*"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
   }
 }
