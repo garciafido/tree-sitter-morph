@@ -203,9 +203,9 @@ module.exports = grammar({
     ),
 
     MorphismCreationDeclaration_name: $ => $.Identifier,
-    MorphismCreationDeclaration_creation: $ => $.Expression,
+    MorphismCreationDeclaration_expression: $ => $.Expression,
     MorphismCreationDeclaration: $ => seq(
-      "new", $.MorphismCreationDeclaration_name, "->", $.MorphismCreationDeclaration_creation,
+      "new", $.MorphismCreationDeclaration_name, "->", $.MorphismCreationDeclaration_expression,
     ),
 
     SymbolDeclarationStatement_name: $ => $.Identifier,
@@ -244,27 +244,23 @@ module.exports = grammar({
     FunctionDeclarationStatement_expression: $ => $.Expression,
     FunctionDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     FunctionDeclarationStatement_type: $ => $.TypeAnnotation,
-    FunctionDeclarationStatement_signature: $ => $.FunctionSignature,
+    FunctionDeclarationStatement_parameters__list: $ => $.FunctionParameter,
     FunctionDeclarationStatement_type_parameters: $ => $.TypeParameters,
     FunctionDeclarationStatement: $ => seq(
       optional($.FunctionDeclarationStatement_accessibility),
       "func",
       $.FunctionDeclarationStatement_name,
       optional($.FunctionDeclarationStatement_type_parameters),
-      $.FunctionDeclarationStatement_signature,
+      "(", optional(seq($.FunctionDeclarationStatement_parameters__list, repeat(seq(",", $.FunctionDeclarationStatement_parameters__list)), optional(","))), ")",
       optional($.FunctionDeclarationStatement_type),
       "=>",
       $.FunctionDeclarationStatement_expression,
     ),
 
-    FunctionSignature: $ => seq(
-      "(", optional(seq($.FunctionParameter, repeat(seq(",", $.FunctionParameter)), optional(","))), ")",
-    ),
-
-    FunctionParameterName: $ => $.Identifier,
-
+    FunctionParameter_name: $ => $.Identifier,
+    FunctionParameter_type: $ => $.TypeAnnotation,
     FunctionParameter: $ => seq(
-      $.FunctionParameterName, optional($.TypeAnnotation),
+      $.FunctionParameter_name, $.FunctionParameter_type,
     ),
 
     TypeParameters: $ => seq(
@@ -313,12 +309,13 @@ module.exports = grammar({
     RuleName: $ => $.Identifier,
 
     RuleDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
+    RuleDeclarationStatement_parameters__list: $ => $.FunctionParameter,
     RuleDeclarationStatement: $ => seq(
       optional($.RuleDeclarationStatement_accessibility),
       "rule",
       $.RuleName,
       optional($.TypeParameters),
-      $.FunctionSignature,
+      "(", optional(seq($.RuleDeclarationStatement_parameters__list, repeat(seq(",", $.RuleDeclarationStatement_parameters__list)), optional(","))), ")",
       "=>",
       $.RuleExpression,
     ),
