@@ -588,12 +588,13 @@ module.exports = grammar({
       $.AnonymousFunction_expression,
     ),
 
+    ChainedFunctionCallOrEdgeAccess_accessed_expression: $ => $.PrimaryExpression,
     ChainedFunctionCallOrEdgeAccess_function_call_identifier: $ => $.Identifier,
     ChainedFunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
     ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
     ChainedFunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
     ChainedFunctionCallOrEdgeAccess: $ => prec(PREC.call, seq(
-      $.PrimaryExpression,
+      $.ChainedFunctionCallOrEdgeAccess_accessed_expression,
       choice(
         seq(
           ".",
