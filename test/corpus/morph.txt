@@ -9,9 +9,7 @@ morph Foo(bar) {
 
 ---
 
-  (Module (Module_statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismCreationDeclaration (MorphismCreationDeclaration_name (Identifier (CamelIdentifier))) (MorphismCreationDeclaration_expression (Expression (PrimaryExpression (StringLiteral)))))))))
-
-
+   (Module (Module_statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismCreationDeclaration (MorphismCreationDeclaration_name (Identifier (CamelIdentifier))) (MorphismCreationDeclaration_expression (Expression (PrimaryExpression (StringLiteral)))))))))
 
 =======================================
 Mutation morphism_declaration_statement
@@ -26,3 +24,13 @@ morph Foo(bar) {
 
   (Module (Module_statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismMutationDeclaration (MorphismMutationDeclaration_name (Identifier (CamelIdentifier))) (MorphismMutationDeclaration_expression (Expression (PrimaryExpression (StringLiteral)))))))))
 
+
+==========================================
+morphism_declaration_statement with lambda
+==========================================
+
+morph Foo {
+  new foo -> () => 1 + 2
+}
+
+---

@@ -1605,49 +1605,61 @@
       ]
     },
     "PrimaryExpression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "BinaryExpression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Literal"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "AnonymousFunction"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "List"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Node"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "UnaryFactor"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "FunctionCallOrEdgeAccess"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ChainedFunctionCallOrEdgeAccess"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ParenthesizedExpression"
-        }
-      ]
+      "type": "PREC",
+      "value": 210,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "BinaryExpression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "Identifier"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "StringLiteral"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "StringTemplateLiteral"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "TrueLiteral"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "FalseLiteral"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "IntegerLiteral"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "FloatLiteral"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "UnaryFactor"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "FunctionCallOrEdgeAccess"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ChainedFunctionCallOrEdgeAccess"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ParenthesizedExpression"
+          }
+        ]
+      }
     },
     "Addition_left": {
       "type": "PREC",
@@ -2099,48 +2111,27 @@
       "type": "PATTERN",
       "value": "[@][A-Za-z_][a-zA-Z0-9_]*"
     },
-    "FunctionCallOrEdgeAccess": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "FunctionCall"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "EdgeAccess"
-        }
-      ]
+    "FunctionCallOrEdgeAccess_expression": {
+      "type": "SYMBOL",
+      "name": "CallableExpression"
     },
-    "FunctionCall_expression": {
-      "type": "PREC",
-      "value": 200,
-      "content": {
-        "type": "SYMBOL",
-        "name": "CallableExpression"
-      }
-    },
-    "FunctionCall_rule_parameters": {
+    "FunctionCallOrEdgeAccess_rule_parameters": {
       "type": "SYMBOL",
       "name": "RuleParameters"
     },
-    "FunctionCall_parameters": {
-      "type": "SYMBOL",
-      "name": "FunctionCallParameters"
-    },
-    "FunctionCall": {
+    "FunctionCallOrEdgeAccess": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "FunctionCall_expression"
+          "name": "FunctionCallOrEdgeAccess_expression"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "FunctionCall_rule_parameters"
+              "name": "FunctionCallOrEdgeAccess_rule_parameters"
             },
             {
               "type": "BLANK"
@@ -2148,43 +2139,136 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "FunctionCall_parameters"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "("
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "CallParameters"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": ")"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "["
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "CallParameters"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": "]"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
-    "CallableName": {
-      "type": "PREC",
-      "value": 200,
-      "content": {
-        "type": "SYMBOL",
-        "name": "Identifier"
-      }
+    "CallParameters_expressions__list": {
+      "type": "SYMBOL",
+      "name": "Expression"
     },
-    "CallableExpression": {
-      "type": "PREC",
-      "value": 200,
+    "CallParameters": {
+      "type": "PREC_LEFT",
+      "value": 0,
       "content": {
-        "type": "CHOICE",
+        "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "CallableName"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "FunctionCallOrEdgeAccess"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "ParenthesizedExpression"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "CallParameters_expressions__list"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "CallParameters_expressions__list"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
     },
+    "CallableName": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "CallableExpression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "CallableName"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "FunctionCallOrEdgeAccess"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ParenthesizedExpression"
+        }
+      ]
+    },
     "ChainedEdgeAccess": {
       "type": "PREC_LEFT",
-      "value": 200,
+      "value": -20,
       "content": {
         "type": "SEQ",
         "members": [
@@ -2260,113 +2344,6 @@
         ]
       }
     },
-    "FunctionCallParameters_expressions__list": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "FunctionCallParameters": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "FunctionCallParameters_expressions__list"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "FunctionCallParameters_expressions__list"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": ","
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
-    "EdgeAccess_expression": {
-      "type": "SYMBOL",
-      "name": "CallableExpression"
-    },
-    "EdgeAccess_rule_parameters": {
-      "type": "SYMBOL",
-      "name": "RuleParameters"
-    },
-    "EdgeAccess_parameter": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "EdgeAccess": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "EdgeAccess_expression"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "EdgeAccess_rule_parameters"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "["
-        },
-        {
-          "type": "SYMBOL",
-          "name": "EdgeAccess_parameter"
-        },
-        {
-          "type": "STRING",
-          "value": "]"
-        }
-      ]
-    },
     "AccessExpression": {
       "type": "SYMBOL",
       "name": "Expression"
@@ -2397,12 +2374,8 @@
       "name": "TypeAnnotation"
     },
     "AnonymousFunction_parameters__list": {
-      "type": "PREC",
-      "value": -20,
-      "content": {
-        "type": "SYMBOL",
-        "name": "Identifier"
-      }
+      "type": "SYMBOL",
+      "name": "Identifier"
     },
     "AnonymousFunction": {
       "type": "SEQ",
@@ -2483,19 +2456,6 @@
       ]
     },
     "ChainedFunctionCallOrEdgeAccess": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "ChainedFunctionCall"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ChainedEdgeAccess"
-        }
-      ]
-    },
-    "ChainedFunctionCall": {
       "type": "PREC",
       "value": 200,
       "content": {
@@ -2527,7 +2487,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "FunctionCallParameters"
+            "name": "CallParameters"
           }
         ]
       }

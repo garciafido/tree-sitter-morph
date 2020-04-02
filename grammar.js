@@ -23,6 +23,8 @@ const PREC = {
   power: 190,
   call: 200,
 
+  primary: 210,
+
   morph_decorator: 1,
   node_decorator: 2,
 
@@ -410,18 +412,20 @@ module.exports = grammar({
       ))
     ),
 
-    PrimaryExpression: $ => choice(
+    PrimaryExpression: $ => prec(PREC.primary, choice(
       $.BinaryExpression,
       $.Identifier,
-      $.Literal,
-      $.AnonymousFunction,
-      $.List,
-      $.Node,
+      $.StringLiteral,
+      $.StringTemplateLiteral,
+      $.TrueLiteral,
+      $.FalseLiteral,
+      $.IntegerLiteral,
+      $.FloatLiteral,
       $.UnaryFactor,
       $.FunctionCallOrEdgeAccess,
       $.ChainedFunctionCallOrEdgeAccess,
       $.ParenthesizedExpression,
-    ),
+    )),
 
 
     Addition_left: $ => prec(PREC.plus+1, $.PrimaryExpression),
@@ -537,45 +541,37 @@ module.exports = grammar({
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
-    FunctionCallOrEdgeAccess: $ => choice(
-      $.FunctionCall,
-      $.EdgeAccess,
+    FunctionCallOrEdgeAccess_expression: $ =>  $.CallableExpression,
+    FunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
+    FunctionCallOrEdgeAccess: $ => seq(
+      $.FunctionCallOrEdgeAccess_expression,
+      optional($.FunctionCallOrEdgeAccess_rule_parameters),
+      choice(
+        seq("(", optional($.CallParameters), ")"),
+        seq("[", optional($.CallParameters), "]"),
+      ),
     ),
 
-    FunctionCall_expression: $ =>  prec(PREC.call, $.CallableExpression),
-    FunctionCall_rule_parameters: $ => $.RuleParameters,
-    FunctionCall_parameters: $ => $.FunctionCallParameters,
-    FunctionCall: $ => seq(
-      $.FunctionCall_expression, optional($.FunctionCall_rule_parameters), $.FunctionCall_parameters,
-    ),
+    CallParameters_expressions__list: $ => $.Expression,
+    CallParameters: $ => prec.left(seq(
+      seq($.CallParameters_expressions__list, repeat(seq(",", $.CallParameters_expressions__list)), optional(",")),
+    )),
 
-    CallableName: $ => prec(PREC.call, $.Identifier),
+    CallableName: $ => $.Identifier,
 
-    CallableExpression: $ => prec(PREC.call, choice(
+    CallableExpression: $ => choice(
       $.CallableName,
       $.FunctionCallOrEdgeAccess,
       $.ParenthesizedExpression,
-    )),
+    ),
 
-    ChainedEdgeAccess: $ => prec.left(PREC.call, seq(
+    ChainedEdgeAccess: $ => prec.left(PREC.lambda, seq(
       $.PrimaryExpression, optional($.RuleParameters), $.ListIndexAccess_EdgeAccessParameter,
     )),
 
     RuleParameters: $ => prec(PREC.call, seq(
       "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
     )),
-
-    FunctionCallParameters_expressions__list: $ => $.Expression,
-    FunctionCallParameters: $ => seq(
-      "(", optional(seq($.FunctionCallParameters_expressions__list, repeat(seq(",", $.FunctionCallParameters_expressions__list)), optional(","))), ")",
-    ),
-
-    EdgeAccess_expression: $ => $.CallableExpression,
-    EdgeAccess_rule_parameters: $ => $.RuleParameters,
-    EdgeAccess_parameter: $ => $.Expression,
-    EdgeAccess: $ => seq(
-      $.EdgeAccess_expression, optional($.EdgeAccess_rule_parameters), "[", $.EdgeAccess_parameter, "]",
-    ),
 
     //  This expression has no parameters allowed in its factors and the expression must yield a string
     // ListIndexAccess EdgeAccessParameter
@@ -587,24 +583,21 @@ module.exports = grammar({
 
     AnonymousFunction_expression: $ => $.Expression,
     AnonymousFunction_return_type: $ => $.TypeAnnotation,
-    AnonymousFunction_parameters__list: $ => prec(PREC.call, $.Identifier),
+    AnonymousFunction_parameters__list: $ => $.Identifier,
     AnonymousFunction: $ => seq(
-      "(", optional(seq(
-          $.AnonymousFunction_parameters__list,
-          repeat(seq(",", $.AnonymousFunction_parameters__list)), optional(","))),
-      ")",
+      "(", optional(seq($.AnonymousFunction_parameters__list, repeat(seq(",", $.AnonymousFunction_parameters__list)), optional(","))), ")",
       optional($.AnonymousFunction_return_type),
       "=>",
       $.AnonymousFunction_expression,
     ),
 
-    ChainedFunctionCallOrEdgeAccess: $ =>choice(
-      $.ChainedFunctionCall,
-      $.ChainedEdgeAccess,
-    ),
+    // ChainedFunctionCallOrEdgeAccess: $ =>choice(
+    //   $.ChainedFunctionCall,
+    //   $.ChainedEdgeAccess,
+    // ),
 
-    ChainedFunctionCall: $ => prec(PREC.call, seq(
-      $.PrimaryExpression, ".", $.Identifier, optional($.RuleParameters), $.FunctionCallParameters,
+    ChainedFunctionCallOrEdgeAccess: $ => prec(PREC.call, seq(
+      $.PrimaryExpression, ".", $.Identifier, optional($.RuleParameters), $.CallParameters,
     )),
 
     List_elements__list: $ => $.Expression,
