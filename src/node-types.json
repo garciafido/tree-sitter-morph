@@ -438,11 +438,11 @@
       "required": true,
       "types": [
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_accessed_expression",
+          "type": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list",
+          "type": "ChainedFunctionCallOrEdgeAccess_expression",
           "named": true
         },
         {
@@ -461,21 +461,6 @@
     }
   },
   {
-    "type": "ChainedFunctionCallOrEdgeAccess_accessed_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list",
     "named": true,
     "fields": {},
@@ -485,6 +470,21 @@
       "types": [
         {
           "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ChainedFunctionCallOrEdgeAccess_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PrimaryExpression",
           "named": true
         }
       ]
@@ -850,10 +850,6 @@
       "required": true,
       "types": [
         {
-          "type": "AnonymousFunction",
-          "named": true
-        },
-        {
           "type": "BooleanExpression",
           "named": true
         },
@@ -896,11 +892,11 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionCallOrEdgeAccess_accessed_expression",
+          "type": "FunctionCallOrEdgeAccess_edge_access_parameters__list",
           "named": true
         },
         {
-          "type": "FunctionCallOrEdgeAccess_edge_access_parameters__list",
+          "type": "FunctionCallOrEdgeAccess_expression",
           "named": true
         },
         {
@@ -909,21 +905,6 @@
         },
         {
           "type": "FunctionCallOrEdgeAccess_rule_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_accessed_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "CallableExpression",
           "named": true
         }
       ]
@@ -939,6 +920,21 @@
       "types": [
         {
           "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FunctionCallOrEdgeAccess_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CallableExpression",
           "named": true
         }
       ]
@@ -2353,6 +2349,10 @@
       "required": true,
       "types": [
         {
+          "type": "AnonymousFunction",
+          "named": true
+        },
+        {
           "type": "BinaryExpression",
           "named": true
         },
@@ -3185,6 +3185,10 @@
   },
   {
     "type": "is",
+    "named": false
+  },
+  {
+    "type": "lambda",
     "named": false
   },
   {

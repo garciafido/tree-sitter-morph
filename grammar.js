@@ -44,7 +44,12 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
+    [$.Expression, $.ChainedFunctionCallOrEdgeAccess_expression],
+    [$.ChainedFunctionCallOrEdgeAccess_expression, $.RelationalExpression],
   ]),
+
+  // conflicts: $ => [
+  // ],
 
   supertypes: $ => [
   ],
@@ -357,7 +362,6 @@ module.exports = grammar({
       $.Negation,
       $.BooleanExpression,
       $.PrimaryExpression,
-      $.AnonymousFunction,
     ),
 
     EqualTo: $ => "==",
@@ -420,6 +424,7 @@ module.exports = grammar({
       $.UnaryFactor,
       $.List,
       $.Node,
+      $.AnonymousFunction,
       $.FunctionCallOrEdgeAccess,
       $.ChainedFunctionCallOrEdgeAccess,
       $.ParenthesizedExpression,
@@ -578,7 +583,10 @@ module.exports = grammar({
     AnonymousFunction_return_type: $ => $.TypeAnnotation,
     AnonymousFunction_parameters__list: $ => $.Identifier,
     AnonymousFunction: $ => seq(
-      "(", optional(seq($.AnonymousFunction_parameters__list, repeat(seq(",", $.AnonymousFunction_parameters__list)), optional(","))), ")",
+      "lambda",
+      "(",
+      getCommaSeparatedList($.AnonymousFunction_parameters__list),
+      ")",
       optional($.AnonymousFunction_return_type),
       "=>",
       $.AnonymousFunction_expression,

@@ -1390,10 +1390,6 @@
         {
           "type": "SYMBOL",
           "name": "PrimaryExpression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "AnonymousFunction"
         }
       ]
     },
@@ -1637,6 +1633,10 @@
           {
             "type": "SYMBOL",
             "name": "Node"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "AnonymousFunction"
           },
           {
             "type": "SYMBOL",
@@ -2103,7 +2103,7 @@
       "type": "PATTERN",
       "value": "[@][A-Za-z_][a-zA-Z0-9_]*"
     },
-    "FunctionCallOrEdgeAccess_accessed_expression": {
+    "FunctionCallOrEdgeAccess_expression": {
       "type": "SYMBOL",
       "name": "CallableExpression"
     },
@@ -2124,7 +2124,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "FunctionCallOrEdgeAccess_accessed_expression"
+          "name": "FunctionCallOrEdgeAccess_expression"
         },
         {
           "type": "CHOICE",
@@ -2369,47 +2369,55 @@
       "members": [
         {
           "type": "STRING",
+          "value": "lambda"
+        },
+        {
+          "type": "STRING",
           "value": "("
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "AnonymousFunction_parameters__list"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
+              "type": "PREC_LEFT",
+              "value": 0,
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "AnonymousFunction_parameters__list"
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": ","
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "AnonymousFunction_parameters__list"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "CHOICE",
                     "members": [
                       {
                         "type": "STRING",
                         "value": ","
                       },
                       {
-                        "type": "SYMBOL",
-                        "name": "AnonymousFunction_parameters__list"
+                        "type": "BLANK"
                       }
                     ]
                   }
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": ","
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
+                ]
+              }
             },
             {
               "type": "BLANK"
@@ -2442,7 +2450,7 @@
         }
       ]
     },
-    "ChainedFunctionCallOrEdgeAccess_accessed_expression": {
+    "ChainedFunctionCallOrEdgeAccess_expression": {
       "type": "SYMBOL",
       "name": "PrimaryExpression"
     },
@@ -2470,7 +2478,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "ChainedFunctionCallOrEdgeAccess_accessed_expression"
+            "name": "ChainedFunctionCallOrEdgeAccess_expression"
           },
           {
             "type": "CHOICE",
@@ -3324,7 +3332,16 @@
       "value": "[\\s\\uFEFF\\u2060\\u200B\\u00A0]"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "Expression",
+      "ChainedFunctionCallOrEdgeAccess_expression"
+    ],
+    [
+      "ChainedFunctionCallOrEdgeAccess_expression",
+      "RelationalExpression"
+    ]
+  ],
   "externals": [
     {
       "type": "SYMBOL",
