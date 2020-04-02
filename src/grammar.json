@@ -1617,27 +1617,19 @@
         },
         {
           "type": "SYMBOL",
-          "name": "StringLiteral"
+          "name": "Literal"
         },
         {
           "type": "SYMBOL",
-          "name": "StringTemplateLiteral"
+          "name": "AnonymousFunction"
         },
         {
           "type": "SYMBOL",
-          "name": "TrueLiteral"
+          "name": "List"
         },
         {
           "type": "SYMBOL",
-          "name": "FalseLiteral"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "IntegerLiteral"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "FloatLiteral"
+          "name": "Node"
         },
         {
           "type": "SYMBOL",
@@ -2192,7 +2184,7 @@
     },
     "ChainedEdgeAccess": {
       "type": "PREC_LEFT",
-      "value": -20,
+      "value": 200,
       "content": {
         "type": "SEQ",
         "members": [
@@ -2405,8 +2397,12 @@
       "name": "TypeAnnotation"
     },
     "AnonymousFunction_parameters__list": {
-      "type": "SYMBOL",
-      "name": "Identifier"
+      "type": "PREC",
+      "value": -20,
+      "content": {
+        "type": "SYMBOL",
+        "name": "Identifier"
+      }
     },
     "AnonymousFunction": {
       "type": "SEQ",
