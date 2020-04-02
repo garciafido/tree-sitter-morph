@@ -18,7 +18,7 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                 const NewNode = {
                     type: type,
                     value: undefined,
-                    children: undefined
+                    children: {}
                 };
 
                 const children = node.namedChildren;
