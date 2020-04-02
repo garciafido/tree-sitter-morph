@@ -539,13 +539,13 @@ module.exports = grammar({
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
-    FunctionCallOrEdgeAccess_accessed_expression: $ =>  $.CallableExpression,
+    FunctionCallOrEdgeAccess_expression: $ =>  $.CallableExpression,
     FunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
     FunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
     FunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
     FunctionCallOrEdgeAccess: $ => {
       return seq(
-        $.FunctionCallOrEdgeAccess_accessed_expression,
+        $.FunctionCallOrEdgeAccess_expression,
         optional($.FunctionCallOrEdgeAccess_rule_parameters),
         choice(
           seq("(", getCommaSeparatedList($.FunctionCallOrEdgeAccess_function_call_parameters__list), ")"),
@@ -584,13 +584,13 @@ module.exports = grammar({
       $.AnonymousFunction_expression,
     ),
 
-    ChainedFunctionCallOrEdgeAccess_accessed_expression: $ => $.PrimaryExpression,
+    ChainedFunctionCallOrEdgeAccess_expression: $ => $.PrimaryExpression,
     ChainedFunctionCallOrEdgeAccess_function_call_identifier: $ => $.Identifier,
     ChainedFunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
     ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
     ChainedFunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
     ChainedFunctionCallOrEdgeAccess: $ => prec(PREC.call, seq(
-      $.ChainedFunctionCallOrEdgeAccess_accessed_expression,
+      $.ChainedFunctionCallOrEdgeAccess_expression,
       choice(
         seq(
           ".",
