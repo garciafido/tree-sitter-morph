@@ -440,73 +440,65 @@ module.exports = grammar({
       // $.ellipsis
     ),
 
-    // Addition: $ => "+",
-    // Subtraction: $ => "-",
-    // Multiplication: $ => "*",
-    // Division: $ => "/",
-    // Modulus: $ => "%",
-    // BitwiseDisjunction: $ => "|",
-    // BitwiseConjunction: $ => "&",
-    // ExclusiveDisjunction: $ => "^",
 
-    Addition_left: $ => $.PrimaryExpression,
-    Addition_right: $ => $.PrimaryExpression,
+    Addition_left: $ => prec(PREC.plus+1, $.PrimaryExpression),
+    Addition_right: $ => prec(PREC.plus, $.PrimaryExpression),
     Addition: $ => seq(
       $.Addition_left,
       "+",
       $.Addition_right,
     ),
 
-    Subtraction_left: $ => $.PrimaryExpression,
-    Subtraction_right: $ => $.PrimaryExpression,
+    Subtraction_left: $ => prec(PREC.plus+1, $.PrimaryExpression),
+    Subtraction_right: $ => prec(PREC.plus, $.PrimaryExpression),
     Subtraction: $ => seq(
       $.Subtraction_left,
       "-",
       $.Subtraction_right,
     ),
 
-    Multiplication_left: $ => $.PrimaryExpression,
-    Multiplication_right: $ => $.PrimaryExpression,
+    Multiplication_left: $ => prec(PREC.times+1, $.PrimaryExpression),
+    Multiplication_right: $ => prec(PREC.times, $.PrimaryExpression),
     Multiplication: $ => seq(
       $.Multiplication_left,
       "*",
       $.Multiplication_right,
     ),
 
-    Division_left: $ => $.PrimaryExpression,
-    Division_right: $ => $.PrimaryExpression,
+    Division_left: $ => prec(PREC.times+1, $.PrimaryExpression),
+    Division_right: $ => prec(PREC.times,$.PrimaryExpression),
     Division: $ => seq(
       $.Division_left,
       "/",
       $.Division_right,
     ),
 
-    Modulus_left: $ => $.PrimaryExpression,
-    Modulus_right: $ => $.PrimaryExpression,
+    Modulus_left: $ => prec(PREC.times+1, $.PrimaryExpression),
+    Modulus_right: $ => prec(PREC.times, $.PrimaryExpression),
     Modulus: $ => seq(
       $.Modulus_left,
       "%",
       $.Modulus_right,
     ),
 
-    BitwiseDisjunction_left: $ => $.PrimaryExpression,
+    BitwiseDisjunction_left: $ => prec(PREC.bitwise_or, $.PrimaryExpression),
     BitwiseDisjunction_right: $ => $.PrimaryExpression,
-    BitwiseDisjunction: $ => seq(
+    BitwiseDisjunction: $ => prec.left(seq(
       $.BitwiseDisjunction_left,
       "|",
       $.BitwiseDisjunction_right,
-    ),
+    )),
 
-    BitwiseConjunction_left: $ => $.PrimaryExpression,
-    BitwiseConjunction_right: $ => $.PrimaryExpression,
-    BitwiseConjunction: $ => seq(
+    BitwiseConjunction_left: $ => prec(PREC.times+1, $.PrimaryExpression),
+    BitwiseConjunction_right: $ => prec(PREC.times, $.PrimaryExpression),
+    BitwiseConjunction: $ => prec.left(seq(
       $.BitwiseConjunction_left,
       "&",
       $.BitwiseConjunction_right,
-    ),
+    )),
 
-    ExclusiveDisjunction_left: $ => $.PrimaryExpression,
-    ExclusiveDisjunction_right: $ => $.PrimaryExpression,
+    ExclusiveDisjunction_left: $ => prec(PREC.times+1, $.PrimaryExpression),
+    ExclusiveDisjunction_right: $ => prec(PREC.times, $.PrimaryExpression),
     ExclusiveDisjunction: $ => seq(
       $.ExclusiveDisjunction_left,
       "^",
@@ -547,143 +539,6 @@ module.exports = grammar({
       $.NegativeSign,
       $.PrimaryExpression,
     )),
-
-    // UnaryFactor: $ => prec(PREC.unary, seq(
-    //   field('operator', choice($.Positive, $.Negative, $.Complement)),
-    //   field('argument', $.PrimaryExpression)
-    // )),
-
-    // UnaryFactor: $ => prec(PREC.unary, seq(
-    //   choice($.Positive, $.Negative, $.Complement),
-    //   $.PrimaryExpression,
-    // )),
-
-    // BooleanExpression: $ => $.DisjunctionExpression,
-
-    // DisjunctionExpression: $ => choice(
-    //     $.Disjunction,
-    //     $.ConjunctionExpression,
-    // ),
-
-    // Disjunction: $ => prec(PREC.or, seq(
-    //   $.DisjunctionExpression, "or", $.ConjunctionExpression,
-    // )),
-
-    // ConjunctionExpression: $ => choice(
-    //     $.Conjunction,
-    //     $.NegationExpression,
-    // ),
-
-    // Conjunction: $ => prec(PREC.and, seq(
-    //   $.ConjunctionExpression, "and", $.NegationExpression,
-    // )),
-
-    // NegationExpression: $ => choice(
-    //     $.Negation,
-    //     $.RelationalExpression,
-    // ),
-
-    // Negation: $ => seq(
-    //   "not", $.NegationExpression,
-    // ),
-
-    // RelationalExpression: $ => choice(
-    //     $.EqualTo,
-    //     $.NotEqualTo,
-    //     $.LessThan,
-    //     $.LessThanEqualTo,
-    //     $.GraterThan,
-    //     $.GreaterThanEqualTo,
-    //     $.Is,
-    //     $.IsNot,
-    //     // $.ArithmeticalExpression,
-    // ),
-
-    //
-    // EqualTo: $ => seq(
-    //   $.RelationalExpression, "==", $.ArithmeticalExpression,
-    // ),
-    //
-    // NotEqualTo: $ => seq(
-    //   $.RelationalExpression, "!=", $.ArithmeticalExpression,
-    // ),
-    //
-    // LessThan: $ => seq(
-    //   $.RelationalExpression, "<", $.ArithmeticalExpression,
-    // ),
-    //
-    // LessThanEqualTo: $ => seq(
-    //   $.RelationalExpression, "<=", $.ArithmeticalExpression,
-    // ),
-    //
-    // GraterThan: $ => seq(
-    //   $.RelationalExpression, ">", $.ArithmeticalExpression,
-    // ),
-    //
-    // GreaterThanEqualTo: $ => seq(
-    //   $.RelationalExpression, ">=", $.ArithmeticalExpression,
-    // ),
-    //
-    // Is: $ => seq(
-    //   $.RelationalExpression, "is", $.ArithmeticalExpression,
-    // ),
-    //
-    // IsNot: $ => seq(
-    //   $.RelationalExpression, "is not", $.ArithmeticalExpression,
-    // ),
-
-    // ArithmeticalExpression: $ => $.AdditiveExpression,
-
-    // AdditiveExpression: $ => choice(
-    //   $.Addition,
-    //   $.Subtraction,
-    //   $.BitwiseDisjunction,
-    //   $.MultiplicativeExpression,
-    // ),
-    //
-    // Addition: $ => prec(PREC.plus, seq(
-    //   $.AdditiveExpression, "+", $.MultiplicativeExpression,
-    // )),
-    //
-    // Subtraction: $ => prec(PREC.plus, seq(
-    //   $.AdditiveExpression, "-", $.MultiplicativeExpression,
-    // )),
-    //
-    // BitwiseDisjunction: $ => prec(PREC.bitwise_or, seq(
-    //   $.AdditiveExpression, "|", $.MultiplicativeExpression,
-    // )),
-    //
-    // MultiplicativeExpression: $ => choice(
-    //   $.Multiplication,
-    //   $.Division,
-    //   $.BitwiseConjunction,
-    //   $.Factor,
-    // ),
-    //
-    // Multiplication: $ => prec.left(PREC.times, seq(
-    //   $.MultiplicativeExpression, "*", $.Factor,
-    // )),
-    //
-    // Division: $ => prec(PREC.times, seq(
-    //   $.MultiplicativeExpression, "/", $.Factor,
-    // )),
-    //
-    // BitwiseConjunction: $ => prec(PREC.bitwise_and, seq(
-    //   $.MultiplicativeExpression, "&", $.Factor,
-    // )),
-    //
-
-    // Factor: $ => choice(
-    //   $.Identifier,
-    //   $.FunctionCallOrEdgeAccess,
-    //   $.AnonymousFunction,
-    //   $.ChainedFunctionCallOrEdgeAccess,
-    //   $.ListIndexAccess_EdgeAccessParameter,
-    //   $.UnaryFactor,
-    //   $.List,
-    //   $.Node,
-    //   $.Literal,
-    // ),
 
     Identifier: $ => choice(
       $.CamelIdentifier,
