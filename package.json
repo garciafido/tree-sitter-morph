@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-morph",
-  "version": "1.0.46",
+  "version": "1.0.48",
   "description": "A parser for the Morph Language written in tree-sitter",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,9 @@
     "parse": "./node_modules/.bin/tree-sitter parse",
     "highlight": "./node_modules/.bin/tree-sitter highlight",
     "release": "np"
+  },
+  "np": {
+    "yarn": false
   },
   "repository": {
     "type": "git",

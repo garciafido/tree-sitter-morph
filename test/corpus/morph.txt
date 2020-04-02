@@ -9,7 +9,8 @@ morph Foo(bar) {
 
 ---
 
-   (Module (Module_statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismCreationDeclaration (MorphismCreationDeclaration_name (Identifier (CamelIdentifier))) (MorphismCreationDeclaration_expression (Expression (PrimaryExpression (StringLiteral)))))))))
+   (Module (Module_statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismCreationDeclaration (MorphismCreationDeclaration_name (Identifier (CamelIdentifier))) (MorphismCreationDeclaration_expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
+
 
 =======================================
 Mutation morphism_declaration_statement
@@ -22,7 +23,8 @@ morph Foo(bar) {
 
 ---
 
-  (Module (Module_statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismMutationDeclaration (MorphismMutationDeclaration_name (Identifier (CamelIdentifier))) (MorphismMutationDeclaration_expression (Expression (PrimaryExpression (StringLiteral)))))))))
+    (Module (Module_statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismMutationDeclaration (MorphismMutationDeclaration_name (Identifier (CamelIdentifier))) (MorphismMutationDeclaration_expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
+
 
 
 ==========================================
@@ -34,3 +36,5 @@ morph Foo {
 }
 
 ---
+
+  (Module (ERROR (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (ERROR (UNEXPECTED 'o')) (ERROR) (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))) (Addition_right (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))
