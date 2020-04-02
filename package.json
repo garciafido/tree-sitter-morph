@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-morph",
-  "version": "1.0.43",
+  "version": "1.0.44-beta.1",
   "description": "A parser for the Morph Language written in tree-sitter",
   "main": "index.js",
   "scripts": {
@@ -29,8 +29,8 @@
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.16.5",
-    "np": "*"
+    "np": "*",
+    "tree-sitter-cli": "^0.16.5"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
