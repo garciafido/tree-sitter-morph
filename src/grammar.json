@@ -398,7 +398,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "CHOICE",
@@ -551,7 +551,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "STRING",
@@ -636,7 +636,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "STRING",
@@ -667,7 +667,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "STRING",
@@ -715,7 +715,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         }
       ]
     },
@@ -750,7 +750,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "STRING",
@@ -822,7 +822,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "CHOICE",
@@ -934,7 +934,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "ALIAS",
@@ -1154,7 +1154,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "STRING",
@@ -2484,7 +2484,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "name"
+          "value": "identifier"
         },
         {
           "type": "STRING",

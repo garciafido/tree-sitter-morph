@@ -238,7 +238,7 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         },
         {
@@ -540,7 +540,7 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -567,15 +567,15 @@
           "named": true
         },
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "members__list",
           "named": true
         },
         {
           "type": "mutates",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         }
       ]
@@ -594,7 +594,7 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -663,7 +663,7 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         },
         {
@@ -756,15 +756,15 @@
           "named": true
         },
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "initializer",
           "named": true
         },
         {
           "type": "modifier",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         },
         {
@@ -1092,7 +1092,7 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -1141,7 +1141,7 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         },
         {
@@ -1350,7 +1350,7 @@
       "required": true,
       "types": [
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         },
         {
@@ -1798,29 +1798,6 @@
     }
   },
   {
-    "type": "name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "parameters__list",
     "named": true,
     "fields": {},
@@ -1857,7 +1834,7 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         },
         {
