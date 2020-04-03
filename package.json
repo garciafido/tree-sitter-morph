@@ -30,7 +30,7 @@
   "homepage": "https://github.com/morphlang/tree-sitter-morph#readme",
   "dependencies": {
     "nan": "^2.14.0",
-    "tree-sitter": "^0.16.0"
+    "tree-sitter": "^0.16.1"
   },
   "devDependencies": {
     "np": "*",
