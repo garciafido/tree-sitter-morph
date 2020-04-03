@@ -9,8 +9,7 @@ morph Foo(bar) {
 
 ---
 
-   (Module (statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismCreationDeclaration (MorphismCreationDeclaration_name (Identifier (CamelIdentifier))) (MorphismCreationDeclaration_expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
-
+ (Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (name (PascalIdentifier)) (source (PrimaryExpression (Identifier (CamelIdentifier)))) (members__list (MorphismCreationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (Literal (StringLiteral)))))))))
 
 =======================================
 Mutation morphism_declaration_statement
@@ -23,18 +22,17 @@ morph Foo(bar) {
 
 ---
 
-    (Module (statements__list (MorphismDeclarationStatement (MorphismDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (MorphismDeclarationStatement_source (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (MorphismDeclarationStatement_members__list (MorphismMutationDeclaration (MorphismMutationDeclaration_name (Identifier (CamelIdentifier))) (MorphismMutationDeclaration_expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
-
+ (Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (name (PascalIdentifier)) (source (PrimaryExpression (Identifier (CamelIdentifier)))) (members__list (MorphismMutationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (Literal (StringLiteral)))))))))
 
 
 ==========================================
 morphism_declaration_statement with lambda
 ==========================================
 
-morph Foo {
-  new foo -> () => 1 + 2
+morph Foo(A) {
+  new foo -> lambda () => 1 + 2
 }
 
 ---
 
-  (Module (ERROR (MorphismDeclarationStatement_name (Identifier (PascalIdentifier))) (ERROR (UNEXPECTED 'o')) (ERROR) (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))) (Addition_right (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))
+  (Module (statements__list (MorphismDeclarationStatement (name (PascalIdentifier)) (source (PrimaryExpression (Identifier (PascalIdentifier)))) (members__list (MorphismCreationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (AnonymousFunction (AnonymousFunction_expression (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))) (Addition_right (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))

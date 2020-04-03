@@ -548,98 +548,19 @@
           "named": true
         },
         {
-          "type": "ConstantDeclarationStatement_accessibility",
+          "type": "accessibility",
           "named": true
         },
         {
-          "type": "ConstantDeclarationStatement_name",
+          "type": "name",
           "named": true
         },
         {
-          "type": "ConstantDeclarationStatement_type",
+          "type": "type",
           "named": true
         },
         {
-          "type": "ConstantDeclarationStatement_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeAnnotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement_value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Decorator",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "parameters__list",
+          "type": "value",
           "named": true
         }
       ]
@@ -703,60 +624,15 @@
       "required": true,
       "types": [
         {
-          "type": "EnumDeclarationStatement_accessibility",
+          "type": "accessibility",
           "named": true
         },
         {
-          "type": "EnumDeclarationStatement_name",
+          "type": "name",
           "named": true
         },
         {
-          "type": "EnumDeclarationStatement_values__list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "EnumDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "EnumDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "EnumDeclarationStatement_values__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
+          "type": "values__list",
           "named": true
         }
       ]
@@ -934,117 +810,27 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionDeclarationStatement_accessibility",
+          "type": "accessibility",
           "named": true
         },
         {
-          "type": "FunctionDeclarationStatement_expression",
+          "type": "expression",
           "named": true
         },
         {
-          "type": "FunctionDeclarationStatement_name",
+          "type": "name",
           "named": true
         },
         {
-          "type": "FunctionDeclarationStatement_parameters__list",
+          "type": "parameters__list",
           "named": true
         },
         {
-          "type": "FunctionDeclarationStatement_type",
+          "type": "type",
           "named": true
         },
         {
-          "type": "FunctionDeclarationStatement_type_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "FunctionParameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeAnnotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_type_parameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeParameters",
+          "type": "type_parameters",
           "named": true
         }
       ]
@@ -1059,41 +845,11 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionParameter_name",
+          "type": "name",
           "named": true
         },
         {
-          "type": "FunctionParameter_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionParameter_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionParameter_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeAnnotation",
+          "type": "type",
           "named": true
         }
       ]
@@ -1386,41 +1142,11 @@
       "required": true,
       "types": [
         {
-          "type": "MorphismCreationDeclaration_expression",
+          "type": "expression",
           "named": true
         },
         {
-          "type": "MorphismCreationDeclaration_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismCreationDeclaration_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismCreationDeclaration_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
+          "type": "name",
           "named": true
         }
       ]
@@ -1435,102 +1161,23 @@
       "required": true,
       "types": [
         {
-          "type": "MorphismDeclarationStatement_accessibility",
+          "type": "accessibility",
           "named": true
         },
         {
-          "type": "MorphismDeclarationStatement_decorators__list",
+          "type": "decorators__list",
           "named": true
         },
         {
-          "type": "MorphismDeclarationStatement_members__list",
+          "type": "members__list",
           "named": true
         },
         {
-          "type": "MorphismDeclarationStatement_name",
+          "type": "name",
           "named": true
         },
         {
-          "type": "MorphismDeclarationStatement_source",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismDeclarationStatement_decorators__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Decorator",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismDeclarationStatement_members__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "MorphismCreationDeclaration",
-          "named": true
-        },
-        {
-          "type": "MorphismMutationDeclaration",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismDeclarationStatement_source",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
+          "type": "source",
           "named": true
         }
       ]
@@ -1545,41 +1192,11 @@
       "required": true,
       "types": [
         {
-          "type": "MorphismMutationDeclaration_expression",
+          "type": "expression",
           "named": true
         },
         {
-          "type": "MorphismMutationDeclaration_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismMutationDeclaration_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "MorphismMutationDeclaration_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
+          "type": "name",
           "named": true
         }
       ]
@@ -1739,132 +1356,23 @@
       "required": true,
       "types": [
         {
-          "type": "NodeEdgeDeclaration_decorators__list",
+          "type": "decorators__list",
           "named": true
         },
         {
-          "type": "NodeEdgeDeclaration_initializer",
+          "type": "initializer",
           "named": true
         },
         {
-          "type": "NodeEdgeDeclaration_modifier",
+          "type": "modifier",
           "named": true
         },
         {
-          "type": "NodeEdgeDeclaration_name",
+          "type": "name",
           "named": true
         },
         {
-          "type": "NodeEdgeDeclaration_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdgeDeclaration_decorators__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Decorator",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdgeDeclaration_initializer",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "NodeEdgeInitializer",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdgeDeclaration_modifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "NodeEdgeModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdgeDeclaration_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdgeDeclaration_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdgeInitializer",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "InitializerExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdgeModifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "NodeEdgeArrayModifier",
-          "named": true
-        },
-        {
-          "type": "NodeEdgeRequiredModifier",
+          "type": "type",
           "named": true
         }
       ]
@@ -2338,25 +1846,6 @@
     }
   },
   {
-    "type": "SingleType",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PredefinedType",
-          "named": true
-        },
-        {
-          "type": "TypeIdentifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "StringLiteral",
     "named": true,
     "fields": {},
@@ -2448,41 +1937,11 @@
       "required": true,
       "types": [
         {
-          "type": "SymbolDeclarationStatement_accessibility",
+          "type": "accessibility",
           "named": true
         },
         {
-          "type": "SymbolDeclarationStatement_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "SymbolDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "SymbolDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
+          "type": "name",
           "named": true
         }
       ]
@@ -2689,22 +2148,7 @@
       "required": true,
       "types": [
         {
-          "type": "TypeUnion_types__list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeUnion_types__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "SingleType",
+          "type": "types__list",
           "named": true
         }
       ]
@@ -2761,11 +2205,38 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "DecoratorIdentifier",
           "named": true
         },
         {
           "type": "parameters__list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
           "named": true
         }
       ]
@@ -2818,7 +2289,7 @@
     }
   },
   {
-    "type": "identifier",
+    "type": "initializer",
     "named": true,
     "fields": {},
     "children": {
@@ -2826,15 +2297,7 @@
       "required": true,
       "types": [
         {
-          "type": "CamelIdentifier",
-          "named": true
-        },
-        {
-          "type": "PascalIdentifier",
-          "named": true
-        },
-        {
-          "type": "SnakeIdentifier",
+          "type": "InitializerExpression",
           "named": true
         }
       ]
@@ -2872,11 +2335,38 @@
       "required": true,
       "types": [
         {
+          "type": "MorphismCreationDeclaration",
+          "named": true
+        },
+        {
+          "type": "MorphismMutationDeclaration",
+          "named": true
+        },
+        {
           "type": "NodeEdgeDeclaration",
           "named": true
         },
         {
           "type": "NodeStaticConstantDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NodeEdgeArrayModifier",
+          "named": true
+        },
+        {
+          "type": "NodeEdgeRequiredModifier",
           "named": true
         }
       ]
@@ -2930,6 +2420,41 @@
   },
   {
     "type": "parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source",
     "named": true,
     "fields": {},
     "children": {
@@ -2997,6 +2522,109 @@
         },
         {
           "type": "TypeDeclarationStatement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "TypeUnion",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeParameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "types__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PredefinedType",
+          "named": true
+        },
+        {
+          "type": "TypeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "values__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
@@ -3096,6 +2724,10 @@
   },
   {
     "type": "Conjunction",
+    "named": true
+  },
+  {
+    "type": "DecoratorIdentifier",
     "named": true
   },
   {

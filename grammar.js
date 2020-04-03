@@ -120,21 +120,18 @@ module.exports = grammar({
     ),
 
     Decorator: $ => prec.left(seq(
-      alias($.Identifier, $.identifier),
-      seq("(", commaSeparated(alias($.Expression, $.parameters__list)), ")"),
+      $.DecoratorIdentifier,
+      optional(seq("(", commaSeparated(alias($.Expression, $.parameters__list)), ")")),
       ),
     ),
 
-    NodeEdgeDeclaration_type: $ => $.Type,
-    NodeEdgeDeclaration_decorators__list: $ => $.Decorator,
-    NodeEdgeDeclaration_initializer: $ => $.NodeEdgeInitializer,
     NodeEdgeDeclaration: $ => seq(
-      repeat(alias($.NodeEdgeDeclaration_decorators__list),
+      repeat(alias($.Decorator, $.decorators__list)),
       alias($.Identifier, $.name),
-      optional(alias($.NodeEdgeModifier, $modifier),
+      optional(alias($.NodeEdgeModifier, $.modifier)),
       "->",
-      $.NodeEdgeDeclaration_type,
-      optional($.NodeEdgeDeclaration_initializer),
+      alias($.Type, $.type),
+      optional(alias($.NodeEdgeInitializer, $.initializer)),
     ),
 
     NodeEdgeModifier: $ => choice(
@@ -160,95 +157,85 @@ module.exports = grammar({
       "static", $.NodeStaticName, "=", $.NodeStaticExpression,
     ),
 
-    MorphismDeclarationStatement_decorators__list: $ => prec(PREC.morph_decorator, $.Decorator),
-    MorphismDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    MorphismDeclarationStatement_name: $ => $.Identifier,
-    MorphismDeclarationStatement_source: $ => $.Expression,
-    MorphismDeclarationStatement_members__list: $ => choice(
+    MorphismDeclarationStatementMember: $ => choice(
       $.MorphismMutationDeclaration,
       $.MorphismCreationDeclaration,
     ),
 
     MorphismDeclarationStatement: $ => seq(
-      repeat($.MorphismDeclarationStatement_decorators__list),
-      optional($.MorphismDeclarationStatement_accessibility),
+      repeat(alias($.Decorator, $.decorators__list)),
+      optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "morph",
-      $.MorphismDeclarationStatement_name,
+      alias($.Identifier, $.name),
       "(",
-      $.MorphismDeclarationStatement_source,
+      alias($.Expression, $.source),
       ")",
       "{",
-      repeat($.MorphismDeclarationStatement_members__list),
+      repeat(alias($.MorphismDeclarationStatementMember, $.members__list)),
       "}",
     ),
 
-    MorphismMutationDeclaration_name: $ => $.Identifier,
-    MorphismMutationDeclaration_expression: $ => $.Expression,
     MorphismMutationDeclaration: $ => seq(
-      $.MorphismMutationDeclaration_name,
+      alias($.Identifier, $.name),
       "->",
-      $.MorphismMutationDeclaration_expression,
+      alias($.Expression, $.expression),
     ),
 
-    MorphismCreationDeclaration_name: $ => $.Identifier,
-    MorphismCreationDeclaration_expression: $ => $.Expression,
     MorphismCreationDeclaration: $ => seq(
-      "new", $.MorphismCreationDeclaration_name, "->", $.MorphismCreationDeclaration_expression,
+      "new",
+      alias($.Identifier, $.name),
+      "->",
+      alias($.Expression, $.expression),
     ),
 
-    SymbolDeclarationStatement_name: $ => $.Identifier,
-    SymbolDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     SymbolDeclarationStatement: $ => seq(
-      optional($.SymbolDeclarationStatement_accessibility), "symbol", $.SymbolDeclarationStatement_name,
+      optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
+      "symbol",
+      alias($.Identifier, $.name),
     ),
 
-    EnumDeclarationStatement_name: $ => $.Identifier,
-    EnumDeclarationStatement_values__list: $ => $.Identifier,
-    EnumDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     EnumDeclarationStatement: $ => seq(
-      optional($.EnumDeclarationStatement_accessibility), "enum", $.EnumDeclarationStatement_name, "{", repeat($.EnumDeclarationStatement_values__list), "}",
+      optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
+      "enum",
+      alias($.Identifier, $.name),
+      "{",
+      repeat(alias($.Identifier, $.values__list)),
+      "}",
     ),
 
     AssignmentSign: $ => "=",
 
-    ConstantDeclarationStatement_name: $ => $.Identifier,
-    ConstantDeclarationStatement_value: $ => $.Expression,
     ConstantDeclarationStatement_type: $ => $.TypeAnnotation,
-    ConstantDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     ConstantDeclarationStatement: $ => seq(
-      optional($.ConstantDeclarationStatement_accessibility),
+      optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "const",
-      $.ConstantDeclarationStatement_name,
-      optional($.ConstantDeclarationStatement_type),
+      alias($.Identifier, $.name),
+      optional(alias($.TypeAnnotation, $.type)),
       $.AssignmentSign,
-      $.ConstantDeclarationStatement_value,
+      alias($.Expression, $.value),
     ),
 
     TypeAnnotation: $ => seq(
       ":", $.Type,
     ),
 
-    FunctionDeclarationStatement_name: $ => $.Identifier,
-    FunctionDeclarationStatement_expression: $ => $.Expression,
-    FunctionDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    FunctionDeclarationStatement_type: $ => $.TypeAnnotation,
-    FunctionDeclarationStatement_parameters__list: $ => $.FunctionParameter,
-    FunctionDeclarationStatement_type_parameters: $ => $.TypeParameters,
+//---------  KKkkkkkkkk  ----------------------------------------------------------------->>>>>------------->>>>> Por aquí
+
     FunctionDeclarationStatement: $ => seq(
-      optional($.FunctionDeclarationStatement_accessibility),
+      optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "func",
-      $.FunctionDeclarationStatement_name,
-      optional($.FunctionDeclarationStatement_type_parameters),
-      "(", optional(seq($.FunctionDeclarationStatement_parameters__list, repeat(seq(",", $.FunctionDeclarationStatement_parameters__list)), optional(","))), ")",
-      optional($.FunctionDeclarationStatement_type),
+      alias($.Identifier, $.name),
+      optional(alias($.TypeParameters, $.type_parameters)),
+      "(",
+      commaSeparated(alias($.FunctionParameter, $.parameters__list)),
+      ")",
+      optional(alias($.TypeAnnotation, $.type)),
       "=>",
-      $.FunctionDeclarationStatement_expression,
+      alias($.Expression, $.expression),
     ),
 
-    FunctionParameter_name: $ => $.Identifier,
-    FunctionParameter_type: $ => $.TypeAnnotation,
     FunctionParameter: $ => seq(
-      $.FunctionParameter_name, $.FunctionParameter_type,
+      alias($.Identifier, $.name), alias($.TypeAnnotation, $.type),
     ),
 
     TypeParameters: $ => seq(
@@ -267,9 +254,8 @@ module.exports = grammar({
 
     Type: $ => $.TypeUnion,
 
-    TypeUnion_types__list: $ => $.SingleType,
     TypeUnion: $ => seq(
-      $.TypeUnion_types__list, repeat(seq("|", $.TypeUnion_types__list)),
+      alias($.SingleType, $.types__list), repeat(seq("|", alias($.SingleType, $.types__list))),
     ),
 
     TypeIdentifier: $ => $.Identifier,
@@ -729,10 +715,14 @@ module.exports = grammar({
   }
 });
 
-function commaSeparated1 (rule) {
-  return commaSeparated(rule)
+function commaSeparated (rule) {
+  return optional(commaSeparated1(rule));
 }
 
-function commaSeparated (rule) {
+function commaSeparated1 (rule) {
+  return commaSep1(rule)
+}
+
+function commaSep1 (rule) {
   return seq(rule, repeat(seq(",", rule)))
 }

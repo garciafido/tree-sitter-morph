@@ -10,5 +10,4 @@ enum foo {
 
 ---
 
- (Module (statements__list (EnumDeclarationStatement (EnumDeclarationStatement_name (Identifier (CamelIdentifier))) (EnumDeclarationStatement_values__list (Identifier (CamelIdentifier))) (EnumDeclarationStatement_values__list (Identifier (CamelIdentifier))) (EnumDeclarationStatement_values__list (Identifier (CamelIdentifier))))))
-
+(Module (statements__list (EnumDeclarationStatement (name (CamelIdentifier)) (values__list (CamelIdentifier)) (values__list (CamelIdentifier)) (values__list (CamelIdentifier)))))

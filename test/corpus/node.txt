@@ -31,7 +31,7 @@ node foo extends FooBase {}
 
 ---
 
-    (Module (statements__list (NodeTypeDeclarationStatement (decorators__list (Decorator (identifier (DecoratorIdentifier)))) (name (CamelIdentifier)) (extends (PascalIdentifier)))))
+    (Module (statements__list (NodeTypeDeclarationStatement (decorators__list (DecoratorIdentifier)) (name (CamelIdentifier)) (extends (PascalIdentifier)))))
 
 
 ==========================================
@@ -43,7 +43,7 @@ abstract node foo extends FooBase {}
 
 ---
 
-(Module (statements__list (NodeTypeDeclarationStatement (decorators__list (Decorator (identifier (DecoratorIdentifier)))) (abstract) (name (CamelIdentifier)) (extends (PascalIdentifier)))))
+(Module (statements__list (NodeTypeDeclarationStatement (decorators__list (DecoratorIdentifier)) (abstract) (name (CamelIdentifier)) (extends (PascalIdentifier)))))
 
 =================================
 Member node_declaration_statement
@@ -57,5 +57,14 @@ abstract node foo extends FooBase {
 
 ---
 
-    (Module (statements__list (NodeTypeDeclarationStatement (decorators__list (Decorator (identifier (DecoratorIdentifier)))) (abstract) (name (CamelIdentifier)) (extends (PascalIdentifier)) (members__list (NodeEdgeDeclaration (decorators__list (Decorator (identifier (DecoratorIdentifier)) (parameters__list (Expression (PrimaryExpression (PascalIdentifier)))))) (name (CamelIdentifier)) (modifier (NodeEdgeModifier (NodeEdgeArrayModifier))) (type (Type (TypeUnion (types__list (SingleType (TypeIdentifier (PascalIdentifier))))))))))))
-
+(Module (statements__list
+    (NodeTypeDeclarationStatement
+        (decorators__list (DecoratorIdentifier))
+        (abstract)
+        (name (CamelIdentifier))
+        (extends (PascalIdentifier))
+        (members__list (NodeEdgeDeclaration
+            (decorators__list (DecoratorIdentifier) (parameters__list (PrimaryExpression (Identifier (PascalIdentifier)))))
+            (name (CamelIdentifier))
+            (modifier (NodeEdgeArrayModifier))
+            (type (TypeUnion (types__list (TypeIdentifier (Identifier (PascalIdentifier)))))))))))

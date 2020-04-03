@@ -6,4 +6,4 @@ type foo = Foo
 
 ---
 
-(Module (statements__list (TypeDeclarationStatement (TypeDeclarationStatement_name (TypeIdentifier (Identifier (CamelIdentifier)))) (TypeDeclarationStatement_value (Type (TypeUnion (TypeUnion_types__list (SingleType (TypeIdentifier (Identifier (PascalIdentifier)))))))))))
+(Module (statements__list (TypeDeclarationStatement (TypeDeclarationStatement_name (TypeIdentifier (Identifier (CamelIdentifier)))) (TypeDeclarationStatement_value (Type (TypeUnion (types__list (TypeIdentifier (Identifier (PascalIdentifier))))))))))

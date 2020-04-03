@@ -6,4 +6,4 @@ symbol foo
 
 ---
 
-    (Module (statements__list (SymbolDeclarationStatement (SymbolDeclarationStatement_name (Identifier (CamelIdentifier))))))
+(Module (statements__list (SymbolDeclarationStatement (name (CamelIdentifier)))))
