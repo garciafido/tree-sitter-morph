@@ -45,8 +45,8 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    [$.ChainedFunctionCallOrEdgeAccess_expression, $.Expression],
-    [$.RelationalExpression, $.ChainedFunctionCallOrEdgeAccess_expression],
+    [$.ChainedNamedLambdaCallOrEdgeAccess_expression, $.Expression],
+    [$.RelationalExpression, $.ChainedNamedLambdaCallOrEdgeAccess_expression],
   ]),
 
   // conflicts: $ => [
@@ -72,10 +72,9 @@ module.exports = grammar({
       $.MorphismDeclarationStatement,
       $.SymbolDeclarationStatement,
       $.EnumDeclarationStatement,
-      $.ConstantDeclarationStatement,
-      $.FunctionDeclarationStatement,
+      $.NamedLambdaDeclarationStatement,
       $.RuleDeclarationStatement,
-      $.TypeDeclarationStatement,
+      $.TypeAliasDeclarationStatement,
     ),
 
     ImportStatement: $ => choice(
@@ -110,10 +109,7 @@ module.exports = grammar({
     NodeTypeDeclarationStatement_abstract: $ => "abstract",
     NodeTypeDeclarationStatement_name: $ => $.Identifier,
     NodeTypeDeclarationStatement_extends: $ => $.Extends,
-    NodeTypeDeclarationStatement_members__list: $ => choice(
-        $.NodeEdgeDeclaration,
-        $.NodeStaticConstantDeclaration,
-    ),
+    NodeTypeDeclarationStatement_members__list: $ => $.NodeEdgeDeclaration,
 
     NodeTypeDeclarationStatement: $ => seq(
       repeat($.NodeTypeDeclarationStatement_decorators__list),
@@ -176,10 +172,6 @@ module.exports = grammar({
 
     NodeStaticExpression: $ => $.Expression,
 
-    NodeStaticConstantDeclaration: $ => seq(
-      "static", $.NodeStaticName, "=", $.NodeStaticExpression,
-    ),
-
     MorphismDeclarationStatement_decorators__list: $ => prec(PREC.morph_decorator, $.Decorator),
     MorphismDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     MorphismDeclarationStatement_name: $ => $.Identifier,
@@ -229,46 +221,31 @@ module.exports = grammar({
       optional($.EnumDeclarationStatement_accessibility), "enum", $.EnumDeclarationStatement_name, "{", repeat($.EnumDeclarationStatement_values__list), "}",
     ),
 
-    AssignmentSign: $ => "=",
-
-    ConstantDeclarationStatement_name: $ => $.Identifier,
-    ConstantDeclarationStatement_value: $ => $.Expression,
-    ConstantDeclarationStatement_type: $ => $.TypeAnnotation,
-    ConstantDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    ConstantDeclarationStatement: $ => seq(
-      optional($.ConstantDeclarationStatement_accessibility),
-      "const",
-      $.ConstantDeclarationStatement_name,
-      optional($.ConstantDeclarationStatement_type),
-      $.AssignmentSign,
-      $.ConstantDeclarationStatement_value,
-    ),
-
     TypeAnnotation: $ => seq(
       ":", $.Type,
     ),
 
-    FunctionDeclarationStatement_name: $ => $.Identifier,
-    FunctionDeclarationStatement_expression: $ => $.Expression,
-    FunctionDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    FunctionDeclarationStatement_type: $ => $.TypeAnnotation,
-    FunctionDeclarationStatement_parameters__list: $ => $.FunctionParameter,
-    FunctionDeclarationStatement_type_parameters: $ => $.TypeParameters,
-    FunctionDeclarationStatement: $ => seq(
-      optional($.FunctionDeclarationStatement_accessibility),
-      "func",
-      $.FunctionDeclarationStatement_name,
-      optional($.FunctionDeclarationStatement_type_parameters),
-      "(", optional(seq($.FunctionDeclarationStatement_parameters__list, repeat(seq(",", $.FunctionDeclarationStatement_parameters__list)), optional(","))), ")",
-      optional($.FunctionDeclarationStatement_type),
+    NamedLambdaDeclarationStatement_name: $ => $.Identifier,
+    NamedLambdaDeclarationStatement_expression: $ => $.Expression,
+    NamedLambdaDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
+    NamedLambdaDeclarationStatement_type: $ => $.TypeAnnotation,
+    NamedLambdaDeclarationStatement_parameters__list: $ => $.NamedLambdaParameter,
+    NamedLambdaDeclarationStatement_type_parameters: $ => $.TypeParameters,
+    NamedLambdaDeclarationStatement: $ => seq(
+      optional($.NamedLambdaDeclarationStatement_accessibility),
+      "lambda",
+      $.NamedLambdaDeclarationStatement_name,
+      optional($.NamedLambdaDeclarationStatement_type_parameters),
+      "(", optional(seq($.NamedLambdaDeclarationStatement_parameters__list, repeat(seq(",", $.NamedLambdaDeclarationStatement_parameters__list)), optional(","))), ")",
+      optional($.NamedLambdaDeclarationStatement_type),
       "=>",
-      $.FunctionDeclarationStatement_expression,
+      $.NamedLambdaDeclarationStatement_expression,
     ),
 
-    FunctionParameter_name: $ => $.Identifier,
-    FunctionParameter_type: $ => $.TypeAnnotation,
-    FunctionParameter: $ => seq(
-      $.FunctionParameter_name, $.FunctionParameter_type,
+    NamedLambdaParameter_name: $ => $.Identifier,
+    NamedLambdaParameter_type: $ => $.TypeAnnotation,
+    NamedLambdaParameter: $ => seq(
+      $.NamedLambdaParameter_name, $.NamedLambdaParameter_type,
     ),
 
     TypeParameters: $ => seq(
@@ -285,19 +262,23 @@ module.exports = grammar({
       "extends", $.Type,
     ),
 
-    Type: $ => $.TypeUnion,
+    Type: $ => choice(
+      $.TypeUnion,
+      $.SingleType,
+    ),
 
     TypeUnion_types__list: $ => $.SingleType,
     TypeUnion: $ => seq(
       $.TypeUnion_types__list, repeat(seq("|", $.TypeUnion_types__list)),
     ),
 
-    TypeIdentifier: $ => $.Identifier,
-
     SingleType: $ => choice(
       $.TypeIdentifier,
       $.PredefinedType,
     ),
+
+    TypeIdentifier_identifier: $ => $.Identifier,
+    TypeIdentifier: $ => $.TypeIdentifier_identifier,
 
     PredefinedType: $ => choice(
       $.StringType,
@@ -317,7 +298,7 @@ module.exports = grammar({
     RuleName: $ => $.Identifier,
 
     RuleDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    RuleDeclarationStatement_parameters__list: $ => $.FunctionParameter,
+    RuleDeclarationStatement_parameters__list: $ => $.NamedLambdaParameter,
     RuleDeclarationStatement: $ => seq(
       optional($.RuleDeclarationStatement_accessibility),
       "rule",
@@ -336,11 +317,11 @@ module.exports = grammar({
       $.Rule, optional(seq(":", $.Message)),
     ),
 
-    TypeDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    TypeDeclarationStatement_name: $ => $.TypeIdentifier,
-    TypeDeclarationStatement_value: $ => $.Type,
-    TypeDeclarationStatement: $ => seq(
-      optional($.TypeDeclarationStatement_accessibility), "type", $.TypeDeclarationStatement_name, "=", $.TypeDeclarationStatement_value),
+    TypeAliasDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
+    TypeAliasDeclarationStatement_name: $ => $.TypeIdentifier,
+    TypeAliasDeclarationStatement_value: $ => $.Type,
+    TypeAliasDeclarationStatement: $ => seq(
+      optional($.TypeAliasDeclarationStatement_accessibility), "type", $.TypeAliasDeclarationStatement_name, "=", $.TypeAliasDeclarationStatement_value),
 
     ModuleLevelAccessibilityModifier: $ => choice(
       $.Public,
@@ -425,10 +406,10 @@ module.exports = grammar({
       $.UnaryFactor,
       $.List,
       $.Node,
-      $.AnonymousFunction,
+      $.Lambda,
       $.ParenthesizedExpression,
-      $.FunctionCallOrEdgeAccess,
-      $.ChainedFunctionCallOrEdgeAccess,
+      $.NamedLambdaCallOrEdgeAccess,
+      $.ChainedNamedLambdaCallOrEdgeAccess,
     ),
 
 
@@ -545,17 +526,17 @@ module.exports = grammar({
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
-    FunctionCallOrEdgeAccess_expression: $ =>  $.CallableExpression,
-    FunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
-    FunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
-    FunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
-    FunctionCallOrEdgeAccess: $ => {
+    NamedLambdaCallOrEdgeAccess_expression: $ =>  $.CallableExpression,
+    NamedLambdaCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
+    NamedLambdaCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
+    NamedLambdaCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
+    NamedLambdaCallOrEdgeAccess: $ => {
       return seq(
-        $.FunctionCallOrEdgeAccess_expression,
-        optional($.FunctionCallOrEdgeAccess_rule_parameters),
+        $.NamedLambdaCallOrEdgeAccess_expression,
+        optional($.NamedLambdaCallOrEdgeAccess_rule_parameters),
         choice(
-          seq("(", getCommaSeparatedList($.FunctionCallOrEdgeAccess_function_call_parameters__list), ")"),
-          seq("[", getCommaSeparatedList($.FunctionCallOrEdgeAccess_edge_access_parameters__list, true), "]"),
+          seq("(", getCommaSeparatedList($.NamedLambdaCallOrEdgeAccess_function_call_parameters__list), ")"),
+          seq("[", getCommaSeparatedList($.NamedLambdaCallOrEdgeAccess_edge_access_parameters__list, true), "]"),
         ),
       )
     },
@@ -564,7 +545,7 @@ module.exports = grammar({
 
     CallableExpression: $ => prec.left(PREC.callable, choice(
       $.CallableName,
-      $.FunctionCallOrEdgeAccess,
+      $.NamedLambdaCallOrEdgeAccess,
       $.ParenthesizedExpression,
     )),
 
@@ -580,38 +561,38 @@ module.exports = grammar({
       "[", $.AccessExpression, "]"
     ),
 
-    AnonymousFunction_expression: $ => $.Expression,
-    AnonymousFunction_return_type: $ => $.TypeAnnotation,
-    AnonymousFunction_parameters__list: $ => prec(PREC.lambda, $.Identifier),
-    AnonymousFunction: $ => prec(PREC.lambda, seq(
+    Lambda_expression: $ => $.Expression,
+    Lambda_return_type: $ => $.TypeAnnotation,
+    Lambda_parameters__list: $ => prec(PREC.lambda, $.Identifier),
+    Lambda: $ => prec(PREC.lambda, seq(
       "lambda",
       "(",
-      getCommaSeparatedList($.AnonymousFunction_parameters__list),
+      getCommaSeparatedList($.Lambda_parameters__list),
       ")",
-      optional($.AnonymousFunction_return_type),
+      optional($.Lambda_return_type),
       "=>",
-      $.AnonymousFunction_expression,
+      $.Lambda_expression,
     )),
 
-    ChainedFunctionCallOrEdgeAccess_expression: $ => $.PrimaryExpression,
-    ChainedFunctionCallOrEdgeAccess_function_call_identifier: $ => $.Identifier,
-    ChainedFunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
-    ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
-    ChainedFunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
-    ChainedFunctionCallOrEdgeAccess: $ => prec(PREC.call, seq(
-      $.ChainedFunctionCallOrEdgeAccess_expression,
+    ChainedNamedLambdaCallOrEdgeAccess_expression: $ => $.PrimaryExpression,
+    ChainedNamedLambdaCallOrEdgeAccess_function_call_identifier: $ => $.Identifier,
+    ChainedNamedLambdaCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
+    ChainedNamedLambdaCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
+    ChainedNamedLambdaCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
+    ChainedNamedLambdaCallOrEdgeAccess: $ => prec(PREC.call, seq(
+      $.ChainedNamedLambdaCallOrEdgeAccess_expression,
       choice(
         seq(
           ".",
-          $.ChainedFunctionCallOrEdgeAccess_function_call_identifier,
-          optional($.ChainedFunctionCallOrEdgeAccess_rule_parameters),
+          $.ChainedNamedLambdaCallOrEdgeAccess_function_call_identifier,
+          optional($.ChainedNamedLambdaCallOrEdgeAccess_rule_parameters),
           "(",
-          getCommaSeparatedList($.ChainedFunctionCallOrEdgeAccess_function_call_parameters__list),
+          getCommaSeparatedList($.ChainedNamedLambdaCallOrEdgeAccess_function_call_parameters__list),
           ")",
         ),
         seq(
           "[",
-          getCommaSeparatedList($.ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list, true),
+          getCommaSeparatedList($.ChainedNamedLambdaCallOrEdgeAccess_edge_access_parameters__list, true),
           "]",
         ),
       ),

@@ -45,7 +45,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "TypeDeclarationStatement"
+          "name": "TypeAliasDeclarationStatement"
         }
       ]
     },
@@ -1064,8 +1064,17 @@
       ]
     },
     "Type": {
-      "type": "SYMBOL",
-      "name": "TypeUnion"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeUnion"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "SingleType"
+        }
+      ]
     },
     "TypeUnion_types__list": {
       "type": "SYMBOL",
@@ -1096,10 +1105,6 @@
         }
       ]
     },
-    "TypeIdentifier": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
     "SingleType": {
       "type": "CHOICE",
       "members": [
@@ -1112,6 +1117,14 @@
           "name": "PredefinedType"
         }
       ]
+    },
+    "TypeIdentifier_identifier": {
+      "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "TypeIdentifier": {
+      "type": "SYMBOL",
+      "name": "TypeIdentifier_identifier"
     },
     "PredefinedType": {
       "type": "CHOICE",
@@ -1298,19 +1311,19 @@
         }
       ]
     },
-    "TypeDeclarationStatement_accessibility": {
+    "TypeAliasDeclarationStatement_accessibility": {
       "type": "SYMBOL",
       "name": "ModuleLevelAccessibilityModifier"
     },
-    "TypeDeclarationStatement_name": {
+    "TypeAliasDeclarationStatement_name": {
       "type": "SYMBOL",
       "name": "TypeIdentifier"
     },
-    "TypeDeclarationStatement_value": {
+    "TypeAliasDeclarationStatement_value": {
       "type": "SYMBOL",
       "name": "Type"
     },
-    "TypeDeclarationStatement": {
+    "TypeAliasDeclarationStatement": {
       "type": "SEQ",
       "members": [
         {
@@ -1318,7 +1331,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "TypeDeclarationStatement_accessibility"
+              "name": "TypeAliasDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -1331,7 +1344,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "TypeDeclarationStatement_name"
+          "name": "TypeAliasDeclarationStatement_name"
         },
         {
           "type": "STRING",
@@ -1339,7 +1352,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "TypeDeclarationStatement_value"
+          "name": "TypeAliasDeclarationStatement_value"
         }
       ]
     },
@@ -2940,7 +2953,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",
