@@ -45,8 +45,8 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    // [$.ChainedFunctionCallOrEdgeAccess_expression, $.Expression],
-    // [$.RelationalExpression, $.ChainedFunctionCallOrEdgeAccess_expression],
+    // [$.ChainedNamedLambdaCallOrEdgeAccess_expression, $.Expression],
+    // [$.RelationalExpression, $.ChainedNamedLambdaCallOrEdgeAccess_expression],
   ]),
 
   // conflicts: $ => [
@@ -77,8 +77,7 @@ module.exports = grammar({
       $.MorphismDeclarationStatement,
       $.SymbolDeclarationStatement,
       $.EnumDeclarationStatement,
-      $.ConstantDeclarationStatement,
-      $.FunctionDeclarationStatement,
+      $.NamedLambdaDeclarationStatement,
       $.TypeDeclarationStatement,
     ),
 
@@ -103,10 +102,7 @@ module.exports = grammar({
       commaSeparated(alias($.Identifier, $.items__list)),
     ),
 
-    NodeTypeDeclarationStatementMembers: $ => choice(
-        $.NodeEdgeDeclaration,
-        $.NodeStaticConstantDeclaration,
-    ),
+    NodeTypeDeclarationStatementMembers: $ => $.NodeEdgeDeclaration,
 
     NodeTypeDeclarationStatement: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
@@ -119,7 +115,7 @@ module.exports = grammar({
     ),
 
     Decorator: $ => prec.left(seq(
-      $.DecoratorIdentifier,
+      alias($.DecoratorIdentifier, $.identifier),
       optional(seq("(", commaSeparated(alias($.Expression, $.parameters__list)), ")")),
       ),
     ),
@@ -152,10 +148,6 @@ module.exports = grammar({
 
     NodeStaticExpression: $ => $.Expression,
 
-    NodeStaticConstantDeclaration: $ => seq(
-      "static", $.NodeStaticName, "=", $.NodeStaticExpression,
-    ),
-
     MorphismDeclarationStatementMember: $ => choice(
       $.MorphismMutationDeclaration,
       $.MorphismCreationDeclaration,
@@ -167,7 +159,7 @@ module.exports = grammar({
       "morph",
       alias($.Identifier, $.name),
       "mutates",
-      alias($.Identifier, $.source),
+      alias($.Identifier, $.mutates),
       optional(seq(
         "(",
         "if",
@@ -210,33 +202,24 @@ module.exports = grammar({
 
     AssignmentSign: $ => "=",
 
-    ConstantDeclarationStatement: $ => seq(
-      optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
-      "const",
-      alias($.Identifier, $.name),
-      optional(alias($.TypeAnnotation, $.type)),
-      $.AssignmentSign,
-      alias($.Expression, $.value),
-    ),
-
     TypeAnnotation: $ => seq(
       ":", $.Type,
     ),
 
-    FunctionDeclarationStatement: $ => seq(
+    NamedLambdaDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
-      "func",
+      "lambda",
       alias($.Identifier, $.name),
       optional(alias($.TypeParameters, $.type_parameters)),
       "(",
-      commaSeparated(alias($.FunctionParameter, $.parameters__list)),
+      commaSeparated(alias($.NamedLambdaParameter, $.parameters__list)),
       ")",
       optional(alias($.TypeAnnotation, $.type)),
       "=>",
       alias($.Expression, $.expression),
     ),
 
-    FunctionParameter: $ => seq(
+    NamedLambdaParameter: $ => seq(
       alias($.Identifier, $.name), alias($.TypeAnnotation, $.type),
     ),
 
@@ -368,10 +351,10 @@ module.exports = grammar({
       $.UnaryFactor,
       $.List,
       $.Node,
-      $.AnonymousFunction,
+      $.Lambda,
       $.ParenthesizedExpression,
-      $.FunctionCallOrEdgeAccess,
-      $.ChainedFunctionCallOrEdgeAccess,
+      $.NamedLambdaCallOrEdgeAccess,
+      $.ChainedNamedLambdaCallOrEdgeAccess,
     )),
 
     BinaryExpression: $ => choice(
@@ -471,7 +454,7 @@ module.exports = grammar({
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
-    FunctionCallOrEdgeAccess: $ => {
+    NamedLambdaCallOrEdgeAccess: $ => {
       return seq(
         alias($.CallableExpression, $.expression),
         optional(alias($.RuleParameters, $.rule_parameters)),
@@ -486,7 +469,7 @@ module.exports = grammar({
 
     CallableExpression: $ => prec.left(PREC.callable, choice(
       $.CallableName,
-      $.FunctionCallOrEdgeAccess,
+      $.NamedLambdaCallOrEdgeAccess,
       $.ParenthesizedExpression,
     )),
 
@@ -510,8 +493,8 @@ module.exports = grammar({
       "[", $.AccessExpression, "]"
     ),
 
-    // AnonymousFunction_parameters__list: $ => prec(PREC.lambda, $.Identifier),
-    AnonymousFunction: $ => prec(PREC.lambda, seq(
+    // Lambda_parameters__list: $ => prec(PREC.lambda, $.Identifier),
+    Lambda: $ => prec(PREC.lambda, seq(
       "lambda",
       "(",
       commaSeparated(alias($.Identifier, $.parameters__list)),
@@ -521,7 +504,7 @@ module.exports = grammar({
       alias($.Expression, $.expression),
     )),
 
-    ChainedFunctionCallOrEdgeAccess: $ => prec(PREC.call, seq(
+    ChainedNamedLambdaCallOrEdgeAccess: $ => prec(PREC.call, seq(
       alias($.PrimaryExpression, $.expression),
       choice(
         seq(
