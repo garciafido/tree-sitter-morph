@@ -6,7 +6,7 @@ node foo {}
 
 ---
 
-  (Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_name (CamelIdentifier)))))
+  (Module (statements__list (NodeTypeDeclarationStatement (name (CamelIdentifier)))))
 
 
 
@@ -18,7 +18,7 @@ node foo extends FooBase {}
 
 ---
 
-   (Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_name (CamelIdentifier)) (NodeTypeDeclarationStatement_extends (Extends (PascalIdentifier))))))
+   (Module (statements__list (NodeTypeDeclarationStatement (name (CamelIdentifier)) (extends (PascalIdentifier)))))
 
 
 
@@ -31,7 +31,7 @@ node foo extends FooBase {}
 
 ---
 
-    (Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (NodeTypeDeclarationStatement_name (Identifier (CamelIdentifier))) (NodeTypeDeclarationStatement_extends (Extends (Identifier (PascalIdentifier)))))))
+    (Module (statements__list (NodeTypeDeclarationStatement (decorators__list (Decorator (identifier (DecoratorIdentifier)))) (name (CamelIdentifier)) (extends (PascalIdentifier)))))
 
 
 ==========================================
@@ -43,7 +43,7 @@ abstract node foo extends FooBase {}
 
 ---
 
-(Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (NodeTypeDeclarationStatement_abstract) (NodeTypeDeclarationStatement_name (Identifier (CamelIdentifier))) (NodeTypeDeclarationStatement_extends (Extends (Identifier (PascalIdentifier)))))))
+(Module (statements__list (NodeTypeDeclarationStatement (decorators__list (Decorator (identifier (DecoratorIdentifier)))) (abstract) (name (CamelIdentifier)) (extends (PascalIdentifier)))))
 
 =================================
 Member node_declaration_statement
@@ -57,5 +57,5 @@ abstract node foo extends FooBase {
 
 ---
 
-    (Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)))) (NodeTypeDeclarationStatement_abstract) (NodeTypeDeclarationStatement_name (Identifier (CamelIdentifier))) (NodeTypeDeclarationStatement_extends (Extends (Identifier (PascalIdentifier)))) (NodeTypeDeclarationStatement_members__list (NodeEdgeDeclaration (NodeEdgeDeclaration_decorators__list (Decorator (Decorator_identifier (DecoratorIdentifier)) (Decorator_parameters__list (Expression (PrimaryExpression (Identifier (PascalIdentifier))))))) (NodeEdgeDeclaration_name (Identifier (CamelIdentifier))) (NodeEdgeDeclaration_modifier (NodeEdgeModifier (NodeEdgeArrayModifier))) (NodeEdgeDeclaration_type (Type (TypeUnion (TypeUnion_types__list (SingleType (TypeIdentifier (Identifier (PascalIdentifier)))))))))))))
+    (Module (statements__list (NodeTypeDeclarationStatement (decorators__list (Decorator (identifier (DecoratorIdentifier)))) (abstract) (name (CamelIdentifier)) (extends (PascalIdentifier)) (members__list (NodeEdgeDeclaration (decorators__list (Decorator (identifier (DecoratorIdentifier)) (parameters__list (Expression (PrimaryExpression (PascalIdentifier)))))) (name (CamelIdentifier)) (modifier (NodeEdgeModifier (NodeEdgeArrayModifier))) (type (Type (TypeUnion (types__list (SingleType (TypeIdentifier (PascalIdentifier))))))))))))
 

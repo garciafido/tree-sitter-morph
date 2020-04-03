@@ -63,7 +63,7 @@ module.exports = grammar({
 
   rules: {
 
-    Module: $ => repeat(alias($.Statements, $.Module_statements__list)),
+    Module: $ => repeat(alias($.Statements, $.statements__list)),
 
     // keyword_identifier: $ => /[a-zA-Z_@][a-zA-Z0-9_]*/,
 
@@ -104,40 +104,34 @@ module.exports = grammar({
       commaSeparated(alias($.Identifier, $.items__list)),
     ),
 
-    NodeTypeDeclarationStatement_members__list: $ => choice(
+    NodeTypeDeclarationStatementMembers: $ => choice(
         $.NodeEdgeDeclaration,
         $.NodeStaticConstantDeclaration,
     ),
 
     NodeTypeDeclarationStatement: $ => seq(
-      repeat(alias($.Decorator, $.NodeTypeDeclarationStatement_decorators__list)),
-      optional(alias($.ModuleLevelAccessibilityModifier, $.NodeTypeDeclarationStatement_accessibility)),
-      optional(alias("abstract", $.NodeTypeDeclarationStatement_abstract)),
+      repeat(alias($.Decorator, $.decorators__list)),
+      optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
+      optional(alias("abstract", $.abstract)),
       "node",
-      alias($.Identifier, $.NodeTypeDeclarationStatement_name),
-      optional(alias($.Extends, $.NodeTypeDeclarationStatement_extends)),
-      "{", repeat($.NodeTypeDeclarationStatement_members__list), "}",
-    ),
-
-    Extends: $ => seq(
-      "extends", $.Identifier
+      alias($.Identifier, $.name),
+      optional(seq("extends", alias($.Identifier, $.extends))),
+      "{", repeat(alias($.NodeTypeDeclarationStatementMembers, $.members__list)), "}",
     ),
 
     Decorator: $ => prec.left(seq(
-      alias($.Identifier, $.Decorator_identifier),
-      seq("(", commaSeparated(alias($.Expression, $.Decorator_parameters__list)), ")"),
+      alias($.Identifier, $.identifier),
+      seq("(", commaSeparated(alias($.Expression, $.parameters__list)), ")"),
       ),
     ),
 
-    NodeEdgeDeclaration_name: $ => $.Identifier,
     NodeEdgeDeclaration_type: $ => $.Type,
     NodeEdgeDeclaration_decorators__list: $ => $.Decorator,
-    NodeEdgeDeclaration_modifier: $ => $.NodeEdgeModifier,
     NodeEdgeDeclaration_initializer: $ => $.NodeEdgeInitializer,
     NodeEdgeDeclaration: $ => seq(
-      repeat($.NodeEdgeDeclaration_decorators__list),
-      $.NodeEdgeDeclaration_name,
-      optional($.NodeEdgeDeclaration_modifier),
+      repeat(alias($.NodeEdgeDeclaration_decorators__list),
+      alias($.Identifier, $.name),
+      optional(alias($.NodeEdgeModifier, $modifier),
       "->",
       $.NodeEdgeDeclaration_type,
       optional($.NodeEdgeDeclaration_initializer),

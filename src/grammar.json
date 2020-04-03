@@ -10,7 +10,7 @@
           "name": "Statements"
         },
         "named": true,
-        "value": "Module_statements__list"
+        "value": "statements__list"
       }
     },
     "Statements": {
@@ -84,7 +84,7 @@
                 "name": "Path"
               },
               "named": true,
-              "value": "ImportModuleStatement_path"
+              "value": "path"
             },
             {
               "type": "BLANK"
@@ -98,7 +98,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "ImportModuleStatement_from"
+          "value": "from"
         }
       ]
     },
@@ -123,7 +123,7 @@
                 "name": "Path"
               },
               "named": true,
-              "value": "ImportFromStatement_path"
+              "value": "path"
             },
             {
               "type": "BLANK"
@@ -137,7 +137,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "ImportFromStatement_module"
+          "value": "module"
         },
         {
           "type": "STRING",
@@ -153,7 +153,7 @@
                 "name": "Identifier"
               },
               "named": true,
-              "value": "ImportFromStatement_items__list"
+              "value": "items__list"
             },
             {
               "type": "REPEAT",
@@ -171,7 +171,7 @@
                       "name": "Identifier"
                     },
                     "named": true,
-                    "value": "ImportFromStatement_items__list"
+                    "value": "items__list"
                   }
                 ]
               }
@@ -180,7 +180,7 @@
         }
       ]
     },
-    "NodeTypeDeclarationStatement_members__list": {
+    "NodeTypeDeclarationStatementMembers": {
       "type": "CHOICE",
       "members": [
         {
@@ -205,7 +205,7 @@
               "name": "Decorator"
             },
             "named": true,
-            "value": "NodeTypeDeclarationStatement_decorators__list"
+            "value": "decorators__list"
           }
         },
         {
@@ -218,7 +218,7 @@
                 "name": "ModuleLevelAccessibilityModifier"
               },
               "named": true,
-              "value": "NodeTypeDeclarationStatement_accessibility"
+              "value": "accessibility"
             },
             {
               "type": "BLANK"
@@ -235,7 +235,7 @@
                 "value": "abstract"
               },
               "named": true,
-              "value": "NodeTypeDeclarationStatement_abstract"
+              "value": "abstract"
             },
             {
               "type": "BLANK"
@@ -253,19 +253,28 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "NodeTypeDeclarationStatement_name"
+          "value": "name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "Extends"
-              },
-              "named": true,
-              "value": "NodeTypeDeclarationStatement_extends"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "extends"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "Identifier"
+                  },
+                  "named": true,
+                  "value": "extends"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -279,26 +288,18 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "NodeTypeDeclarationStatement_members__list"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "NodeTypeDeclarationStatementMembers"
+            },
+            "named": true,
+            "value": "members__list"
           }
         },
         {
           "type": "STRING",
           "value": "}"
-        }
-      ]
-    },
-    "Extends": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "extends"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
         }
       ]
     },
@@ -315,7 +316,7 @@
               "name": "Identifier"
             },
             "named": true,
-            "value": "Decorator_identifier"
+            "value": "identifier"
           },
           {
             "type": "SEQ",
@@ -334,7 +335,7 @@
                       "name": "Expression"
                     },
                     "named": true,
-                    "value": "Decorator_parameters__list"
+                    "value": "parameters__list"
                   },
                   {
                     "type": "REPEAT",
@@ -352,7 +353,7 @@
                             "name": "Expression"
                           },
                           "named": true,
-                          "value": "Decorator_parameters__list"
+                          "value": "parameters__list"
                         }
                       ]
                     }
