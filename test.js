@@ -10,4 +10,4 @@ enum foo {
 `;
 const tree = parseSemantic(code);
 
-console.log(JSON.stringify(tree, null, 2));
+// console.log(JSON.stringify(tree, null, 2));

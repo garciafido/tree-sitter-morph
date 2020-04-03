@@ -27,7 +27,7 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
             traverse(node) {
                 const type = node.type;
                 const NewNode = {
-                    type: type,
+                    type: type === "decorators__list" ? "Decorator" : type === "identifier" ? "Identifier" : type,
                     value: undefined,
                     children: {},
                     sourceFilePosition: {
