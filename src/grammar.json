@@ -968,17 +968,16 @@
       "type": "SYMBOL",
       "name": "TypeUnion"
     },
+    "TypeUnion_types__list": {
+      "type": "SYMBOL",
+      "name": "SingleType"
+    },
     "TypeUnion": {
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "SingleType"
-          },
-          "named": true,
-          "value": "TypeUnion_types__list"
+          "type": "SYMBOL",
+          "name": "TypeUnion_types__list"
         },
         {
           "type": "REPEAT",
@@ -990,13 +989,8 @@
                 "value": "|"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "SingleType"
-                },
-                "named": true,
-                "value": "TypeUnion_types__list"
+                "type": "SYMBOL",
+                "name": "TypeUnion_types__list"
               }
             ]
           }
@@ -2851,7 +2845,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",

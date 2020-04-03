@@ -64,79 +64,6 @@
     }
   },
   {
-    "type": "AnonymousFunction",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "AnonymousFunction_expression",
-          "named": true
-        },
-        {
-          "type": "AnonymousFunction_parameters__list",
-          "named": true
-        },
-        {
-          "type": "AnonymousFunction_return_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "AnonymousFunction_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "AnonymousFunction_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "AnonymousFunction_return_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeAnnotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "AssignmentSign",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "BinaryExpression",
     "named": true,
     "fields": {},
@@ -404,7 +331,7 @@
           "named": true
         },
         {
-          "type": "FunctionCallOrEdgeAccess",
+          "type": "NamedLambdaCallOrEdgeAccess",
           "named": true
         },
         {
@@ -430,7 +357,7 @@
     }
   },
   {
-    "type": "ChainedFunctionCallOrEdgeAccess",
+    "type": "ChainedNamedLambdaCallOrEdgeAccess",
     "named": true,
     "fields": {},
     "children": {
@@ -438,30 +365,30 @@
       "required": true,
       "types": [
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list",
+          "type": "ChainedNamedLambdaCallOrEdgeAccess_edge_access_parameters__list",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_expression",
+          "type": "ChainedNamedLambdaCallOrEdgeAccess_expression",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_function_call_identifier",
+          "type": "ChainedNamedLambdaCallOrEdgeAccess_function_call_identifier",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list",
+          "type": "ChainedNamedLambdaCallOrEdgeAccess_function_call_parameters__list",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_rule_parameters",
+          "type": "ChainedNamedLambdaCallOrEdgeAccess_rule_parameters",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list",
+    "type": "ChainedNamedLambdaCallOrEdgeAccess_edge_access_parameters__list",
     "named": true,
     "fields": {},
     "children": {
@@ -476,7 +403,7 @@
     }
   },
   {
-    "type": "ChainedFunctionCallOrEdgeAccess_expression",
+    "type": "ChainedNamedLambdaCallOrEdgeAccess_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -491,7 +418,7 @@
     }
   },
   {
-    "type": "ChainedFunctionCallOrEdgeAccess_function_call_identifier",
+    "type": "ChainedNamedLambdaCallOrEdgeAccess_function_call_identifier",
     "named": true,
     "fields": {},
     "children": {
@@ -506,7 +433,7 @@
     }
   },
   {
-    "type": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list",
+    "type": "ChainedNamedLambdaCallOrEdgeAccess_function_call_parameters__list",
     "named": true,
     "fields": {},
     "children": {
@@ -521,7 +448,7 @@
     }
   },
   {
-    "type": "ChainedFunctionCallOrEdgeAccess_rule_parameters",
+    "type": "ChainedNamedLambdaCallOrEdgeAccess_rule_parameters",
     "named": true,
     "fields": {},
     "children": {
@@ -530,97 +457,6 @@
       "types": [
         {
           "type": "RuleParameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "AssignmentSign",
-          "named": true
-        },
-        {
-          "type": "ConstantDeclarationStatement_accessibility",
-          "named": true
-        },
-        {
-          "type": "ConstantDeclarationStatement_name",
-          "named": true
-        },
-        {
-          "type": "ConstantDeclarationStatement_type",
-          "named": true
-        },
-        {
-          "type": "ConstantDeclarationStatement_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeAnnotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ConstantDeclarationStatement_value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
           "named": true
         }
       ]
@@ -884,267 +720,6 @@
     }
   },
   {
-    "type": "FunctionCallOrEdgeAccess",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "FunctionCallOrEdgeAccess_edge_access_parameters__list",
-          "named": true
-        },
-        {
-          "type": "FunctionCallOrEdgeAccess_expression",
-          "named": true
-        },
-        {
-          "type": "FunctionCallOrEdgeAccess_function_call_parameters__list",
-          "named": true
-        },
-        {
-          "type": "FunctionCallOrEdgeAccess_rule_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_edge_access_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "CallableExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_function_call_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_rule_parameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "RuleParameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "FunctionDeclarationStatement_accessibility",
-          "named": true
-        },
-        {
-          "type": "FunctionDeclarationStatement_expression",
-          "named": true
-        },
-        {
-          "type": "FunctionDeclarationStatement_name",
-          "named": true
-        },
-        {
-          "type": "FunctionDeclarationStatement_parameters__list",
-          "named": true
-        },
-        {
-          "type": "FunctionDeclarationStatement_type",
-          "named": true
-        },
-        {
-          "type": "FunctionDeclarationStatement_type_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "FunctionParameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeAnnotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionDeclarationStatement_type_parameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeParameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionParameter",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "FunctionParameter_name",
-          "named": true
-        },
-        {
-          "type": "FunctionParameter_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionParameter_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionParameter_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeAnnotation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "GraterThan",
     "named": true,
     "fields": {}
@@ -1314,6 +889,74 @@
     "fields": {}
   },
   {
+    "type": "Lambda",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Lambda_expression",
+          "named": true
+        },
+        {
+          "type": "Lambda_parameters__list",
+          "named": true
+        },
+        {
+          "type": "Lambda_return_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Lambda_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Lambda_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Lambda_return_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeAnnotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "LessThan",
     "named": true,
     "fields": {}
@@ -1437,15 +1080,7 @@
       "required": true,
       "types": [
         {
-          "type": "ConstantDeclarationStatement",
-          "named": true
-        },
-        {
           "type": "EnumDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "FunctionDeclarationStatement",
           "named": true
         },
         {
@@ -1454,6 +1089,10 @@
         },
         {
           "type": "MorphismDeclarationStatement",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaDeclarationStatement",
           "named": true
         },
         {
@@ -1469,7 +1108,7 @@
           "named": true
         },
         {
-          "type": "TypeDeclarationStatement",
+          "type": "TypeAliasDeclarationStatement",
           "named": true
         }
       ]
@@ -1782,6 +1421,267 @@
     }
   },
   {
+    "type": "NamedLambdaCallOrEdgeAccess",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NamedLambdaCallOrEdgeAccess_edge_access_parameters__list",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaCallOrEdgeAccess_expression",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaCallOrEdgeAccess_function_call_parameters__list",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaCallOrEdgeAccess_rule_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaCallOrEdgeAccess_edge_access_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaCallOrEdgeAccess_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CallableExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaCallOrEdgeAccess_function_call_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaCallOrEdgeAccess_rule_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "RuleParameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NamedLambdaDeclarationStatement_accessibility",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaDeclarationStatement_expression",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaDeclarationStatement_name",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaDeclarationStatement_parameters__list",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaDeclarationStatement_type",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaDeclarationStatement_type_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaDeclarationStatement_accessibility",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ModuleLevelAccessibilityModifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaDeclarationStatement_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaDeclarationStatement_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaDeclarationStatement_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NamedLambdaParameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaDeclarationStatement_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeAnnotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaDeclarationStatement_type_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeParameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaParameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "NamedLambdaParameter_name",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaParameter_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaParameter_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedLambdaParameter_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeAnnotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "Negation",
     "named": true,
     "fields": {},
@@ -2048,55 +1948,6 @@
     }
   },
   {
-    "type": "NodeStaticConstantDeclaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "NodeStaticExpression",
-          "named": true
-        },
-        {
-          "type": "NodeStaticName",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeStaticExpression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeStaticName",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "NodeTypeDeclarationStatement",
     "named": true,
     "fields": {},
@@ -2186,10 +2037,6 @@
       "types": [
         {
           "type": "NodeEdgeDeclaration",
-          "named": true
-        },
-        {
-          "type": "NodeStaticConstantDeclaration",
           "named": true
         }
       ]
@@ -2349,23 +2196,19 @@
       "required": true,
       "types": [
         {
-          "type": "AnonymousFunction",
-          "named": true
-        },
-        {
           "type": "BinaryExpression",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess",
-          "named": true
-        },
-        {
-          "type": "FunctionCallOrEdgeAccess",
+          "type": "ChainedNamedLambdaCallOrEdgeAccess",
           "named": true
         },
         {
           "type": "Identifier",
+          "named": true
+        },
+        {
+          "type": "Lambda",
           "named": true
         },
         {
@@ -2374,6 +2217,10 @@
         },
         {
           "type": "Literal",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaCallOrEdgeAccess",
           "named": true
         },
         {
@@ -2508,7 +2355,7 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionParameter",
+          "type": "NamedLambdaParameter",
           "named": true
         }
       ]
@@ -2745,6 +2592,74 @@
     }
   },
   {
+    "type": "TypeAliasDeclarationStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeAliasDeclarationStatement_accessibility",
+          "named": true
+        },
+        {
+          "type": "TypeAliasDeclarationStatement_name",
+          "named": true
+        },
+        {
+          "type": "TypeAliasDeclarationStatement_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeAliasDeclarationStatement_accessibility",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ModuleLevelAccessibilityModifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeAliasDeclarationStatement_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeAliasDeclarationStatement_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "TypeAnnotation",
     "named": true,
     "fields": {},
@@ -2760,75 +2675,22 @@
     }
   },
   {
-    "type": "TypeDeclarationStatement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeDeclarationStatement_accessibility",
-          "named": true
-        },
-        {
-          "type": "TypeDeclarationStatement_name",
-          "named": true
-        },
-        {
-          "type": "TypeDeclarationStatement_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeIdentifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeDeclarationStatement_value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "TypeIdentifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeIdentifier_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeIdentifier_identifier",
     "named": true,
     "fields": {},
     "children": {
@@ -3160,10 +3022,6 @@
     "named": false
   },
   {
-    "type": "const",
-    "named": false
-  },
-  {
     "type": "enum",
     "named": false
   },
@@ -3173,10 +3031,6 @@
   },
   {
     "type": "from",
-    "named": false
-  },
-  {
-    "type": "func",
     "named": false
   },
   {
@@ -3209,10 +3063,6 @@
   },
   {
     "type": "rule",
-    "named": false
-  },
-  {
-    "type": "static",
     "named": false
   },
   {
