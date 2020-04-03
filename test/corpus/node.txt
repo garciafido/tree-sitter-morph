@@ -43,7 +43,11 @@ abstract node foo extends FooBase {}
 
 ---
 
-(Module (statements__list (NodeTypeDeclarationStatement (decorators__list (DecoratorIdentifier)) (abstract) (name (CamelIdentifier)) (extends (PascalIdentifier)))))
+(Module (statements__list (NodeTypeDeclarationStatement
+    (decorators__list (DecoratorIdentifier))
+    (abstract)
+    (name (CamelIdentifier))
+    (extends (PascalIdentifier)))))
 
 =================================
 Member node_declaration_statement

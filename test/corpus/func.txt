@@ -2,7 +2,7 @@
 function_declaration_statement
 ==============================
 
-func bar<A extends B | C, S extends D>(a: A) => "bar"
+funcbar<A extends B | C, S extends D>(a: A) => "bar"
 
 ---
 
