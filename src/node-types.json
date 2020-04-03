@@ -837,25 +837,6 @@
     }
   },
   {
-    "type": "FunctionParameter",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "GraterThan",
     "named": true,
     "fields": {}
@@ -983,22 +964,7 @@
       "required": true,
       "types": [
         {
-          "type": "List_elements__list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "List_elements__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
+          "type": "elements__list",
           "named": true
         }
       ]
@@ -1056,29 +1022,6 @@
       "types": [
         {
           "type": "statements__list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ModuleLevelAccessibilityModifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Private",
-          "named": true
-        },
-        {
-          "type": "Protected",
-          "named": true
-        },
-        {
-          "type": "Public",
           "named": true
         }
       ]
@@ -1166,6 +1109,10 @@
         },
         {
           "type": "decorators__list",
+          "named": true
+        },
+        {
+          "type": "filter",
           "named": true
         },
         {
@@ -1314,34 +1261,15 @@
       "required": true,
       "types": [
         {
-          "type": "Node_alias",
+          "type": "alias",
           "named": true
         },
         {
-          "type": "Node_edges__list",
+          "type": "edges__list",
           "named": true
         },
         {
-          "type": "Node_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdge",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "NodeEdge_name",
-          "named": true
-        },
-        {
-          "type": "NodeEdge_value",
+          "type": "type",
           "named": true
         }
       ]
@@ -1373,36 +1301,6 @@
         },
         {
           "type": "type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdge_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "NodeEdge_value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
           "named": true
         }
       ]
@@ -1487,51 +1385,6 @@
         },
         {
           "type": "name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Node_alias",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Node_edges__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "NodeEdge",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Node_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
           "named": true
         }
       ]
@@ -1736,67 +1589,6 @@
     }
   },
   {
-    "type": "RuleDeclarationStatement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "RuleDeclarationStatement_accessibility",
-          "named": true
-        },
-        {
-          "type": "RuleDeclarationStatement_parameters__list",
-          "named": true
-        },
-        {
-          "type": "RuleExpression",
-          "named": true
-        },
-        {
-          "type": "RuleName",
-          "named": true
-        },
-        {
-          "type": "TypeParameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "RuleDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "RuleDeclarationStatement_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "FunctionParameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "RuleExpression",
     "named": true,
     "fields": {},
@@ -1810,21 +1602,6 @@
         },
         {
           "type": "Rule",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "RuleName",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
           "named": true
         }
       ]
@@ -2001,60 +1778,15 @@
       "required": true,
       "types": [
         {
-          "type": "TypeDeclarationStatement_accessibility",
+          "type": "accessibility",
           "named": true
         },
         {
-          "type": "TypeDeclarationStatement_name",
+          "type": "name",
           "named": true
         },
         {
-          "type": "TypeDeclarationStatement_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeDeclarationStatement_accessibility",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ModuleLevelAccessibilityModifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeDeclarationStatement_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeIdentifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeDeclarationStatement_value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Type",
+          "type": "value",
           "named": true
         }
       ]
@@ -2125,21 +1857,6 @@
     }
   },
   {
-    "type": "TypeParameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeParameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "TypeUnion",
     "named": true,
     "fields": {},
@@ -2197,6 +1914,29 @@
     }
   },
   {
+    "type": "alias",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "decorators__list",
     "named": true,
     "fields": {},
@@ -2210,6 +1950,52 @@
         },
         {
           "type": "parameters__list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "edges__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "elements__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
           "named": true
         }
       ]
@@ -2260,6 +2046,33 @@
         },
         {
           "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "filter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
           "named": true
         }
       ]
@@ -2513,10 +2326,6 @@
           "named": true
         },
         {
-          "type": "RuleDeclarationStatement",
-          "named": true
-        },
-        {
           "type": "SymbolDeclarationStatement",
           "named": true
         },
@@ -2535,6 +2344,18 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        },
         {
           "type": "Type",
           "named": true
@@ -2602,6 +2423,10 @@
         },
         {
           "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "TypeUnion",
           "named": true
         }
       ]
@@ -2855,6 +2680,10 @@
     "named": false
   },
   {
+    "type": "if",
+    "named": false
+  },
+  {
     "type": "import",
     "named": false
   },
@@ -2868,6 +2697,10 @@
   },
   {
     "type": "morph",
+    "named": false
+  },
+  {
+    "type": "mutates",
     "named": false
   },
   {
@@ -2885,10 +2718,6 @@
   {
     "type": "path",
     "named": true
-  },
-  {
-    "type": "rule",
-    "named": false
   },
   {
     "type": "static",

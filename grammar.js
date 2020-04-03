@@ -79,7 +79,6 @@ module.exports = grammar({
       $.EnumDeclarationStatement,
       $.ConstantDeclarationStatement,
       $.FunctionDeclarationStatement,
-      $.RuleDeclarationStatement,
       $.TypeDeclarationStatement,
     ),
 
@@ -173,7 +172,7 @@ module.exports = grammar({
         "(",
         "if",
         "->",
-        $.MorphismDeclarationStatement_filter,
+        alias($.Expression, $.filter),
         ")"
       )),
       "{",
@@ -211,7 +210,6 @@ module.exports = grammar({
 
     AssignmentSign: $ => "=",
 
-    ConstantDeclarationStatement_type: $ => $.TypeAnnotation,
     ConstantDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "const",
@@ -286,33 +284,13 @@ module.exports = grammar({
 
     FloatType: $ => "float",
 
-    RuleName: $ => $.Identifier,
-
-    RuleDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    RuleDeclarationStatement_parameters__list: $ => $.FunctionParameter,
-    RuleDeclarationStatement: $ => seq(
-      optional($.RuleDeclarationStatement_accessibility),
-      "rule",
-      $.RuleName,
-      optional($.TypeParameters),
-      "(", optional(seq($.RuleDeclarationStatement_parameters__list, repeat(seq(",", $.RuleDeclarationStatement_parameters__list)), optional(","))), ")",
-      "=>",
-      $.RuleExpression,
-    ),
-
-    Rule: $ => $.Expression,
-
-    Message: $ => $.Expression,
-
-    RuleExpression: $ => seq(
-      $.Rule, optional(seq(":", $.Message)),
-    ),
-
-    TypeDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    TypeDeclarationStatement_name: $ => $.TypeIdentifier,
-    TypeDeclarationStatement_value: $ => $.Type,
     TypeDeclarationStatement: $ => seq(
-      optional($.TypeDeclarationStatement_accessibility), "type", $.TypeDeclarationStatement_name, "=", $.TypeDeclarationStatement_value),
+      optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
+      "type",
+      alias($.Identifier, $.name),
+      "=",
+      alias($.Type, $.value),
+    ),
 
     ModuleLevelAccessibilityModifier: $ => choice(
       $.Public,
@@ -390,7 +368,7 @@ module.exports = grammar({
       ))
     ),
 
-    PrimaryExpression: $ => choice(
+    PrimaryExpression: $ => prec.left(choice(
       $.BinaryExpression,
       $.Identifier,
       $.Literal,
@@ -401,7 +379,7 @@ module.exports = grammar({
       $.ParenthesizedExpression,
       $.FunctionCallOrEdgeAccess,
       $.ChainedFunctionCallOrEdgeAccess,
-    ),
+    )),
 
 
     Addition_left: $ => prec(PREC.plus+1, $.PrimaryExpression),
@@ -540,6 +518,14 @@ module.exports = grammar({
       $.ParenthesizedExpression,
     )),
 
+    Message: $ => $.Expression,
+
+    Rule: $ => $.Expression,
+
+    RuleExpression: $ => seq(
+      $.Rule, optional(seq(":", $.Message)),
+    ),
+
     RuleParameters: $ => prec(PREC.call, seq(
       "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
     )),
@@ -589,22 +575,20 @@ module.exports = grammar({
       ),
     )),
 
-    List_elements__list: $ => $.Expression,
     List: $ => prec(PREC.call, seq(
-      "[", $.List_elements__list, "]",
+      "[", alias($.Expression, $.elements__list), "]",
     )),
 
-    Node_type: $ => $.Identifier,
-    Node_alias: $ => $.Identifier,
-    Node_edges__list: $ => $.NodeEdge,
     Node: $ => seq(
-      $.Node_type, optional(seq("as", $.Node_alias)), "{", repeat($.Node_edges__list), "}",
+      alias($.Identifier, $.type),
+      optional(seq("as", alias($.Identifier, $.alias))),
+      "{",
+      repeat(alias($.NodeEdge, $.edges__list)),
+      "}",
     ),
 
-    NodeEdge_name: $ => $.Identifier,
-    NodeEdge_value: $ => $.Expression,
     NodeEdge: $ => seq(
-      $.NodeEdge_name, "->", $.NodeEdge_value,
+      alias($.Identifier, $.name), "->", alias($.Expression, $.value),
     ),
 
     Literal: $ => choice(

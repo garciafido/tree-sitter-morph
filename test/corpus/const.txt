@@ -6,6 +6,5 @@ const foo: Foo = "foo"
 
 ---
 
-    (Module (statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (ConstantDeclarationStatement_type (TypeAnnotation (Type (TypeUnion (TypeUnion_types__list (SingleType (TypeIdentifier (Identifier (PascalIdentifier))))))))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (Literal (StringLiteral))))))))
-
+  (Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (Identifier (PascalIdentifier))))))) (AssignmentSign) (value (PrimaryExpression (Literal (StringLiteral)))))))
 

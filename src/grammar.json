@@ -46,10 +46,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "RuleDeclarationStatement"
-        },
-        {
-          "type": "SYMBOL",
           "name": "TypeDeclarationStatement"
         }
       ]
@@ -588,7 +584,7 @@
         },
         {
           "type": "STRING",
-          "value": "("
+          "value": "mutates"
         },
         {
           "type": "ALIAS",
@@ -600,8 +596,42 @@
           "value": "source"
         },
         {
-          "type": "STRING",
-          "value": ")"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "("
+                },
+                {
+                  "type": "STRING",
+                  "value": "if"
+                },
+                {
+                  "type": "STRING",
+                  "value": "->"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "Expression"
+                  },
+                  "named": true,
+                  "value": "filter"
+                },
+                {
+                  "type": "STRING",
+                  "value": ")"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -1191,166 +1221,6 @@
       "type": "STRING",
       "value": "float"
     },
-    "RuleName": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "RuleDeclarationStatement_accessibility": {
-      "type": "SYMBOL",
-      "name": "ModuleLevelAccessibilityModifier"
-    },
-    "RuleDeclarationStatement_parameters__list": {
-      "type": "SYMBOL",
-      "name": "FunctionParameter"
-    },
-    "RuleDeclarationStatement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "RuleDeclarationStatement_accessibility"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "rule"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "RuleName"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "TypeParameters"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "RuleDeclarationStatement_parameters__list"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "RuleDeclarationStatement_parameters__list"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": ","
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        },
-        {
-          "type": "STRING",
-          "value": "=>"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "RuleExpression"
-        }
-      ]
-    },
-    "Rule": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "Message": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "RuleExpression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Rule"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ":"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Message"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "TypeDeclarationStatement_accessibility": {
-      "type": "SYMBOL",
-      "name": "ModuleLevelAccessibilityModifier"
-    },
-    "TypeDeclarationStatement_name": {
-      "type": "SYMBOL",
-      "name": "TypeIdentifier"
-    },
-    "TypeDeclarationStatement_value": {
-      "type": "SYMBOL",
-      "name": "Type"
-    },
     "TypeDeclarationStatement": {
       "type": "SEQ",
       "members": [
@@ -1358,8 +1228,13 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "TypeDeclarationStatement_accessibility"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "ModuleLevelAccessibilityModifier"
+              },
+              "named": true,
+              "value": "accessibility"
             },
             {
               "type": "BLANK"
@@ -1371,16 +1246,26 @@
           "value": "type"
         },
         {
-          "type": "SYMBOL",
-          "name": "TypeDeclarationStatement_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "Identifier"
+          },
+          "named": true,
+          "value": "name"
         },
         {
           "type": "STRING",
           "value": "="
         },
         {
-          "type": "SYMBOL",
-          "name": "TypeDeclarationStatement_value"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "Type"
+          },
+          "named": true,
+          "value": "value"
         }
       ]
     },
@@ -1646,49 +1531,53 @@
       ]
     },
     "PrimaryExpression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "BinaryExpression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Literal"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "UnaryFactor"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "List"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Node"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "AnonymousFunction"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ParenthesizedExpression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "FunctionCallOrEdgeAccess"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ChainedFunctionCallOrEdgeAccess"
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "BinaryExpression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "Identifier"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "Literal"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "UnaryFactor"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "List"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "Node"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "AnonymousFunction"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ParenthesizedExpression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "FunctionCallOrEdgeAccess"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ChainedFunctionCallOrEdgeAccess"
+          }
+        ]
+      }
     },
     "Addition_left": {
       "type": "PREC",
@@ -2295,6 +2184,44 @@
         ]
       }
     },
+    "Message": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
+    "Rule": {
+      "type": "SYMBOL",
+      "name": "Expression"
+    },
+    "RuleExpression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Rule"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "Message"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
     "RuleParameters": {
       "type": "PREC",
       "value": 200,
@@ -2597,10 +2524,6 @@
         ]
       }
     },
-    "List_elements__list": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
     "List": {
       "type": "PREC",
       "value": 200,
@@ -2612,8 +2535,13 @@
             "value": "["
           },
           {
-            "type": "SYMBOL",
-            "name": "List_elements__list"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "Expression"
+            },
+            "named": true,
+            "value": "elements__list"
           },
           {
             "type": "STRING",
@@ -2622,24 +2550,17 @@
         ]
       }
     },
-    "Node_type": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "Node_alias": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "Node_edges__list": {
-      "type": "SYMBOL",
-      "name": "NodeEdge"
-    },
     "Node": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "Node_type"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "Identifier"
+          },
+          "named": true,
+          "value": "type"
         },
         {
           "type": "CHOICE",
@@ -2652,8 +2573,13 @@
                   "value": "as"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "Node_alias"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "Identifier"
+                  },
+                  "named": true,
+                  "value": "alias"
                 }
               ]
             },
@@ -2669,8 +2595,13 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "Node_edges__list"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "NodeEdge"
+            },
+            "named": true,
+            "value": "edges__list"
           }
         },
         {
@@ -2679,28 +2610,30 @@
         }
       ]
     },
-    "NodeEdge_name": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "NodeEdge_value": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
     "NodeEdge": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "NodeEdge_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "Identifier"
+          },
+          "named": true,
+          "value": "name"
         },
         {
           "type": "STRING",
           "value": "->"
         },
         {
-          "type": "SYMBOL",
-          "name": "NodeEdge_value"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "Expression"
+          },
+          "named": true,
+          "value": "value"
         }
       ]
     },
