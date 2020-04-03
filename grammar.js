@@ -63,7 +63,7 @@ module.exports = grammar({
 
   rules: {
 
-    Module: $ => repeat(alias($.Statements, $.statements__list)),
+    Module: $ => repeat(alias($.Statement, $.statements__list)),
 
     // keyword_identifier: $ => /[a-zA-Z_@][a-zA-Z0-9_]*/,
 
@@ -71,7 +71,7 @@ module.exports = grammar({
     // ** Statements **
     // *****************
 
-    Statements: $ => choice(
+    Statement: $ => choice(
       $.ImportStatement,
       $.NodeTypeDeclarationStatement,
       $.MorphismDeclarationStatement,
@@ -212,7 +212,7 @@ module.exports = grammar({
       alias($.Identifier, $.identifier),
       optional(alias($.TypeParameters, $.type_parameters)),
       "(",
-      commaSeparated(alias($.identifierdLambdaParameter, $.parameters__list)),
+      commaSeparated(alias($.NamedLambdaParameter, $.parameters__list)),
       ")",
       optional(alias($.TypeAnnotation, $.type)),
       "=>",
