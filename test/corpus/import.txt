@@ -18,5 +18,5 @@ from ...bar import Bar
 
 ---
 
-   (Module (statements__list (ImportStatement (ImportFromStatement (path) (module (CamelIdentifier)) (items__list (PascalIdentifier))))))
+   (Module (statements__list (ImportStatement (ImportFromStatement (path) (module (CamelIdentifier)) (items__list (Identifier))))))
 

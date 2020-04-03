@@ -44,10 +44,8 @@ module.exports = grammar({
     /[\s\uFEFF\u2060\u200B\u00A0]/
   ],
 
-  conflicts: ($, previous) => previous.concat([
-    // [$.ChainedNamedLambdaCallOrEdgeAccess_expression, $.Expression],
-    // [$.RelationalExpression, $.ChainedNamedLambdaCallOrEdgeAccess_expression],
-  ]),
+  // conflicts: ($, previous) => previous.concat([
+  // ]),
 
   // conflicts: $ => [
   // ],
@@ -56,16 +54,13 @@ module.exports = grammar({
   ],
 
   inline: $ => [
-    // $.keyword_identifier,
   ],
 
-  // word: $ => $.keywords,
+  word: $ => $.Identifier,
 
   rules: {
 
     Module: $ => repeat(alias($.Statement, $.statements__list)),
-
-    // keyword_identifier: $ => /[a-zA-Z_@][a-zA-Z0-9_]*/,
 
     // *****************
     // ** Statements **
@@ -194,11 +189,18 @@ module.exports = grammar({
     EnumDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "enum",
-      alias($.Identifier, $.identifier),
+      alias($.NamedRules, $.name),
       "{",
       repeat(alias($.Identifier, $.values__list)),
       "}",
     ),
+
+    NamedRules: $ => choice(
+      $.Identifier,
+      $.ImpossibleRule,
+    ),
+
+    ImpossibleRule: $ => alias("abracadabralafrutaqueterequeterepariotete", $.imposible),
 
     AssignmentSign: $ => "=",
 
@@ -440,17 +442,13 @@ module.exports = grammar({
       $.PrimaryExpression,
     )),
 
-    Identifier: $ => choice(
-      $.CamelIdentifier,
-      $.SnakeIdentifier,
-      $.PascalIdentifier,
-    ),
+    Identifier: $ => token(/[a-zA-Z_][a-zA-Z0-9_]*/),
 
-    CamelIdentifier: $ => /[a-z][a-zA-Z0-9_]*/,
-
-    SnakeIdentifier: $ => /[a-z_][a-z0-9_]*/,
-
-    PascalIdentifier: $ => /[A-Z][a-zA-Z0-9_]*/,
+    // CamelIdentifier: $ => /[a-z][a-zA-Z0-9_]*/,
+    //
+    // SnakeIdentifier: $ => /[a-z_][a-z0-9_]*/,
+    //
+    // PascalIdentifier: $ => /[A-Z][a-zA-Z0-9_]*/,
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
@@ -663,4 +661,8 @@ function commaSeparated1 (rule) {
 
 function commaSep1 (rule) {
   return seq(rule, repeat(seq(",", rule)))
+}
+
+function fieldName(rule, $) {
+  return choice($.ImpossibleRule, rule);
 }

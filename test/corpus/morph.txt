@@ -9,7 +9,7 @@ morph Foo mutates bar {
 
 ---
 
- (Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (name (PascalIdentifier)) (source (CamelIdentifier)) (members__list (MorphismCreationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (Literal (StringLiteral)))))))))
+ (Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (name (Identifier)) (source (CamelIdentifier)) (members__list (MorphismCreationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (Literal (StringLiteral)))))))))
 
 =======================================
 Mutation morphism_declaration_statement
@@ -22,7 +22,7 @@ morph Foo mutates bar (if a -> 1) {
 
 ---
 
-    (Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (name (PascalIdentifier)) (source (CamelIdentifier)) (ERROR (UNEXPECTED ' ')) (filter (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))) (members__list (MorphismMutationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (Literal (StringLiteral)))))))))
+    (Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (name (Identifier)) (source (CamelIdentifier)) (ERROR (UNEXPECTED ' ')) (filter (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))) (members__list (MorphismMutationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (Literal (StringLiteral)))))))))
 
 
 ==========================================
@@ -35,4 +35,4 @@ morph Foo mutates A {
 
 ---
 
-  (Module (statements__list (MorphismDeclarationStatement (name (PascalIdentifier)) (source (PascalIdentifier)) (members__list (MorphismCreationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (AnonymousFunction (expression (PrimaryExpression (BinaryExpression (Addition (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))))))))
+  (Module (statements__list (MorphismDeclarationStatement (name (Identifier)) (source (Identifier)) (members__list (MorphismCreationDeclaration (name (CamelIdentifier)) (expression (PrimaryExpression (AnonymousFunction (expression (PrimaryExpression (BinaryExpression (Addition (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))))))))

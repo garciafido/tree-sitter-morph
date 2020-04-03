@@ -1,5 +1,6 @@
 {
   "name": "morph",
+  "word": "Identifier",
   "rules": {
     "Module": {
       "type": "REPEAT",
@@ -747,10 +748,10 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "NamedRules"
           },
           "named": true,
-          "value": "identifier"
+          "value": "name"
         },
         {
           "type": "STRING",
@@ -773,6 +774,28 @@
           "value": "}"
         }
       ]
+    },
+    "NamedRules": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "ImpossibleRule": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "abracadabralafrutaqueterequeterepariotete"
+      },
+      "named": true,
+      "value": "imposible"
     },
     "AssignmentSign": {
       "type": "STRING",
@@ -1828,33 +1851,11 @@
       }
     },
     "Identifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "CamelIdentifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "SnakeIdentifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "PascalIdentifier"
-        }
-      ]
-    },
-    "CamelIdentifier": {
-      "type": "PATTERN",
-      "value": "[a-z][a-zA-Z0-9_]*"
-    },
-    "SnakeIdentifier": {
-      "type": "PATTERN",
-      "value": "[a-z_][a-z0-9_]*"
-    },
-    "PascalIdentifier": {
-      "type": "PATTERN",
-      "value": "[A-Z][a-zA-Z0-9_]*"
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[a-zA-Z_][a-zA-Z0-9_]*"
+      }
     },
     "DecoratorIdentifier": {
       "type": "PATTERN",
