@@ -500,6 +500,10 @@
     },
     "MorphismDeclarationStatement_source": {
       "type": "SYMBOL",
+      "name": "Identifier"
+    },
+    "MorphismDeclarationStatement_filter": {
+      "type": "SYMBOL",
       "name": "Expression"
     },
     "MorphismDeclarationStatement_members__list": {
@@ -547,15 +551,44 @@
         },
         {
           "type": "STRING",
-          "value": "("
+          "value": "mutates"
         },
         {
           "type": "SYMBOL",
           "name": "MorphismDeclarationStatement_source"
         },
         {
-          "type": "STRING",
-          "value": ")"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "("
+                },
+                {
+                  "type": "STRING",
+                  "value": "if"
+                },
+                {
+                  "type": "STRING",
+                  "value": "->"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "MorphismDeclarationStatement_filter"
+                },
+                {
+                  "type": "STRING",
+                  "value": ")"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",

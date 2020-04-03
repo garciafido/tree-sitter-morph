@@ -1229,6 +1229,10 @@
           "named": true
         },
         {
+          "type": "MorphismDeclarationStatement_filter",
+          "named": true
+        },
+        {
           "type": "MorphismDeclarationStatement_members__list",
           "named": true
         },
@@ -1268,6 +1272,21 @@
       "types": [
         {
           "type": "Decorator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "MorphismDeclarationStatement_filter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
           "named": true
         }
       ]
@@ -1316,7 +1335,7 @@
       "required": true,
       "types": [
         {
-          "type": "Expression",
+          "type": "Identifier",
           "named": true
         }
       ]
@@ -3034,6 +3053,10 @@
     "named": false
   },
   {
+    "type": "if",
+    "named": false
+  },
+  {
     "type": "import",
     "named": false
   },
@@ -3047,6 +3070,10 @@
   },
   {
     "type": "morph",
+    "named": false
+  },
+  {
+    "type": "mutates",
     "named": false
   },
   {

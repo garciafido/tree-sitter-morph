@@ -175,7 +175,8 @@ module.exports = grammar({
     MorphismDeclarationStatement_decorators__list: $ => prec(PREC.morph_decorator, $.Decorator),
     MorphismDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
     MorphismDeclarationStatement_name: $ => $.Identifier,
-    MorphismDeclarationStatement_source: $ => $.Expression,
+    MorphismDeclarationStatement_source: $ => $.Identifier,
+    MorphismDeclarationStatement_filter: $ => $.Expression,
     MorphismDeclarationStatement_members__list: $ => choice(
       $.MorphismMutationDeclaration,
       $.MorphismCreationDeclaration,
@@ -186,9 +187,15 @@ module.exports = grammar({
       optional($.MorphismDeclarationStatement_accessibility),
       "morph",
       $.MorphismDeclarationStatement_name,
-      "(",
+      "mutates",
       $.MorphismDeclarationStatement_source,
-      ")",
+      optional(seq(
+        "(",
+        "if",
+        "->",
+        $.MorphismDeclarationStatement_filter,
+        ")"
+      )),
       "{",
       repeat($.MorphismDeclarationStatement_members__list),
       "}",
