@@ -33,11 +33,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "ConstantDeclarationStatement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "FunctionDeclarationStatement"
+          "name": "NamedLambdaDeclarationStatement"
         },
         {
           "type": "SYMBOL",
@@ -198,17 +194,8 @@
       "name": "Extends"
     },
     "NodeTypeDeclarationStatement_members__list": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "NodeEdgeDeclaration"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "NodeStaticConstantDeclaration"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "NodeEdgeDeclaration"
     },
     "NodeTypeDeclarationStatement": {
       "type": "SEQ",
@@ -495,27 +482,6 @@
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "NodeStaticConstantDeclaration": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "static"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "NodeStaticName"
-        },
-        {
-          "type": "STRING",
-          "value": "="
-        },
-        {
-          "type": "SYMBOL",
-          "name": "NodeStaticExpression"
-        }
-      ]
-    },
     "MorphismDeclarationStatement_decorators__list": {
       "type": "PREC",
       "value": 1,
@@ -747,71 +713,6 @@
         }
       ]
     },
-    "AssignmentSign": {
-      "type": "STRING",
-      "value": "="
-    },
-    "ConstantDeclarationStatement_name": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "ConstantDeclarationStatement_value": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "ConstantDeclarationStatement_type": {
-      "type": "SYMBOL",
-      "name": "TypeAnnotation"
-    },
-    "ConstantDeclarationStatement_accessibility": {
-      "type": "SYMBOL",
-      "name": "ModuleLevelAccessibilityModifier"
-    },
-    "ConstantDeclarationStatement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "ConstantDeclarationStatement_accessibility"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "const"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ConstantDeclarationStatement_name"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "ConstantDeclarationStatement_type"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "AssignmentSign"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ConstantDeclarationStatement_value"
-        }
-      ]
-    },
     "TypeAnnotation": {
       "type": "SEQ",
       "members": [
@@ -825,31 +726,31 @@
         }
       ]
     },
-    "FunctionDeclarationStatement_name": {
+    "NamedLambdaDeclarationStatement_name": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "FunctionDeclarationStatement_expression": {
+    "NamedLambdaDeclarationStatement_expression": {
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "FunctionDeclarationStatement_accessibility": {
+    "NamedLambdaDeclarationStatement_accessibility": {
       "type": "SYMBOL",
       "name": "ModuleLevelAccessibilityModifier"
     },
-    "FunctionDeclarationStatement_type": {
+    "NamedLambdaDeclarationStatement_type": {
       "type": "SYMBOL",
       "name": "TypeAnnotation"
     },
-    "FunctionDeclarationStatement_parameters__list": {
+    "NamedLambdaDeclarationStatement_parameters__list": {
       "type": "SYMBOL",
-      "name": "FunctionParameter"
+      "name": "NamedLambdaParameter"
     },
-    "FunctionDeclarationStatement_type_parameters": {
+    "NamedLambdaDeclarationStatement_type_parameters": {
       "type": "SYMBOL",
       "name": "TypeParameters"
     },
-    "FunctionDeclarationStatement": {
+    "NamedLambdaDeclarationStatement": {
       "type": "SEQ",
       "members": [
         {
@@ -857,7 +758,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "FunctionDeclarationStatement_accessibility"
+              "name": "NamedLambdaDeclarationStatement_accessibility"
             },
             {
               "type": "BLANK"
@@ -866,18 +767,18 @@
         },
         {
           "type": "STRING",
-          "value": "func"
+          "value": "lambda"
         },
         {
           "type": "SYMBOL",
-          "name": "FunctionDeclarationStatement_name"
+          "name": "NamedLambdaDeclarationStatement_name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "FunctionDeclarationStatement_type_parameters"
+              "name": "NamedLambdaDeclarationStatement_type_parameters"
             },
             {
               "type": "BLANK"
@@ -896,7 +797,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "FunctionDeclarationStatement_parameters__list"
+                  "name": "NamedLambdaDeclarationStatement_parameters__list"
                 },
                 {
                   "type": "REPEAT",
@@ -909,7 +810,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "FunctionDeclarationStatement_parameters__list"
+                        "name": "NamedLambdaDeclarationStatement_parameters__list"
                       }
                     ]
                   }
@@ -942,7 +843,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "FunctionDeclarationStatement_type"
+              "name": "NamedLambdaDeclarationStatement_type"
             },
             {
               "type": "BLANK"
@@ -955,28 +856,28 @@
         },
         {
           "type": "SYMBOL",
-          "name": "FunctionDeclarationStatement_expression"
+          "name": "NamedLambdaDeclarationStatement_expression"
         }
       ]
     },
-    "FunctionParameter_name": {
+    "NamedLambdaParameter_name": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "FunctionParameter_type": {
+    "NamedLambdaParameter_type": {
       "type": "SYMBOL",
       "name": "TypeAnnotation"
     },
-    "FunctionParameter": {
+    "NamedLambdaParameter": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "FunctionParameter_name"
+          "name": "NamedLambdaParameter_name"
         },
         {
           "type": "SYMBOL",
-          "name": "FunctionParameter_type"
+          "name": "NamedLambdaParameter_type"
         }
       ]
     },
@@ -1064,28 +965,20 @@
       ]
     },
     "Type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "TypeUnion"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "SingleType"
-        }
-      ]
-    },
-    "TypeUnion_types__list": {
       "type": "SYMBOL",
-      "name": "SingleType"
+      "name": "TypeUnion"
     },
     "TypeUnion": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "TypeUnion_types__list"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "SingleType"
+          },
+          "named": true,
+          "value": "TypeUnion_types__list"
         },
         {
           "type": "REPEAT",
@@ -1097,8 +990,13 @@
                 "value": "|"
               },
               {
-                "type": "SYMBOL",
-                "name": "TypeUnion_types__list"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "SingleType"
+                },
+                "named": true,
+                "value": "TypeUnion_types__list"
               }
             ]
           }
@@ -1173,7 +1071,7 @@
     },
     "RuleDeclarationStatement_parameters__list": {
       "type": "SYMBOL",
-      "name": "FunctionParameter"
+      "name": "NamedLambdaParameter"
     },
     "RuleDeclarationStatement": {
       "type": "SEQ",
@@ -1646,7 +1544,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "AnonymousFunction"
+          "name": "Lambda"
         },
         {
           "type": "SYMBOL",
@@ -1654,11 +1552,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "FunctionCallOrEdgeAccess"
+          "name": "NamedLambdaCallOrEdgeAccess"
         },
         {
           "type": "SYMBOL",
-          "name": "ChainedFunctionCallOrEdgeAccess"
+          "name": "ChainedNamedLambdaCallOrEdgeAccess"
         }
       ]
     },
@@ -2112,35 +2010,35 @@
       "type": "PATTERN",
       "value": "[@][A-Za-z_][a-zA-Z0-9_]*"
     },
-    "FunctionCallOrEdgeAccess_expression": {
+    "NamedLambdaCallOrEdgeAccess_expression": {
       "type": "SYMBOL",
       "name": "CallableExpression"
     },
-    "FunctionCallOrEdgeAccess_rule_parameters": {
+    "NamedLambdaCallOrEdgeAccess_rule_parameters": {
       "type": "SYMBOL",
       "name": "RuleParameters"
     },
-    "FunctionCallOrEdgeAccess_function_call_parameters__list": {
+    "NamedLambdaCallOrEdgeAccess_function_call_parameters__list": {
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "FunctionCallOrEdgeAccess_edge_access_parameters__list": {
+    "NamedLambdaCallOrEdgeAccess_edge_access_parameters__list": {
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "FunctionCallOrEdgeAccess": {
+    "NamedLambdaCallOrEdgeAccess": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "FunctionCallOrEdgeAccess_expression"
+          "name": "NamedLambdaCallOrEdgeAccess_expression"
         },
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "FunctionCallOrEdgeAccess_rule_parameters"
+              "name": "NamedLambdaCallOrEdgeAccess_rule_parameters"
             },
             {
               "type": "BLANK"
@@ -2168,7 +2066,7 @@
                         "members": [
                           {
                             "type": "SYMBOL",
-                            "name": "FunctionCallOrEdgeAccess_function_call_parameters__list"
+                            "name": "NamedLambdaCallOrEdgeAccess_function_call_parameters__list"
                           },
                           {
                             "type": "REPEAT",
@@ -2181,7 +2079,7 @@
                                 },
                                 {
                                   "type": "SYMBOL",
-                                  "name": "FunctionCallOrEdgeAccess_function_call_parameters__list"
+                                  "name": "NamedLambdaCallOrEdgeAccess_function_call_parameters__list"
                                 }
                               ]
                             }
@@ -2227,7 +2125,7 @@
                     "members": [
                       {
                         "type": "SYMBOL",
-                        "name": "FunctionCallOrEdgeAccess_edge_access_parameters__list"
+                        "name": "NamedLambdaCallOrEdgeAccess_edge_access_parameters__list"
                       },
                       {
                         "type": "REPEAT",
@@ -2240,7 +2138,7 @@
                             },
                             {
                               "type": "SYMBOL",
-                              "name": "FunctionCallOrEdgeAccess_edge_access_parameters__list"
+                              "name": "NamedLambdaCallOrEdgeAccess_edge_access_parameters__list"
                             }
                           ]
                         }
@@ -2290,7 +2188,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "FunctionCallOrEdgeAccess"
+            "name": "NamedLambdaCallOrEdgeAccess"
           },
           {
             "type": "SYMBOL",
@@ -2369,15 +2267,15 @@
         }
       ]
     },
-    "AnonymousFunction_expression": {
+    "Lambda_expression": {
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "AnonymousFunction_return_type": {
+    "Lambda_return_type": {
       "type": "SYMBOL",
       "name": "TypeAnnotation"
     },
-    "AnonymousFunction_parameters__list": {
+    "Lambda_parameters__list": {
       "type": "PREC",
       "value": -20,
       "content": {
@@ -2385,7 +2283,7 @@
         "name": "Identifier"
       }
     },
-    "AnonymousFunction": {
+    "Lambda": {
       "type": "PREC",
       "value": -20,
       "content": {
@@ -2410,7 +2308,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "AnonymousFunction_parameters__list"
+                      "name": "Lambda_parameters__list"
                     },
                     {
                       "type": "REPEAT",
@@ -2423,7 +2321,7 @@
                           },
                           {
                             "type": "SYMBOL",
-                            "name": "AnonymousFunction_parameters__list"
+                            "name": "Lambda_parameters__list"
                           }
                         ]
                       }
@@ -2457,7 +2355,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "AnonymousFunction_return_type"
+                "name": "Lambda_return_type"
               },
               {
                 "type": "BLANK"
@@ -2470,32 +2368,32 @@
           },
           {
             "type": "SYMBOL",
-            "name": "AnonymousFunction_expression"
+            "name": "Lambda_expression"
           }
         ]
       }
     },
-    "ChainedFunctionCallOrEdgeAccess_expression": {
+    "ChainedNamedLambdaCallOrEdgeAccess_expression": {
       "type": "SYMBOL",
       "name": "PrimaryExpression"
     },
-    "ChainedFunctionCallOrEdgeAccess_function_call_identifier": {
+    "ChainedNamedLambdaCallOrEdgeAccess_function_call_identifier": {
       "type": "SYMBOL",
       "name": "Identifier"
     },
-    "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list": {
+    "ChainedNamedLambdaCallOrEdgeAccess_function_call_parameters__list": {
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list": {
+    "ChainedNamedLambdaCallOrEdgeAccess_edge_access_parameters__list": {
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "ChainedFunctionCallOrEdgeAccess_rule_parameters": {
+    "ChainedNamedLambdaCallOrEdgeAccess_rule_parameters": {
       "type": "SYMBOL",
       "name": "RuleParameters"
     },
-    "ChainedFunctionCallOrEdgeAccess": {
+    "ChainedNamedLambdaCallOrEdgeAccess": {
       "type": "PREC",
       "value": 200,
       "content": {
@@ -2503,7 +2401,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "ChainedFunctionCallOrEdgeAccess_expression"
+            "name": "ChainedNamedLambdaCallOrEdgeAccess_expression"
           },
           {
             "type": "CHOICE",
@@ -2517,14 +2415,14 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "ChainedFunctionCallOrEdgeAccess_function_call_identifier"
+                    "name": "ChainedNamedLambdaCallOrEdgeAccess_function_call_identifier"
                   },
                   {
                     "type": "CHOICE",
                     "members": [
                       {
                         "type": "SYMBOL",
-                        "name": "ChainedFunctionCallOrEdgeAccess_rule_parameters"
+                        "name": "ChainedNamedLambdaCallOrEdgeAccess_rule_parameters"
                       },
                       {
                         "type": "BLANK"
@@ -2546,7 +2444,7 @@
                           "members": [
                             {
                               "type": "SYMBOL",
-                              "name": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list"
+                              "name": "ChainedNamedLambdaCallOrEdgeAccess_function_call_parameters__list"
                             },
                             {
                               "type": "REPEAT",
@@ -2559,7 +2457,7 @@
                                   },
                                   {
                                     "type": "SYMBOL",
-                                    "name": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list"
+                                    "name": "ChainedNamedLambdaCallOrEdgeAccess_function_call_parameters__list"
                                   }
                                 ]
                               }
@@ -2605,7 +2503,7 @@
                       "members": [
                         {
                           "type": "SYMBOL",
-                          "name": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list"
+                          "name": "ChainedNamedLambdaCallOrEdgeAccess_edge_access_parameters__list"
                         },
                         {
                           "type": "REPEAT",
@@ -2618,7 +2516,7 @@
                               },
                               {
                                 "type": "SYMBOL",
-                                "name": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list"
+                                "name": "ChainedNamedLambdaCallOrEdgeAccess_edge_access_parameters__list"
                               }
                             ]
                           }
@@ -2953,7 +2851,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",
@@ -3359,12 +3257,12 @@
   ],
   "conflicts": [
     [
-      "ChainedFunctionCallOrEdgeAccess_expression",
+      "ChainedNamedLambdaCallOrEdgeAccess_expression",
       "Expression"
     ],
     [
       "RelationalExpression",
-      "ChainedFunctionCallOrEdgeAccess_expression"
+      "ChainedNamedLambdaCallOrEdgeAccess_expression"
     ]
   ],
   "externals": [

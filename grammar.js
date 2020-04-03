@@ -262,14 +262,10 @@ module.exports = grammar({
       "extends", $.Type,
     ),
 
-    Type: $ => choice(
-      $.TypeUnion,
-      $.SingleType,
-    ),
+    Type: $ => $.TypeUnion,
 
-    TypeUnion_types__list: $ => $.SingleType,
     TypeUnion: $ => seq(
-      $.TypeUnion_types__list, repeat(seq("|", $.TypeUnion_types__list)),
+      alias($.SingleType, $.TypeUnion_types__list), repeat(seq("|", alias($.SingleType, $.TypeUnion_types__list))),
     ),
 
     SingleType: $ => choice(
