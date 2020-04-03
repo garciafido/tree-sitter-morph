@@ -265,7 +265,7 @@ module.exports = grammar({
     Type: $ => $.TypeUnion,
 
     TypeUnion: $ => seq(
-      alias($.SingleType, $.TypeUnion_types__list), repeat(seq("|", alias($.SingleType, $.TypeUnion_types__list))),
+      $.SingleType, repeat(seq("|", $.SingleType)),
     ),
 
     SingleType: $ => choice(
