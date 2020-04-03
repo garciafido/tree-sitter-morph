@@ -374,6 +374,16 @@ module.exports = grammar({
       $.ChainedFunctionCallOrEdgeAccess,
     )),
 
+    BinaryExpression: $ => choice(
+      $.Addition,
+      $.Subtraction,
+      $.Multiplication,
+      $.Division,
+      $.Modulus,
+      $.BitwiseDisjunction,
+      $.BitwiseConjunction,
+      $.ExclusiveDisjunction,
+    ),
 
     Addition: $ => prec.left(PREC.plus, seq(
       alias($.PrimaryExpression, $.left),
@@ -405,34 +415,23 @@ module.exports = grammar({
       alias($.PrimaryExpression, $.right),
     )),
 
-    BitwiseDisjunction: $ => prec.left(PREC.times, seq(
+    BitwiseDisjunction: $ => prec.left(PREC.bitwise_or, seq(
       alias($.PrimaryExpression, $.left),
       "|",
       alias($.PrimaryExpression, $.right),
     )),
 
-    BitwiseConjunction: $ => prec.left(PREC.times, seq(
+    BitwiseConjunction: $ => prec.left(PREC.bitwise_and, seq(
       alias($.PrimaryExpression, $.left),
       "&",
       alias($.PrimaryExpression, $.right),
     )),
 
-    ExclusiveDisjunction: $ => prec.left(PREC.times, seq(
+    ExclusiveDisjunction: $ => prec.left(PREC.xor, seq(
       alias($.PrimaryExpression, $.left),
       "^",
       alias($.PrimaryExpression, $.right),
     )),
-
-    BinaryExpression: $ => choice(
-      prec.left(PREC.plus, $.Addition),
-      prec.left(PREC.plus, $.Subtraction),
-      prec.left(PREC.times, $.Multiplication),
-      prec.left(PREC.times, $.Division),
-      prec.left(PREC.times, $.Modulus),
-      prec.left(PREC.bitwise_or, $.BitwiseDisjunction),
-      prec.left(PREC.bitwise_and, $.BitwiseConjunction),
-      prec.left(PREC.xor, $.ExclusiveDisjunction),
-    ),
 
     ParenthesizedExpression: $ => prec(PREC.parenthesized_expression, seq(
       "(",

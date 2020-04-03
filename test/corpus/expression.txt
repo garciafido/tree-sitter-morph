@@ -49,7 +49,7 @@ const foo = f(a).f(b)
 
 ---
 
-  (Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (AssignmentSign) (value (PrimaryExpression (ChainedFunctionCallOrEdgeAccess (expression (FunctionCallOrEdgeAccess (expression (CallableName (Identifier (CamelIdentifier)))) (function_call_parameters__list (PrimaryExpression (Identifier (CamelIdentifier)))))) (function_call_identifier (CamelIdentifier)) (function_call_parameters__list (PrimaryExpression (Identifier (CamelIdentifier))))))))))
+(Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (AssignmentSign) (value (PrimaryExpression (ChainedFunctionCallOrEdgeAccess (expression (FunctionCallOrEdgeAccess (expression (CallableName (Identifier (CamelIdentifier)))) (function_call_parameters__list (PrimaryExpression (Identifier (CamelIdentifier)))))) (function_call_identifier (CamelIdentifier)) (function_call_parameters__list (PrimaryExpression (Identifier (CamelIdentifier))))))))))
 =========
 Lambda OK
 =========

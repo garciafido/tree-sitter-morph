@@ -1560,6 +1560,43 @@
         ]
       }
     },
+    "BinaryExpression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Addition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Subtraction"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Multiplication"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Division"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Modulus"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "BitwiseDisjunction"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "BitwiseConjunction"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ExclusiveDisjunction"
+        }
+      ]
+    },
     "Addition": {
       "type": "PREC_LEFT",
       "value": 160,
@@ -1717,7 +1754,7 @@
     },
     "BitwiseDisjunction": {
       "type": "PREC_LEFT",
-      "value": 170,
+      "value": 120,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1748,7 +1785,7 @@
     },
     "BitwiseConjunction": {
       "type": "PREC_LEFT",
-      "value": 170,
+      "value": 130,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1779,7 +1816,7 @@
     },
     "ExclusiveDisjunction": {
       "type": "PREC_LEFT",
-      "value": 170,
+      "value": 140,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1807,75 +1844,6 @@
           }
         ]
       }
-    },
-    "BinaryExpression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PREC_LEFT",
-          "value": 160,
-          "content": {
-            "type": "SYMBOL",
-            "name": "Addition"
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 160,
-          "content": {
-            "type": "SYMBOL",
-            "name": "Subtraction"
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 170,
-          "content": {
-            "type": "SYMBOL",
-            "name": "Multiplication"
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 170,
-          "content": {
-            "type": "SYMBOL",
-            "name": "Division"
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 170,
-          "content": {
-            "type": "SYMBOL",
-            "name": "Modulus"
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 120,
-          "content": {
-            "type": "SYMBOL",
-            "name": "BitwiseDisjunction"
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 130,
-          "content": {
-            "type": "SYMBOL",
-            "name": "BitwiseConjunction"
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 140,
-          "content": {
-            "type": "SYMBOL",
-            "name": "ExclusiveDisjunction"
-          }
-        }
-      ]
     },
     "ParenthesizedExpression": {
       "type": "PREC",
