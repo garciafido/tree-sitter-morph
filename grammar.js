@@ -56,17 +56,22 @@ module.exports = grammar({
   ],
 
   inline: $ => [
+    // $.keyword_identifier,
   ],
+
+  // word: $ => $.keywords,
 
   rules: {
 
-    Module: $ => repeat($.Module_statements__list),
+    Module: $ => repeat(alias($.Statements, $.Module_statements__list)),
+
+    // keyword_identifier: $ => /[a-zA-Z_@][a-zA-Z0-9_]*/,
 
     // *****************
     // ** Statements **
     // *****************
 
-    Module_statements__list: $ => choice(
+    Statements: $ => choice(
       $.ImportStatement,
       $.NodeTypeDeclarationStatement,
       $.MorphismDeclarationStatement,
@@ -79,49 +84,38 @@ module.exports = grammar({
     ),
 
     ImportStatement: $ => choice(
-      $.ImportFromStatement,
       $.ImportModuleStatement,
+      $.ImportFromStatement,
     ),
 
-    ImportFromStatement_path: $ => /[.]+_?/,
-    ImportFromStatement_module: $ => $.Identifier,
-    ImportFromStatement_items: $ => seq(
-      $.Identifier,
-      repeat(seq(",", $.Identifier)),
-      optional(","),
+    ImportModuleStatement: $ => seq(
+      "import",
+      optional(alias($.Path, $.path)),
+      alias($.Identifier, $.from),
     ),
+
+    Path: $ => /[.]+_?/,
 
     ImportFromStatement: $ => seq(
       "from",
-      optional($.ImportFromStatement_path),
-      $.ImportFromStatement_module,
+      optional(alias($.Path, $.path)),
+      alias($.Identifier, $.module),
       "import",
-      $.ImportFromStatement_items,
+      commaSeparated(alias($.Identifier, $.items__list)),
     ),
 
-    ImportModuleStatement_path: $ => /[.]+_?/,
-    ImportModuleStatement_from: $ => $.Identifier,
-    ImportModuleStatement: $ => seq(
-      "import", optional($.ImportModuleStatement_path), $.ImportModuleStatement_from,
-    ),
-
-    NodeTypeDeclarationStatement_decorators__list: $ => prec(PREC.node_decorator, $.Decorator),
-    NodeTypeDeclarationStatement_accessibility: $ => $.ModuleLevelAccessibilityModifier,
-    NodeTypeDeclarationStatement_abstract: $ => "abstract",
-    NodeTypeDeclarationStatement_name: $ => $.Identifier,
-    NodeTypeDeclarationStatement_extends: $ => $.Extends,
     NodeTypeDeclarationStatement_members__list: $ => choice(
         $.NodeEdgeDeclaration,
         $.NodeStaticConstantDeclaration,
     ),
 
     NodeTypeDeclarationStatement: $ => seq(
-      repeat($.NodeTypeDeclarationStatement_decorators__list),
-      optional($.NodeTypeDeclarationStatement_accessibility),
-      optional($.NodeTypeDeclarationStatement_abstract),
+      repeat(alias($.Decorator, $.NodeTypeDeclarationStatement_decorators__list)),
+      optional(alias($.ModuleLevelAccessibilityModifier, $.NodeTypeDeclarationStatement_accessibility)),
+      optional(alias("abstract", $.NodeTypeDeclarationStatement_abstract)),
       "node",
-      $.NodeTypeDeclarationStatement_name,
-      optional($.NodeTypeDeclarationStatement_extends),
+      alias($.Identifier, $.NodeTypeDeclarationStatement_name),
+      optional(alias($.Extends, $.NodeTypeDeclarationStatement_extends)),
       "{", repeat($.NodeTypeDeclarationStatement_members__list), "}",
     ),
 
@@ -129,17 +123,9 @@ module.exports = grammar({
       "extends", $.Identifier
     ),
 
-    Decorator_identifier: $ => $.DecoratorIdentifier,
-    Decorator_parameters__list: $ => $.Expression,
     Decorator: $ => prec.left(seq(
-      $.Decorator_identifier,
-      optional(seq(
-        "(",
-          optional(seq(
-            $.Decorator_parameters__list,
-            repeat(seq(",", $.Decorator_parameters__list)),
-            optional(","))),
-        ")"))
+      alias($.Identifier, $.Decorator_identifier),
+      seq("(", commaSeparated(alias($.Expression, $.Decorator_parameters__list)), ")"),
       ),
     ),
 
@@ -554,8 +540,8 @@ module.exports = grammar({
         $.FunctionCallOrEdgeAccess_expression,
         optional($.FunctionCallOrEdgeAccess_rule_parameters),
         choice(
-          seq("(", getCommaSeparatedList($.FunctionCallOrEdgeAccess_function_call_parameters__list), ")"),
-          seq("[", getCommaSeparatedList($.FunctionCallOrEdgeAccess_edge_access_parameters__list, true), "]"),
+          seq("(", commaSeparated($.FunctionCallOrEdgeAccess_function_call_parameters__list), ")"),
+          seq("[", commaSeparated1($.FunctionCallOrEdgeAccess_edge_access_parameters__list), "]"),
         ),
       )
     },
@@ -586,7 +572,7 @@ module.exports = grammar({
     AnonymousFunction: $ => prec(PREC.lambda, seq(
       "lambda",
       "(",
-      getCommaSeparatedList($.AnonymousFunction_parameters__list),
+      commaSeparated($.AnonymousFunction_parameters__list),
       ")",
       optional($.AnonymousFunction_return_type),
       "=>",
@@ -606,12 +592,12 @@ module.exports = grammar({
           $.ChainedFunctionCallOrEdgeAccess_function_call_identifier,
           optional($.ChainedFunctionCallOrEdgeAccess_rule_parameters),
           "(",
-          getCommaSeparatedList($.ChainedFunctionCallOrEdgeAccess_function_call_parameters__list),
+          commaSeparated($.ChainedFunctionCallOrEdgeAccess_function_call_parameters__list),
           ")",
         ),
         seq(
           "[",
-          getCommaSeparatedList($.ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list, true),
+          commaSeparated1($.ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list),
           "]",
         ),
       ),
@@ -749,12 +735,10 @@ module.exports = grammar({
   }
 });
 
-function getCommaSeparatedList(parametersRule, oneOrMore= false) {
-  const list =
-    prec.left(seq(
-      parametersRule,
-      repeat(seq(",", parametersRule)),
-      optional(",")
-    ));
-  return oneOrMore ? list : optional(list);
+function commaSeparated1 (rule) {
+  return commaSeparated(rule)
+}
+
+function commaSeparated (rule) {
+  return seq(rule, repeat(seq(",", rule)))
 }

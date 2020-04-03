@@ -6,7 +6,7 @@ node foo {}
 
 ---
 
-  (Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_name (Identifier (CamelIdentifier))))))
+  (Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_name (CamelIdentifier)))))
 
 
 
@@ -18,7 +18,7 @@ node foo extends FooBase {}
 
 ---
 
-   (Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_name (Identifier (CamelIdentifier))) (NodeTypeDeclarationStatement_extends (Extends (Identifier (PascalIdentifier)))))))
+   (Module (Module_statements__list (NodeTypeDeclarationStatement (NodeTypeDeclarationStatement_name (CamelIdentifier)) (NodeTypeDeclarationStatement_extends (Extends (PascalIdentifier))))))
 
 
 

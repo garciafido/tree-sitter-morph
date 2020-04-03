@@ -654,7 +654,15 @@
       "required": true,
       "types": [
         {
-          "type": "DecoratorIdentifier",
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
@@ -669,7 +677,19 @@
       "required": true,
       "types": [
         {
-          "type": "Expression",
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
           "named": true
         }
       ]
@@ -863,21 +883,6 @@
         },
         {
           "type": "RelationalExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Extends",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
           "named": true
         }
       ]
@@ -1181,7 +1186,7 @@
       "required": true,
       "types": [
         {
-          "type": "ImportFromStatement_items",
+          "type": "ImportFromStatement_items__list",
           "named": true
         },
         {
@@ -1196,15 +1201,23 @@
     }
   },
   {
-    "type": "ImportFromStatement_items",
+    "type": "ImportFromStatement_items__list",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "Identifier",
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
@@ -1219,16 +1232,19 @@
       "required": true,
       "types": [
         {
-          "type": "Identifier",
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "ImportFromStatement_path",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "ImportModuleStatement",
@@ -1258,16 +1274,19 @@
       "required": true,
       "types": [
         {
-          "type": "Identifier",
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "ImportModuleStatement_path",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "ImportStatement",
@@ -2140,7 +2159,15 @@
       "required": true,
       "types": [
         {
-          "type": "ModuleLevelAccessibilityModifier",
+          "type": "Private",
+          "named": true
+        },
+        {
+          "type": "Protected",
+          "named": true
+        },
+        {
+          "type": "Public",
           "named": true
         }
       ]
@@ -2151,11 +2178,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "Decorator",
+          "type": "Decorator_identifier",
+          "named": true
+        },
+        {
+          "type": "Decorator_parameters__list",
           "named": true
         }
       ]
@@ -2170,7 +2201,7 @@
       "required": true,
       "types": [
         {
-          "type": "Extends",
+          "type": "Identifier",
           "named": true
         }
       ]
@@ -2204,7 +2235,15 @@
       "required": true,
       "types": [
         {
-          "type": "Identifier",
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]
@@ -3052,10 +3091,6 @@
     "named": true
   },
   {
-    "type": "DecoratorIdentifier",
-    "named": true
-  },
-  {
     "type": "Disjunction",
     "named": true
   },
@@ -3081,6 +3116,14 @@
   },
   {
     "type": "GreaterThanEqualTo",
+    "named": true
+  },
+  {
+    "type": "ImportFromStatement_path",
+    "named": true
+  },
+  {
+    "type": "ImportModuleStatement_path",
     "named": true
   },
   {

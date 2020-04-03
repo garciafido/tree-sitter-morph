@@ -53,19 +53,19 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                     if (isList) {
                         childType = childType.substring(0, childType.lastIndexOf(LIST_POSTFIX));
                     }
-                    const index = childType.lastIndexOf('_');
-                    if (index > 0 && node.type === childType.substring(0, index)) {
-                        const item = childType.substring(index + 1);
+                    const firstChar = childType.charAt(0);
+                    const isField = firstChar.toLowerCase() === firstChar;
+                    if (isField) {
                         if (isList) {
-                            if (!(item in NewChildren)) {
-                                NewChildren[item] = [];
+                            if (!(childType in NewChildren)) {
+                                NewChildren[childType] = [];
                             }
-                            NewChildren[item].push(this.traverse(child));
+                            NewChildren[childType].push(this.traverse(child));
                         } else {
-                            if (item in NewChildren) {
+                            if (childType in NewChildren) {
                                 throw new Error(`There is more than one child "${child.type}" and it is not declared as a list. Postfix the rule name with "${LIST_POSTFIX}"`);
                             }
-                            NewChildren[item] = this.traverse(child);
+                            NewChildren[childType] = this.traverse(child);
                         }
                     }
                 }
