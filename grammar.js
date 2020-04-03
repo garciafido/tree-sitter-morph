@@ -167,9 +167,15 @@ module.exports = grammar({
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "morph",
       alias($.Identifier, $.name),
-      "(",
+      "mutates",
       alias($.Expression, $.source),
-      ")",
+      optional(seq(
+        "(",
+        "if",
+        "->",
+        $.MorphismDeclarationStatement_filter,
+        ")"
+      )),
       "{",
       repeat(alias($.MorphismDeclarationStatementMember, $.members__list)),
       "}",
