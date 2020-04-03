@@ -109,7 +109,7 @@ module.exports = grammar({
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       optional(alias("abstract", $.abstract)),
       "node",
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
       optional(seq("extends", alias($.Identifier, $.extends))),
       "{", repeat(alias($.NodeTypeDeclarationStatementMembers, $.members__list)), "}",
     ),
@@ -122,7 +122,7 @@ module.exports = grammar({
 
     NodeEdgeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
       optional(alias($.NodeEdgeModifier, $.modifier)),
       "->",
       alias($.Type, $.type),
@@ -157,7 +157,7 @@ module.exports = grammar({
       repeat(alias($.Decorator, $.decorators__list)),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "morph",
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
       "mutates",
       alias($.Identifier, $.mutates),
       optional(seq(
@@ -173,14 +173,14 @@ module.exports = grammar({
     ),
 
     MorphismMutationDeclaration: $ => seq(
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
       "->",
       alias($.Expression, $.expression),
     ),
 
     MorphismCreationDeclaration: $ => seq(
       "new",
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
       "->",
       alias($.Expression, $.expression),
     ),
@@ -188,13 +188,13 @@ module.exports = grammar({
     SymbolDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "symbol",
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
     ),
 
     EnumDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "enum",
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
       "{",
       repeat(alias($.Identifier, $.values__list)),
       "}",
@@ -209,10 +209,10 @@ module.exports = grammar({
     NamedLambdaDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "lambda",
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
       optional(alias($.TypeParameters, $.type_parameters)),
       "(",
-      commaSeparated(alias($.NamedLambdaParameter, $.parameters__list)),
+      commaSeparated(alias($.identifierdLambdaParameter, $.parameters__list)),
       ")",
       optional(alias($.TypeAnnotation, $.type)),
       "=>",
@@ -220,7 +220,7 @@ module.exports = grammar({
     ),
 
     NamedLambdaParameter: $ => seq(
-      alias($.Identifier, $.name), alias($.TypeAnnotation, $.type),
+      alias($.Identifier, $.identifier), alias($.TypeAnnotation, $.type),
     ),
 
     TypeParameters: $ => seq(
@@ -268,7 +268,7 @@ module.exports = grammar({
     TypeDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "type",
-      alias($.Identifier, $.name),
+      alias($.Identifier, $.identifier),
       "=",
       alias($.Type, $.value),
     ),
@@ -536,7 +536,7 @@ module.exports = grammar({
     ),
 
     NodeEdge: $ => seq(
-      alias($.Identifier, $.name), "->", alias($.Expression, $.value),
+      alias($.Identifier, $.identifier), "->", alias($.Expression, $.value),
     ),
 
     Literal: $ => choice(

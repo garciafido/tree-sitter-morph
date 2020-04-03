@@ -799,11 +799,11 @@
           "named": true
         },
         {
-          "type": "members__list",
+          "type": "identifier",
           "named": true
         },
         {
-          "type": "name",
+          "type": "members__list",
           "named": true
         }
       ]
@@ -1582,6 +1582,29 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "initializer",
     "named": true,
     "fields": {},
@@ -2310,10 +2333,6 @@
   {
     "type": "from",
     "named": false
-  },
-  {
-    "type": "identifier",
-    "named": true
   },
   {
     "type": "if",
