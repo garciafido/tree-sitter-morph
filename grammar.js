@@ -45,8 +45,8 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    [$.ChainedFunctionCallOrEdgeAccess_expression, $.Expression],
-    [$.RelationalExpression, $.ChainedFunctionCallOrEdgeAccess_expression],
+    // [$.ChainedFunctionCallOrEdgeAccess_expression, $.Expression],
+    // [$.RelationalExpression, $.ChainedFunctionCallOrEdgeAccess_expression],
   ]),
 
   // conflicts: $ => [
@@ -167,7 +167,7 @@ module.exports = grammar({
       "morph",
       alias($.Identifier, $.name),
       "mutates",
-      alias($.Expression, $.source),
+      alias($.Identifier, $.source),
       optional(seq(
         "(",
         "if",
@@ -222,8 +222,6 @@ module.exports = grammar({
     TypeAnnotation: $ => seq(
       ":", $.Type,
     ),
-
-//---------  KKkkkkkkkk  ----------------------------------------------------------------->>>>>------------->>>>> Por aquí
 
     FunctionDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
@@ -341,30 +339,25 @@ module.exports = grammar({
       ))
     )),
 
-    Negation_expression: $ => prec(PREC.not, $.Expression),
+//---------  KKkkkkkkkk  ----------------------------------------------------------------->>>>>------------->>>>> Por aquí
     Negation: $ => seq(
       "not",
-      $.Negation_expression,
+      alias($.Expression, $.expression),
     ),
 
     Disjunction: $ => "or",
     Conjunction: $ => "and",
 
-    BooleanConjunctionExpression_left: $ => prec.left(PREC.and+1, $.Expression),
-    BooleanConjunctionExpression_right: $ => prec.left(PREC.and, $.Expression),
-    BooleanDisjunctionExpression_left: $ => prec.left(PREC.or+1, $.Expression),
-    BooleanDisjunctionExpression_right: $ => prec.left(PREC.or, $.Expression),
-
     BooleanExpression: $ => choice(
       prec.left(PREC.and, seq(
-        $.BooleanConjunctionExpression_left,
+        alias($.Expression, $.left),
         $.Conjunction,
-        $.BooleanConjunctionExpression_right,
+        alias($.Expression, $.right),
       )),
       prec.left(PREC.or, seq(
-        $.BooleanDisjunctionExpression_left,
+        alias($.Expression, $.left),
         $.Disjunction,
-        $.BooleanDisjunctionExpression_right,
+        alias($.Expression, $.right),
       ))
     ),
 
@@ -382,69 +375,53 @@ module.exports = grammar({
     )),
 
 
-    Addition_left: $ => prec(PREC.plus+1, $.PrimaryExpression),
-    Addition_right: $ => prec(PREC.plus, $.PrimaryExpression),
-    Addition: $ => seq(
-      $.Addition_left,
+    Addition: $ => prec.left(PREC.plus, seq(
+      alias($.PrimaryExpression, $.left),
       "+",
-      $.Addition_right,
-    ),
+      alias($.PrimaryExpression, $.right),
+    )),
 
-    Subtraction_left: $ => prec(PREC.plus+1, $.PrimaryExpression),
-    Subtraction_right: $ => prec(PREC.plus, $.PrimaryExpression),
-    Subtraction: $ => seq(
-      $.Subtraction_left,
+    Subtraction: $ => prec.left(PREC.plus, seq(
+      alias($.PrimaryExpression, $.left),
       "-",
-      $.Subtraction_right,
-    ),
+      alias($.PrimaryExpression, $.right),
+    )),
 
-    Multiplication_left: $ => prec(PREC.times+1, $.PrimaryExpression),
-    Multiplication_right: $ => prec(PREC.times, $.PrimaryExpression),
-    Multiplication: $ => seq(
-      $.Multiplication_left,
+    Multiplication: $ => prec.left(PREC.times, seq(
+      alias($.PrimaryExpression, $.left),
       "*",
-      $.Multiplication_right,
-    ),
+      alias($.PrimaryExpression, $.right),
+    )),
 
-    Division_left: $ => prec(PREC.times+1, $.PrimaryExpression),
-    Division_right: $ => prec(PREC.times,$.PrimaryExpression),
-    Division: $ => seq(
-      $.Division_left,
+    Division: $ => prec.left(PREC.times, seq(
+      alias($.PrimaryExpression, $.left),
       "/",
-      $.Division_right,
-    ),
+      alias($.PrimaryExpression, $.right),
+    )),
 
-    Modulus_left: $ => prec(PREC.times+1, $.PrimaryExpression),
-    Modulus_right: $ => prec(PREC.times, $.PrimaryExpression),
-    Modulus: $ => seq(
-      $.Modulus_left,
+    Modulus: $ => prec.left(PREC.times, seq(
+      alias($.PrimaryExpression, $.left),
       "%",
-      $.Modulus_right,
-    ),
+      alias($.PrimaryExpression, $.right),
+    )),
 
-    BitwiseDisjunction_left: $ => prec(PREC.bitwise_or+1, $.PrimaryExpression),
-    BitwiseDisjunction_right: $ => prec(PREC.bitwise_or, $.PrimaryExpression),
-    BitwiseDisjunction: $ => prec.left(seq(
-      $.BitwiseDisjunction_left,
+    BitwiseDisjunction: $ => prec.left(PREC.times, seq(
+      alias($.PrimaryExpression, $.left),
       "|",
-      $.BitwiseDisjunction_right,
+      alias($.PrimaryExpression, $.right),
     )),
 
-    BitwiseConjunction_left: $ => prec(PREC.times+1, $.PrimaryExpression),
-    BitwiseConjunction_right: $ => prec(PREC.times, $.PrimaryExpression),
-    BitwiseConjunction: $ => prec.left(seq(
-      $.BitwiseConjunction_left,
+    BitwiseConjunction: $ => prec.left(PREC.times, seq(
+      alias($.PrimaryExpression, $.left),
       "&",
-      $.BitwiseConjunction_right,
+      alias($.PrimaryExpression, $.right),
     )),
 
-    ExclusiveDisjunction_left: $ => prec(PREC.times+1, $.PrimaryExpression),
-    ExclusiveDisjunction_right: $ => prec(PREC.times, $.PrimaryExpression),
-    ExclusiveDisjunction: $ => seq(
-      $.ExclusiveDisjunction_left,
+    ExclusiveDisjunction: $ => prec.left(PREC.times, seq(
+      alias($.PrimaryExpression, $.left),
       "^",
-      $.ExclusiveDisjunction_right,
-    ),
+      alias($.PrimaryExpression, $.right),
+    )),
 
     BinaryExpression: $ => choice(
       prec.left(PREC.plus, $.Addition),
@@ -495,17 +472,13 @@ module.exports = grammar({
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
-    FunctionCallOrEdgeAccess_expression: $ =>  $.CallableExpression,
-    FunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
-    FunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
-    FunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
     FunctionCallOrEdgeAccess: $ => {
       return seq(
-        $.FunctionCallOrEdgeAccess_expression,
-        optional($.FunctionCallOrEdgeAccess_rule_parameters),
+        alias($.CallableExpression, $.expression),
+        optional(alias($.RuleParameters, $.rule_parameters)),
         choice(
-          seq("(", commaSeparated($.FunctionCallOrEdgeAccess_function_call_parameters__list), ")"),
-          seq("[", commaSeparated1($.FunctionCallOrEdgeAccess_edge_access_parameters__list), "]"),
+          seq("(", commaSeparated(alias($.Expression, $.function_call_parameters__list)), ")"),
+          seq("[", commaSeparated1(alias($.Expression, $.edge_access_parameters__list)), "]"),
         ),
       )
     },
@@ -538,38 +511,31 @@ module.exports = grammar({
       "[", $.AccessExpression, "]"
     ),
 
-    AnonymousFunction_expression: $ => $.Expression,
-    AnonymousFunction_return_type: $ => $.TypeAnnotation,
-    AnonymousFunction_parameters__list: $ => prec(PREC.lambda, $.Identifier),
+    // AnonymousFunction_parameters__list: $ => prec(PREC.lambda, $.Identifier),
     AnonymousFunction: $ => prec(PREC.lambda, seq(
       "lambda",
       "(",
-      commaSeparated($.AnonymousFunction_parameters__list),
+      commaSeparated(alias($.Identifier, $.parameters__list)),
       ")",
-      optional($.AnonymousFunction_return_type),
+      optional(alias($.TypeAnnotation, $.return_type)),
       "=>",
-      $.AnonymousFunction_expression,
+      alias($.Expression, $.expression),
     )),
 
-    ChainedFunctionCallOrEdgeAccess_expression: $ => $.PrimaryExpression,
-    ChainedFunctionCallOrEdgeAccess_function_call_identifier: $ => $.Identifier,
-    ChainedFunctionCallOrEdgeAccess_function_call_parameters__list: $ => $.Expression,
-    ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list: $ => $.Expression,
-    ChainedFunctionCallOrEdgeAccess_rule_parameters: $ => $.RuleParameters,
     ChainedFunctionCallOrEdgeAccess: $ => prec(PREC.call, seq(
-      $.ChainedFunctionCallOrEdgeAccess_expression,
+      alias($.PrimaryExpression, $.expression),
       choice(
         seq(
           ".",
-          $.ChainedFunctionCallOrEdgeAccess_function_call_identifier,
-          optional($.ChainedFunctionCallOrEdgeAccess_rule_parameters),
+          alias($.Identifier, $.function_call_identifier),
+          optional(alias($.RuleParameters, $.rule_parameters)),
           "(",
-          commaSeparated($.ChainedFunctionCallOrEdgeAccess_function_call_parameters__list),
+          commaSeparated(alias($.Expression, $.function_call_parameters__list)),
           ")",
         ),
         seq(
           "[",
-          commaSeparated1($.ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list),
+          commaSeparated1(alias($.Expression, $.edge_access_parameters__list)),
           "]",
         ),
       ),

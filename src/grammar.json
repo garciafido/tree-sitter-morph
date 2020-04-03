@@ -590,7 +590,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "Identifier"
           },
           "named": true,
           "value": "source"
@@ -806,10 +806,6 @@
     "AssignmentSign": {
       "type": "STRING",
       "value": "="
-    },
-    "ConstantDeclarationStatement_type": {
-      "type": "SYMBOL",
-      "name": "TypeAnnotation"
     },
     "ConstantDeclarationStatement": {
       "type": "SEQ",
@@ -1422,14 +1418,6 @@
         ]
       }
     },
-    "Negation_expression": {
-      "type": "PREC",
-      "value": 10,
-      "content": {
-        "type": "SYMBOL",
-        "name": "Expression"
-      }
-    },
     "Negation": {
       "type": "SEQ",
       "members": [
@@ -1438,8 +1426,13 @@
           "value": "not"
         },
         {
-          "type": "SYMBOL",
-          "name": "Negation_expression"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "Expression"
+          },
+          "named": true,
+          "value": "expression"
         }
       ]
     },
@@ -1451,38 +1444,6 @@
       "type": "STRING",
       "value": "and"
     },
-    "BooleanConjunctionExpression_left": {
-      "type": "PREC_LEFT",
-      "value": 111,
-      "content": {
-        "type": "SYMBOL",
-        "name": "Expression"
-      }
-    },
-    "BooleanConjunctionExpression_right": {
-      "type": "PREC_LEFT",
-      "value": 110,
-      "content": {
-        "type": "SYMBOL",
-        "name": "Expression"
-      }
-    },
-    "BooleanDisjunctionExpression_left": {
-      "type": "PREC_LEFT",
-      "value": 101,
-      "content": {
-        "type": "SYMBOL",
-        "name": "Expression"
-      }
-    },
-    "BooleanDisjunctionExpression_right": {
-      "type": "PREC_LEFT",
-      "value": 100,
-      "content": {
-        "type": "SYMBOL",
-        "name": "Expression"
-      }
-    },
     "BooleanExpression": {
       "type": "CHOICE",
       "members": [
@@ -1493,16 +1454,26 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "BooleanConjunctionExpression_left"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "Expression"
+                },
+                "named": true,
+                "value": "left"
               },
               {
                 "type": "SYMBOL",
                 "name": "Conjunction"
               },
               {
-                "type": "SYMBOL",
-                "name": "BooleanConjunctionExpression_right"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "Expression"
+                },
+                "named": true,
+                "value": "right"
               }
             ]
           }
@@ -1514,16 +1485,26 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "BooleanDisjunctionExpression_left"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "Expression"
+                },
+                "named": true,
+                "value": "left"
               },
               {
                 "type": "SYMBOL",
                 "name": "Disjunction"
               },
               {
-                "type": "SYMBOL",
-                "name": "BooleanDisjunctionExpression_right"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "Expression"
+                },
+                "named": true,
+                "value": "right"
               }
             ]
           }
@@ -1579,277 +1560,253 @@
         ]
       }
     },
-    "Addition_left": {
-      "type": "PREC",
-      "value": 161,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Addition_right": {
-      "type": "PREC",
-      "value": 160,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
     "Addition": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Addition_left"
-        },
-        {
-          "type": "STRING",
-          "value": "+"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Addition_right"
-        }
-      ]
-    },
-    "Subtraction_left": {
-      "type": "PREC",
-      "value": 161,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Subtraction_right": {
-      "type": "PREC",
-      "value": 160,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Subtraction": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Subtraction_left"
-        },
-        {
-          "type": "STRING",
-          "value": "-"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Subtraction_right"
-        }
-      ]
-    },
-    "Multiplication_left": {
-      "type": "PREC",
-      "value": 171,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Multiplication_right": {
-      "type": "PREC",
-      "value": 170,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Multiplication": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Multiplication_left"
-        },
-        {
-          "type": "STRING",
-          "value": "*"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Multiplication_right"
-        }
-      ]
-    },
-    "Division_left": {
-      "type": "PREC",
-      "value": 171,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Division_right": {
-      "type": "PREC",
-      "value": 170,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Division": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Division_left"
-        },
-        {
-          "type": "STRING",
-          "value": "/"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Division_right"
-        }
-      ]
-    },
-    "Modulus_left": {
-      "type": "PREC",
-      "value": 171,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Modulus_right": {
-      "type": "PREC",
-      "value": 170,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "Modulus": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Modulus_left"
-        },
-        {
-          "type": "STRING",
-          "value": "%"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "Modulus_right"
-        }
-      ]
-    },
-    "BitwiseDisjunction_left": {
-      "type": "PREC",
-      "value": 121,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "BitwiseDisjunction_right": {
-      "type": "PREC",
-      "value": 120,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "BitwiseDisjunction": {
       "type": "PREC_LEFT",
-      "value": 0,
+      "value": 160,
       "content": {
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "BitwiseDisjunction_left"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "left"
+          },
+          {
+            "type": "STRING",
+            "value": "+"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "right"
+          }
+        ]
+      }
+    },
+    "Subtraction": {
+      "type": "PREC_LEFT",
+      "value": 160,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "left"
+          },
+          {
+            "type": "STRING",
+            "value": "-"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "right"
+          }
+        ]
+      }
+    },
+    "Multiplication": {
+      "type": "PREC_LEFT",
+      "value": 170,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "left"
+          },
+          {
+            "type": "STRING",
+            "value": "*"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "right"
+          }
+        ]
+      }
+    },
+    "Division": {
+      "type": "PREC_LEFT",
+      "value": 170,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "left"
+          },
+          {
+            "type": "STRING",
+            "value": "/"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "right"
+          }
+        ]
+      }
+    },
+    "Modulus": {
+      "type": "PREC_LEFT",
+      "value": 170,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "left"
+          },
+          {
+            "type": "STRING",
+            "value": "%"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "right"
+          }
+        ]
+      }
+    },
+    "BitwiseDisjunction": {
+      "type": "PREC_LEFT",
+      "value": 170,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "left"
           },
           {
             "type": "STRING",
             "value": "|"
           },
           {
-            "type": "SYMBOL",
-            "name": "BitwiseDisjunction_right"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "right"
           }
         ]
       }
     },
-    "BitwiseConjunction_left": {
-      "type": "PREC",
-      "value": 171,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "BitwiseConjunction_right": {
-      "type": "PREC",
-      "value": 170,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
     "BitwiseConjunction": {
       "type": "PREC_LEFT",
-      "value": 0,
+      "value": 170,
       "content": {
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "BitwiseConjunction_left"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "left"
           },
           {
             "type": "STRING",
             "value": "&"
           },
           {
-            "type": "SYMBOL",
-            "name": "BitwiseConjunction_right"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "right"
           }
         ]
       }
     },
-    "ExclusiveDisjunction_left": {
-      "type": "PREC",
-      "value": 171,
-      "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
-      }
-    },
-    "ExclusiveDisjunction_right": {
-      "type": "PREC",
+    "ExclusiveDisjunction": {
+      "type": "PREC_LEFT",
       "value": 170,
       "content": {
-        "type": "SYMBOL",
-        "name": "PrimaryExpression"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "left"
+          },
+          {
+            "type": "STRING",
+            "value": "^"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "right"
+          }
+        ]
       }
-    },
-    "ExclusiveDisjunction": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "ExclusiveDisjunction_left"
-        },
-        {
-          "type": "STRING",
-          "value": "^"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ExclusiveDisjunction_right"
-        }
-      ]
     },
     "BinaryExpression": {
       "type": "CHOICE",
@@ -2029,35 +1986,29 @@
       "type": "PATTERN",
       "value": "[@][A-Za-z_][a-zA-Z0-9_]*"
     },
-    "FunctionCallOrEdgeAccess_expression": {
-      "type": "SYMBOL",
-      "name": "CallableExpression"
-    },
-    "FunctionCallOrEdgeAccess_rule_parameters": {
-      "type": "SYMBOL",
-      "name": "RuleParameters"
-    },
-    "FunctionCallOrEdgeAccess_function_call_parameters__list": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "FunctionCallOrEdgeAccess_edge_access_parameters__list": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
     "FunctionCallOrEdgeAccess": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "FunctionCallOrEdgeAccess_expression"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "CallableExpression"
+          },
+          "named": true,
+          "value": "expression"
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "FunctionCallOrEdgeAccess_rule_parameters"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "RuleParameters"
+              },
+              "named": true,
+              "value": "rule_parameters"
             },
             {
               "type": "BLANK"
@@ -2081,8 +2032,13 @@
                       "type": "SEQ",
                       "members": [
                         {
-                          "type": "SYMBOL",
-                          "name": "FunctionCallOrEdgeAccess_function_call_parameters__list"
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "Expression"
+                          },
+                          "named": true,
+                          "value": "function_call_parameters__list"
                         },
                         {
                           "type": "REPEAT",
@@ -2094,8 +2050,13 @@
                                 "value": ","
                               },
                               {
-                                "type": "SYMBOL",
-                                "name": "FunctionCallOrEdgeAccess_function_call_parameters__list"
+                                "type": "ALIAS",
+                                "content": {
+                                  "type": "SYMBOL",
+                                  "name": "Expression"
+                                },
+                                "named": true,
+                                "value": "function_call_parameters__list"
                               }
                             ]
                           }
@@ -2124,8 +2085,13 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "FunctionCallOrEdgeAccess_edge_access_parameters__list"
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "Expression"
+                      },
+                      "named": true,
+                      "value": "edge_access_parameters__list"
                     },
                     {
                       "type": "REPEAT",
@@ -2137,8 +2103,13 @@
                             "value": ","
                           },
                           {
-                            "type": "SYMBOL",
-                            "name": "FunctionCallOrEdgeAccess_edge_access_parameters__list"
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "Expression"
+                            },
+                            "named": true,
+                            "value": "edge_access_parameters__list"
                           }
                         ]
                       }
@@ -2292,22 +2263,6 @@
         }
       ]
     },
-    "AnonymousFunction_expression": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "AnonymousFunction_return_type": {
-      "type": "SYMBOL",
-      "name": "TypeAnnotation"
-    },
-    "AnonymousFunction_parameters__list": {
-      "type": "PREC",
-      "value": -20,
-      "content": {
-        "type": "SYMBOL",
-        "name": "Identifier"
-      }
-    },
     "AnonymousFunction": {
       "type": "PREC",
       "value": -20,
@@ -2329,8 +2284,13 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "AnonymousFunction_parameters__list"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "Identifier"
+                    },
+                    "named": true,
+                    "value": "parameters__list"
                   },
                   {
                     "type": "REPEAT",
@@ -2342,8 +2302,13 @@
                           "value": ","
                         },
                         {
-                          "type": "SYMBOL",
-                          "name": "AnonymousFunction_parameters__list"
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "Identifier"
+                          },
+                          "named": true,
+                          "value": "parameters__list"
                         }
                       ]
                     }
@@ -2363,8 +2328,13 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "AnonymousFunction_return_type"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "TypeAnnotation"
+                },
+                "named": true,
+                "value": "return_type"
               },
               {
                 "type": "BLANK"
@@ -2376,31 +2346,16 @@
             "value": "=>"
           },
           {
-            "type": "SYMBOL",
-            "name": "AnonymousFunction_expression"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "Expression"
+            },
+            "named": true,
+            "value": "expression"
           }
         ]
       }
-    },
-    "ChainedFunctionCallOrEdgeAccess_expression": {
-      "type": "SYMBOL",
-      "name": "PrimaryExpression"
-    },
-    "ChainedFunctionCallOrEdgeAccess_function_call_identifier": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
-    "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list": {
-      "type": "SYMBOL",
-      "name": "Expression"
-    },
-    "ChainedFunctionCallOrEdgeAccess_rule_parameters": {
-      "type": "SYMBOL",
-      "name": "RuleParameters"
     },
     "ChainedFunctionCallOrEdgeAccess": {
       "type": "PREC",
@@ -2409,8 +2364,13 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "ChainedFunctionCallOrEdgeAccess_expression"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "PrimaryExpression"
+            },
+            "named": true,
+            "value": "expression"
           },
           {
             "type": "CHOICE",
@@ -2423,15 +2383,25 @@
                     "value": "."
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "ChainedFunctionCallOrEdgeAccess_function_call_identifier"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "Identifier"
+                    },
+                    "named": true,
+                    "value": "function_call_identifier"
                   },
                   {
                     "type": "CHOICE",
                     "members": [
                       {
-                        "type": "SYMBOL",
-                        "name": "ChainedFunctionCallOrEdgeAccess_rule_parameters"
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "RuleParameters"
+                        },
+                        "named": true,
+                        "value": "rule_parameters"
                       },
                       {
                         "type": "BLANK"
@@ -2449,8 +2419,13 @@
                         "type": "SEQ",
                         "members": [
                           {
-                            "type": "SYMBOL",
-                            "name": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list"
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "Expression"
+                            },
+                            "named": true,
+                            "value": "function_call_parameters__list"
                           },
                           {
                             "type": "REPEAT",
@@ -2462,8 +2437,13 @@
                                   "value": ","
                                 },
                                 {
-                                  "type": "SYMBOL",
-                                  "name": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list"
+                                  "type": "ALIAS",
+                                  "content": {
+                                    "type": "SYMBOL",
+                                    "name": "Expression"
+                                  },
+                                  "named": true,
+                                  "value": "function_call_parameters__list"
                                 }
                               ]
                             }
@@ -2492,8 +2472,13 @@
                     "type": "SEQ",
                     "members": [
                       {
-                        "type": "SYMBOL",
-                        "name": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list"
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "Expression"
+                        },
+                        "named": true,
+                        "value": "edge_access_parameters__list"
                       },
                       {
                         "type": "REPEAT",
@@ -2505,8 +2490,13 @@
                               "value": ","
                             },
                             {
-                              "type": "SYMBOL",
-                              "name": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list"
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "SYMBOL",
+                                "name": "Expression"
+                              },
+                              "named": true,
+                              "value": "edge_access_parameters__list"
                             }
                           ]
                         }
@@ -3238,16 +3228,7 @@
       "value": "[\\s\\uFEFF\\u2060\\u200B\\u00A0]"
     }
   ],
-  "conflicts": [
-    [
-      "ChainedFunctionCallOrEdgeAccess_expression",
-      "Expression"
-    ],
-    [
-      "RelationalExpression",
-      "ChainedFunctionCallOrEdgeAccess_expression"
-    ]
-  ],
+  "conflicts": [],
   "externals": [
     {
       "type": "SYMBOL",

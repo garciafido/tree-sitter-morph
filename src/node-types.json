@@ -23,41 +23,11 @@
       "required": true,
       "types": [
         {
-          "type": "Addition_left",
+          "type": "left",
           "named": true
         },
         {
-          "type": "Addition_right",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Addition_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Addition_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
+          "type": "right",
           "named": true
         }
       ]
@@ -72,60 +42,15 @@
       "required": true,
       "types": [
         {
-          "type": "AnonymousFunction_expression",
+          "type": "expression",
           "named": true
         },
         {
-          "type": "AnonymousFunction_parameters__list",
+          "type": "parameters__list",
           "named": true
         },
         {
-          "type": "AnonymousFunction_return_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "AnonymousFunction_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "AnonymousFunction_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "AnonymousFunction_return_type",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "TypeAnnotation",
+          "type": "return_type",
           "named": true
         }
       ]
@@ -188,41 +113,11 @@
       "required": true,
       "types": [
         {
-          "type": "BitwiseConjunction_left",
+          "type": "left",
           "named": true
         },
         {
-          "type": "BitwiseConjunction_right",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "BitwiseConjunction_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "BitwiseConjunction_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
+          "type": "right",
           "named": true
         }
       ]
@@ -237,101 +132,11 @@
       "required": true,
       "types": [
         {
-          "type": "BitwiseDisjunction_left",
+          "type": "left",
           "named": true
         },
         {
-          "type": "BitwiseDisjunction_right",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "BitwiseDisjunction_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "BitwiseDisjunction_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "BooleanConjunctionExpression_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "BooleanConjunctionExpression_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "BooleanDisjunctionExpression_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "BooleanDisjunctionExpression_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
+          "type": "right",
           "named": true
         }
       ]
@@ -346,27 +151,19 @@
       "required": true,
       "types": [
         {
-          "type": "BooleanConjunctionExpression_left",
-          "named": true
-        },
-        {
-          "type": "BooleanConjunctionExpression_right",
-          "named": true
-        },
-        {
-          "type": "BooleanDisjunctionExpression_left",
-          "named": true
-        },
-        {
-          "type": "BooleanDisjunctionExpression_right",
-          "named": true
-        },
-        {
           "type": "Conjunction",
           "named": true
         },
         {
           "type": "Disjunction",
+          "named": true
+        },
+        {
+          "type": "left",
+          "named": true
+        },
+        {
+          "type": "right",
           "named": true
         }
       ]
@@ -386,29 +183,6 @@
         },
         {
           "type": "TrueLiteral",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "CallableExpression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "CallableName",
-          "named": true
-        },
-        {
-          "type": "FunctionCallOrEdgeAccess",
-          "named": true
-        },
-        {
-          "type": "ParenthesizedExpression",
           "named": true
         }
       ]
@@ -438,98 +212,23 @@
       "required": true,
       "types": [
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list",
+          "type": "edge_access_parameters__list",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_expression",
+          "type": "expression",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_function_call_identifier",
+          "type": "function_call_identifier",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list",
+          "type": "function_call_parameters__list",
           "named": true
         },
         {
-          "type": "ChainedFunctionCallOrEdgeAccess_rule_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ChainedFunctionCallOrEdgeAccess_edge_access_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ChainedFunctionCallOrEdgeAccess_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ChainedFunctionCallOrEdgeAccess_function_call_identifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ChainedFunctionCallOrEdgeAccess_function_call_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ChainedFunctionCallOrEdgeAccess_rule_parameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "RuleParameters",
+          "type": "rule_parameters",
           "named": true
         }
       ]
@@ -575,41 +274,11 @@
       "required": true,
       "types": [
         {
-          "type": "Division_left",
+          "type": "left",
           "named": true
         },
         {
-          "type": "Division_right",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Division_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Division_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
+          "type": "right",
           "named": true
         }
       ]
@@ -647,41 +316,11 @@
       "required": true,
       "types": [
         {
-          "type": "ExclusiveDisjunction_left",
+          "type": "left",
           "named": true
         },
         {
-          "type": "ExclusiveDisjunction_right",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ExclusiveDisjunction_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ExclusiveDisjunction_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
+          "type": "right",
           "named": true
         }
       ]
@@ -723,79 +362,19 @@
       "required": true,
       "types": [
         {
-          "type": "FunctionCallOrEdgeAccess_edge_access_parameters__list",
+          "type": "edge_access_parameters__list",
           "named": true
         },
         {
-          "type": "FunctionCallOrEdgeAccess_expression",
+          "type": "expression",
           "named": true
         },
         {
-          "type": "FunctionCallOrEdgeAccess_function_call_parameters__list",
+          "type": "function_call_parameters__list",
           "named": true
         },
         {
-          "type": "FunctionCallOrEdgeAccess_rule_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_edge_access_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "CallableExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_function_call_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "FunctionCallOrEdgeAccess_rule_parameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "RuleParameters",
+          "type": "rule_parameters",
           "named": true
         }
       ]
@@ -1036,41 +615,11 @@
       "required": true,
       "types": [
         {
-          "type": "Modulus_left",
+          "type": "left",
           "named": true
         },
         {
-          "type": "Modulus_right",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Modulus_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Modulus_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
+          "type": "right",
           "named": true
         }
       ]
@@ -1158,41 +707,11 @@
       "required": true,
       "types": [
         {
-          "type": "Multiplication_left",
+          "type": "left",
           "named": true
         },
         {
-          "type": "Multiplication_right",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Multiplication_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Multiplication_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
+          "type": "right",
           "named": true
         }
       ]
@@ -1207,22 +726,7 @@
       "required": true,
       "types": [
         {
-          "type": "Negation_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Negation_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
+          "type": "expression",
           "named": true
         }
       ]
@@ -1608,21 +1112,6 @@
     }
   },
   {
-    "type": "RuleParameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "RuleExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "StringLiteral",
     "named": true,
     "fields": {},
@@ -1665,41 +1154,11 @@
       "required": true,
       "types": [
         {
-          "type": "Subtraction_left",
+          "type": "left",
           "named": true
         },
         {
-          "type": "Subtraction_right",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Subtraction_left",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Subtraction_right",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "PrimaryExpression",
+          "type": "right",
           "named": true
         }
       ]
@@ -1749,21 +1208,6 @@
       "types": [
         {
           "type": "TypeUnion",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeAnnotation",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Type",
           "named": true
         }
       ]
@@ -1956,6 +1400,33 @@
     }
   },
   {
+    "type": "edge_access_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "edges__list",
     "named": true,
     "fields": {},
@@ -2010,11 +1481,51 @@
       "required": true,
       "types": [
         {
+          "type": "AnonymousFunction",
+          "named": true
+        },
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
           "type": "BooleanExpression",
           "named": true
         },
         {
+          "type": "CallableName",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "Identifier",
+          "named": true
+        },
+        {
+          "type": "List",
+          "named": true
+        },
+        {
+          "type": "Literal",
+          "named": true
+        },
+        {
           "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "Node",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
           "named": true
         },
         {
@@ -2023,6 +1534,10 @@
         },
         {
           "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "UnaryFactor",
           "named": true
         }
       ]
@@ -2102,6 +1617,56 @@
     }
   },
   {
+    "type": "function_call_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_call_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "initializer",
     "named": true,
     "fields": {},
@@ -2134,6 +1699,73 @@
         },
         {
           "type": "SnakeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "left",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AnonymousFunction",
+          "named": true
+        },
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
+          "type": "BooleanExpression",
+          "named": true
+        },
+        {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "Identifier",
+          "named": true
+        },
+        {
+          "type": "List",
+          "named": true
+        },
+        {
+          "type": "Literal",
+          "named": true
+        },
+        {
+          "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "Node",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
+          "named": true
+        },
+        {
+          "type": "PrimaryExpression",
+          "named": true
+        },
+        {
+          "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "UnaryFactor",
           "named": true
         }
       ]
@@ -2244,7 +1876,15 @@
           "named": true
         },
         {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
           "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
           "named": true
         },
         {
@@ -2253,6 +1893,10 @@
         },
         {
           "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         },
         {
@@ -2267,7 +1911,7 @@
     }
   },
   {
-    "type": "source",
+    "type": "return_type",
     "named": true,
     "fields": {},
     "children": {
@@ -2275,11 +1919,62 @@
       "required": true,
       "types": [
         {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "right",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AnonymousFunction",
+          "named": true
+        },
+        {
+          "type": "BinaryExpression",
+          "named": true
+        },
+        {
           "type": "BooleanExpression",
           "named": true
         },
         {
+          "type": "ChainedFunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "FunctionCallOrEdgeAccess",
+          "named": true
+        },
+        {
+          "type": "Identifier",
+          "named": true
+        },
+        {
+          "type": "List",
+          "named": true
+        },
+        {
+          "type": "Literal",
+          "named": true
+        },
+        {
           "type": "Negation",
+          "named": true
+        },
+        {
+          "type": "Node",
+          "named": true
+        },
+        {
+          "type": "ParenthesizedExpression",
           "named": true
         },
         {
@@ -2288,6 +1983,48 @@
         },
         {
           "type": "RelationalExpression",
+          "named": true
+        },
+        {
+          "type": "UnaryFactor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "RuleExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CamelIdentifier",
+          "named": true
+        },
+        {
+          "type": "PascalIdentifier",
+          "named": true
+        },
+        {
+          "type": "SnakeIdentifier",
           "named": true
         }
       ]

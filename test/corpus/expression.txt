@@ -6,9 +6,7 @@ const a = b + 8 * 9 and 101 > 0 < 19
 
 ---
 
-    (Module (statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (BooleanExpression (BooleanConjunctionExpression_left (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (Identifier (CamelIdentifier)))) (Addition_right (PrimaryExpression (BinaryExpression (Multiplication (Multiplication_left (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))) (Multiplication_right (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))) (Conjunction) (BooleanConjunctionExpression_right (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (LessThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
-
-
+    (Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (AssignmentSign) (value (BooleanExpression (left (PrimaryExpression (BinaryExpression (Addition (left (Identifier (CamelIdentifier))) (right (BinaryExpression (Multiplication (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))) (Conjunction) (right (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (LessThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))
 
 ========
 negation
@@ -18,8 +16,7 @@ const foo = not a or b
 
 ---
 
-   (Module (statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (Negation (Negation_expression (Expression (BooleanExpression (BooleanDisjunctionExpression_left (Expression (PrimaryExpression (Identifier (CamelIdentifier))))) (Disjunction) (BooleanDisjunctionExpression_right (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))))
-
+ (Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (AssignmentSign) (value (Negation (expression (BooleanExpression (left (PrimaryExpression (Identifier (CamelIdentifier)))) (Disjunction) (right (PrimaryExpression (Identifier (CamelIdentifier)))))))))))
 
 ================
 unary_expression
@@ -29,7 +26,7 @@ const foo = -1+4
 
 ---
 
-    (Module (statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (BinaryExpression (Addition (Addition_left (PrimaryExpression (UnaryFactor (NegativeFactor (NegativeSign) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))) (Addition_right (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
+  (Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (AssignmentSign) (value (PrimaryExpression (BinaryExpression (Addition (left (UnaryFactor (NegativeFactor (NegativeSign) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))) (right (Literal (NumberLiteral (IntegerLiteral)))))))))))
 
 
 
@@ -41,17 +38,7 @@ const foo = f(a)
 
 ---
 
-(Module (statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier)))
-(AssignmentSign)
-(ConstantDeclarationStatement_value
-    (Expression
-        (PrimaryExpression
-            (FunctionCallOrEdgeAccess
-                (FunctionCallOrEdgeAccess_expression
-                    (CallableExpression (CallableName (Identifier (CamelIdentifier))))
-                )
-                (FunctionCallOrEdgeAccess_function_call_parameters__list
-                    (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
+ (Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (AssignmentSign) (value (PrimaryExpression (FunctionCallOrEdgeAccess (expression (CallableName (Identifier (CamelIdentifier)))) (function_call_parameters__list (PrimaryExpression (Identifier (CamelIdentifier))))))))))
 
 
 ===========
@@ -62,8 +49,7 @@ const foo = f(a).f(b)
 
 ---
 
- (Module (statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (ChainedFunctionCallOrEdgeAccess (ChainedFunctionCallOrEdgeAccess_expression (PrimaryExpression (FunctionCallOrEdgeAccess (FunctionCallOrEdgeAccess_expression (CallableExpression (CallableName (Identifier (CamelIdentifier))))) (FunctionCallOrEdgeAccess_function_call_parameters__list (Expression (PrimaryExpression (Identifier (CamelIdentifier)))))))) (ChainedFunctionCallOrEdgeAccess_function_call_identifier (Identifier (CamelIdentifier))) (ChainedFunctionCallOrEdgeAccess_function_call_parameters__list (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
-
+  (Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (AssignmentSign) (value (PrimaryExpression (ChainedFunctionCallOrEdgeAccess (expression (FunctionCallOrEdgeAccess (expression (CallableName (Identifier (CamelIdentifier)))) (function_call_parameters__list (PrimaryExpression (Identifier (CamelIdentifier)))))) (function_call_identifier (CamelIdentifier)) (function_call_parameters__list (PrimaryExpression (Identifier (CamelIdentifier))))))))))
 =========
 Lambda OK
 =========
@@ -72,4 +58,4 @@ const x = lambda (x) => c
 
 ---
 
-(Module (statements__list (ConstantDeclarationStatement (ConstantDeclarationStatement_name (Identifier (CamelIdentifier))) (AssignmentSign) (ConstantDeclarationStatement_value (Expression (PrimaryExpression (AnonymousFunction (AnonymousFunction_parameters__list (Identifier (CamelIdentifier))) (AnonymousFunction_expression (Expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))))
+    (Module (statements__list (ConstantDeclarationStatement (name (CamelIdentifier)) (AssignmentSign) (value (PrimaryExpression (AnonymousFunction (parameters__list (CamelIdentifier)) (expression (PrimaryExpression (Identifier (CamelIdentifier))))))))))
