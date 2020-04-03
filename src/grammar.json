@@ -38,11 +38,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "ConstantDeclarationStatement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "FunctionDeclarationStatement"
+          "name": "NamedLambdaDeclarationStatement"
         },
         {
           "type": "SYMBOL",
@@ -185,17 +181,8 @@
       ]
     },
     "NodeTypeDeclarationStatementMembers": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "NodeEdgeDeclaration"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "NodeStaticConstantDeclaration"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "NodeEdgeDeclaration"
     },
     "NodeTypeDeclarationStatement": {
       "type": "SEQ",
@@ -314,8 +301,13 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "DecoratorIdentifier"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "DecoratorIdentifier"
+            },
+            "named": true,
+            "value": "identifier"
           },
           {
             "type": "CHOICE",
@@ -503,27 +495,6 @@
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "NodeStaticConstantDeclaration": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "static"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "NodeStaticName"
-        },
-        {
-          "type": "STRING",
-          "value": "="
-        },
-        {
-          "type": "SYMBOL",
-          "name": "NodeStaticExpression"
-        }
-      ]
-    },
     "MorphismDeclarationStatementMember": {
       "type": "CHOICE",
       "members": [
@@ -593,7 +564,7 @@
             "name": "Identifier"
           },
           "named": true,
-          "value": "source"
+          "value": "mutates"
         },
         {
           "type": "CHOICE",
@@ -807,71 +778,6 @@
       "type": "STRING",
       "value": "="
     },
-    "ConstantDeclarationStatement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "ModuleLevelAccessibilityModifier"
-              },
-              "named": true,
-              "value": "accessibility"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "const"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "Identifier"
-          },
-          "named": true,
-          "value": "name"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "TypeAnnotation"
-              },
-              "named": true,
-              "value": "type"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "AssignmentSign"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "Expression"
-          },
-          "named": true,
-          "value": "value"
-        }
-      ]
-    },
     "TypeAnnotation": {
       "type": "SEQ",
       "members": [
@@ -885,7 +791,7 @@
         }
       ]
     },
-    "FunctionDeclarationStatement": {
+    "NamedLambdaDeclarationStatement": {
       "type": "SEQ",
       "members": [
         {
@@ -907,7 +813,7 @@
         },
         {
           "type": "STRING",
-          "value": "func"
+          "value": "lambda"
         },
         {
           "type": "ALIAS",
@@ -949,7 +855,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "FunctionParameter"
+                    "name": "NamedLambdaParameter"
                   },
                   "named": true,
                   "value": "parameters__list"
@@ -967,7 +873,7 @@
                         "type": "ALIAS",
                         "content": {
                           "type": "SYMBOL",
-                          "name": "FunctionParameter"
+                          "name": "NamedLambdaParameter"
                         },
                         "named": true,
                         "value": "parameters__list"
@@ -1018,7 +924,7 @@
         }
       ]
     },
-    "FunctionParameter": {
+    "NamedLambdaParameter": {
       "type": "SEQ",
       "members": [
         {
@@ -1543,7 +1449,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "AnonymousFunction"
+            "name": "Lambda"
           },
           {
             "type": "SYMBOL",
@@ -1551,11 +1457,11 @@
           },
           {
             "type": "SYMBOL",
-            "name": "FunctionCallOrEdgeAccess"
+            "name": "NamedLambdaCallOrEdgeAccess"
           },
           {
             "type": "SYMBOL",
-            "name": "ChainedFunctionCallOrEdgeAccess"
+            "name": "ChainedNamedLambdaCallOrEdgeAccess"
           }
         ]
       }
@@ -1954,7 +1860,7 @@
       "type": "PATTERN",
       "value": "[@][A-Za-z_][a-zA-Z0-9_]*"
     },
-    "FunctionCallOrEdgeAccess": {
+    "NamedLambdaCallOrEdgeAccess": {
       "type": "SEQ",
       "members": [
         {
@@ -2114,7 +2020,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "FunctionCallOrEdgeAccess"
+            "name": "NamedLambdaCallOrEdgeAccess"
           },
           {
             "type": "SYMBOL",
@@ -2231,7 +2137,7 @@
         }
       ]
     },
-    "AnonymousFunction": {
+    "Lambda": {
       "type": "PREC",
       "value": -20,
       "content": {
@@ -2325,7 +2231,7 @@
         ]
       }
     },
-    "ChainedFunctionCallOrEdgeAccess": {
+    "ChainedNamedLambdaCallOrEdgeAccess": {
       "type": "PREC",
       "value": 200,
       "content": {
@@ -2792,7 +2698,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",
