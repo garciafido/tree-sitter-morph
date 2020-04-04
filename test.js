@@ -28,7 +28,7 @@ enum foo {
     c
 }
 
-lambda foo(ara): String => f(a).f(b)
+lambda foo(ara: String): String => f(a).f(b)
 
 
 `;

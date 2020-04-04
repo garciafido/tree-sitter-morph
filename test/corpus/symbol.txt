@@ -6,4 +6,4 @@ public symbol foo
 
 ---
 
-(Module (statements__list (SymbolDeclarationStatement (identifier (Identifier)))))
+ (Module (statements__list (SymbolDeclarationStatement (accessibility (Public)) (identifier (Identifier)))))

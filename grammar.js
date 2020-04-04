@@ -244,7 +244,8 @@ module.exports = grammar({
     ),
 
     NamedLambdaParameter: $ => seq(
-      alias($.FieldForIdentifier, $.identifier), alias($.TypeAnnotation, $.type),
+      alias($.FieldForIdentifier, $.identifier),
+      alias($.TypeAnnotation, $.type),
     ),
 
     TypeParameters: $ => seq(
