@@ -6,9 +6,7 @@ import ..foo
 
 ---
 
-   (Module (statements__list (ImportStatement (ImportModuleStatement (path) (from (CamelIdentifier))))))
-
-
+(Module (declarations__list (ImportDeclaration (ImportModuleDeclaration (path (Path)) (from (Identifier))))))
 
 =====================
 import_from_statement
@@ -18,5 +16,5 @@ from ...bar import Bar
 
 ---
 
-   (Module (statements__list (ImportStatement (ImportFromStatement (path) (module (CamelIdentifier)) (items__list (Identifier))))))
+(Module (declarations__list (ImportDeclaration (ImportFromDeclaration (path (Path)) (module (Identifier)) (items__list (Identifier))))))
 

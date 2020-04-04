@@ -8,59 +8,59 @@
         "type": "ALIAS",
         "content": {
           "type": "SYMBOL",
-          "name": "Statement"
+          "name": "Declaration"
         },
         "named": true,
-        "value": "statements__list"
+        "value": "declarations__list"
       }
     },
-    "Statement": {
+    "Declaration": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "ImportStatement"
+          "name": "ImportDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "NodeTypeDeclarationStatement"
+          "name": "NodeTypeDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "MorphismDeclarationStatement"
+          "name": "MorphismDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "SymbolDeclarationStatement"
+          "name": "SymbolDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "EnumDeclarationStatement"
+          "name": "EnumDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "NamedLambdaDeclarationStatement"
+          "name": "NamedLambdaDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "TypeDeclarationStatement"
+          "name": "TypeDeclaration"
         }
       ]
     },
-    "ImportStatement": {
+    "ImportDeclaration": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "ImportModuleStatement"
+          "name": "ImportModuleDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "ImportFromStatement"
+          "name": "ImportFromDeclaration"
         }
       ]
     },
-    "ImportModuleStatement": {
+    "ImportModuleDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -74,7 +74,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
-                "name": "Path"
+                "name": "FieldForPath"
               },
               "named": true,
               "value": "path"
@@ -88,7 +88,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "from"
@@ -96,96 +96,98 @@
       ]
     },
     "Path": {
-      "type": "PATTERN",
-      "value": "[.]+_?"
-    },
-    "ImportFromStatement": {
-      "type": "SEQ",
-      "members": [
-        {
+      "type": "TOKEN",
+      "content": {
+        "type": "REPEAT1",
+        "content": {
           "type": "STRING",
-          "value": "from"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "Path"
-              },
-              "named": true,
-              "value": "path"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "Identifier"
-          },
-          "named": true,
-          "value": "module"
-        },
-        {
-          "type": "STRING",
-          "value": "import"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "Identifier"
-                  },
-                  "named": true,
-                  "value": "items__list"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "Identifier"
-                        },
-                        "named": true,
-                        "value": "items__list"
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "value": "."
         }
-      ]
+      }
     },
-    "NodeTypeDeclarationStatementMembers": {
+    "ImportFromDeclaration": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "from"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "FieldForPath"
+                },
+                "named": true,
+                "value": "path"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "FieldForIdentifier"
+            },
+            "named": true,
+            "value": "module"
+          },
+          {
+            "type": "STRING",
+            "value": "import"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "FieldForIdentifier"
+                },
+                "named": true,
+                "value": "items__list"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "FieldForIdentifier"
+                      },
+                      "named": true,
+                      "value": "items__list"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "NodeTypeDeclarationMembers": {
       "type": "SYMBOL",
       "name": "NodeEdgeDeclaration"
     },
-    "NodeTypeDeclarationStatement": {
+    "NodeTypeDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -242,7 +244,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -261,7 +263,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "Identifier"
+                    "name": "FieldForIdentifier"
                   },
                   "named": true,
                   "value": "extends"
@@ -283,7 +285,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "NodeTypeDeclarationStatementMembers"
+              "name": "NodeTypeDeclarationMembers"
             },
             "named": true,
             "value": "members__list"
@@ -302,13 +304,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "DecoratorIdentifier"
-            },
-            "named": true,
-            "value": "identifier"
+            "type": "SYMBOL",
+            "name": "DecoratorIdentifier"
           },
           {
             "type": "CHOICE",
@@ -330,7 +327,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "SYMBOL",
-                              "name": "Expression"
+                              "name": "FieldForExpression"
                             },
                             "named": true,
                             "value": "parameters__list"
@@ -348,7 +345,7 @@
                                   "type": "ALIAS",
                                   "content": {
                                     "type": "SYMBOL",
-                                    "name": "Expression"
+                                    "name": "FieldForExpression"
                                   },
                                   "named": true,
                                   "value": "parameters__list"
@@ -396,7 +393,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -496,7 +493,7 @@
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "MorphismDeclarationStatementMember": {
+    "MorphismDeclarationMember": {
       "type": "CHOICE",
       "members": [
         {
@@ -509,7 +506,7 @@
         }
       ]
     },
-    "MorphismDeclarationStatement": {
+    "MorphismDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -549,7 +546,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -562,7 +559,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "mutates"
@@ -575,21 +572,17 @@
               "members": [
                 {
                   "type": "STRING",
-                  "value": "("
-                },
-                {
-                  "type": "STRING",
                   "value": "if"
                 },
                 {
                   "type": "STRING",
-                  "value": "->"
+                  "value": "("
                 },
                 {
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "Expression"
+                    "name": "FieldForExpression"
                   },
                   "named": true,
                   "value": "filter"
@@ -615,7 +608,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "MorphismDeclarationStatementMember"
+              "name": "MorphismDeclarationMember"
             },
             "named": true,
             "value": "members__list"
@@ -634,7 +627,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -647,7 +640,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "expression"
@@ -665,7 +658,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -678,14 +671,14 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "expression"
         }
       ]
     },
-    "SymbolDeclarationStatement": {
+    "SymbolDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -713,14 +706,14 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
         }
       ]
     },
-    "EnumDeclarationStatement": {
+    "EnumDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -748,7 +741,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "NamedRules"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "name"
@@ -763,7 +756,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "Identifier"
+              "name": "FieldForIdentifier"
             },
             "named": true,
             "value": "values__list"
@@ -774,28 +767,6 @@
           "value": "}"
         }
       ]
-    },
-    "NamedRules": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "ImpossibleRule": {
-      "type": "ALIAS",
-      "content": {
-        "type": "STRING",
-        "value": "abracadabralafrutaqueterequeterepariotete"
-      },
-      "named": true,
-      "value": "imposible"
     },
     "AssignmentSign": {
       "type": "STRING",
@@ -814,7 +785,7 @@
         }
       ]
     },
-    "NamedLambdaDeclarationStatement": {
+    "NamedLambdaDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -842,7 +813,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -854,7 +825,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
-                "name": "TypeParameters"
+                "name": "FieldForTypeParameters"
               },
               "named": true,
               "value": "type_parameters"
@@ -878,7 +849,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "NamedLambdaParameter"
+                    "name": "FieldForNamedLambdaParameter"
                   },
                   "named": true,
                   "value": "parameters__list"
@@ -896,7 +867,7 @@
                         "type": "ALIAS",
                         "content": {
                           "type": "SYMBOL",
-                          "name": "NamedLambdaParameter"
+                          "name": "FieldForNamedLambdaParameter"
                         },
                         "named": true,
                         "value": "parameters__list"
@@ -940,7 +911,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "expression"
@@ -954,7 +925,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -978,8 +949,13 @@
           "value": "<"
         },
         {
-          "type": "SYMBOL",
-          "name": "TypeParameter"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "FieldForTypeParameter"
+          },
+          "named": true,
+          "value": "type_parameters__list"
         },
         {
           "type": "REPEAT",
@@ -991,8 +967,13 @@
                 "value": ","
               },
               {
-                "type": "SYMBOL",
-                "name": "TypeParameter"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "FieldForTypeParameter"
+                },
+                "named": true,
+                "value": "type_parameters__list"
               }
             ]
           }
@@ -1015,23 +996,29 @@
         }
       ]
     },
-    "TypeParameterName": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
     "TypeParameter": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "TypeParameterName"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "FieldForIdentifier"
+          },
+          "named": true,
+          "value": "name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "TypeParameterConstraint"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "TypeParameterConstraint"
+              },
+              "named": true,
+              "value": "constraint"
             },
             {
               "type": "BLANK"
@@ -1146,7 +1133,7 @@
       "type": "STRING",
       "value": "float"
     },
-    "TypeDeclarationStatement": {
+    "TypeDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -1174,7 +1161,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -1358,7 +1345,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "expression"
@@ -1386,7 +1373,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "FieldForExpression"
                 },
                 "named": true,
                 "value": "left"
@@ -1399,7 +1386,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "FieldForExpression"
                 },
                 "named": true,
                 "value": "right"
@@ -1417,7 +1404,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "FieldForExpression"
                 },
                 "named": true,
                 "value": "left"
@@ -1430,7 +1417,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "FieldForExpression"
                 },
                 "named": true,
                 "value": "right"
@@ -1441,53 +1428,49 @@
       ]
     },
     "PrimaryExpression": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "BinaryExpression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Identifier"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Literal"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "UnaryFactor"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "List"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Node"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Lambda"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "ParenthesizedExpression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "NamedLambdaCallOrEdgeAccess"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "ChainedNamedLambdaCallOrEdgeAccess"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "BinaryExpression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "UnaryFactor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "List"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Node"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Lambda"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ParenthesizedExpression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "NamedLambdaCallOrEdgeAccess"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ChainedNamedLambdaCallOrEdgeAccess"
+        }
+      ]
     },
     "BinaryExpression": {
       "type": "CHOICE",
@@ -1910,7 +1893,7 @@
                           "type": "ALIAS",
                           "content": {
                             "type": "SYMBOL",
-                            "name": "Expression"
+                            "name": "FieldForExpression"
                           },
                           "named": true,
                           "value": "function_call_parameters__list"
@@ -1928,7 +1911,7 @@
                                 "type": "ALIAS",
                                 "content": {
                                   "type": "SYMBOL",
-                                  "name": "Expression"
+                                  "name": "FieldForExpression"
                                 },
                                 "named": true,
                                 "value": "function_call_parameters__list"
@@ -1963,7 +1946,7 @@
                       "type": "ALIAS",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "Expression"
+                        "name": "FieldForExpression"
                       },
                       "named": true,
                       "value": "edge_access_parameters__list"
@@ -1981,7 +1964,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "SYMBOL",
-                              "name": "Expression"
+                              "name": "FieldForExpression"
                             },
                             "named": true,
                             "value": "edge_access_parameters__list"
@@ -2162,7 +2145,7 @@
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "Identifier"
+                      "name": "FieldForIdentifier"
                     },
                     "named": true,
                     "value": "parameters__list"
@@ -2180,7 +2163,7 @@
                           "type": "ALIAS",
                           "content": {
                             "type": "SYMBOL",
-                            "name": "Identifier"
+                            "name": "FieldForIdentifier"
                           },
                           "named": true,
                           "value": "parameters__list"
@@ -2224,7 +2207,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "Expression"
+              "name": "FieldForExpression"
             },
             "named": true,
             "value": "expression"
@@ -2261,7 +2244,7 @@
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "Identifier"
+                      "name": "FieldForIdentifier"
                     },
                     "named": true,
                     "value": "function_call_identifier"
@@ -2297,7 +2280,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "SYMBOL",
-                              "name": "Expression"
+                              "name": "FieldForExpression"
                             },
                             "named": true,
                             "value": "function_call_parameters__list"
@@ -2315,7 +2298,7 @@
                                   "type": "ALIAS",
                                   "content": {
                                     "type": "SYMBOL",
-                                    "name": "Expression"
+                                    "name": "FieldForExpression"
                                   },
                                   "named": true,
                                   "value": "function_call_parameters__list"
@@ -2350,7 +2333,7 @@
                         "type": "ALIAS",
                         "content": {
                           "type": "SYMBOL",
-                          "name": "Expression"
+                          "name": "FieldForExpression"
                         },
                         "named": true,
                         "value": "edge_access_parameters__list"
@@ -2368,7 +2351,7 @@
                               "type": "ALIAS",
                               "content": {
                                 "type": "SYMBOL",
-                                "name": "Expression"
+                                "name": "FieldForExpression"
                               },
                               "named": true,
                               "value": "edge_access_parameters__list"
@@ -2403,7 +2386,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "Expression"
+              "name": "FieldForExpression"
             },
             "named": true,
             "value": "elements__list"
@@ -2422,7 +2405,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "type"
@@ -2441,7 +2424,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "Identifier"
+                    "name": "FieldForIdentifier"
                   },
                   "named": true,
                   "value": "alias"
@@ -2482,7 +2465,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -2495,7 +2478,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "value"
@@ -3091,6 +3074,106 @@
           }
         ]
       }
+    },
+    "FieldForIdentifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForExpression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForFilter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForPath": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForTypeParameters": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeParameters"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForTypeParameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeParameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForNamedLambdaParameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "NamedLambdaParameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "ImpossibleRule": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "a212b9d3-86e1-495f-87e3-9e69bf678412"
+      },
+      "named": true,
+      "value": "impossible"
     }
   },
   "extras": [
@@ -3103,7 +3186,12 @@
       "value": "[\\s\\uFEFF\\u2060\\u200B\\u00A0]"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "FieldForTypeParameter",
+      "FieldForIdentifier"
+    ]
+  ],
   "externals": [
     {
       "type": "SYMBOL",

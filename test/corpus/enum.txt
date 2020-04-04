@@ -10,5 +10,5 @@ enum foo {
 
 ---
 
-(Module (statements__list (EnumDeclarationStatement (identifier) (values__list) (values__list) (values__list))))
+ (Module (declarations__list (EnumDeclaration (name (Identifier)) (values__list (Identifier)) (values__list (Identifier)) (values__list (Identifier)))))
 

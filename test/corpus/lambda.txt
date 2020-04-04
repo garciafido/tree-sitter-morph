@@ -1,0 +1,9 @@
+==============================
+lambda_declaration_statement
+==============================
+
+lambda bar<A extends B | C, S extends D>(a: A) => "bar"
+
+---
+
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (type_parameters (TypeParameters (type_parameters__list (TypeParameter (name (Identifier)) (constraint (Type (TypeUnion (types__list (TypeIdentifier (Identifier))) (types__list (TypeIdentifier (Identifier)))))))) (type_parameters__list (TypeParameter (name (Identifier)) (constraint (Type (TypeUnion (types__list (TypeIdentifier (Identifier)))))))))) (parameters__list (NamedLambdaParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (Identifier)))))))) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))

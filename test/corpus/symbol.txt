@@ -2,8 +2,8 @@
 symbol_declaration_statement
 ============================
 
-symbol foo
+public symbol foo
 
 ---
 
-(Module (statements__list (SymbolDeclarationStatement (name (CamelIdentifier)))))
+ (Module (declarations__list (SymbolDeclaration (accessibility (Public)) (identifier (Identifier)))))
