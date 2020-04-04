@@ -16,4 +16,5 @@ node_modules/
 
 Sera borrado package-lock.json
 Sera borrado test.morph
+Sera borrado test.js
 Sera borrado yarn.lock
