@@ -1186,41 +1186,11 @@
       "required": true,
       "types": [
         {
-          "type": "TypeParameterConstraint",
+          "type": "constraint",
           "named": true
         },
         {
-          "type": "TypeParameterName",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeParameterConstraint",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "TypeParameterName",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
+          "type": "name",
           "named": true
         }
       ]
@@ -1235,7 +1205,7 @@
       "required": true,
       "types": [
         {
-          "type": "TypeParameter",
+          "type": "type_parameters__list",
           "named": true
         }
       ]
@@ -1312,6 +1282,21 @@
         },
         {
           "type": "ImpossibleRule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constraint",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Type",
           "named": true
         }
       ]
@@ -1977,6 +1962,25 @@
         },
         {
           "type": "TypeParameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ImpossibleRule",
+          "named": true
+        },
+        {
+          "type": "TypeParameter",
           "named": true
         }
       ]

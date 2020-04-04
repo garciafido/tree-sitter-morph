@@ -47,6 +47,7 @@ module.exports = grammar({
   conflicts: ($, previous) => previous.concat([
     // [$.FieldForIdentifier, $.PrimaryExpression],
     // [$.FieldForIdentifier, $.FieldForExpression],
+    [$.FieldForTypeParameter, $.FieldForIdentifier],
   ]),
 
   // conflicts: $ => [
@@ -82,6 +83,11 @@ module.exports = grammar({
 
     FieldForTypeParameters: $ => choice(
       $.TypeParameters,
+      $.ImpossibleRule,
+    ),
+
+    FieldForTypeParameter: $ => choice(
+      $.TypeParameter,
       $.ImpossibleRule,
     ),
 
@@ -249,13 +255,15 @@ module.exports = grammar({
     ),
 
     TypeParameters: $ => seq(
-      "<", $.TypeParameter, repeat(seq(",", $.TypeParameter)), optional(","), ">",
+      "<",
+      alias($.FieldForTypeParameter, $.type_parameters__list),
+      repeat(seq(",", alias($.FieldForTypeParameter, $.type_parameters__list))),
+      optional(","), ">",
     ),
 
-    TypeParameterName: $ => $.Identifier,
-
     TypeParameter: $ => seq(
-      $.TypeParameterName, optional($.TypeParameterConstraint),
+      alias($.FieldForIdentifier, $.name),
+      optional(alias($.TypeParameterConstraint, $.constraint)),
     ),
 
     TypeParameterConstraint: $ => seq(

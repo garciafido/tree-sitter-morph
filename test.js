@@ -2,12 +2,12 @@ const { parseSemantic } = require("./index");
 
 // const tree = parseSemantic('@foo node Person { foo -> string bar -> string }');
 const code = `
+/*
 @Bar
 @Baz
 morph Foo mutates bar {
   new bar -> "bar"
 }
-/*
 
 @fooDeco()
 private abstract node foo extends FooBase {
@@ -16,7 +16,6 @@ private abstract node foo extends FooBase {
 }
 
 lambda bar<A extends B | C, S extends D>(a: A): String => "bar"
-*/
 
 from ...bar import Bar, Foo
 
@@ -29,6 +28,9 @@ enum foo {
 }
 
 lambda foo(ara: String): String => f(a).f(b)
+*/
+
+lambda bar<A extends B | C, S extends D>() => 1
 
 
 `;

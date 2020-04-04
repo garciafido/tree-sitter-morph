@@ -66,6 +66,19 @@
         }
       ]
     },
+    "FieldForTypeParameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeParameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
     "FieldForNamedLambdaParameter": {
       "type": "CHOICE",
       "members": [
@@ -1023,8 +1036,13 @@
           "value": "<"
         },
         {
-          "type": "SYMBOL",
-          "name": "TypeParameter"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "FieldForTypeParameter"
+          },
+          "named": true,
+          "value": "type_parameters__list"
         },
         {
           "type": "REPEAT",
@@ -1036,8 +1054,13 @@
                 "value": ","
               },
               {
-                "type": "SYMBOL",
-                "name": "TypeParameter"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "FieldForTypeParameter"
+                },
+                "named": true,
+                "value": "type_parameters__list"
               }
             ]
           }
@@ -1060,23 +1083,29 @@
         }
       ]
     },
-    "TypeParameterName": {
-      "type": "SYMBOL",
-      "name": "Identifier"
-    },
     "TypeParameter": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "TypeParameterName"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "FieldForIdentifier"
+          },
+          "named": true,
+          "value": "name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "TypeParameterConstraint"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "TypeParameterConstraint"
+              },
+              "named": true,
+              "value": "constraint"
             },
             {
               "type": "BLANK"
@@ -3144,7 +3173,12 @@
       "value": "[\\s\\uFEFF\\u2060\\u200B\\u00A0]"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "FieldForTypeParameter",
+      "FieldForIdentifier"
+    ]
+  ],
   "externals": [
     {
       "type": "SYMBOL",
