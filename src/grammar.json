@@ -40,6 +40,19 @@
         }
       ]
     },
+    "FieldForFilter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
     "FieldForPath": {
       "type": "CHOICE",
       "members": [
@@ -96,7 +109,7 @@
       "type": "ALIAS",
       "content": {
         "type": "STRING",
-        "value": "abracadabralafrutaqueterequeterepariotete"
+        "value": "a212b9d3-86e1-495f-87e3-9e69bf678412"
       },
       "named": true,
       "value": "impossible"

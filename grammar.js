@@ -45,8 +45,6 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    // [$.FieldForIdentifier, $.PrimaryExpression],
-    // [$.FieldForIdentifier, $.FieldForExpression],
     [$.FieldForTypeParameter, $.FieldForIdentifier],
   ]),
 
@@ -76,6 +74,11 @@ module.exports = grammar({
       $.ImpossibleRule,
     ),
 
+    FieldForFilter: $ => choice(
+      $.Expression,
+      $.ImpossibleRule,
+    ),
+
     FieldForPath: $ => choice(
       $.Path,
       $.ImpossibleRule,
@@ -96,7 +99,7 @@ module.exports = grammar({
       $.ImpossibleRule,
     ),
 
-    ImpossibleRule: $ => alias("abracadabralafrutaqueterequeterepariotete", $.impossible),
+    ImpossibleRule: $ => alias("a212b9d3-86e1-495f-87e3-9e69bf678412", $.impossible),
 
     // *****************
     // ** Statements **
