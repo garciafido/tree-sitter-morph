@@ -2,7 +2,7 @@
 symbol_declaration_statement
 ============================
 
-symbol foo
+public symbol foo
 
 ---
 

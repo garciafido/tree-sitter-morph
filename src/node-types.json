@@ -674,6 +674,25 @@
     }
   },
   {
+    "type": "NamedLambdaParameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "Negation",
     "named": true,
     "fields": {},
@@ -1208,6 +1227,21 @@
     }
   },
   {
+    "type": "TypeParameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "TypeParameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "TypeUnion",
     "named": true,
     "fields": {},
@@ -1733,7 +1767,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -1749,11 +1783,7 @@
           "named": true
         },
         {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "type",
+          "type": "NamedLambdaParameter",
           "named": true
         }
       ]
@@ -1938,11 +1968,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "TypeParameter",
+          "type": "ImpossibleRule",
+          "named": true
+        },
+        {
+          "type": "TypeParameters",
           "named": true
         }
       ]

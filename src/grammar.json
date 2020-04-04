@@ -53,6 +53,32 @@
         }
       ]
     },
+    "FieldForTypeParameters": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeParameters"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForNamedLambdaParameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "NamedLambdaParameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
     "ImpossibleRule": {
       "type": "ALIAS",
       "content": {
@@ -873,7 +899,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
-                "name": "TypeParameters"
+                "name": "FieldForTypeParameters"
               },
               "named": true,
               "value": "type_parameters"
@@ -897,7 +923,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "NamedLambdaParameter"
+                    "name": "FieldForNamedLambdaParameter"
                   },
                   "named": true,
                   "value": "parameters__list"
@@ -915,7 +941,7 @@
                         "type": "ALIAS",
                         "content": {
                           "type": "SYMBOL",
-                          "name": "NamedLambdaParameter"
+                          "name": "FieldForNamedLambdaParameter"
                         },
                         "named": true,
                         "value": "parameters__list"

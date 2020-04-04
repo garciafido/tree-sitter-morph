@@ -15,10 +15,22 @@ private abstract node foo extends FooBase {
     blocks[] -> Block
 }
 
-lambda foo() => f(a).f(b)
+lambda bar<A extends B | C, S extends D>(a: A): String => "bar"
 */
 
 from ...bar import Bar, Foo
+
+public symbol foo
+
+enum foo {
+    a
+    b
+    c
+}
+
+lambda foo(ara): String => f(a).f(b)
+
+
 `;
 const tree = parseSemantic(code);
 

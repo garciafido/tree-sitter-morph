@@ -80,6 +80,16 @@ module.exports = grammar({
       $.ImpossibleRule,
     ),
 
+    FieldForTypeParameters: $ => choice(
+      $.TypeParameters,
+      $.ImpossibleRule,
+    ),
+
+    FieldForNamedLambdaParameter: $ => choice(
+      $.NamedLambdaParameter,
+      $.ImpossibleRule,
+    ),
+
     ImpossibleRule: $ => alias("abracadabralafrutaqueterequeterepariotete", $.impossible),
 
     // *****************
@@ -224,9 +234,9 @@ module.exports = grammar({
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "lambda",
       alias($.FieldForIdentifier, $.identifier),
-      optional(alias($.TypeParameters, $.type_parameters)),
+      optional(alias($.FieldForTypeParameters, $.type_parameters)),
       "(",
-      commaSeparated(alias($.NamedLambdaParameter, $.parameters__list)),
+      commaSeparated(alias($.FieldForNamedLambdaParameter, $.parameters__list)),
       ")",
       optional(alias($.TypeAnnotation, $.type)),
       "=>",
