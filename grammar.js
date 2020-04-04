@@ -58,7 +58,7 @@ module.exports = grammar({
 
   rules: {
 
-    Module: $ => repeat(alias($.Statement, $.statements__list)),
+    Module: $ => repeat(alias($.Declaration, $.declarations__list)),
 
     // *******************
     // ** Fields tricky **
@@ -101,26 +101,26 @@ module.exports = grammar({
 
     ImpossibleRule: $ => alias("a212b9d3-86e1-495f-87e3-9e69bf678412", $.impossible),
 
-    // *****************
-    // ** Statements **
-    // *****************
+    // ******************
+    // ** Declarations **
+    // ******************
 
-    Statement: $ => choice(
-      $.ImportStatement,
-      $.NodeTypeDeclarationStatement,
-      $.MorphismDeclarationStatement,
-      $.SymbolDeclarationStatement,
-      $.EnumDeclarationStatement,
-      $.NamedLambdaDeclarationStatement,
-      $.TypeDeclarationStatement,
+    Declaration: $ => choice(
+      $.ImportDeclaration,
+      $.NodeTypeDeclaration,
+      $.MorphismDeclaration,
+      $.SymbolDeclaration,
+      $.EnumDeclaration,
+      $.NamedLambdaDeclaration,
+      $.TypeDeclaration,
     ),
 
-    ImportStatement: $ => choice(
-      $.ImportModuleStatement,
-      $.ImportFromStatement,
+    ImportDeclaration: $ => choice(
+      $.ImportModuleDeclaration,
+      $.ImportFromDeclaration,
     ),
 
-    ImportModuleStatement: $ => seq(
+    ImportModuleDeclaration: $ => seq(
       "import",
       optional(alias($.FieldForPath, $.path)),
       alias($.FieldForIdentifier, $.from),
@@ -128,7 +128,7 @@ module.exports = grammar({
 
     Path: $ => token(repeat1(".")),
 
-    ImportFromStatement: $ => prec.left(seq(
+    ImportFromDeclaration: $ => prec.left(seq(
       "from",
       optional(alias($.FieldForPath, $.path)),
       alias($.FieldForIdentifier, $.module),
@@ -136,16 +136,16 @@ module.exports = grammar({
       seq(alias($.FieldForIdentifier, $.items__list), repeat(seq(",", alias($.FieldForIdentifier, $.items__list)))),
     )),
 
-    NodeTypeDeclarationStatementMembers: $ => $.NodeEdgeDeclaration,
+    NodeTypeDeclarationMembers: $ => $.NodeEdgeDeclaration,
 
-    NodeTypeDeclarationStatement: $ => seq(
+    NodeTypeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       optional(alias("abstract", $.abstract)),
       "node",
       alias($.FieldForIdentifier, $.identifier),
       optional(seq("extends", alias($.FieldForIdentifier, $.extends))),
-      "{", repeat(alias($.NodeTypeDeclarationStatementMembers, $.members__list)), "}",
+      "{", repeat(alias($.NodeTypeDeclarationMembers, $.members__list)), "}",
     ),
 
     Decorator: $ => prec.left(seq(
@@ -182,12 +182,12 @@ module.exports = grammar({
 
     NodeStaticExpression: $ => $.Expression,
 
-    MorphismDeclarationStatementMember: $ => choice(
+    MorphismDeclarationMember: $ => choice(
       $.MorphismMutationDeclaration,
       $.MorphismCreationDeclaration,
     ),
 
-    MorphismDeclarationStatement: $ => seq(
+    MorphismDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "morph",
@@ -201,7 +201,7 @@ module.exports = grammar({
         ")"
       )),
       "{",
-      repeat(alias($.MorphismDeclarationStatementMember, $.members__list)),
+      repeat(alias($.MorphismDeclarationMember, $.members__list)),
       "}",
     ),
 
@@ -218,13 +218,13 @@ module.exports = grammar({
       alias($.FieldForExpression, $.expression),
     ),
 
-    SymbolDeclarationStatement: $ => seq(
+    SymbolDeclaration: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "symbol",
       alias($.FieldForIdentifier, $.identifier),
     ),
 
-    EnumDeclarationStatement: $ => seq(
+    EnumDeclaration: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "enum",
       alias($.FieldForIdentifier, $.name),
@@ -239,7 +239,7 @@ module.exports = grammar({
       ":", $.Type,
     ),
 
-    NamedLambdaDeclarationStatement: $ => seq(
+    NamedLambdaDeclaration: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "lambda",
       alias($.FieldForIdentifier, $.identifier),
@@ -301,7 +301,7 @@ module.exports = grammar({
 
     FloatType: $ => "float",
 
-    TypeDeclarationStatement: $ => seq(
+    TypeDeclaration: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "type",
       alias($.FieldForIdentifier, $.identifier),

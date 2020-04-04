@@ -226,7 +226,7 @@
     }
   },
   {
-    "type": "EnumDeclarationStatement",
+    "type": "EnumDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -300,7 +300,26 @@
     "fields": {}
   },
   {
-    "type": "ImportFromStatement",
+    "type": "ImportDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ImportFromDeclaration",
+          "named": true
+        },
+        {
+          "type": "ImportModuleDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ImportFromDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -323,7 +342,7 @@
     }
   },
   {
-    "type": "ImportModuleStatement",
+    "type": "ImportModuleDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -336,25 +355,6 @@
         },
         {
           "type": "path",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "ImportStatement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "ImportFromStatement",
-          "named": true
-        },
-        {
-          "type": "ImportModuleStatement",
           "named": true
         }
       ]
@@ -494,7 +494,7 @@
       "required": false,
       "types": [
         {
-          "type": "statements__list",
+          "type": "declarations__list",
           "named": true
         }
       ]
@@ -539,7 +539,7 @@
     }
   },
   {
-    "type": "MorphismDeclarationStatement",
+    "type": "MorphismDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -639,7 +639,7 @@
     }
   },
   {
-    "type": "NamedLambdaDeclarationStatement",
+    "type": "NamedLambdaDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -786,7 +786,7 @@
     }
   },
   {
-    "type": "NodeTypeDeclarationStatement",
+    "type": "NodeTypeDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -1091,7 +1091,7 @@
     }
   },
   {
-    "type": "SymbolDeclarationStatement",
+    "type": "SymbolDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -1140,7 +1140,7 @@
     }
   },
   {
-    "type": "TypeDeclarationStatement",
+    "type": "TypeDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -1297,6 +1297,45 @@
       "types": [
         {
           "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "declarations__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "EnumDeclaration",
+          "named": true
+        },
+        {
+          "type": "ImportDeclaration",
+          "named": true
+        },
+        {
+          "type": "MorphismDeclaration",
+          "named": true
+        },
+        {
+          "type": "NamedLambdaDeclaration",
+          "named": true
+        },
+        {
+          "type": "NodeTypeDeclaration",
+          "named": true
+        },
+        {
+          "type": "SymbolDeclaration",
+          "named": true
+        },
+        {
+          "type": "TypeDeclaration",
           "named": true
         }
       ]
@@ -1877,45 +1916,6 @@
       "types": [
         {
           "type": "RuleExpression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "statements__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "EnumDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "ImportStatement",
-          "named": true
-        },
-        {
-          "type": "MorphismDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "NamedLambdaDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "NodeTypeDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "SymbolDeclarationStatement",
-          "named": true
-        },
-        {
-          "type": "TypeDeclarationStatement",
           "named": true
         }
       ]

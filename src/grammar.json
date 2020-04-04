@@ -8,10 +8,10 @@
         "type": "ALIAS",
         "content": {
           "type": "SYMBOL",
-          "name": "Statement"
+          "name": "Declaration"
         },
         "named": true,
-        "value": "statements__list"
+        "value": "declarations__list"
       }
     },
     "FieldForIdentifier": {
@@ -114,53 +114,53 @@
       "named": true,
       "value": "impossible"
     },
-    "Statement": {
+    "Declaration": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "ImportStatement"
+          "name": "ImportDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "NodeTypeDeclarationStatement"
+          "name": "NodeTypeDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "MorphismDeclarationStatement"
+          "name": "MorphismDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "SymbolDeclarationStatement"
+          "name": "SymbolDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "EnumDeclarationStatement"
+          "name": "EnumDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "NamedLambdaDeclarationStatement"
+          "name": "NamedLambdaDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "TypeDeclarationStatement"
+          "name": "TypeDeclaration"
         }
       ]
     },
-    "ImportStatement": {
+    "ImportDeclaration": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "ImportModuleStatement"
+          "name": "ImportModuleDeclaration"
         },
         {
           "type": "SYMBOL",
-          "name": "ImportFromStatement"
+          "name": "ImportFromDeclaration"
         }
       ]
     },
-    "ImportModuleStatement": {
+    "ImportModuleDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -205,7 +205,7 @@
         }
       }
     },
-    "ImportFromStatement": {
+    "ImportFromDeclaration": {
       "type": "PREC_LEFT",
       "value": 0,
       "content": {
@@ -283,11 +283,11 @@
         ]
       }
     },
-    "NodeTypeDeclarationStatementMembers": {
+    "NodeTypeDeclarationMembers": {
       "type": "SYMBOL",
       "name": "NodeEdgeDeclaration"
     },
-    "NodeTypeDeclarationStatement": {
+    "NodeTypeDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -385,7 +385,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "NodeTypeDeclarationStatementMembers"
+              "name": "NodeTypeDeclarationMembers"
             },
             "named": true,
             "value": "members__list"
@@ -593,7 +593,7 @@
       "type": "SYMBOL",
       "name": "Expression"
     },
-    "MorphismDeclarationStatementMember": {
+    "MorphismDeclarationMember": {
       "type": "CHOICE",
       "members": [
         {
@@ -606,7 +606,7 @@
         }
       ]
     },
-    "MorphismDeclarationStatement": {
+    "MorphismDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -708,7 +708,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "MorphismDeclarationStatementMember"
+              "name": "MorphismDeclarationMember"
             },
             "named": true,
             "value": "members__list"
@@ -778,7 +778,7 @@
         }
       ]
     },
-    "SymbolDeclarationStatement": {
+    "SymbolDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -813,7 +813,7 @@
         }
       ]
     },
-    "EnumDeclarationStatement": {
+    "EnumDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -885,7 +885,7 @@
         }
       ]
     },
-    "NamedLambdaDeclarationStatement": {
+    "NamedLambdaDeclaration": {
       "type": "SEQ",
       "members": [
         {
@@ -1233,7 +1233,7 @@
       "type": "STRING",
       "value": "float"
     },
-    "TypeDeclarationStatement": {
+    "TypeDeclaration": {
       "type": "SEQ",
       "members": [
         {

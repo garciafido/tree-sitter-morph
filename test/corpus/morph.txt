@@ -10,7 +10,7 @@ morph Foo mutates bar {
 
 ---
 
-  (Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (decorators__list (DecoratorIdentifier)) (identifier (Identifier)) (mutates (Identifier)) (members__list (MorphismCreationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
+  (Module (declarations__list (MorphismDeclaration (decorators__list (DecoratorIdentifier)) (decorators__list (DecoratorIdentifier)) (identifier (Identifier)) (mutates (Identifier)) (members__list (MorphismCreationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
 
 =======================================
 Mutation morphism_declaration_statement
@@ -23,7 +23,7 @@ morph Foo mutates bar if (1) {
 
 ---
 
-(Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (identifier (Identifier)) (mutates (Identifier)) (filter (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (members__list (MorphismMutationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
+(Module (declarations__list (MorphismDeclaration (decorators__list (DecoratorIdentifier)) (identifier (Identifier)) (mutates (Identifier)) (filter (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (members__list (MorphismMutationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
 
 ==========================================
 morphism_declaration_statement with lambda
@@ -35,4 +35,4 @@ morph Foo mutates A {
 
 ---
 
-(Module (statements__list (MorphismDeclarationStatement (identifier (Identifier)) (mutates (Identifier)) (members__list (MorphismCreationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))
+(Module (declarations__list (MorphismDeclaration (identifier (Identifier)) (mutates (Identifier)) (members__list (MorphismCreationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))

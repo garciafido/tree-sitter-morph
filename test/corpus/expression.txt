@@ -6,7 +6,7 @@ lambda foo() => b + 8 * 9 and 101 > 0 < 19
 
 ---
 
-(Module (statements__list (NamedLambdaDeclarationStatement (identifier (Identifier)) (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (BinaryExpression (Multiplication (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral)))))))))))) (Conjunction) (right (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (LessThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (BinaryExpression (Multiplication (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral)))))))))))) (Conjunction) (right (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (LessThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
 
 ========
 negation
@@ -16,7 +16,7 @@ lambda foo() => not a or b
 
 ---
 
-  (Module (statements__list (NamedLambdaDeclarationStatement (identifier (Identifier)) (expression (Expression (Negation (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (Identifier)))) (Disjunction) (right (Expression (PrimaryExpression (Identifier)))))))))))))
+  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (Negation (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (Identifier)))) (Disjunction) (right (Expression (PrimaryExpression (Identifier)))))))))))))
 
 ================
 unary_expression
@@ -26,7 +26,7 @@ lambda foo() => -1+4
 
 ---
 
-(Module (statements__list (NamedLambdaDeclarationStatement (identifier (Identifier)) (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (UnaryFactor (NegativeFactor (NegativeSign) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))))
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (UnaryFactor (NegativeFactor (NegativeSign) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))))
 
 
 ============
@@ -37,7 +37,7 @@ lambda foo() => f(a)
 
 ---
 
- (Module (statements__list (NamedLambdaDeclarationStatement (identifier (Identifier)) (expression (Expression (PrimaryExpression (NamedLambdaCallOrEdgeAccess (expression (CallableName (Identifier))) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
+ (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (NamedLambdaCallOrEdgeAccess (expression (CallableName (Identifier))) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 ===========
 ChainedCall
@@ -47,7 +47,7 @@ lambda foo() => f(a).f(b)
 
 ---
 
-(Module (statements__list (NamedLambdaDeclarationStatement (identifier (Identifier)) (expression (Expression (PrimaryExpression (ChainedNamedLambdaCallOrEdgeAccess (expression (NamedLambdaCallOrEdgeAccess (expression (CallableName (Identifier))) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))) (function_call_identifier (Identifier)) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (ChainedNamedLambdaCallOrEdgeAccess (expression (NamedLambdaCallOrEdgeAccess (expression (CallableName (Identifier))) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))) (function_call_identifier (Identifier)) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 =========
 Lambda OK
@@ -57,5 +57,5 @@ lambda foo() => lambda () => 1
 
 ---
 
-  (Module (statements__list (NamedLambdaDeclarationStatement (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
+  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
 
