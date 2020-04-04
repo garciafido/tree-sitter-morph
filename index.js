@@ -11,5 +11,3 @@ try {
 try {
   module.exports.nodeTypeInfo = require("./src/node-types.json");
 } catch (_) {}
-
-// module.exports.parseSemantic = require("./parse-semantic").buildParseSemantic(require('tree-sitter'), require('.'));
