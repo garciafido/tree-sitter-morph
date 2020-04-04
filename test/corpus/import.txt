@@ -6,8 +6,7 @@ import ..foo
 
 ---
 
- (Module (statements__list (ImportStatement (ImportModuleStatement (path) (from (Identifier))))))
-
+(Module (statements__list (ImportStatement (ImportModuleStatement (path (Path)) (from (Identifier))))))
 
 =====================
 import_from_statement
@@ -17,6 +16,5 @@ from ...bar import Bar
 
 ---
 
-(Module (statements__list (ImportStatement (ImportFromStatement (path) (module (Identifier)) (items__list (Identifier))))))
-
+(Module (statements__list (ImportStatement (ImportFromStatement (path (Path)) (module (Identifier)) (items__list (Identifier))))))
 
