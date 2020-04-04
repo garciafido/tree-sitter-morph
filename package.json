@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-morph",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "description": "A parser for the Morph Language written in tree-sitter",
   "main": "index.js",
   "scripts": {
