@@ -59,48 +59,6 @@ module.exports = grammar({
   rules: {
 
     Module: $ => repeat(alias($.Declaration, $.declarations__list)),
-
-    // *******************
-    // ** Fields tricky **
-    // *******************
-
-    FieldForIdentifier: $ => choice(
-      $.Identifier,
-      $.ImpossibleRule,
-    ),
-
-    FieldForExpression: $ => choice(
-      $.Expression,
-      $.ImpossibleRule,
-    ),
-
-    FieldForFilter: $ => choice(
-      $.Expression,
-      $.ImpossibleRule,
-    ),
-
-    FieldForPath: $ => choice(
-      $.Path,
-      $.ImpossibleRule,
-    ),
-
-    FieldForTypeParameters: $ => choice(
-      $.TypeParameters,
-      $.ImpossibleRule,
-    ),
-
-    FieldForTypeParameter: $ => choice(
-      $.TypeParameter,
-      $.ImpossibleRule,
-    ),
-
-    FieldForNamedLambdaParameter: $ => choice(
-      $.NamedLambdaParameter,
-      $.ImpossibleRule,
-    ),
-
-    ImpossibleRule: $ => alias("a212b9d3-86e1-495f-87e3-9e69bf678412", $.impossible),
-
     // ******************
     // ** Declarations **
     // ******************
@@ -681,6 +639,47 @@ module.exports = grammar({
         optional(choice(/[Ll]/, /[jJ]/))
       ))
     },
+
+    // *******************
+    // ** Fields tricky **
+    // *******************
+
+    FieldForIdentifier: $ => choice(
+      $.Identifier,
+      $.ImpossibleRule,
+    ),
+
+    FieldForExpression: $ => choice(
+      $.Expression,
+      $.ImpossibleRule,
+    ),
+
+    FieldForFilter: $ => choice(
+      $.Expression,
+      $.ImpossibleRule,
+    ),
+
+    FieldForPath: $ => choice(
+      $.Path,
+      $.ImpossibleRule,
+    ),
+
+    FieldForTypeParameters: $ => choice(
+      $.TypeParameters,
+      $.ImpossibleRule,
+    ),
+
+    FieldForTypeParameter: $ => choice(
+      $.TypeParameter,
+      $.ImpossibleRule,
+    ),
+
+    FieldForNamedLambdaParameter: $ => choice(
+      $.NamedLambdaParameter,
+      $.ImpossibleRule,
+    ),
+
+    ImpossibleRule: $ => alias("a212b9d3-86e1-495f-87e3-9e69bf678412", $.impossible),
   }
 });
 

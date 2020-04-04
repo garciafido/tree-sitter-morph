@@ -14,106 +14,6 @@
         "value": "declarations__list"
       }
     },
-    "FieldForIdentifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "FieldForExpression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "FieldForFilter": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "FieldForPath": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Path"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "FieldForTypeParameters": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "TypeParameters"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "FieldForTypeParameter": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "TypeParameter"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "FieldForNamedLambdaParameter": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "NamedLambdaParameter"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "ImpossibleRule": {
-      "type": "ALIAS",
-      "content": {
-        "type": "STRING",
-        "value": "a212b9d3-86e1-495f-87e3-9e69bf678412"
-      },
-      "named": true,
-      "value": "impossible"
-    },
     "Declaration": {
       "type": "CHOICE",
       "members": [
@@ -3174,6 +3074,106 @@
           }
         ]
       }
+    },
+    "FieldForIdentifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForExpression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForFilter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForPath": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForTypeParameters": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeParameters"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForTypeParameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "TypeParameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForNamedLambdaParameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "NamedLambdaParameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "ImpossibleRule": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "a212b9d3-86e1-495f-87e3-9e69bf678412"
+      },
+      "named": true,
+      "value": "impossible"
     }
   },
   "extras": [
