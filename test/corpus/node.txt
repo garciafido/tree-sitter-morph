@@ -6,8 +6,7 @@ node foo {}
 
 ---
 
-  (Module (statements__list (NodeTypeDeclarationStatement (name (CamelIdentifier)))))
-
+ (Module (statements__list (NodeTypeDeclarationStatement (identifier (Identifier)))))
 
 
 ==================================
@@ -18,8 +17,7 @@ node foo extends FooBase {}
 
 ---
 
-   (Module (statements__list (NodeTypeDeclarationStatement (name (CamelIdentifier)) (extends (Identifier)))))
-
+(Module (statements__list (NodeTypeDeclarationStatement (identifier (Identifier)) (extends (Identifier)))))
 
 
 ====================================
@@ -31,7 +29,7 @@ node foo extends FooBase {}
 
 ---
 
-    (Module (statements__list (NodeTypeDeclarationStatement (decorators__list (DecoratorIdentifier)) (name (CamelIdentifier)) (extends (Identifier)))))
+ (Module (statements__list (NodeTypeDeclarationStatement (DecoratorList (Decorator (DecoratorIdentifier))) (identifier (Identifier)) (extends (Identifier)))))
 
 
 ==========================================
@@ -43,11 +41,7 @@ abstract node foo extends FooBase {}
 
 ---
 
-(Module (statements__list (NodeTypeDeclarationStatement
-    (decorators__list (DecoratorIdentifier))
-    (abstract)
-    (name (CamelIdentifier))
-    (extends (Identifier)))))
+(Module (statements__list (NodeTypeDeclarationStatement (DecoratorList (Decorator (DecoratorIdentifier))) (abstract) (identifier (Identifier)) (extends (Identifier)))))
 
 =================================
 Member node_declaration_statement
@@ -61,14 +55,5 @@ abstract node foo extends FooBase {
 
 ---
 
-(Module (statements__list
-    (NodeTypeDeclarationStatement
-        (decorators__list (DecoratorIdentifier))
-        (abstract)
-        (name (CamelIdentifier))
-        (extends (Identifier))
-        (members__list (NodeEdgeDeclaration
-            (decorators__list (DecoratorIdentifier) (parameters__list (PrimaryExpression (Identifier (Identifier)))))
-            (name (CamelIdentifier))
-            (modifier (NodeEdgeArrayModifier))
-            (type (TypeUnion (types__list (TypeIdentifier (Identifier (Identifier)))))))))))
+
+(Module (statements__list (NodeTypeDeclarationStatement (DecoratorList (Decorator (DecoratorIdentifier))) (abstract) (identifier (Identifier)) (extends (Identifier)) (members__list (NodeEdgeDeclaration (decorators__list (DecoratorIdentifier) (parameters__list (Expression (PrimaryExpression (Identifier))))) (identifier (Identifier)) (modifier (NodeEdgeArrayModifier)) (type (TypeUnion (types__list (TypeIdentifier (Identifier))))))))))

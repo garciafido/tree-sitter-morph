@@ -88,7 +88,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "from"
@@ -100,86 +100,82 @@
       "value": "[.]+_?"
     },
     "ImportFromStatement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "from"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "Path"
-              },
-              "named": true,
-              "value": "path"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "Identifier"
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "from"
           },
-          "named": true,
-          "value": "module"
-        },
-        {
-          "type": "STRING",
-          "value": "import"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "Identifier"
-                  },
-                  "named": true,
-                  "value": "items__list"
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "Path"
                 },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "Identifier"
-                        },
-                        "named": true,
-                        "value": "items__list"
-                      }
-                    ]
-                  }
-                }
-              ]
+                "named": true,
+                "value": "path"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "FieldForIdentifier"
             },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
+            "named": true,
+            "value": "module"
+          },
+          {
+            "type": "STRING",
+            "value": "import"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "FieldForIdentifier"
+                },
+                "named": true,
+                "value": "items__list"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "FieldForIdentifier"
+                      },
+                      "named": true,
+                      "value": "items__list"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
     },
     "NodeTypeDeclarationStatementMembers": {
       "type": "SYMBOL",
@@ -189,16 +185,16 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "ALIAS",
-            "content": {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "SYMBOL",
-              "name": "Decorator"
+              "name": "DecoratorList"
             },
-            "named": true,
-            "value": "decorators__list"
-          }
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "CHOICE",
@@ -242,7 +238,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -261,7 +257,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "Identifier"
+                    "name": "FieldForIdentifier"
                   },
                   "named": true,
                   "value": "extends"
@@ -295,6 +291,31 @@
         }
       ]
     },
+    "DecoratorList": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Decorator"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "Decorator"
+              }
+            ]
+          }
+        }
+      ]
+    },
     "Decorator": {
       "type": "PREC_LEFT",
       "value": 0,
@@ -302,13 +323,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "DecoratorIdentifier"
-            },
-            "named": true,
-            "value": "identifier"
+            "type": "SYMBOL",
+            "name": "DecoratorIdentifier"
           },
           {
             "type": "CHOICE",
@@ -330,7 +346,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "SYMBOL",
-                              "name": "Expression"
+                              "name": "FieldForExpression"
                             },
                             "named": true,
                             "value": "parameters__list"
@@ -348,7 +364,7 @@
                                   "type": "ALIAS",
                                   "content": {
                                     "type": "SYMBOL",
-                                    "name": "Expression"
+                                    "name": "FieldForExpression"
                                   },
                                   "named": true,
                                   "value": "parameters__list"
@@ -396,7 +412,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -513,16 +529,16 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "ALIAS",
-            "content": {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "SYMBOL",
-              "name": "Decorator"
+              "name": "DecoratorList"
             },
-            "named": true,
-            "value": "decorators__list"
-          }
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "CHOICE",
@@ -549,7 +565,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -562,7 +578,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "mutates"
@@ -589,7 +605,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "Expression"
+                    "name": "FieldForExpression"
                   },
                   "named": true,
                   "value": "filter"
@@ -634,7 +650,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -647,7 +663,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "expression"
@@ -665,7 +681,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -678,7 +694,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "expression"
@@ -713,7 +729,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -748,7 +764,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "NamedRules"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "name"
@@ -763,7 +779,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "Identifier"
+              "name": "FieldForIdentifier"
             },
             "named": true,
             "value": "values__list"
@@ -775,7 +791,7 @@
         }
       ]
     },
-    "NamedRules": {
+    "FieldForIdentifier": {
       "type": "CHOICE",
       "members": [
         {
@@ -787,6 +803,23 @@
           "name": "ImpossibleRule"
         }
       ]
+    },
+    "FieldForExpression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "CustomFields": {
+      "type": "STRING",
+      "value": "hola"
     },
     "ImpossibleRule": {
       "type": "ALIAS",
@@ -842,7 +875,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -940,7 +973,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "expression"
@@ -954,7 +987,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -1174,7 +1207,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -1358,7 +1391,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "expression"
@@ -1386,7 +1419,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "FieldForExpression"
                 },
                 "named": true,
                 "value": "left"
@@ -1399,7 +1432,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "FieldForExpression"
                 },
                 "named": true,
                 "value": "right"
@@ -1417,7 +1450,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "FieldForExpression"
                 },
                 "named": true,
                 "value": "left"
@@ -1430,7 +1463,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Expression"
+                  "name": "FieldForExpression"
                 },
                 "named": true,
                 "value": "right"
@@ -1910,7 +1943,7 @@
                           "type": "ALIAS",
                           "content": {
                             "type": "SYMBOL",
-                            "name": "Expression"
+                            "name": "FieldForExpression"
                           },
                           "named": true,
                           "value": "function_call_parameters__list"
@@ -1928,7 +1961,7 @@
                                 "type": "ALIAS",
                                 "content": {
                                   "type": "SYMBOL",
-                                  "name": "Expression"
+                                  "name": "FieldForExpression"
                                 },
                                 "named": true,
                                 "value": "function_call_parameters__list"
@@ -1963,7 +1996,7 @@
                       "type": "ALIAS",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "Expression"
+                        "name": "FieldForExpression"
                       },
                       "named": true,
                       "value": "edge_access_parameters__list"
@@ -1981,7 +2014,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "SYMBOL",
-                              "name": "Expression"
+                              "name": "FieldForExpression"
                             },
                             "named": true,
                             "value": "edge_access_parameters__list"
@@ -2162,7 +2195,7 @@
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "Identifier"
+                      "name": "FieldForIdentifier"
                     },
                     "named": true,
                     "value": "parameters__list"
@@ -2180,7 +2213,7 @@
                           "type": "ALIAS",
                           "content": {
                             "type": "SYMBOL",
-                            "name": "Identifier"
+                            "name": "FieldForIdentifier"
                           },
                           "named": true,
                           "value": "parameters__list"
@@ -2224,7 +2257,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "Expression"
+              "name": "FieldForExpression"
             },
             "named": true,
             "value": "expression"
@@ -2261,7 +2294,7 @@
                     "type": "ALIAS",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "Identifier"
+                      "name": "FieldForIdentifier"
                     },
                     "named": true,
                     "value": "function_call_identifier"
@@ -2297,7 +2330,7 @@
                             "type": "ALIAS",
                             "content": {
                               "type": "SYMBOL",
-                              "name": "Expression"
+                              "name": "FieldForExpression"
                             },
                             "named": true,
                             "value": "function_call_parameters__list"
@@ -2315,7 +2348,7 @@
                                   "type": "ALIAS",
                                   "content": {
                                     "type": "SYMBOL",
-                                    "name": "Expression"
+                                    "name": "FieldForExpression"
                                   },
                                   "named": true,
                                   "value": "function_call_parameters__list"
@@ -2350,7 +2383,7 @@
                         "type": "ALIAS",
                         "content": {
                           "type": "SYMBOL",
-                          "name": "Expression"
+                          "name": "FieldForExpression"
                         },
                         "named": true,
                         "value": "edge_access_parameters__list"
@@ -2368,7 +2401,7 @@
                               "type": "ALIAS",
                               "content": {
                                 "type": "SYMBOL",
-                                "name": "Expression"
+                                "name": "FieldForExpression"
                               },
                               "named": true,
                               "value": "edge_access_parameters__list"
@@ -2403,7 +2436,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "Expression"
+              "name": "FieldForExpression"
             },
             "named": true,
             "value": "elements__list"
@@ -2422,7 +2455,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "type"
@@ -2441,7 +2474,7 @@
                   "type": "ALIAS",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "Identifier"
+                    "name": "FieldForIdentifier"
                   },
                   "named": true,
                   "value": "alias"
@@ -2482,7 +2515,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Identifier"
+            "name": "FieldForIdentifier"
           },
           "named": true,
           "value": "identifier"
@@ -2495,7 +2528,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "Expression"
+            "name": "FieldForExpression"
           },
           "named": true,
           "value": "value"

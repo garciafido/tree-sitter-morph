@@ -2,12 +2,11 @@ const { parseSemantic } = require("./index");
 
 // const tree = parseSemantic('@foo node Person { foo -> string bar -> string }');
 const code = `
-enum foo {
-    a
-    b
-    c
+@Bar
+morph Foo mutates bar {
+  new bar -> "bar"
 }
 `;
 const tree = parseSemantic(code);
 
-// console.log(JSON.stringify(tree, null, 2));
+console.log(JSON.stringify(tree, null, 2));

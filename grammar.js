@@ -44,17 +44,12 @@ module.exports = grammar({
     /[\s\uFEFF\u2060\u200B\u00A0]/
   ],
 
-  // conflicts: ($, previous) => previous.concat([
-  // ]),
+  conflicts: ($, previous) => previous.concat([
+    // [$.FieldForIdentifier, $.Decorator],
+  ]),
 
   // conflicts: $ => [
   // ],
-
-  supertypes: $ => [
-  ],
-
-  inline: $ => [
-  ],
 
   word: $ => $.Identifier,
 
@@ -84,40 +79,44 @@ module.exports = grammar({
     ImportModuleStatement: $ => seq(
       "import",
       optional(alias($.Path, $.path)),
-      alias($.Identifier, $.from),
+      alias($.FieldForIdentifier, $.from),
     ),
 
     Path: $ => /[.]+_?/,
 
-    ImportFromStatement: $ => seq(
+    ImportFromStatement: $ => prec.left(seq(
       "from",
       optional(alias($.Path, $.path)),
-      alias($.Identifier, $.module),
+      alias($.FieldForIdentifier, $.module),
       "import",
-      commaSeparated(alias($.Identifier, $.items__list)),
-    ),
+      seq(alias($.FieldForIdentifier, $.items__list), repeat(seq(",", alias($.FieldForIdentifier, $.items__list)))),
+      // commaSeparated(alias($.Identifier, $.items__list)),
+    )),
 
     NodeTypeDeclarationStatementMembers: $ => $.NodeEdgeDeclaration,
 
     NodeTypeDeclarationStatement: $ => seq(
-      repeat(alias($.Decorator, $.decorators__list)),
+      optional($.DecoratorList),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       optional(alias("abstract", $.abstract)),
       "node",
-      alias($.Identifier, $.identifier),
-      optional(seq("extends", alias($.Identifier, $.extends))),
+      alias($.FieldForIdentifier, $.identifier),
+      optional(seq("extends", alias($.FieldForIdentifier, $.extends))),
       "{", repeat(alias($.NodeTypeDeclarationStatementMembers, $.members__list)), "}",
     ),
 
+    DecoratorList: $ =>
+      seq($.Decorator, repeat(seq(",", $.Decorator))),
+
     Decorator: $ => prec.left(seq(
-      alias($.DecoratorIdentifier, $.identifier),
-      optional(seq("(", commaSeparated(alias($.Expression, $.parameters__list)), ")")),
+      $.DecoratorIdentifier,
+      optional(seq("(", commaSeparated(alias($.FieldForExpression, $.parameters__list)), ")")),
       ),
     ),
 
     NodeEdgeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
-      alias($.Identifier, $.identifier),
+      alias($.FieldForIdentifier, $.identifier),
       optional(alias($.NodeEdgeModifier, $.modifier)),
       "->",
       alias($.Type, $.type),
@@ -149,17 +148,17 @@ module.exports = grammar({
     ),
 
     MorphismDeclarationStatement: $ => seq(
-      repeat(alias($.Decorator, $.decorators__list)),
+      optional($.DecoratorList),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "morph",
-      alias($.Identifier, $.identifier),
+      alias($.FieldForIdentifier, $.identifier),
       "mutates",
-      alias($.Identifier, $.mutates),
+      alias($.FieldForIdentifier, $.mutates),
       optional(seq(
         "(",
         "if",
         "->",
-        alias($.Expression, $.filter),
+        alias($.FieldForExpression, $.filter),
         ")"
       )),
       "{",
@@ -168,37 +167,44 @@ module.exports = grammar({
     ),
 
     MorphismMutationDeclaration: $ => seq(
-      alias($.Identifier, $.identifier),
+      alias($.FieldForIdentifier, $.identifier),
       "->",
-      alias($.Expression, $.expression),
+      alias($.FieldForExpression, $.expression),
     ),
 
     MorphismCreationDeclaration: $ => seq(
       "new",
-      alias($.Identifier, $.identifier),
+      alias($.FieldForIdentifier, $.identifier),
       "->",
-      alias($.Expression, $.expression),
+      alias($.FieldForExpression, $.expression),
     ),
 
     SymbolDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "symbol",
-      alias($.Identifier, $.identifier),
+      alias($.FieldForIdentifier, $.identifier),
     ),
 
     EnumDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "enum",
-      alias($.NamedRules, $.name),
+      alias($.FieldForIdentifier, $.name),
       "{",
-      repeat(alias($.Identifier, $.values__list)),
+      repeat(alias($.FieldForIdentifier, $.values__list)),
       "}",
     ),
 
-    NamedRules: $ => choice(
+    FieldForIdentifier: $ => choice(
       $.Identifier,
       $.ImpossibleRule,
     ),
+
+    FieldForExpression: $ => choice(
+      $.Expression,
+      $.ImpossibleRule,
+    ),
+    
+    CustomFields: $ => ('hola'),
 
     ImpossibleRule: $ => alias("abracadabralafrutaqueterequeterepariotete", $.imposible),
 
@@ -211,18 +217,18 @@ module.exports = grammar({
     NamedLambdaDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "lambda",
-      alias($.Identifier, $.identifier),
+      alias($.FieldForIdentifier, $.identifier),
       optional(alias($.TypeParameters, $.type_parameters)),
       "(",
       commaSeparated(alias($.NamedLambdaParameter, $.parameters__list)),
       ")",
       optional(alias($.TypeAnnotation, $.type)),
       "=>",
-      alias($.Expression, $.expression),
+      alias($.FieldForExpression, $.expression),
     ),
 
     NamedLambdaParameter: $ => seq(
-      alias($.Identifier, $.identifier), alias($.TypeAnnotation, $.type),
+      alias($.FieldForIdentifier, $.identifier), alias($.TypeAnnotation, $.type),
     ),
 
     TypeParameters: $ => seq(
@@ -270,7 +276,7 @@ module.exports = grammar({
     TypeDeclarationStatement: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "type",
-      alias($.Identifier, $.identifier),
+      alias($.FieldForIdentifier, $.identifier),
       "=",
       alias($.Type, $.value),
     ),
@@ -324,10 +330,9 @@ module.exports = grammar({
       ))
     )),
 
-//---------  KKkkkkkkkk  ----------------------------------------------------------------->>>>>------------->>>>> Por aquí
     Negation: $ => seq(
       "not",
-      alias($.Expression, $.expression),
+      alias($.FieldForExpression, $.expression),
     ),
 
     Disjunction: $ => "or",
@@ -335,14 +340,14 @@ module.exports = grammar({
 
     BooleanExpression: $ => choice(
       prec.left(PREC.and, seq(
-        alias($.Expression, $.left),
+        alias($.FieldForExpression, $.left),
         $.Conjunction,
-        alias($.Expression, $.right),
+        alias($.FieldForExpression, $.right),
       )),
       prec.left(PREC.or, seq(
-        alias($.Expression, $.left),
+        alias($.FieldForExpression, $.left),
         $.Disjunction,
-        alias($.Expression, $.right),
+        alias($.FieldForExpression, $.right),
       ))
     ),
 
@@ -457,8 +462,8 @@ module.exports = grammar({
         alias($.CallableExpression, $.expression),
         optional(alias($.RuleParameters, $.rule_parameters)),
         choice(
-          seq("(", commaSeparated(alias($.Expression, $.function_call_parameters__list)), ")"),
-          seq("[", commaSeparated1(alias($.Expression, $.edge_access_parameters__list)), "]"),
+          seq("(", commaSeparated(alias($.FieldForExpression, $.function_call_parameters__list)), ")"),
+          seq("[", commaSeparated1(alias($.FieldForExpression, $.edge_access_parameters__list)), "]"),
         ),
       )
     },
@@ -495,11 +500,11 @@ module.exports = grammar({
     Lambda: $ => prec(PREC.lambda, seq(
       "lambda",
       "(",
-      commaSeparated(alias($.Identifier, $.parameters__list)),
+      commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
       ")",
       optional(alias($.TypeAnnotation, $.return_type)),
       "=>",
-      alias($.Expression, $.expression),
+      alias($.FieldForExpression, $.expression),
     )),
 
     ChainedNamedLambdaCallOrEdgeAccess: $ => prec(PREC.call, seq(
@@ -507,34 +512,34 @@ module.exports = grammar({
       choice(
         seq(
           ".",
-          alias($.Identifier, $.function_call_identifier),
+          alias($.FieldForIdentifier, $.function_call_identifier),
           optional(alias($.RuleParameters, $.rule_parameters)),
           "(",
-          commaSeparated(alias($.Expression, $.function_call_parameters__list)),
+          commaSeparated(alias($.FieldForExpression, $.function_call_parameters__list)),
           ")",
         ),
         seq(
           "[",
-          commaSeparated1(alias($.Expression, $.edge_access_parameters__list)),
+          commaSeparated1(alias($.FieldForExpression, $.edge_access_parameters__list)),
           "]",
         ),
       ),
     )),
 
     List: $ => prec(PREC.call, seq(
-      "[", alias($.Expression, $.elements__list), "]",
+      "[", alias($.FieldForExpression, $.elements__list), "]",
     )),
 
     Node: $ => seq(
-      alias($.Identifier, $.type),
-      optional(seq("as", alias($.Identifier, $.alias))),
+      alias($.FieldForIdentifier, $.type),
+      optional(seq("as", alias($.FieldForIdentifier, $.alias))),
       "{",
       repeat(alias($.NodeEdge, $.edges__list)),
       "}",
     ),
 
     NodeEdge: $ => seq(
-      alias($.Identifier, $.identifier), "->", alias($.Expression, $.value),
+      alias($.FieldForIdentifier, $.identifier), "->", alias($.FieldForExpression, $.value),
     ),
 
     Literal: $ => choice(
@@ -651,6 +656,14 @@ module.exports = grammar({
   }
 });
 
+function middleware(obj) {
+  obj.rules['NamedRules'] = $ => choice(
+      $.Identifier,
+      $.ImpossibleRule,
+    );
+  return obj;
+}
+
 function commaSeparated (rule) {
   return optional(commaSeparated1(rule));
 }
@@ -663,6 +676,6 @@ function commaSep1 (rule) {
   return seq(rule, repeat(seq(",", rule)))
 }
 
-function fieldName(rule, $) {
-  return choice($.ImpossibleRule, rule);
+function fieldName(rule, name) {
+  return alias(rule, name);
 }
