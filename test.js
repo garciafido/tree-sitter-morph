@@ -4,6 +4,7 @@ const { parseSemantic } = require("./index");
 const code = `
 
 @Bar
+@Baz
 morph Foo mutates bar {
   new bar -> "bar"
 }

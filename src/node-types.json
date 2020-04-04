@@ -207,40 +207,6 @@
     }
   },
   {
-    "type": "Decorator",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "DecoratorIdentifier",
-          "named": true
-        },
-        {
-          "type": "parameters__list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "DecoratorList",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "Decorator",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "Division",
     "named": true,
     "fields": {},
@@ -581,11 +547,11 @@
       "required": true,
       "types": [
         {
-          "type": "DecoratorList",
+          "type": "accessibility",
           "named": true
         },
         {
-          "type": "accessibility",
+          "type": "decorators__list",
           "named": true
         },
         {
@@ -809,15 +775,15 @@
       "required": true,
       "types": [
         {
-          "type": "DecoratorList",
-          "named": true
-        },
-        {
           "type": "abstract",
           "named": true
         },
         {
           "type": "accessibility",
+          "named": true
+        },
+        {
+          "type": "decorators__list",
           "named": true
         },
         {

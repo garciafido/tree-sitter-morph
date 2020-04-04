@@ -3,13 +3,14 @@ Creation morphism_declaration_statement
 =======================================
 
 @Bar
+@Baz
 morph Foo mutates bar {
   new bar -> "bar"
 }
 
 ---
 
- (Module (statements__list (MorphismDeclarationStatement (DecoratorList (Decorator (DecoratorIdentifier))) (identifier (Identifier)) (mutates (Identifier)) (members__list (MorphismCreationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
+  (Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (decorators__list (DecoratorIdentifier)) (identifier (Identifier)) (mutates (Identifier)) (members__list (MorphismCreationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
 
 =======================================
 Mutation morphism_declaration_statement
@@ -22,7 +23,7 @@ morph Foo mutates bar (if -> 1) {
 
 ---
 
-(Module (statements__list (MorphismDeclarationStatement (DecoratorList (Decorator (DecoratorIdentifier))) (identifier (Identifier)) (mutates (Identifier)) (filter (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (members__list (MorphismMutationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
+(Module (statements__list (MorphismDeclarationStatement (decorators__list (DecoratorIdentifier)) (identifier (Identifier)) (mutates (Identifier)) (filter (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (members__list (MorphismMutationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))))
 
 ==========================================
 morphism_declaration_statement with lambda

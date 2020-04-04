@@ -96,7 +96,7 @@ module.exports = grammar({
     NodeTypeDeclarationStatementMembers: $ => $.NodeEdgeDeclaration,
 
     NodeTypeDeclarationStatement: $ => seq(
-      optional($.DecoratorList),
+      repeat(alias($.Decorator, $.decorators__list)),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       optional(alias("abstract", $.abstract)),
       "node",
@@ -104,9 +104,6 @@ module.exports = grammar({
       optional(seq("extends", alias($.FieldForIdentifier, $.extends))),
       "{", repeat(alias($.NodeTypeDeclarationStatementMembers, $.members__list)), "}",
     ),
-
-    DecoratorList: $ =>
-      seq($.Decorator, repeat(seq(",", $.Decorator))),
 
     Decorator: $ => prec.left(seq(
       $.DecoratorIdentifier,
@@ -148,7 +145,7 @@ module.exports = grammar({
     ),
 
     MorphismDeclarationStatement: $ => seq(
-      optional($.DecoratorList),
+      repeat(alias($.Decorator, $.decorators__list)),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "morph",
       alias($.FieldForIdentifier, $.identifier),
