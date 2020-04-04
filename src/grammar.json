@@ -14,6 +14,54 @@
         "value": "statements__list"
       }
     },
+    "FieldForIdentifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForExpression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "FieldForPath": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ImpossibleRule"
+        }
+      ]
+    },
+    "ImpossibleRule": {
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "abracadabralafrutaqueterequeterepariotete"
+      },
+      "named": true,
+      "value": "impossible"
+    },
     "Statement": {
       "type": "CHOICE",
       "members": [
@@ -74,7 +122,7 @@
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
-                "name": "Path"
+                "name": "FieldForPath"
               },
               "named": true,
               "value": "path"
@@ -96,8 +144,14 @@
       ]
     },
     "Path": {
-      "type": "PATTERN",
-      "value": "[.]+_?"
+      "type": "TOKEN",
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "STRING",
+          "value": "."
+        }
+      }
     },
     "ImportFromStatement": {
       "type": "PREC_LEFT",
@@ -116,7 +170,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "Path"
+                  "name": "FieldForPath"
                 },
                 "named": true,
                 "value": "path"
@@ -566,15 +620,11 @@
               "members": [
                 {
                   "type": "STRING",
-                  "value": "("
-                },
-                {
-                  "type": "STRING",
                   "value": "if"
                 },
                 {
                   "type": "STRING",
-                  "value": "->"
+                  "value": "("
                 },
                 {
                   "type": "ALIAS",
@@ -765,45 +815,6 @@
           "value": "}"
         }
       ]
-    },
-    "FieldForIdentifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "FieldForExpression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "Expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ImpossibleRule"
-        }
-      ]
-    },
-    "CustomFields": {
-      "type": "STRING",
-      "value": "hola"
-    },
-    "ImpossibleRule": {
-      "type": "ALIAS",
-      "content": {
-        "type": "STRING",
-        "value": "abracadabralafrutaqueterequeterepariotete"
-      },
-      "named": true,
-      "value": "imposible"
     },
     "AssignmentSign": {
       "type": "STRING",
@@ -1449,53 +1460,49 @@
       ]
     },
     "PrimaryExpression": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "BinaryExpression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Identifier"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Literal"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "UnaryFactor"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "List"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Node"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "Lambda"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "ParenthesizedExpression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "NamedLambdaCallOrEdgeAccess"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "ChainedNamedLambdaCallOrEdgeAccess"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "BinaryExpression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "UnaryFactor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "List"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Node"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Lambda"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ParenthesizedExpression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "NamedLambdaCallOrEdgeAccess"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ChainedNamedLambdaCallOrEdgeAccess"
+        }
+      ]
     },
     "BinaryExpression": {
       "type": "CHOICE",

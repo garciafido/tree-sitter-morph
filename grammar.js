@@ -45,17 +45,42 @@ module.exports = grammar({
   ],
 
   conflicts: ($, previous) => previous.concat([
-    // [$.FieldForIdentifier, $.Decorator],
+    // [$.FieldForIdentifier, $.PrimaryExpression],
+    // [$.FieldForIdentifier, $.FieldForExpression],
   ]),
 
   // conflicts: $ => [
   // ],
+
+  inline: $ => [
+  ],
 
   word: $ => $.Identifier,
 
   rules: {
 
     Module: $ => repeat(alias($.Statement, $.statements__list)),
+
+    // *******************
+    // ** Fields tricky **
+    // *******************
+
+    FieldForIdentifier: $ => choice(
+      $.Identifier,
+      $.ImpossibleRule,
+    ),
+
+    FieldForExpression: $ => choice(
+      $.Expression,
+      $.ImpossibleRule,
+    ),
+
+    FieldForPath: $ => choice(
+      $.Path,
+      $.ImpossibleRule,
+    ),
+
+    ImpossibleRule: $ => alias("abracadabralafrutaqueterequeterepariotete", $.impossible),
 
     // *****************
     // ** Statements **
@@ -78,19 +103,18 @@ module.exports = grammar({
 
     ImportModuleStatement: $ => seq(
       "import",
-      optional(alias($.Path, $.path)),
+      optional(alias($.FieldForPath, $.path)),
       alias($.FieldForIdentifier, $.from),
     ),
 
-    Path: $ => /[.]+_?/,
+    Path: $ => token(repeat1(".")),
 
     ImportFromStatement: $ => prec.left(seq(
       "from",
-      optional(alias($.Path, $.path)),
+      optional(alias($.FieldForPath, $.path)),
       alias($.FieldForIdentifier, $.module),
       "import",
       seq(alias($.FieldForIdentifier, $.items__list), repeat(seq(",", alias($.FieldForIdentifier, $.items__list)))),
-      // commaSeparated(alias($.Identifier, $.items__list)),
     )),
 
     NodeTypeDeclarationStatementMembers: $ => $.NodeEdgeDeclaration,
@@ -152,9 +176,8 @@ module.exports = grammar({
       "mutates",
       alias($.FieldForIdentifier, $.mutates),
       optional(seq(
-        "(",
         "if",
-        "->",
+        "(",
         alias($.FieldForExpression, $.filter),
         ")"
       )),
@@ -190,20 +213,6 @@ module.exports = grammar({
       repeat(alias($.FieldForIdentifier, $.values__list)),
       "}",
     ),
-
-    FieldForIdentifier: $ => choice(
-      $.Identifier,
-      $.ImpossibleRule,
-    ),
-
-    FieldForExpression: $ => choice(
-      $.Expression,
-      $.ImpossibleRule,
-    ),
-    
-    CustomFields: $ => ('hola'),
-
-    ImpossibleRule: $ => alias("abracadabralafrutaqueterequeterepariotete", $.imposible),
 
     AssignmentSign: $ => "=",
 
@@ -348,7 +357,7 @@ module.exports = grammar({
       ))
     ),
 
-    PrimaryExpression: $ => prec.left(choice(
+    PrimaryExpression: $ => choice(
       $.BinaryExpression,
       $.Identifier,
       $.Literal,
@@ -359,7 +368,7 @@ module.exports = grammar({
       $.ParenthesizedExpression,
       $.NamedLambdaCallOrEdgeAccess,
       $.ChainedNamedLambdaCallOrEdgeAccess,
-    )),
+    ),
 
     BinaryExpression: $ => choice(
       $.Addition,

@@ -17,7 +17,7 @@ Mutation morphism_declaration_statement
 =======================================
 
 @Bar
-morph Foo mutates bar (if -> 1) {
+morph Foo mutates bar if (1) {
   bar -> "bar"
 }
 

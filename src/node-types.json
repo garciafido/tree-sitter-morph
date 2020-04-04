@@ -369,7 +369,7 @@
       "required": true,
       "types": [
         {
-          "type": "imposible",
+          "type": "impossible",
           "named": true
         }
       ]
@@ -1760,6 +1760,25 @@
     }
   },
   {
+    "type": "path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ImpossibleRule",
+          "named": true
+        },
+        {
+          "type": "Path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "return_type",
     "named": true,
     "fields": {},
@@ -2143,6 +2162,10 @@
     "named": true
   },
   {
+    "type": "Path",
+    "named": true
+  },
+  {
     "type": "Private",
     "named": true
   },
@@ -2207,7 +2230,7 @@
     "named": false
   },
   {
-    "type": "imposible",
+    "type": "impossible",
     "named": true
   },
   {
@@ -2237,10 +2260,6 @@
   {
     "type": "not",
     "named": false
-  },
-  {
-    "type": "path",
-    "named": true
   },
   {
     "type": "symbol",
