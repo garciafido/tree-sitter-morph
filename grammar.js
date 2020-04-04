@@ -683,14 +683,6 @@ module.exports = grammar({
   }
 });
 
-function middleware(obj) {
-  obj.rules['NamedRules'] = $ => choice(
-      $.Identifier,
-      $.ImpossibleRule,
-    );
-  return obj;
-}
-
 function commaSeparated (rule) {
   return optional(commaSeparated1(rule));
 }
@@ -701,8 +693,4 @@ function commaSeparated1 (rule) {
 
 function commaSep1 (rule) {
   return seq(rule, repeat(seq(",", rule)))
-}
-
-function fieldName(rule, name) {
-  return alias(rule, name);
 }
