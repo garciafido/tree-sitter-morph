@@ -8,6 +8,7 @@
     "generate": "./node_modules/.bin/tree-sitter generate",
     "parse": "./node_modules/.bin/tree-sitter parse",
     "highlight": "./node_modules/.bin/tree-sitter highlight",
+    "wasm": "./node_modules/.bin/tree-sitter build-wasm",
     "release": "np"
   },
   "np": {
