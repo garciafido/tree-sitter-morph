@@ -161,6 +161,33 @@
     }
   },
   {
+    "type": "CallOrAccess",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "access_parameters__list",
+          "named": true
+        },
+        {
+          "type": "call_parameters__list",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "rule_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "CallableName",
     "named": true,
     "fields": {},
@@ -176,7 +203,7 @@
     }
   },
   {
-    "type": "ChainedNamedLambdaCallOrEdgeAccess",
+    "type": "ChainedCallOrAccess",
     "named": true,
     "fields": {},
     "children": {
@@ -184,19 +211,19 @@
       "required": true,
       "types": [
         {
-          "type": "edge_access_parameters__list",
+          "type": "access_parameters__list",
+          "named": true
+        },
+        {
+          "type": "call_identifier",
+          "named": true
+        },
+        {
+          "type": "call_parameters__list",
           "named": true
         },
         {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "function_call_identifier",
-          "named": true
-        },
-        {
-          "type": "function_call_parameters__list",
           "named": true
         },
         {
@@ -612,33 +639,6 @@
     }
   },
   {
-    "type": "NamedLambdaCallOrEdgeAccess",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "edge_access_parameters__list",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "function_call_parameters__list",
-          "named": true
-        },
-        {
-          "type": "rule_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "NamedLambdaDeclaration",
     "named": true,
     "fields": {},
@@ -918,7 +918,11 @@
           "named": true
         },
         {
-          "type": "ChainedNamedLambdaCallOrEdgeAccess",
+          "type": "CallOrAccess",
+          "named": true
+        },
+        {
+          "type": "ChainedCallOrAccess",
           "named": true
         },
         {
@@ -935,10 +939,6 @@
         },
         {
           "type": "Literal",
-          "named": true
-        },
-        {
-          "type": "NamedLambdaCallOrEdgeAccess",
           "named": true
         },
         {
@@ -1246,6 +1246,25 @@
     }
   },
   {
+    "type": "access_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
+          "named": true
+        },
+        {
+          "type": "ImpossibleRule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "accessibility",
     "named": true,
     "fields": {},
@@ -1278,6 +1297,44 @@
       "types": [
         {
           "type": "Identifier",
+          "named": true
+        },
+        {
+          "type": "ImpossibleRule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "call_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Identifier",
+          "named": true
+        },
+        {
+          "type": "ImpossibleRule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "call_parameters__list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expression",
           "named": true
         },
         {
@@ -1361,25 +1418,6 @@
     }
   },
   {
-    "type": "edge_access_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        },
-        {
-          "type": "ImpossibleRule",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "edges__list",
     "named": true,
     "fields": {},
@@ -1430,11 +1468,15 @@
           "named": true
         },
         {
+          "type": "CallOrAccess",
+          "named": true
+        },
+        {
           "type": "CallableName",
           "named": true
         },
         {
-          "type": "ChainedNamedLambdaCallOrEdgeAccess",
+          "type": "ChainedCallOrAccess",
           "named": true
         },
         {
@@ -1459,10 +1501,6 @@
         },
         {
           "type": "Literal",
-          "named": true
-        },
-        {
-          "type": "NamedLambdaCallOrEdgeAccess",
           "named": true
         },
         {
@@ -1538,44 +1576,6 @@
     }
   },
   {
-    "type": "function_call_identifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Identifier",
-          "named": true
-        },
-        {
-          "type": "ImpossibleRule",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_call_parameters__list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Expression",
-          "named": true
-        },
-        {
-          "type": "ImpossibleRule",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "identifier",
     "named": true,
     "fields": {},
@@ -1641,7 +1641,11 @@
           "named": true
         },
         {
-          "type": "ChainedNamedLambdaCallOrEdgeAccess",
+          "type": "CallOrAccess",
+          "named": true
+        },
+        {
+          "type": "ChainedCallOrAccess",
           "named": true
         },
         {
@@ -1666,10 +1670,6 @@
         },
         {
           "type": "Literal",
-          "named": true
-        },
-        {
-          "type": "NamedLambdaCallOrEdgeAccess",
           "named": true
         },
         {
@@ -1860,7 +1860,11 @@
           "named": true
         },
         {
-          "type": "ChainedNamedLambdaCallOrEdgeAccess",
+          "type": "CallOrAccess",
+          "named": true
+        },
+        {
+          "type": "ChainedCallOrAccess",
           "named": true
         },
         {
@@ -1885,10 +1889,6 @@
         },
         {
           "type": "Literal",
-          "named": true
-        },
-        {
-          "type": "NamedLambdaCallOrEdgeAccess",
           "named": true
         },
         {
