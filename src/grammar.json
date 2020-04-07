@@ -1464,11 +1464,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "NamedLambdaCallOrEdgeAccess"
+          "name": "CallOrAccess"
         },
         {
           "type": "SYMBOL",
-          "name": "ChainedNamedLambdaCallOrEdgeAccess"
+          "name": "FluentCallOrAccess"
         }
       ]
     },
@@ -1844,7 +1844,7 @@
       "type": "PATTERN",
       "value": "[@][A-Za-z_][a-zA-Z0-9_]*"
     },
-    "NamedLambdaCallOrEdgeAccess": {
+    "CallOrAccess": {
       "type": "SEQ",
       "members": [
         {
@@ -1896,7 +1896,7 @@
                             "name": "FieldForExpression"
                           },
                           "named": true,
-                          "value": "function_call_parameters__list"
+                          "value": "call_parameters__list"
                         },
                         {
                           "type": "REPEAT",
@@ -1914,7 +1914,7 @@
                                   "name": "FieldForExpression"
                                 },
                                 "named": true,
-                                "value": "function_call_parameters__list"
+                                "value": "call_parameters__list"
                               }
                             ]
                           }
@@ -1949,7 +1949,7 @@
                         "name": "FieldForExpression"
                       },
                       "named": true,
-                      "value": "edge_access_parameters__list"
+                      "value": "access_parameters__list"
                     },
                     {
                       "type": "REPEAT",
@@ -1967,7 +1967,7 @@
                               "name": "FieldForExpression"
                             },
                             "named": true,
-                            "value": "edge_access_parameters__list"
+                            "value": "access_parameters__list"
                           }
                         ]
                       }
@@ -2004,7 +2004,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "NamedLambdaCallOrEdgeAccess"
+            "name": "CallOrAccess"
           },
           {
             "type": "SYMBOL",
@@ -2215,7 +2215,7 @@
         ]
       }
     },
-    "ChainedNamedLambdaCallOrEdgeAccess": {
+    "FluentCallOrAccess": {
       "type": "PREC",
       "value": 200,
       "content": {
@@ -2247,7 +2247,7 @@
                       "name": "FieldForIdentifier"
                     },
                     "named": true,
-                    "value": "function_call_identifier"
+                    "value": "call_identifier"
                   },
                   {
                     "type": "CHOICE",
@@ -2283,7 +2283,7 @@
                               "name": "FieldForExpression"
                             },
                             "named": true,
-                            "value": "function_call_parameters__list"
+                            "value": "call_parameters__list"
                           },
                           {
                             "type": "REPEAT",
@@ -2301,7 +2301,7 @@
                                     "name": "FieldForExpression"
                                   },
                                   "named": true,
-                                  "value": "function_call_parameters__list"
+                                  "value": "call_parameters__list"
                                 }
                               ]
                             }
@@ -2336,7 +2336,7 @@
                           "name": "FieldForExpression"
                         },
                         "named": true,
-                        "value": "edge_access_parameters__list"
+                        "value": "access_parameters__list"
                       },
                       {
                         "type": "REPEAT",
@@ -2354,7 +2354,7 @@
                                 "name": "FieldForExpression"
                               },
                               "named": true,
-                              "value": "edge_access_parameters__list"
+                              "value": "access_parameters__list"
                             }
                           ]
                         }

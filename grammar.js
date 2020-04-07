@@ -346,8 +346,8 @@ module.exports = grammar({
       $.Node,
       $.Lambda,
       $.ParenthesizedExpression,
-      $.NamedLambdaCallOrEdgeAccess,
-      $.ChainedNamedLambdaCallOrEdgeAccess,
+      $.CallOrAccess,
+      $.FluentCallOrAccess,
     ),
 
     BinaryExpression: $ => choice(
@@ -443,13 +443,13 @@ module.exports = grammar({
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
-    NamedLambdaCallOrEdgeAccess: $ => {
+    CallOrAccess: $ => {
       return seq(
         alias($.CallableExpression, $.expression),
         optional(alias($.RuleParameters, $.rule_parameters)),
         choice(
-          seq("(", commaSeparated(alias($.FieldForExpression, $.function_call_parameters__list)), ")"),
-          seq("[", commaSeparated1(alias($.FieldForExpression, $.edge_access_parameters__list)), "]"),
+          seq("(", commaSeparated(alias($.FieldForExpression, $.call_parameters__list)), ")"),
+          seq("[", commaSeparated1(alias($.FieldForExpression, $.access_parameters__list)), "]"),
         ),
       )
     },
@@ -458,7 +458,7 @@ module.exports = grammar({
 
     CallableExpression: $ => prec.left(PREC.callable, choice(
       $.CallableName,
-      $.NamedLambdaCallOrEdgeAccess,
+      $.CallOrAccess,
       $.ParenthesizedExpression,
     )),
 
@@ -493,20 +493,20 @@ module.exports = grammar({
       alias($.FieldForExpression, $.expression),
     )),
 
-    ChainedNamedLambdaCallOrEdgeAccess: $ => prec(PREC.call, seq(
+    FluentCallOrAccess: $ => prec(PREC.call, seq(
       alias($.PrimaryExpression, $.expression),
       choice(
         seq(
           ".",
-          alias($.FieldForIdentifier, $.function_call_identifier),
+          alias($.FieldForIdentifier, $.call_identifier),
           optional(alias($.RuleParameters, $.rule_parameters)),
           "(",
-          commaSeparated(alias($.FieldForExpression, $.function_call_parameters__list)),
+          commaSeparated(alias($.FieldForExpression, $.call_parameters__list)),
           ")",
         ),
         seq(
           "[",
-          commaSeparated1(alias($.FieldForExpression, $.edge_access_parameters__list)),
+          commaSeparated1(alias($.FieldForExpression, $.access_parameters__list)),
           "]",
         ),
       ),
