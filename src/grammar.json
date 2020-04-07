@@ -2383,13 +2383,21 @@
             "value": "["
           },
           {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "FieldForExpression"
-            },
-            "named": true,
-            "value": "elements__list"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "FieldForExpression"
+                },
+                "named": true,
+                "value": "elements__list"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           },
           {
             "type": "STRING",

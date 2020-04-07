@@ -513,7 +513,7 @@ module.exports = grammar({
     )),
 
     List: $ => prec(PREC.call, seq(
-      "[", alias($.FieldForExpression, $.elements__list), "]",
+      "[", optional(alias($.FieldForExpression, $.elements__list)), "]",
     )),
 
     Node: $ => seq(
