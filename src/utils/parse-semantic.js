@@ -44,11 +44,8 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
 
                 const NewChildren = {};
                 for (const child of children) {
-                    if (child.type === "ERROR") {
+                    if (child.type === "ERROR" || child.type === "MISSING") {
                         throw new SyntaxError(child);
-                    }
-                    if (child.type === "MISSING") {
-                        continue;
                     }
 
                     let childType = child.type;
