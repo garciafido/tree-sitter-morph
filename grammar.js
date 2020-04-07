@@ -474,14 +474,6 @@ module.exports = grammar({
       "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
     )),
 
-    //  This expression has no parameters allowed in its factors and the expression must yield a string
-    // ListIndexAccess EdgeAccessParameter
-    AccessExpression: $ => $.Expression,
-
-    ListIndexAccess_EdgeAccessParameter: $ => seq(
-      "[", $.AccessExpression, "]"
-    ),
-
     // Lambda_parameters__list: $ => prec(PREC.lambda, $.Identifier),
     Lambda: $ => prec(PREC.lambda, seq(
       "lambda",
