@@ -203,37 +203,6 @@
     }
   },
   {
-    "type": "ChainedCallOrAccess",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "access_parameters__list",
-          "named": true
-        },
-        {
-          "type": "call_identifier",
-          "named": true
-        },
-        {
-          "type": "call_parameters__list",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "rule_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "Division",
     "named": true,
     "fields": {},
@@ -316,6 +285,37 @@
         },
         {
           "type": "RelationalExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FluentCallOrAccess",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "access_parameters__list",
+          "named": true
+        },
+        {
+          "type": "call_identifier",
+          "named": true
+        },
+        {
+          "type": "call_parameters__list",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "rule_parameters",
           "named": true
         }
       ]
@@ -922,7 +922,7 @@
           "named": true
         },
         {
-          "type": "ChainedCallOrAccess",
+          "type": "FluentCallOrAccess",
           "named": true
         },
         {
@@ -1476,11 +1476,11 @@
           "named": true
         },
         {
-          "type": "ChainedCallOrAccess",
+          "type": "Expression",
           "named": true
         },
         {
-          "type": "Expression",
+          "type": "FluentCallOrAccess",
           "named": true
         },
         {
@@ -1645,11 +1645,11 @@
           "named": true
         },
         {
-          "type": "ChainedCallOrAccess",
+          "type": "Expression",
           "named": true
         },
         {
-          "type": "Expression",
+          "type": "FluentCallOrAccess",
           "named": true
         },
         {
@@ -1864,11 +1864,11 @@
           "named": true
         },
         {
-          "type": "ChainedCallOrAccess",
+          "type": "Expression",
           "named": true
         },
         {
-          "type": "Expression",
+          "type": "FluentCallOrAccess",
           "named": true
         },
         {
