@@ -7,7 +7,6 @@ src/binding.cc
 src/grammar.json
 src/node-types.json
 src/parser.c
-src/scanner.c
 
 ### Node template
 # Logs
