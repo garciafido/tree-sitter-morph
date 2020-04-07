@@ -47,6 +47,9 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                     if (child.type === "ERROR") {
                         throw new SyntaxError(child);
                     }
+                    if (child.type === "MISSING") {
+                        continue;
+                    }
 
                     let childType = child.type;
                     const isList = childType.lastIndexOf(LIST_POSTFIX) > 0;
