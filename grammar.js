@@ -347,7 +347,7 @@ module.exports = grammar({
       $.Lambda,
       $.ParenthesizedExpression,
       $.CallOrAccess,
-      $.ChainedCallOrAccess,
+      $.FluentCallOrAccess,
     ),
 
     BinaryExpression: $ => choice(
@@ -493,7 +493,7 @@ module.exports = grammar({
       alias($.FieldForExpression, $.expression),
     )),
 
-    ChainedCallOrAccess: $ => prec(PREC.call, seq(
+    FluentCallOrAccess: $ => prec(PREC.call, seq(
       alias($.PrimaryExpression, $.expression),
       choice(
         seq(
