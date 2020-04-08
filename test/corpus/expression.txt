@@ -6,6 +6,18 @@ lambda foo() => b + 8 * 9 and 101 > 0 < 19
 
 ---
 
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (BinaryExpression (Multiplication (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral)))))))))))) (Conjunction) (right (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (LessThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
+
+================
+callable literal
+================
+
+lambda foo() => 1(a) > 2
+
+---
+   (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (CallOrAccess (expression (Literal (NumberLiteral (IntegerLiteral)))) (call_parameters__list (Expression (PrimaryExpression (Identifier)))))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))
+
+
 
 ========
 negation
