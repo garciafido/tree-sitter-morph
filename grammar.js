@@ -23,8 +23,8 @@ const PREC = {
   power: 190,
   call: 200,
 
-  primary: 210,
   callable: 210,
+  primary: 220,
 
   morph_decorator: 1,
   node_decorator: 2,
@@ -337,7 +337,7 @@ module.exports = grammar({
       ))
     ),
 
-    PrimaryExpression: $ => choice(
+    PrimaryExpression: $ => prec(PREC.primary, choice(
       $.BinaryExpression,
       $.Identifier,
       $.Literal,
@@ -348,7 +348,7 @@ module.exports = grammar({
       $.ParenthesizedExpression,
       $.CallOrAccess,
       $.FluentCallOrAccess,
-    ),
+    )),
 
     BinaryExpression: $ => choice(
       $.Addition,
