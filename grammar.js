@@ -205,7 +205,7 @@ module.exports = grammar({
       "(",
       commaSeparated(alias($.FieldForNamedLambdaParameter, $.parameters__list)),
       ")",
-      optional(alias($.TypeAnnotation, $.type)),
+      optional(alias($.FieldForReturnType, $.return_type)),
       "=>",
       alias($.FieldForExpression, $.expression),
     ),
@@ -668,6 +668,16 @@ module.exports = grammar({
 
     FieldForNamedLambdaParameter: $ => choice(
       $.NamedLambdaParameter,
+      $.ImpossibleRule,
+    ),
+
+    FieldForReturnType: $ => choice(
+      $.Type,
+      $.ImpossibleRule,
+    ),
+
+    FieldForNodeEdge: $ => choice(
+      $.NodeEdge,
       $.ImpossibleRule,
     ),
 
