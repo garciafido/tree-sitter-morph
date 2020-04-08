@@ -6,7 +6,6 @@ lambda foo() => b + 8 * 9 and 101 > 0 < 19
 
 ---
 
-(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (BinaryExpression (Multiplication (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral)))))))))))) (Conjunction) (right (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (LessThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
 
 ========
 negation
@@ -37,7 +36,7 @@ lambda foo() => f(a)
 
 ---
 
- (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (NamedLambdaCallOrEdgeAccess (expression (CallableName (Identifier))) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (CallOrAccess (expression (CallableName (Identifier))) (call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 ===========
 ChainedCall
@@ -47,7 +46,7 @@ lambda foo() => f(a).f(b)
 
 ---
 
-(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (ChainedNamedLambdaCallOrEdgeAccess (expression (NamedLambdaCallOrEdgeAccess (expression (CallableName (Identifier))) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))) (function_call_identifier (Identifier)) (function_call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
+ (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (FluentCallOrAccess (expression (CallOrAccess (expression (CallableName (Identifier))) (call_parameters__list (Expression (PrimaryExpression (Identifier)))))) (call_identifier (Identifier)) (call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 =========
 Lambda OK

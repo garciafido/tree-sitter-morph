@@ -19,4 +19,3 @@ lambda foo() => []
  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (List)))))))
 
 
-
