@@ -460,6 +460,7 @@ module.exports = grammar({
       $.CallableName,
       $.CallOrAccess,
       $.ParenthesizedExpression,
+      $.Literal
     )),
 
     Message: $ => $.Expression,
@@ -474,7 +475,6 @@ module.exports = grammar({
       "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
     )),
 
-    // Lambda_parameters__list: $ => prec(PREC.lambda, $.Identifier),
     Lambda: $ => prec(PREC.lambda, seq(
       "lambda",
       "(",
