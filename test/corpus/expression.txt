@@ -92,3 +92,12 @@ lambda foo() => { first_name -> "hola" } as xxx
 
  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (alias (Identifier))))))) (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (ParenthesizedExpression (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (Identifier)))))))))) (alias (Identifier))))))) (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))) (alias (Identifier))))))))
 
+======
+Tuples
+======
+
+lambda foo() => lambda () => (4,5,6,7) + (1,2) + (1) + (1,)
+
+---
+
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))) (right (ParenthesizedExpression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))))

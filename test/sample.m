@@ -1,2 +1,1 @@
-@Baz
-morph Foo mutates bar {}
+lambda foo() => (1) + (1,)
