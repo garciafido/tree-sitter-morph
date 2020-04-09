@@ -359,7 +359,6 @@ module.exports = grammar({
       $.Literal,
       $.UnaryFactor,
       $.List,
-      $.Tuple,
       $.Node,
       $.Lambda,
       $.ParenthesizedExpression,
@@ -525,17 +524,7 @@ module.exports = grammar({
       "[", optional(alias($.FieldForExpression, $.elements__list)), "]",
     )),
 
-    Tuple: $ => prec(PREC.call, seq(
-      "(",
-      alias($.FieldForExpression, $.first_element),
-      ",",
-      alias($.FieldForExpression, $.second_element),
-      repeat(seq(",", alias($.FieldForExpression, $.elements__list))), ")",
-    )),
-
     Node: $ => seq(
-      alias($.FieldForIdentifier, $.type),
-      optional(seq("as", alias($.FieldForIdentifier, $.alias))),
       "{",
       commaSeparated(alias($.FieldForNodeEdge, $.edges__list)),
       "}",
