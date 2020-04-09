@@ -509,8 +509,6 @@ module.exports = grammar({
     )),
 
     Node: $ => seq(
-      alias($.FieldForIdentifier, $.type),
-      optional(seq("as", alias($.FieldForIdentifier, $.alias))),
       "{",
       commaSeparated(alias($.FieldForNodeEdge, $.edges__list)),
       "}",

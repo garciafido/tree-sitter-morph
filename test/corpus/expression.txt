@@ -70,3 +70,12 @@ lambda foo() => lambda () => 1
 
   (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
 
+===============
+Node expression
+===============
+
+lambda foo() => { a -> "hola", b -> "chau"}
+
+---
+
+ (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))) (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))))))
