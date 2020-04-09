@@ -18,4 +18,13 @@ lambda foo() => []
 
  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (List)))))))
 
+============
+lambda while
+============
 
+lambda foo() => lambda () => while 2: 2
+lambda foo() => while 2: 2
+
+---
+
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (WhileExpression (while_condition (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))) (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (WhileExpression (while_condition (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))
