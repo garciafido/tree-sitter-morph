@@ -1,7 +1,3 @@
-lambda foo() =>
-    lambda () =>
-    (
-        4,
-        5,
-        6
-    )
+lambda foo() => 1 as foo
+lambda foo() => (a + b) as sum
+() => { first_name -> "hola" } as xxx
