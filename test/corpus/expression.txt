@@ -70,3 +70,12 @@ lambda foo() => lambda () => 1
 
   (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
 
+======
+Tuples
+======
+
+lambda foo() => lambda () => (4,5,6,7) + (1,2) + (1)
+
+---
+
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Tuple (first_element (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (second_element (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))) (right (Tuple (first_element (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (second_element (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))) (right (ParenthesizedExpression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))))))))
