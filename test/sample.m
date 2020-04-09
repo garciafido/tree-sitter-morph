@@ -1,7 +1,1 @@
-lambda foo() =>
-    lambda () =>
-    (
-        4,
-        5,
-        6
-    )
+lambda foo() => 101 > 0 < 19
