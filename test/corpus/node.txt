@@ -30,8 +30,7 @@ node foo extends FooBase {}
 
 ---
 
-  (Module (declarations__list (NodeTypeDeclaration (decorators__list (DecoratorIdentifier)) (decorators__list (DecoratorIdentifier)) (identifier (Identifier)) (extends (Identifier)))))
-
+(Module (declarations__list (NodeTypeDeclaration (decorators__list (identifier (DecoratorIdentifier))) (decorators__list (identifier (DecoratorIdentifier))) (identifier (Identifier)) (extends (Identifier)))))
 
 ==========================================
 Export abstract node_declaration_statement
@@ -42,8 +41,7 @@ abstract node foo extends FooBase {}
 
 ---
 
-    (Module (declarations__list (NodeTypeDeclaration (decorators__list (DecoratorIdentifier)) (abstract) (identifier (Identifier)) (extends (Identifier)))))
-
+(Module (declarations__list (NodeTypeDeclaration (decorators__list (identifier (DecoratorIdentifier))) (abstract) (identifier (Identifier)) (extends (Identifier)))))
 
 =================================
 Member node_declaration_statement
@@ -57,4 +55,4 @@ abstract node foo extends FooBase {
 
 ---
 
-   (Module (declarations__list (NodeTypeDeclaration (decorators__list (DecoratorIdentifier)) (abstract) (identifier (Identifier)) (extends (Identifier)) (members__list (NodeEdgeDeclaration (decorators__list (DecoratorIdentifier) (parameters__list (Expression (PrimaryExpression (Identifier))))) (identifier (Identifier)) (modifier (NodeEdgeArrayModifier)) (type (TypeUnion (types__list (TypeIdentifier (Identifier))))))))))
+ (Module (declarations__list (NodeTypeDeclaration (decorators__list (identifier (DecoratorIdentifier))) (abstract) (identifier (Identifier)) (extends (Identifier)) (members__list (NodeEdgeDeclaration (decorators__list (identifier (DecoratorIdentifier)) (parameters__list (Expression (PrimaryExpression (Identifier))))) (identifier (Identifier)) (modifier (NodeEdgeArrayModifier)) (type (TypeUnion (types__list (TypeIdentifier (Identifier))))))))))

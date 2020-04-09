@@ -110,10 +110,12 @@ module.exports = grammar({
     ),
 
     Decorator: $ => prec.left(seq(
-      $.DecoratorIdentifier,
+      alias($.DecoIdent, $.identifier),
       optional(seq("(", commaSeparated(alias($.FieldForExpression, $.parameters__list)), ")")),
       ),
     ),
+
+    DecoIdent: $ => $.DecoratorIdentifier,
 
     NodeEdgeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
@@ -687,11 +689,6 @@ module.exports = grammar({
 
     FieldForReturnType: $ => choice(
       $.Type,
-      $.ImpossibleRule,
-    ),
-
-    FieldForNodeEdge: $ => choice(
-      $.NodeEdge,
       $.ImpossibleRule,
     ),
 
