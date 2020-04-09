@@ -212,7 +212,17 @@ module.exports = grammar({
       ")",
       optional(alias($.FieldForReturnType, $.return_type)),
       "=>",
-      alias($.FieldForExpression, $.expression),
+      choice(
+        $.WhileExpression,
+        seq(alias($.FieldForExpression, $.expression)),
+      ),
+    ),
+
+    WhileExpression: $ => seq(
+      "while",
+      alias($.FieldForExpression, $.while_condition),
+      ":",
+      seq(alias($.FieldForExpression, $.expression))
     ),
 
     NamedLambdaParameter: $ => seq(
@@ -501,7 +511,10 @@ module.exports = grammar({
       ")",
       optional(alias($.TypeAnnotation, $.return_type)),
       "=>",
-      alias($.FieldForExpression, $.expression),
+      choice(
+        $.WhileExpression,
+        seq(alias($.FieldForExpression, $.expression)),
+      ),
     )),
 
     FluentCallOrAccess: $ => prec(PREC.call, seq(
