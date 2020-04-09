@@ -79,3 +79,16 @@ lambda foo() => { a -> "hola", b -> "chau"}
 ---
 
  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))) (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))))))
+
+================
+Alias expression
+================
+
+lambda foo() => 1 as foo
+lambda foo() => (a + b) as sum
+lambda foo() => { first_name -> "hola" } as xxx
+
+---
+
+ (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (alias (Identifier))))))) (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (ParenthesizedExpression (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (Identifier)))))))))) (alias (Identifier))))))) (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))) (alias (Identifier))))))))
+

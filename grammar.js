@@ -17,6 +17,7 @@ const PREC = {
   bitwise_and: 130,
   xor: 140,
   shift: 150,
+  alias: 155,
   plus: 160,
   times: 170,
   unary: 180,
@@ -48,8 +49,10 @@ module.exports = grammar({
     [$.FieldForTypeParameter, $.FieldForIdentifier],
   ]),
 
-  // conflicts: $ => [
-  // ],
+  conflicts: $ => [
+    [$.FieldForIdentifier, $.FieldForExpression],
+    [$.FieldForIdentifier, $.FieldForTypeParameter],
+  ],
 
   inline: $ => [
   ],
@@ -288,6 +291,7 @@ module.exports = grammar({
       $.Negation,
       $.BooleanExpression,
       $.PrimaryExpression,
+      $.AliasExpression,
     ),
 
     EqualTo: $ => "==",
@@ -316,6 +320,12 @@ module.exports = grammar({
       ))
     )),
 
+    AliasExpression: $ => prec.left(PREC.alias, seq(
+      alias($.FieldForExpression, $.value),
+      "as",
+      alias($.FieldForIdentifier, $.alias),
+    )),
+
     Negation: $ => seq(
       "not",
       alias($.FieldForExpression, $.expression),
@@ -323,6 +333,7 @@ module.exports = grammar({
 
     Disjunction: $ => "or",
     Conjunction: $ => "and",
+    // Alias: $ => "as",
 
     BooleanExpression: $ => choice(
       prec.left(PREC.and, seq(
@@ -334,7 +345,12 @@ module.exports = grammar({
         alias($.FieldForExpression, $.left),
         $.Disjunction,
         alias($.FieldForExpression, $.right),
-      ))
+      )),
+      // prec.left(PREC.alias, seq(
+      //   alias($.FieldForExpression, $.value),
+      //   $.Alias,
+      //   alias($.FieldForIdentifier, $.alias),
+      // ))
     ),
 
     PrimaryExpression: $ => prec(PREC.primary, choice(
