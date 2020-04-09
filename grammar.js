@@ -512,7 +512,7 @@ module.exports = grammar({
       alias($.FieldForIdentifier, $.type),
       optional(seq("as", alias($.FieldForIdentifier, $.alias))),
       "{",
-      repeat(alias($.NodeEdge, $.edges__list)),
+      commaSeparated(alias($.FieldForNodeEdge, $.edges__list)),
       "}",
     ),
 
@@ -673,6 +673,11 @@ module.exports = grammar({
 
     FieldForReturnType: $ => choice(
       $.Type,
+      $.ImpossibleRule,
+    ),
+
+    FieldForNodeEdge: $ => choice(
+      $.NodeEdge,
       $.ImpossibleRule,
     ),
 
