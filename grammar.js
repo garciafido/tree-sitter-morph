@@ -369,8 +369,8 @@ module.exports = grammar({
       $.Node,
       $.Lambda,
       $.ParenthesizedExpression,
-      $.CallOrAccess,
-      $.FluentCallOrAccess,
+      $.Call,
+      $.FluentCall,
     )),
 
     BinaryExpression: $ => choice(
@@ -466,23 +466,23 @@ module.exports = grammar({
 
     DecoratorIdentifier: $ => /[@][A-Za-z_][a-zA-Z0-9_]*/,
 
-    CallOrAccess: $ => {
+    Call: $ => {
       return seq(
         alias($.CallableExpression, $.expression),
         choice(
-          seq("(", commaSeparated(alias($.FieldForExpression, $.call_parameters__list)), ")"),
-          seq("[", commaSeparated1(alias($.FieldForExpression, $.access_parameters__list)), "]"),
+          seq("(", commaSeparated(alias($.FieldForExpression, $.parenthesis_parameters__list)), ")"),
+          seq("[", commaSeparated1(alias($.FieldForExpression, $.bracket_parameters__list)), "]"),
         ),
       )
     },
 
-    CallableName: $ => prec(PREC.callable, $.Identifier),
+    CallableName: $ => $.Identifier,
 
     CallableExpression: $ => prec.left(PREC.callable, choice(
       $.CallableName,
-      $.CallOrAccess,
+      $.Call,
       $.ParenthesizedExpression,
-      $.Literal
+      $.Literal,
     )),
 
     Message: $ => $.Expression,
@@ -500,19 +500,19 @@ module.exports = grammar({
       ),
     )),
 
-    FluentCallOrAccess: $ => prec(PREC.call, seq(
+    FluentCall: $ => prec(PREC.call, seq(
       alias($.PrimaryExpression, $.expression),
       choice(
         seq(
           ".",
-          alias($.FieldForIdentifier, $.call_identifier),
+          alias($.CallableExpression, $.parenthesis_callee),
           "(",
-          commaSeparated(alias($.FieldForExpression, $.call_parameters__list)),
+          commaSeparated(alias($.FieldForExpression, $.parenthesis_parameters__list)),
           ")",
         ),
         seq(
           "[",
-          commaSeparated1(alias($.FieldForExpression, $.access_parameters__list)),
+          commaSeparated1(alias($.FieldForExpression, $.bracket_parameters__list)),
           "]",
         ),
       ),

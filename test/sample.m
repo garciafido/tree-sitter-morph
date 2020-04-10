@@ -1,3 +1,1 @@
-morph Foo mutates Bar {
-  foo ->  (self) => self<foo>['foo']
-}
+lambda foo(list: List) => list.'first_element'()
