@@ -512,9 +512,11 @@ module.exports = grammar({
         seq(
           ".",
           alias($.CallableExpression, $.parenthesis_callee),
-          "(",
-          commaSeparated(alias($.FieldForExpression, $.parenthesis_parameters__list)),
-          ")",
+          optional(seq(
+            "(",
+            commaSeparated(alias($.FieldForExpression, $.parenthesis_parameters__list)),
+            ")",
+          )),
         ),
         seq(
           "[",
