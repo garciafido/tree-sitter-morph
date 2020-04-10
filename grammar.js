@@ -469,7 +469,6 @@ module.exports = grammar({
     CallOrAccess: $ => {
       return seq(
         alias($.CallableExpression, $.expression),
-        optional(alias($.RuleParameters, $.rule_parameters)),
         choice(
           seq("(", commaSeparated(alias($.FieldForExpression, $.call_parameters__list)), ")"),
           seq("[", commaSeparated1(alias($.FieldForExpression, $.access_parameters__list)), "]"),
@@ -487,16 +486,6 @@ module.exports = grammar({
     )),
 
     Message: $ => $.Expression,
-
-    Rule: $ => $.Expression,
-
-    RuleExpression: $ => seq(
-      $.Rule, optional(seq(":", $.Message)),
-    ),
-
-    RuleParameters: $ => prec(PREC.call, seq(
-      "<", $.RuleExpression, repeat(seq(",", $.RuleExpression)), optional(","), ">",
-    )),
 
     Lambda: $ => prec(PREC.lambda, seq(
       "lambda",
@@ -517,7 +506,6 @@ module.exports = grammar({
         seq(
           ".",
           alias($.FieldForIdentifier, $.call_identifier),
-          optional(alias($.RuleParameters, $.rule_parameters)),
           "(",
           commaSeparated(alias($.FieldForExpression, $.call_parameters__list)),
           ")",
