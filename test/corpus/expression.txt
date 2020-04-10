@@ -2,102 +2,102 @@
 boolean_expression
 ==================
 
-foo() => b + 8 * 9 and 101 > 0 < 19
+function foo() => b + 8 * 9 and 101 > 0 < 19
 
 ---
 
-(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (BinaryExpression (Multiplication (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral)))))))))))) (Conjunction) (right (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (LessThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (BinaryExpression (Multiplication (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral)))))))))))) (Conjunction) (right (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (LessThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
 
 ================
 callable literal
 ================
 
-foo() => 1(a) > 2
+function foo() => 1(a) > 2
 
 ---
 
-(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (Call (expression (Literal (NumberLiteral (IntegerLiteral)))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (Call (expression (Literal (NumberLiteral (IntegerLiteral)))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))
 
 ========
 negation
 ========
 
-foo() => not a or b
+function foo() => not a or b
 
 ---
 
-  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (Negation (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (Identifier)))) (Disjunction) (right (Expression (PrimaryExpression (Identifier)))))))))))))
+  (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (Negation (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (Identifier)))) (Disjunction) (right (Expression (PrimaryExpression (Identifier)))))))))))))
 
 ================
 unary_expression
 ================
 
-foo() => -1+4
+function foo() => -1+4
 
 ---
 
-(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (UnaryFactor (NegativeFactor (NegativeSign) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))))
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (UnaryFactor (NegativeFactor (NegativeSign) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))) (right (Literal (NumberLiteral (IntegerLiteral))))))))))))
 
 
 ============
 FunctionCall
 ============
 
-foo() => f(a)
+function foo() => f(a)
 
 ---
 
- (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Call (expression (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Call (expression (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 ===========
 ChainedCall
 ===========
 
-foo() => f(a).f(b)
+function foo() => f(a).f(b)
 
 ---
 
-(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (FluentCall (expression (Call (expression (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))) (parenthesis_callee (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (FluentCall (expression (Call (expression (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))) (parenthesis_callee (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 =========
 Lambda OK
 =========
 
-foo() => () => 1
+function foo() => () => 1
 
 ---
 
-  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
+  (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))))))
 
 ===============
 Node expression
 ===============
 
-foo() => { a -> "hola", b -> "chau"}
+function foo() => { a -> "hola", b -> "chau"}
 
 ---
 
- (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))) (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))) (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))))))
 
 ================
 Alias expression
 ================
 
-foo() => 1 as foo
-foo() => (a + b) as sum
-foo() => { first_name -> "hola" } as xxx
+function foo() => 1 as foo
+function foo() => (a + b) as sum
+function foo() => { first_name -> "hola" } as xxx
 
 ---
 
- (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (alias (Identifier))))))) (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (ParenthesizedExpression (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (Identifier)))))))))) (alias (Identifier))))))) (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))) (alias (Identifier))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (alias (Identifier))))))) (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (ParenthesizedExpression (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (Identifier)))))))))) (alias (Identifier))))))) (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))) (alias (Identifier))))))))
 
 ======
 Tuples
 ======
 
-foo() => () => (4,5,6,7) + (1,2) + (1) + (1,)
+function foo() => () => (4,5,6,7) + (1,2) + (1) + (1,)
 
 ---
 
-(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))) (right (ParenthesizedExpression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))))
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))) (right (ParenthesizedExpression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))))
 

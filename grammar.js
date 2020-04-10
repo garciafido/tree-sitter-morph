@@ -73,7 +73,7 @@ module.exports = grammar({
       $.MorphismDeclaration,
       $.SymbolDeclaration,
       $.EnumDeclaration,
-      $.NamedLambdaDeclaration,
+      $.NamedFunctionDeclaration,
       $.TypeDeclaration,
     ),
 
@@ -203,8 +203,9 @@ module.exports = grammar({
       ":", $.Type,
     ),
 
-    NamedLambdaDeclaration: $ => prec.left(PREC.lambda, seq(
+    NamedFunctionDeclaration: $ => prec.left(PREC.lambda, seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
+      "function",
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForTypeParameters, $.type_parameters)),
       "(",
