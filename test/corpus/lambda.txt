@@ -28,3 +28,13 @@ lambda foo() => while 2: 2
 ---
 
 (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Lambda (WhileExpression (while_condition (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))) (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (WhileExpression (while_condition (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))
+
+=======================
+lambda callable literal
+=======================
+
+lambda foo(list: List) => list.'first_element'()
+
+---
+
+  (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (parameters__list (NamedLambdaParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (Identifier)))))))) (expression (Expression (PrimaryExpression (FluentCall (expression (Identifier)) (parenthesis_callee (Literal (StringLiteral))))))))))

@@ -15,9 +15,8 @@ callable literal
 lambda foo() => 1(a) > 2
 
 ---
-   (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (CallOrAccess (expression (Literal (NumberLiteral (IntegerLiteral)))) (call_parameters__list (Expression (PrimaryExpression (Identifier)))))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))
 
-
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (Call (expression (Literal (NumberLiteral (IntegerLiteral)))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))
 
 ========
 negation
@@ -48,7 +47,7 @@ lambda foo() => f(a)
 
 ---
 
-(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (CallOrAccess (expression (CallableName (Identifier))) (call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
+ (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Call (expression (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 ===========
 ChainedCall
@@ -58,7 +57,7 @@ lambda foo() => f(a).f(b)
 
 ---
 
- (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (FluentCallOrAccess (expression (CallOrAccess (expression (CallableName (Identifier))) (call_parameters__list (Expression (PrimaryExpression (Identifier)))))) (call_identifier (Identifier)) (call_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (FluentCall (expression (Call (expression (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))) (parenthesis_callee (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 =========
 Lambda OK
