@@ -1,1 +1,3 @@
-lambda foo() => while bar + 7: x + 1
+morph Foo mutates Bar {
+  foo ->  (self) => self<foo>['foo']
+}

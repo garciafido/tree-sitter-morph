@@ -345,7 +345,6 @@ module.exports = grammar({
 
     Disjunction: $ => "or",
     Conjunction: $ => "and",
-    // Alias: $ => "as",
 
     BooleanExpression: $ => choice(
       prec.left(PREC.and, seq(
@@ -358,11 +357,6 @@ module.exports = grammar({
         $.Disjunction,
         alias($.FieldForExpression, $.right),
       )),
-      // prec.left(PREC.alias, seq(
-      //   alias($.FieldForExpression, $.value),
-      //   $.Alias,
-      //   alias($.FieldForIdentifier, $.alias),
-      // ))
     ),
 
     PrimaryExpression: $ => prec(PREC.primary, choice(
