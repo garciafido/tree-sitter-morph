@@ -494,7 +494,6 @@ module.exports = grammar({
     Message: $ => $.Expression,
 
     Lambda: $ => prec(PREC.lambda, seq(
-      // "lambda",
       "(",
       commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
       ")",
