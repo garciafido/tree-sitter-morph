@@ -209,7 +209,7 @@ module.exports = grammar({
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForTypeParameters, $.type_parameters)),
       "(",
-      commaSeparated(alias($.FieldForNamedLambdaParameter, $.parameters__list)),
+      commaSeparated(alias($.FieldForNamedFunctionParameter, $.parameters__list)),
       ")",
       optional(alias($.FieldForReturnType, $.return_type)),
       "=>",
@@ -226,7 +226,7 @@ module.exports = grammar({
       seq(alias($.FieldForExpression, $.expression))
     ),
 
-    NamedLambdaParameter: $ => seq(
+    NamedFunctionParameter: $ => seq(
       alias($.FieldForIdentifier, $.identifier),
       alias($.TypeAnnotation, $.type),
     ),
@@ -374,7 +374,7 @@ module.exports = grammar({
       $.List,
       $.Tuple,
       $.Node,
-      $.Lambda,
+      $.AnonymousFunction,
       $.ParenthesizedExpression,
       $.Call,
       $.FluentCall,
@@ -494,7 +494,7 @@ module.exports = grammar({
 
     Message: $ => $.Expression,
 
-    Lambda: $ => prec(PREC.lambda, seq(
+    AnonymousFunction: $ => prec(PREC.lambda, seq(
       "(",
       commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
       ")",
@@ -696,8 +696,8 @@ module.exports = grammar({
       $.ImpossibleRule,
     ),
 
-    FieldForNamedLambdaParameter: $ => choice(
-      $.NamedLambdaParameter,
+    FieldForNamedFunctionParameter: $ => choice(
+      $.NamedFunctionParameter,
       $.ImpossibleRule,
     ),
 
