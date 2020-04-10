@@ -2,7 +2,7 @@
 lambda_declaration_statement
 ============================
 
-lambda bar<A extends B | C, S extends D>(a: A) => "bar"
+bar<A extends B | C, S extends D>(a: A) => "bar"
 
 ---
 
@@ -12,7 +12,7 @@ lambda bar<A extends B | C, S extends D>(a: A) => "bar"
 lambda empty list
 =================
 
-lambda foo() => []
+foo() => []
 
 ---
 
@@ -22,8 +22,8 @@ lambda foo() => []
 lambda while
 ============
 
-lambda foo() => lambda () => while 2: 2
-lambda foo() => while 2: 2
+foo() => () => while 2: 2
+foo() => while 2: 2
 
 ---
 
@@ -33,7 +33,7 @@ lambda foo() => while 2: 2
 lambda callable literal
 =======================
 
-lambda foo(list: List) => list.'first_element'()
+foo(list: List) => list.'first_element'()
 
 ---
 
@@ -43,7 +43,7 @@ lambda foo(list: List) => list.'first_element'()
 lambda implicit parenthesis
 ===========================
 
-lambda foo(list: List) => list.'first_element'
+foo(list: List) => list.'first_element'
 
 ---
 

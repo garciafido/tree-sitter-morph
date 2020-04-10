@@ -2,7 +2,7 @@
 boolean_expression
 ==================
 
-lambda foo() => b + 8 * 9 and 101 > 0 < 19
+foo() => b + 8 * 9 and 101 > 0 < 19
 
 ---
 
@@ -12,7 +12,7 @@ lambda foo() => b + 8 * 9 and 101 > 0 < 19
 callable literal
 ================
 
-lambda foo() => 1(a) > 2
+foo() => 1(a) > 2
 
 ---
 
@@ -22,7 +22,7 @@ lambda foo() => 1(a) > 2
 negation
 ========
 
-lambda foo() => not a or b
+foo() => not a or b
 
 ---
 
@@ -32,7 +32,7 @@ lambda foo() => not a or b
 unary_expression
 ================
 
-lambda foo() => -1+4
+foo() => -1+4
 
 ---
 
@@ -43,7 +43,7 @@ lambda foo() => -1+4
 FunctionCall
 ============
 
-lambda foo() => f(a)
+foo() => f(a)
 
 ---
 
@@ -53,7 +53,7 @@ lambda foo() => f(a)
 ChainedCall
 ===========
 
-lambda foo() => f(a).f(b)
+foo() => f(a).f(b)
 
 ---
 
@@ -63,7 +63,7 @@ lambda foo() => f(a).f(b)
 Lambda OK
 =========
 
-lambda foo() => lambda () => 1
+foo() => () => 1
 
 ---
 
@@ -73,7 +73,7 @@ lambda foo() => lambda () => 1
 Node expression
 ===============
 
-lambda foo() => { a -> "hola", b -> "chau"}
+foo() => { a -> "hola", b -> "chau"}
 
 ---
 
@@ -83,9 +83,9 @@ lambda foo() => { a -> "hola", b -> "chau"}
 Alias expression
 ================
 
-lambda foo() => 1 as foo
-lambda foo() => (a + b) as sum
-lambda foo() => { first_name -> "hola" } as xxx
+foo() => 1 as foo
+foo() => (a + b) as sum
+foo() => { first_name -> "hola" } as xxx
 
 ---
 
@@ -95,7 +95,7 @@ lambda foo() => { first_name -> "hola" } as xxx
 Tuples
 ======
 
-lambda foo() => lambda () => (4,5,6,7) + (1,2) + (1) + (1,)
+foo() => () => (4,5,6,7) + (1,2) + (1) + (1,)
 
 ---
 

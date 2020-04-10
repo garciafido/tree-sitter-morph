@@ -4,7 +4,7 @@ const PREC = {
 
   // this resolves a conflict between the usage of ':' in a lambda vs in a
   // typed parameter. In the case of a lambda, we don't allow typed parameters.
-  lambda: -20,
+  lambda: 1000,
   typed_parameter: -10,
   conditional: -10,
 
@@ -52,6 +52,7 @@ module.exports = grammar({
   conflicts: $ => [
     [$.FieldForIdentifier, $.FieldForExpression],
     [$.FieldForIdentifier, $.FieldForTypeParameter],
+    [$.FieldForPath, $.FieldForIdentifier],
   ],
 
   inline: $ => [
@@ -202,9 +203,8 @@ module.exports = grammar({
       ":", $.Type,
     ),
 
-    NamedLambdaDeclaration: $ => seq(
+    NamedLambdaDeclaration: $ => prec.left(PREC.lambda, seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
-      "lambda",
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForTypeParameters, $.type_parameters)),
       "(",
@@ -216,7 +216,7 @@ module.exports = grammar({
         $.WhileExpression,
         seq(alias($.FieldForExpression, $.expression)),
       ),
-    ),
+    )),
 
     WhileExpression: $ => seq(
       "while",
@@ -494,7 +494,7 @@ module.exports = grammar({
     Message: $ => $.Expression,
 
     Lambda: $ => prec(PREC.lambda, seq(
-      "lambda",
+      // "lambda",
       "(",
       commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
       ")",
