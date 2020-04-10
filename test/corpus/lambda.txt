@@ -38,3 +38,13 @@ lambda foo(list: List) => list.'first_element'()
 ---
 
   (Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (parameters__list (NamedLambdaParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (Identifier)))))))) (expression (Expression (PrimaryExpression (FluentCall (expression (Identifier)) (parenthesis_callee (Literal (StringLiteral))))))))))
+
+===========================
+lambda implicit parenthesis
+===========================
+
+lambda foo(list: List) => list.'first_element'
+
+---
+
+(Module (declarations__list (NamedLambdaDeclaration (identifier (Identifier)) (parameters__list (NamedLambdaParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (Identifier)))))))) (expression (Expression (PrimaryExpression (FluentCall (expression (Identifier)) (parenthesis_callee (Literal (StringLiteral))))))))))

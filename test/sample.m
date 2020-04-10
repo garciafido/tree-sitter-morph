@@ -1,1 +1,1 @@
-lambda foo(list: List) => list.'first_element'()
+lambda foo(list: List) => foo.bar
