@@ -99,7 +99,7 @@ module.exports = grammar({
       seq(alias($.FieldForIdentifier, $.items__list), repeat(seq(",", alias($.FieldForIdentifier, $.items__list)))),
     )),
 
-    NodeEdgeTypeDeclarationMembers: $ => $.NodeEdgeTypeDeclaration,
+    NodeTypeDeclarationMembers: $ => $.NodeEdgeTypeDeclaration,
 
     NodeTypeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
