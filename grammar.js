@@ -346,7 +346,7 @@ module.exports = grammar({
     GraterThan: $ => ">",
     GreaterThanEqualTo: $ => ">=",
     Is: $ => "is",
-    IsNot: $ => seq("is", "not"),
+    IsNot: $ => token.immediate(seq("is", "not")),
 
     RelationalExpression: $ => prec.left(PREC.compare, seq(
       $.PrimaryExpression,
@@ -404,6 +404,15 @@ module.exports = grammar({
       $.ParenthesizedExpression,
       $.Call,
       $.FluentCall,
+      $.ConditionalExpression,
+    )),
+
+    ConditionalExpression: $ => prec.left(PREC.conditional, seq(
+      alias($.PrimaryExpression, $.condition),
+      "?",
+      alias($.PrimaryExpression, $.true_value),
+      ":",
+      alias($.PrimaryExpression, $.false_value),
     )),
 
     BinaryExpression: $ => choice(
