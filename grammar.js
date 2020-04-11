@@ -52,8 +52,6 @@ module.exports = grammar({
     [$.FieldForIdentifier, $.FieldForExpression],
     [$.FieldForIdentifier, $.FieldForTypeParameter],
     [$.FieldForPath, $.FieldForIdentifier],
-    // [$.IsNot, $.Is],
-    // [$.Expression, $.RelationalExpression],
   ],
 
   inline: $ => [
