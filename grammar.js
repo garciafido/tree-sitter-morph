@@ -4,7 +4,7 @@ const PREC = {
 
   // this resolves a conflict between the usage of ':' in a lambda vs in a
   // typed parameter. In the case of a lambda, we don't allow typed parameters.
-  lambda: 1000,
+  lambda: -20,
   typed_parameter: -10,
   conditional: -10,
 
@@ -52,6 +52,8 @@ module.exports = grammar({
     [$.FieldForIdentifier, $.FieldForExpression],
     [$.FieldForIdentifier, $.FieldForTypeParameter],
     [$.FieldForPath, $.FieldForIdentifier],
+    [$.In, $.NotIn],
+    [$.Is, $.IsNot],
   ],
 
   inline: $ => [
@@ -333,11 +335,21 @@ module.exports = grammar({
 
     Expression: $ => choice(
       $.RelationalExpression,
-      $.Negation,
       $.BooleanExpression,
       $.PrimaryExpression,
       $.AliasExpression,
     ),
+
+    AliasExpression: $ => prec.left(PREC.alias, seq(
+      alias($.FieldForExpression, $.value),
+      "as",
+      alias($.FieldForIdentifier, $.alias),
+    )),
+
+    Negation: $ => prec.left(PREC.not, seq(
+      "not",
+      alias($.FieldForExpression, $.expression),
+    )),
 
     EqualTo: $ => "==",
     NotEqualTo: $ => "!=",
@@ -346,7 +358,9 @@ module.exports = grammar({
     GraterThan: $ => ">",
     GreaterThanEqualTo: $ => ">=",
     Is: $ => "is",
-    IsNot: $ => token.immediate(seq("is", "not")),
+    IsNot: $ => seq("is", "not"),
+    In: $ => "in",
+    NotIn: $ => seq("not", "in"),
 
     RelationalExpression: $ => prec.left(PREC.compare, seq(
       $.PrimaryExpression,
@@ -358,6 +372,8 @@ module.exports = grammar({
           $.LessThanEqualTo,
           $.GraterThan,
           $.GreaterThanEqualTo,
+          $.In,
+          $.NotIn,
           $.Is,
           $.IsNot,
         ),
@@ -365,21 +381,11 @@ module.exports = grammar({
       ))
     )),
 
-    AliasExpression: $ => prec.left(PREC.alias, seq(
-      alias($.FieldForExpression, $.value),
-      "as",
-      alias($.FieldForIdentifier, $.alias),
-    )),
-
-    Negation: $ => seq(
-      "not",
-      alias($.FieldForExpression, $.expression),
-    ),
-
     Disjunction: $ => "or",
     Conjunction: $ => "and",
 
     BooleanExpression: $ => choice(
+      $.Negation,
       prec.left(PREC.and, seq(
         alias($.FieldForExpression, $.left),
         $.Conjunction,
@@ -405,6 +411,7 @@ module.exports = grammar({
       $.Call,
       $.FluentCall,
       $.ConditionalExpression,
+      $.Negation,
     )),
 
     ConditionalExpression: $ => prec.left(PREC.conditional, seq(

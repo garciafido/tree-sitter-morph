@@ -26,7 +26,7 @@ function foo() => not a or b
 
 ---
 
-  (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (Negation (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (Identifier)))) (Disjunction) (right (Expression (PrimaryExpression (Identifier)))))))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (Negation (expression (Expression (BooleanExpression (left (Expression (PrimaryExpression (Identifier)))) (Disjunction) (right (Expression (PrimaryExpression (Identifier))))))))))))))
 
 ================
 unary_expression
@@ -59,9 +59,9 @@ function foo() => f(a).f(b)
 
 (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (FluentCall (expression (Call (expression (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))) (parenthesis_callee (CallableName (Identifier))) (parenthesis_parameters__list (Expression (PrimaryExpression (Identifier)))))))))))
 
-=========
+====================
 AnonymousFunction OK
-=========
+====================
 
 function foo() => () => 1
 
@@ -110,3 +110,13 @@ function foo() => () => 5>6 ? 7 : 0
 ---
 
 (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (ConditionalExpression (condition (AnonymousFunction (expression (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))) (true_value (Literal (NumberLiteral (IntegerLiteral)))) (false_value (Literal (NumberLiteral (IntegerLiteral)))))))))))
+
+=============
+in and not in
+=============
+
+function foo() => a not in []
+
+---
+
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (Identifier)) (NotIn) (PrimaryExpression (List))))))))
