@@ -101,3 +101,12 @@ function foo() => () => (4,5,6,7) + (1,2) + (1) + (1,)
 
 (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (AnonymousFunction (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))) (right (ParenthesizedExpression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))))
 
+===========
+Conditional
+===========
+
+function foo() => () => 5>6 ? 7 : 0
+
+---
+
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (ConditionalExpression (condition (AnonymousFunction (expression (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))) (true_value (Literal (NumberLiteral (IntegerLiteral)))) (false_value (Literal (NumberLiteral (IntegerLiteral)))))))))))
