@@ -24,9 +24,10 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                 return this.code.substring(node.startIndex, node.endIndex);
             }
 
-            traverse(node) {
+            traverse(node, parent) {
                 const type = node.type;
                 const NewNode = {
+                    parent,
                     type: type === "decorators__list" ? "Decorator" : type === "identifier" ? "Identifier" : type,
                     value: undefined,
                     children: {},
@@ -60,12 +61,12 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                             if (!(childType in NewChildren)) {
                                 NewChildren[childType] = [];
                             }
-                            NewChildren[childType].push(this.traverse(child));
+                            NewChildren[childType].push(this.traverse(child, NewNode));
                         } else {
                             if (childType in NewChildren) {
                                 throw new Error(`There is more than one child "${child.type}" and it is not declared as a list. Postfix the rule name with "${LIST_POSTFIX}"`);
                             }
-                            NewChildren[childType] = this.traverse(child);
+                            NewChildren[childType] = this.traverse(child, NewNode);
                         }
                     }
                 }
@@ -73,7 +74,7 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                 if (Object.keys(NewChildren).length > 0) {
                     NewNode['children'] = NewChildren;
                 } else if (Object.keys(children).length === 1) {
-                    return this.traverse(children[0])
+                    return this.traverse(children[0], parent)
                 }
                 return NewNode
             }
