@@ -109,7 +109,7 @@ module.exports = grammar({
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForNodeTypeParameters, $.type_parameters)),
       optional(seq("extends", alias($.FieldForIdentifier, $.extends))),
-      "{", repeat(alias($.NodeEdgeTypeDeclarationMembers, $.members__list)), "}",
+      "{", repeat(alias($.NodeTypeDeclarationMembers, $.members__list)), "}",
     ),
 
     Decorator: $ => prec.left(seq(
