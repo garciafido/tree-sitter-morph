@@ -288,6 +288,7 @@ module.exports = grammar({
       $.BooleanType,
       $.IntegerType,
       $.FloatType,
+      $.CharType,
       $.NodeType,
       $.FunctionType,
     ),
@@ -299,6 +300,8 @@ module.exports = grammar({
     IntegerType: $ => "integer",
 
     FloatType: $ => "float",
+
+    CharType: $ => "char",
 
     NodeType: $ => "node",
 
