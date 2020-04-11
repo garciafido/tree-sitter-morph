@@ -99,12 +99,20 @@ module.exports = grammar({
 
     NodeTypeDeclarationMembers: $ => $.NodeEdgeDeclaration,
 
+
+// A NodeTypeDeclaration can now have generic parameters, that are exactly like the ones in a NamedFunction.
+//
+// The field must be named "type_parameters__list", and the parameters come after the Identifier:
+//
+// node Foo<Bar> { ... }
+
     NodeTypeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       optional(alias("abstract", $.abstract)),
       "node",
       alias($.FieldForIdentifier, $.identifier),
+      optional(alias($.FieldForNodeTypeParameters, $.type_parameters)),
       optional(seq("extends", alias($.FieldForIdentifier, $.extends))),
       "{", repeat(alias($.NodeTypeDeclarationMembers, $.members__list)), "}",
     ),
@@ -243,17 +251,17 @@ module.exports = grammar({
       optional(alias($.TypeParameterConstraint, $.constraint)),
     ),
 
-    // NodeTypeParameters: $ => seq(
-    //   "<",
-    //   alias($.FieldForNodeTypeParameter, $.type_parameters__list),
-    //   repeat(seq(",", alias($.FieldForNodeTypeParameter, $.type_parameters__list))),
-    //   optional(","), ">",
-    // ),
-    //
-    // NodeTypeParameter: $ => seq(
-    //   alias($.FieldForIdentifier, $.name),
-    //   optional(alias($.TypeParameterConstraint, $.constraint)),
-    // ),
+    NodeTypeParameters: $ => seq(
+      "<",
+      alias($.FieldForNodeTypeParameter, $.type_parameters__list),
+      repeat(seq(",", alias($.FieldForNodeTypeParameter, $.type_parameters__list))),
+      optional(","), ">",
+    ),
+
+    NodeTypeParameter: $ => seq(
+      alias($.FieldForIdentifier, $.name),
+      optional(alias($.TypeParameterConstraint, $.constraint)),
+    ),
 
     TypeParameterConstraint: $ => seq(
       "extends", $.Type,

@@ -2,12 +2,11 @@
 Simple node_declaration_statement
 =================================
 
-node foo {}
+node foo<Pepe> {}
 
 ---
 
- (Module (declarations__list (NodeTypeDeclaration (identifier (Identifier)))))
-
+(Module (declarations__list (NodeTypeDeclaration (identifier (Identifier)) (type_parameters (TypeParameters (type_parameters__list (TypeParameter (name (Identifier)))))))))
 
 ==================================
 Extends node_declaration_statement
