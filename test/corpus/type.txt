@@ -6,4 +6,4 @@ type foo = Foo
 
 ---
 
- (Module (declarations__list (TypeDeclaration (identifier (Identifier)) (value (TypeUnion (types__list (TypeIdentifier (Identifier))))))))
+(Module (declarations__list (TypeDeclaration (identifier (Identifier)) (value (TypeUnion (types__list (TypeIdentifier (identifier))))))))

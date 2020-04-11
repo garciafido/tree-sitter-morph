@@ -55,4 +55,17 @@ abstract node foo extends FooBase {
 
 ---
 
- (Module (declarations__list (NodeTypeDeclaration (decorators__list (identifier (DecoratorIdentifier))) (abstract) (identifier (Identifier)) (extends (Identifier)) (members__list (NodeEdgeDeclaration (decorators__list (identifier (DecoratorIdentifier)) (parameters__list (Expression (PrimaryExpression (Identifier))))) (identifier (Identifier)) (modifier (NodeEdgeArrayModifier)) (type (TypeUnion (types__list (TypeIdentifier (Identifier))))))))))
+
+  (Module (declarations__list (NodeTypeDeclaration (decorators__list (identifier (DecoratorIdentifier))) (abstract) (identifier (Identifier)) (extends (Identifier)) (members__list (NodeEdgeDeclaration (decorators__list (identifier (DecoratorIdentifier)) (parameters__list (Expression (PrimaryExpression (Identifier))))) (identifier (Identifier)) (modifier (NodeEdgeArrayModifier)) (type (TypeUnion (types__list (TypeIdentifier (identifier))))))))))
+
+==========================
+generic in type identifier
+==========================
+
+node Foo {
+    foo -> foo<foo>
+}
+
+---
+
+(Module (declarations__list (NodeTypeDeclaration (identifier (Identifier)) (members__list (NodeEdgeDeclaration (identifier (Identifier)) (type (TypeUnion (types__list (TypeIdentifier (identifier) (parameters__list (TypeUnion (types__list (TypeIdentifier (identifier))))))))))))))

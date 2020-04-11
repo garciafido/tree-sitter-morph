@@ -265,7 +265,17 @@ module.exports = grammar({
       alias($.SingleType, $.types__list), repeat(seq("|", alias($.SingleType, $.types__list))),
     ),
 
-    TypeIdentifier: $ => $.Identifier,
+    TypeIdentifier: $ => seq(
+      alias($.Identifier, $.identifier),
+      optional(seq(
+        "<",
+        alias($.Type, $.parameters__list),
+        repeat(seq(",", alias($.Type, $.parameters__list))),
+        optional(","),
+        ">",
+      )),
+
+    ),
 
     SingleType: $ => choice(
       $.TypeIdentifier,
