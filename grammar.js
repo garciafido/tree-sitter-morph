@@ -264,9 +264,9 @@ module.exports = grammar({
 
     Type: $ => $.TypeUnion,
 
-    TypeUnion: $ => seq(
+    TypeUnion: $ => prec.left(seq(
       alias($.SingleType, $.types__list), repeat(seq("|", alias($.SingleType, $.types__list))),
-    ),
+    )),
 
     TypeIdentifier: $ => seq(
       alias($.Identifier, $.identifier),
@@ -283,6 +283,19 @@ module.exports = grammar({
     SingleType: $ => choice(
       $.TypeIdentifier,
       $.PredefinedType,
+      $.ParameterizedFunctionType,
+    ),
+
+    ParameterizedFunctionType: $ => seq(
+      "(",
+      optional(seq(
+        alias($.Type, $.parameters__list),
+        repeat(seq(",", alias($.Type, $.parameters__list),)),
+        optional(","))
+      ),
+      ")",
+      "=>",
+      alias($.Type, $.return_type),
     ),
 
     PredefinedType: $ => choice(
