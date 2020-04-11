@@ -97,14 +97,7 @@ module.exports = grammar({
       seq(alias($.FieldForIdentifier, $.items__list), repeat(seq(",", alias($.FieldForIdentifier, $.items__list)))),
     )),
 
-    NodeTypeDeclarationMembers: $ => $.NodeEdgeDeclaration,
-
-
-// A NodeTypeDeclaration can now have generic parameters, that are exactly like the ones in a NamedFunction.
-//
-// The field must be named "type_parameters__list", and the parameters come after the Identifier:
-//
-// node Foo<Bar> { ... }
+    NodeEdgeTypeDeclarationMembers: $ => $.NodeEdgeTypeDeclaration,
 
     NodeTypeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
@@ -114,7 +107,7 @@ module.exports = grammar({
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForNodeTypeParameters, $.type_parameters)),
       optional(seq("extends", alias($.FieldForIdentifier, $.extends))),
-      "{", repeat(alias($.NodeTypeDeclarationMembers, $.members__list)), "}",
+      "{", repeat(alias($.NodeEdgeTypeDeclarationMembers, $.members__list)), "}",
     ),
 
     Decorator: $ => prec.left(seq(
@@ -125,11 +118,11 @@ module.exports = grammar({
 
     DecoIdent: $ => $.DecoratorIdentifier,
 
-    NodeEdgeDeclaration: $ => seq(
+    NodeEdgeTypeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.NodeEdgeModifier, $.modifier)),
-      "->",
+      ":",
       alias($.Type, $.type),
       optional(alias($.NodeEdgeInitializer, $.initializer)),
     ),
