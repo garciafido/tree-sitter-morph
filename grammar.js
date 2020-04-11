@@ -45,9 +45,8 @@ module.exports = grammar({
     /[\s\uFEFF\u2060\u200B\u00A0]/
   ],
 
-  conflicts: ($, previous) => previous.concat([
-    [$.FieldForTypeParameter, $.FieldForIdentifier],
-  ]),
+  // conflicts: ($, previous) => previous.concat([
+  // ]),
 
   conflicts: $ => [
     [$.FieldForIdentifier, $.FieldForExpression],
@@ -239,9 +238,22 @@ module.exports = grammar({
     ),
 
     TypeParameter: $ => seq(
+      optional(alias("read", $.read)),
       alias($.FieldForIdentifier, $.name),
       optional(alias($.TypeParameterConstraint, $.constraint)),
     ),
+
+    // NodeTypeParameters: $ => seq(
+    //   "<",
+    //   alias($.FieldForNodeTypeParameter, $.type_parameters__list),
+    //   repeat(seq(",", alias($.FieldForNodeTypeParameter, $.type_parameters__list))),
+    //   optional(","), ">",
+    // ),
+    //
+    // NodeTypeParameter: $ => seq(
+    //   alias($.FieldForIdentifier, $.name),
+    //   optional(alias($.TypeParameterConstraint, $.constraint)),
+    // ),
 
     TypeParameterConstraint: $ => seq(
       "extends", $.Type,
@@ -692,6 +704,16 @@ module.exports = grammar({
     ),
 
     FieldForTypeParameter: $ => choice(
+      $.TypeParameter,
+      $.ImpossibleRule,
+    ),
+
+    FieldForNodeTypeParameters: $ => choice(
+      $.TypeParameters,
+      $.ImpossibleRule,
+    ),
+
+    FieldForNodeTypeParameter: $ => choice(
       $.TypeParameter,
       $.ImpossibleRule,
     ),

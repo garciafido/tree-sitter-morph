@@ -1,1 +1,5 @@
-lambda foo(list: List) => foo.bar
+function  bar
+<
+A extends B | C, S extends D
+>
+(a: A) => "bar"
