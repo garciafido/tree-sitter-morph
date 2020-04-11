@@ -569,7 +569,7 @@ module.exports = grammar({
     ),
 
     NodeEdge: $ => seq(
-      alias($.FieldForIdentifier, $.identifier), "->", alias($.FieldForExpression, $.value),
+      alias($.FieldForIdentifier, $.identifier), "=", alias($.FieldForExpression, $.value),
     ),
 
     Literal: $ => choice(

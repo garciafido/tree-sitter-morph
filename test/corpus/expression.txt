@@ -73,7 +73,7 @@ function foo() => () => 1
 Node expression
 ===============
 
-function foo() => { a -> "hola", b -> "chau"}
+function foo() => { a = "hola", b = "chau"}
 
 ---
 
@@ -85,7 +85,7 @@ Alias expression
 
 function foo() => 1 as foo
 function foo() => (a + b) as sum
-function foo() => { first_name -> "hola" } as xxx
+function foo() => { first_name = "hola" } as xxx
 
 ---
 
