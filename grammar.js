@@ -550,6 +550,7 @@ module.exports = grammar({
     Message: $ => $.Expression,
 
     AnonymousFunction: $ => prec(PREC.lambda, seq(
+      "lambda",
       "(",
       commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
       ")",

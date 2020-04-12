@@ -2,7 +2,7 @@
 Simple node_declaration_statement
 =================================
 
-node foo<Pepe> {}
+class foo<Pepe> {}
 
 ---
 
@@ -12,7 +12,7 @@ node foo<Pepe> {}
 Extends node_declaration_statement
 ==================================
 
-node foo extends FooBase {}
+class foo extends FooBase {}
 
 ---
 
@@ -25,7 +25,7 @@ Decorator node_declaration_statement
 
 @fooDeco()
 @barDeco()
-node foo extends FooBase {}
+class foo extends FooBase {}
 
 ---
 
@@ -36,7 +36,7 @@ Export abstract node_declaration_statement
 ==========================================
 
 @fooDeco()
-abstract node foo extends FooBase {}
+abstract class foo extends FooBase {}
 
 ---
 
@@ -47,7 +47,7 @@ Member node_declaration_statement
 =================================
 
 @fooDeco()
-abstract node foo extends FooBase {
+abstract class foo extends FooBase {
     @parental(HaikuProgramTree)
     blocks[]: Block
 }
@@ -60,7 +60,7 @@ abstract node foo extends FooBase {
 generic in type identifier
 ==========================
 
-node Foo {
+class Foo {
     foo: foo<foo>
 }
 
