@@ -105,7 +105,7 @@ module.exports = grammar({
       repeat(alias($.Decorator, $.decorators__list)),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       optional(alias("abstract", $.abstract)),
-      "node",
+      "class",
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForNodeTypeParameters, $.type_parameters)),
       optional(seq("extends", alias($.FieldForIdentifier, $.extends))),
@@ -318,7 +318,7 @@ module.exports = grammar({
 
     CharType: $ => "char",
 
-    NodeType: $ => "node",
+    NodeType: $ => "class",
 
     FunctionType: $ => "function",
 
