@@ -105,7 +105,7 @@ module.exports = grammar({
       repeat(alias($.Decorator, $.decorators__list)),
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       optional(alias("abstract", $.abstract)),
-      "class",
+      choice("class", alias("proxy", $.proxy)),
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForNodeTypeParameters, $.type_parameters)),
       optional(seq("extends", alias($.FieldForIdentifier, $.extends))),
@@ -173,14 +173,14 @@ module.exports = grammar({
 
     MorphismMutationDeclaration: $ => seq(
       alias($.FieldForIdentifier, $.identifier),
-      "->",
+      ":",
       alias($.FieldForExpression, $.expression),
     ),
 
     MorphismCreationDeclaration: $ => seq(
       "new",
       alias($.FieldForIdentifier, $.identifier),
-      "->",
+      ":",
       alias($.FieldForExpression, $.expression),
     ),
 
