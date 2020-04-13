@@ -215,18 +215,8 @@ module.exports = grammar({
       ")",
       optional(alias($.FieldForReturnType, $.return_type)),
       "=>",
-      choice(
-        $.WhileExpression,
-        seq(alias($.FieldForExpression, $.expression)),
-      ),
+      seq(alias($.FieldForExpression, $.expression)),
     )),
-
-    WhileExpression: $ => seq(
-      "while",
-      alias($.FieldForExpression, $.while_condition),
-      ":",
-      seq(alias($.FieldForExpression, $.expression))
-    ),
 
     NamedFunctionParameter: $ => seq(
       alias($.FieldForIdentifier, $.identifier),
@@ -555,10 +545,7 @@ module.exports = grammar({
       ")",
       optional(alias($.TypeAnnotation, $.return_type)),
       "=>",
-      choice(
-        $.WhileExpression,
-        seq(alias($.FieldForExpression, $.expression)),
-      ),
+      seq(alias($.FieldForExpression, $.expression)),
     )),
 
     FluentCall: $ => prec(PREC.call, seq(
