@@ -500,6 +500,7 @@ module.exports = grammar({
     )),
 
     AnonymousFunction: $ => prec(PREC.lambda, seq(
+      "lambda",
       "(",
       commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
       ")",

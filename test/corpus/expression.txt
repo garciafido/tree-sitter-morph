@@ -63,7 +63,7 @@ function foo() => f(a).f(b)
 AnonymousFunction OK
 ====================
 
-function foo() => () => 1
+function foo() => lambda () => 1
 
 ---
 
@@ -95,7 +95,7 @@ function foo() => { first_name = "hola" } as xxx
 Tuples
 ======
 
-function foo() => () => (4,5,6,7) + (1,2) + (1) + (1,)
+function foo() => lambda () => (4,5,6,7) + (1,2) + (1) + (1,)
 
 ---
 
@@ -105,18 +105,17 @@ function foo() => () => (4,5,6,7) + (1,2) + (1) + (1,)
 Conditional
 ===========
 
-function foo() => () => 5>6 ? 7 : 0
+function foo() => lambda (a,b,c) => 5>6 ? a*b : c
 
 ---
-
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (ConditionalExpression (condition (AnonymousFunction (expression (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))) (true_value (Literal (NumberLiteral (IntegerLiteral)))) (false_value (Literal (NumberLiteral (IntegerLiteral)))))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (ConditionalExpression (condition (AnonymousFunction (parameters__list (Identifier)) (parameters__list (Identifier)) (parameters__list (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))) (true_value (BinaryExpression (Multiplication (left (Identifier)) (right (Identifier))))) (false_value (Identifier)))))))))
 
 =============
 in and not in
 =============
 
-function foo() => a not in []
+function foo(a) => a not in []
 
 ---
 
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (Identifier)) (NotIn) (PrimaryExpression (List))))))))
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (ERROR (FieldForIdentifier (Identifier))) (expression (Expression (RelationalExpression (PrimaryExpression (Identifier)) (NotIn) (PrimaryExpression (List))))))))
