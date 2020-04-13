@@ -608,6 +608,7 @@ module.exports = grammar({
       $.StringTemplateLiteral,
       $.BooleanLiteral,
       $.NumberLiteral,
+      $.VoidLiteral,
     ),
 
     BooleanLiteral: $ => choice(
@@ -623,6 +624,8 @@ module.exports = grammar({
       $.IntegerLiteral,
       $.FloatLiteral,
     ),
+
+    VoidLiteral: $ => "Void",
 
     StringLiteral: $ => choice(
       seq(
