@@ -241,7 +241,6 @@ module.exports = grammar({
     ),
 
     TypeParameter: $ => seq(
-      optional(alias("read", $.read)),
       alias($.FieldForIdentifier, $.name),
       optional(alias($.TypeParameterConstraint, $.constraint)),
     ),
