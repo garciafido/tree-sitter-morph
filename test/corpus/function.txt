@@ -21,17 +21,6 @@ function foo() => []
 
  (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (List)))))))
 
-============
-lambda while
-============
-
-function foo() => lambda () => while 2: 2
-function foo() => while 2: 2
-
----
-
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (AnonymousFunction (WhileExpression (while_condition (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))) (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (WhileExpression (while_condition (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (expression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))
-
 =======================
 lambda callable literal
 =======================
