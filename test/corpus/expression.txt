@@ -63,7 +63,7 @@ function foo() => f(a).f(b)
 AnonymousFunction OK
 ====================
 
-function foo() => lambda () => 1
+function foo() => () => 1
 
 ---
 
@@ -95,7 +95,7 @@ function foo() => { first_name = "hola" } as xxx
 Tuples
 ======
 
-function foo() => lambda () => (4,5,6,7) + (1,2) + (1) + (1,)
+function foo() => () => (4,5,6,7) + (1,2) + (1) + (1,)
 
 ---
 
@@ -105,7 +105,7 @@ function foo() => lambda () => (4,5,6,7) + (1,2) + (1) + (1,)
 Conditional
 ===========
 
-function foo() => lambda () => 5>6 ? 7 : 0
+function foo() => () => 5>6 ? 7 : 0
 
 ---
 

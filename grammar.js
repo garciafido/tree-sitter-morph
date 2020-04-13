@@ -205,7 +205,7 @@ module.exports = grammar({
       ":", $.Type,
     ),
 
-    NamedFunctionDeclaration: $ => prec.left(PREC.lambda, seq(
+    NamedFunctionDeclaration: $ => seq(
       optional(alias($.ModuleLevelAccessibilityModifier, $.accessibility)),
       "function",
       alias($.FieldForIdentifier, $.identifier),
@@ -216,7 +216,7 @@ module.exports = grammar({
       optional(alias($.FieldForReturnType, $.return_type)),
       "=>",
       seq(alias($.FieldForExpression, $.expression)),
-    )),
+    ),
 
     NamedFunctionParameter: $ => seq(
       alias($.FieldForIdentifier, $.identifier),
@@ -489,6 +489,25 @@ module.exports = grammar({
       ")"
     )),
 
+    Tuple: $ => prec(PREC.call, seq(
+      "(",
+      alias($.FieldForExpression, $.elements__list),
+      choice(
+        ",",
+        repeat(seq(",", alias($.FieldForExpression, $.elements__list))),
+      ),
+      ")",
+    )),
+
+    AnonymousFunction: $ => prec(PREC.lambda, seq(
+      "(",
+      commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
+      ")",
+      optional(alias($.TypeAnnotation, $.return_type)),
+      "=>",
+      seq(alias($.FieldForExpression, $.expression)),
+    )),
+
     PositiveSign: $ => "+",
     NegativeSign: $ => "-",
 
@@ -538,16 +557,6 @@ module.exports = grammar({
 
     Message: $ => $.Expression,
 
-    AnonymousFunction: $ => prec(PREC.lambda, seq(
-      "lambda",
-      "(",
-      commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
-      ")",
-      optional(alias($.TypeAnnotation, $.return_type)),
-      "=>",
-      seq(alias($.FieldForExpression, $.expression)),
-    )),
-
     FluentCall: $ => prec(PREC.call, seq(
       alias($.PrimaryExpression, $.expression),
       choice(
@@ -570,16 +579,6 @@ module.exports = grammar({
 
     List: $ => prec(PREC.call, seq(
       "[", optional(alias($.FieldForExpression, $.elements__list)), "]",
-    )),
-
-    Tuple: $ => prec(PREC.call, seq(
-      "(",
-      alias($.FieldForExpression, $.elements__list),
-      choice(
-        ",",
-        repeat(seq(",", alias($.FieldForExpression, $.elements__list))),
-      ),
-      ")",
     )),
 
     Node: $ => seq(

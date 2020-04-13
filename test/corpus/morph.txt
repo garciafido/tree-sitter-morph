@@ -30,7 +30,7 @@ morphism_declaration_statement with lambda
 ==========================================
 
 morph Foo mutates A {
-  new foo: lambda () => 1 + 2
+  new foo: () => 1 + 2
 }
 
 ---

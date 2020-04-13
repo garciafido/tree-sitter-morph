@@ -11,9 +11,9 @@ function bar<
 ---
 (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (type_parameters (TypeParameters (type_parameters__list (TypeParameter (name (Identifier)) (constraint (Type (TypeUnion (types__list (TypeIdentifier (identifier))) (types__list (TypeIdentifier (identifier)))))))) (type_parameters__list (TypeParameter (name (Identifier)) (constraint (Type (TypeUnion (types__list (TypeIdentifier (identifier)))))))))) (parameters__list (NamedFunctionParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (identifier)))))))) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))
 
-=================
-lambda empty list
-=================
+===================
+function empty list
+===================
 
 function foo() => []
 
@@ -21,9 +21,9 @@ function foo() => []
 
  (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (List)))))))
 
-=======================
-lambda callable literal
-=======================
+=========================
+function callable literal
+=========================
 
 function foo(list: List) => list.'first_element'()
 
@@ -31,9 +31,9 @@ function foo(list: List) => list.'first_element'()
 
 (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (parameters__list (NamedFunctionParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (identifier)))))))) (expression (Expression (PrimaryExpression (FluentCall (expression (Identifier)) (parenthesis_callee (Literal (StringLiteral))))))))))
 
-===========================
-lambda implicit parenthesis
-===========================
+=============================
+function implicit parenthesis
+=============================
 
 function foo(list: List) => list.'first_element'
 
