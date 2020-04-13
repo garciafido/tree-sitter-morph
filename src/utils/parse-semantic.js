@@ -12,7 +12,7 @@ class SyntaxError extends Error {
 }
 
 module.exports.buildParseSemantic = function(Parser, Morph) {
-    return function parseSemantic(sourceCode) {
+    return function parseSemantic(sourceCode, customMapper) {
         class ParseSemantic {
             parser = new Parser();
 
@@ -76,7 +76,7 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                 } else if (Object.keys(children).length === 1) {
                     return this.traverse(children[0], parent)
                 }
-                return NewNode
+                return customMapper ? customMapper(NewNode) : NewNode;
             }
 
             parse(sourceCode) {
