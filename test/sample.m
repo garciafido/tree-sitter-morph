@@ -1,1 +1,1 @@
-function foo(list: (L) => List) => [list]
+function foo() => (a,b,c) => 1
