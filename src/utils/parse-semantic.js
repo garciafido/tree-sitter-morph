@@ -31,7 +31,7 @@ module.exports.buildParseSemantic = function(Parser, Morph) {
                     type: type === "decorators__list" ? "Decorator" : type === "identifier" ? "Identifier" : type,
                     value: undefined,
                     children: {},
-                    sourceFilePosition: {
+                    sourceFileLocation: {
                         start: node.startPosition,
                         end: node.endPosition,
                     }
