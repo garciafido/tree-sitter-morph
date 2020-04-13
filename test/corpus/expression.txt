@@ -63,7 +63,7 @@ function foo() => f(a).f(b)
 AnonymousFunction OK
 ====================
 
-function foo() => lambda () => 1
+function foo() => () => 1
 
 ---
 
@@ -88,27 +88,28 @@ function foo() => (a + b) as sum
 function foo() => { first_name = "hola" } as xxx
 
 ---
-
- (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (alias (Identifier))))))) (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (ParenthesizedExpression (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (Identifier)))))))))) (alias (Identifier))))))) (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))) (alias (Identifier))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (alias (Identifier))))))) (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (ParenthesizedExpression (FieldForExpression (Expression (PrimaryExpression (BinaryExpression (Addition (left (Identifier)) (right (Identifier))))))))))) (alias (Identifier))))))) (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (AliasExpression (value (Expression (PrimaryExpression (Node (edges__list (NodeEdge (identifier (Identifier)) (value (Expression (PrimaryExpression (Literal (StringLiteral))))))))))) (alias (Identifier))))))))
 
 ======
 Tuples
 ======
 
-function foo() => lambda () => (4,5,6,7) + (1,2) + (1) + (1,)
+function foo() => (a) => (4,5,6,7) + (1,a) + (1) + (1,)
 
 ---
 
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (AnonymousFunction (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))) (right (ParenthesizedExpression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (AnonymousFunction (parameters__list (Expression (PrimaryExpression (Identifier)))) (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))))) (elements__list (Expression (PrimaryExpression (Identifier))))))))) (right (ParenthesizedExpression (FieldForExpression (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))) (right (Tuple (elements__list (Expression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))))))))))))))
+
 
 ===========
 Conditional
 ===========
 
-function foo() => lambda (a,b,c) => 5>6 ? a*b : c
+function foo() => (a,b,c) => 5>6 ? a*b : c
 
 ---
- (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (ConditionalExpression (condition (AnonymousFunction (parameters__list (Identifier)) (parameters__list (Identifier)) (parameters__list (Identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))) (true_value (BinaryExpression (Multiplication (left (Identifier)) (right (Identifier))))) (false_value (Identifier)))))))))
+
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (ConditionalExpression (condition (AnonymousFunction (parameters__list (Expression (PrimaryExpression (Identifier)))) (parameters__list (Expression (PrimaryExpression (Identifier)))) (parameters__list (Expression (PrimaryExpression (Identifier)))) (expression (Expression (RelationalExpression (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral)))) (GraterThan) (PrimaryExpression (Literal (NumberLiteral (IntegerLiteral))))))))) (true_value (BinaryExpression (Multiplication (left (Identifier)) (right (Identifier))))) (false_value (Identifier)))))))))
 
 =============
 in and not in
@@ -118,4 +119,4 @@ function foo(a) => a not in []
 
 ---
 
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (ERROR (FieldForIdentifier (Identifier))) (expression (Expression (RelationalExpression (PrimaryExpression (Identifier)) (NotIn) (PrimaryExpression (List))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (ERROR (FieldForIdentifier (Identifier))) (expression (Expression (RelationalExpression (PrimaryExpression (Identifier)) (NotIn) (PrimaryExpression (List))))))))
