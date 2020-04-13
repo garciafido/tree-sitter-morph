@@ -237,7 +237,7 @@ module.exports = grammar({
     ),
 
     TypeParameter: $ => seq(
-      alias($.FieldForIdentifier, $.name),
+      alias($.FieldForIdentifier, $.identifier),
       optional(alias($.TypeParameterConstraint, $.constraint)),
     ),
 
