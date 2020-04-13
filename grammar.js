@@ -17,9 +17,9 @@ const PREC = {
   bitwise_and: 130,
   xor: 140,
   shift: 150,
-  alias: 155,
   plus: 160,
   times: 170,
+  alias: 175,
   unary: 180,
   power: 190,
   call: 200,
@@ -217,16 +217,17 @@ module.exports = grammar({
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForTypeParameters, $.type_parameters)),
       "(",
-      commaSeparated(alias($.FieldForNamedFunctionParameter, $.parameters__list)),
+      optional(seq(
+        alias($.FieldForExpression, $.parameters__list),
+        choice(
+          ",",
+          repeat(seq(",", alias($.FieldForExpression, $.parameters__list))),
+        ),
+      )),
       ")",
       optional(alias($.FieldForReturnType, $.return_type)),
       "=>",
       seq(alias($.FieldForExpression, $.expression)),
-    ),
-
-    NamedFunctionParameter: $ => seq(
-      alias($.FieldForIdentifier, $.identifier),
-      alias($.TypeAnnotation, $.type),
     ),
 
     TypeParameters: $ => seq(
@@ -345,14 +346,7 @@ module.exports = grammar({
       $.RelationalExpression,
       $.BooleanExpression,
       $.PrimaryExpression,
-      $.AliasExpression,
     ),
-
-    AliasExpression: $ => prec.left(PREC.alias, seq(
-      alias($.FieldForExpression, $.value),
-      "as",
-      alias($.FieldForIdentifier, $.alias),
-    )),
 
     Negation: $ => prec.left(PREC.not, seq(
       "not",
@@ -439,6 +433,8 @@ module.exports = grammar({
       $.BitwiseDisjunction,
       $.BitwiseConjunction,
       $.ExclusiveDisjunction,
+      $.AliasExpression,
+      $.FluentAssertion,
     ),
 
     Addition: $ => prec.left(PREC.plus, seq(
@@ -469,6 +465,18 @@ module.exports = grammar({
       alias($.PrimaryExpression, $.left),
       "%",
       alias($.PrimaryExpression, $.right),
+    )),
+
+    FluentAssertion: $ => prec.left(PREC.alias, seq(
+      alias($.PrimaryExpression, $.expression),
+      ":",
+      alias(seq($.PrimaryExpression, optional(":")),$.assertion),
+    )),
+
+    AliasExpression: $ => prec.left(PREC.alias, seq(
+      alias($.PrimaryExpression, $.value),
+      "as",
+      alias($.PrimaryExpression, $.alias),
     )),
 
     BitwiseDisjunction: $ => prec.left(PREC.bitwise_or, seq(
@@ -756,11 +764,6 @@ module.exports = grammar({
 
     FieldForNodeTypeParameter: $ => choice(
       $.TypeParameter,
-      $.ImpossibleRule,
-    ),
-
-    FieldForNamedFunctionParameter: $ => choice(
-      $.NamedFunctionParameter,
       $.ImpossibleRule,
     ),
 
