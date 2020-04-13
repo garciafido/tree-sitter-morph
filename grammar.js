@@ -27,6 +27,12 @@ const PREC = {
   callable: 210,
   primary: 220,
 
+  tuple_expression_field: 1,
+  expression_field: 1,
+  identifier_field: 2,
+
+  token: 1000,
+
   morph_decorator: 1,
   node_decorator: 2,
 
@@ -49,8 +55,8 @@ module.exports = grammar({
   // ]),
 
   conflicts: $ => [
-    [$.FieldForIdentifier, $.FieldForExpression],
     [$.FieldForIdentifier, $.FieldForTypeParameter],
+    [$.AnonymousFunction, $.Tuple],
     [$.FieldForPath, $.FieldForIdentifier],
     [$.In, $.NotIn],
     [$.Is, $.IsNot],
@@ -485,11 +491,11 @@ module.exports = grammar({
 
     ParenthesizedExpression: $ => prec(PREC.parenthesized_expression, seq(
       "(",
-      $.Expression,
+      $.FieldForExpression,
       ")"
     )),
 
-    Tuple: $ => prec(PREC.call, seq(
+    Tuple: $ => seq(
       "(",
       alias($.FieldForExpression, $.elements__list),
       choice(
@@ -497,16 +503,22 @@ module.exports = grammar({
         repeat(seq(",", alias($.FieldForExpression, $.elements__list))),
       ),
       ")",
-    )),
+    ),
 
-    AnonymousFunction: $ => prec(PREC.lambda, seq(
+    AnonymousFunction: $ => seq(
       "(",
-      commaSeparated(alias($.FieldForIdentifier, $.parameters__list)),
+      optional(seq(
+        alias($.FieldForExpression, $.parameters__list),
+        choice(
+          ",",
+          repeat(seq(",", alias($.FieldForExpression, $.parameters__list))),
+        ),
+      )),
       ")",
       optional(alias($.TypeAnnotation, $.return_type)),
       "=>",
       seq(alias($.FieldForExpression, $.expression)),
-    )),
+    ),
 
     PositiveSign: $ => "+",
     NegativeSign: $ => "-",
@@ -712,15 +724,15 @@ module.exports = grammar({
       $.ImpossibleRule,
     ),
 
-    FieldForExpression: $ => choice(
+    FieldForExpression: $ => prec(PREC.expression_field, choice(
       $.Expression,
       $.ImpossibleRule,
-    ),
+    )),
 
-    FieldForFilter: $ => choice(
+    FieldForFilter: $ =>  prec(PREC.identifier_field, choice(
       $.Expression,
       $.ImpossibleRule,
-    ),
+    )),
 
     FieldForPath: $ => choice(
       $.Path,
