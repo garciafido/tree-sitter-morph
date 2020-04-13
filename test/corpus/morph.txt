@@ -30,9 +30,9 @@ morphism_declaration_statement with lambda
 ==========================================
 
 morph Foo mutates A {
-  new foo: (a) => 1 + 2 + a
+  new foo: lambda (a) => 1 + 2 + a
 }
 
 ---
 
-(Module (declarations__list (MorphismDeclaration (identifier (Identifier)) (mutates (Identifier)) (members__list (MorphismCreationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (AnonymousFunction (parameters__list (Expression (PrimaryExpression (Identifier)))) (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral))))))) (right (Identifier))))))))))))))))
+(Module (declarations__list (MorphismDeclaration (identifier (Identifier)) (mutates (Identifier)) (members__list (MorphismCreationDeclaration (identifier (Identifier)) (expression (Expression (PrimaryExpression (AnonymousFunction (parameters__list (Identifier)) (expression (Expression (PrimaryExpression (BinaryExpression (Addition (left (BinaryExpression (Addition (left (Literal (NumberLiteral (IntegerLiteral)))) (right (Literal (NumberLiteral (IntegerLiteral))))))) (right (Identifier))))))))))))))))
