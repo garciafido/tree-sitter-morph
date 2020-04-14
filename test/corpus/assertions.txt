@@ -1,0 +1,9 @@
+=================
+Fluent assertions
+=================
+
+function foo(a) => a:1:b:2:c:3:
+
+---
+
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (parameters__list (Expression (PrimaryExpression (Identifier)))) (expression (Expression (PrimaryExpression (BinaryExpression (FluentAssertion (expression (Identifier)) (assertion (BinaryExpression (FluentAssertion (expression (Literal (NumberLiteral (IntegerLiteral)))) (assertion (BinaryExpression (FluentAssertion (expression (Identifier)) (assertion (BinaryExpression (FluentAssertion (expression (Literal (NumberLiteral (IntegerLiteral)))) (assertion (BinaryExpression (FluentAssertion (expression (Identifier)) (assertion (Literal (NumberLiteral (IntegerLiteral)))) (assertion)))))))))))))))))))))
