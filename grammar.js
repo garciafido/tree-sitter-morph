@@ -469,8 +469,11 @@ module.exports = grammar({
 
     FluentAssertion: $ => prec.right(PREC.alias, seq(
       alias($.PrimaryExpression, $.expression),
-      ":",
-      alias(seq($.PrimaryExpression, optional(":")),$.assertion),
+      repeat1(seq(
+        ":",
+        alias($.PrimaryExpression, $.assertion),
+      )),
+      optional(":")
     )),
 
     AliasExpression: $ => prec.right(PREC.alias, seq(
