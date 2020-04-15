@@ -1,1 +1,1 @@
-function foo(a) => a + b:x+y: + c
+function foo(a) => b:x+y: + c
