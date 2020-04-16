@@ -9,7 +9,8 @@ function bar<
 (a: A) => "bar"
 
 ---
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (type_parameters (TypeParameters (type_parameters__list (TypeParameter (name (Identifier)) (constraint (Type (TypeUnion (types__list (TypeIdentifier (identifier))) (types__list (TypeIdentifier (identifier)))))))) (type_parameters__list (TypeParameter (name (Identifier)) (constraint (Type (TypeUnion (types__list (TypeIdentifier (identifier)))))))))) (parameters__list (NamedFunctionParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (identifier)))))))) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))
+
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (type_parameters (TypeParameters (type_parameters__list (TypeParameter (name (Identifier)) (constraint (Type (TypeUnion (types__list (TypeIdentifier (identifier))) (types__list (TypeIdentifier (identifier)))))))) (type_parameters__list (TypeParameter (name (Identifier)) (constraint (Type (TypeUnion (types__list (TypeIdentifier (identifier)))))))))) (parameters_list (identifier) (type_expression (TypeIdentifier (identifier)))) (expression (Expression (PrimaryExpression (Literal (StringLiteral))))))))
 
 ===================
 function empty list
@@ -29,7 +30,7 @@ function foo(list: List) => list.'first_element'()
 
 ---
 
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (parameters__list (NamedFunctionParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (identifier)))))))) (expression (Expression (PrimaryExpression (FluentCall (expression (Identifier)) (parenthesis_callee (Literal (StringLiteral))))))))))
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (parameters_list (identifier) (type_expression (TypeIdentifier (identifier)))) (expression (Expression (PrimaryExpression (FluentCall (expression (Identifier)) (parenthesis_callee (Literal (StringLiteral))))))))))
 
 =============================
 function implicit parenthesis
@@ -39,7 +40,7 @@ function foo(list: List) => list.'first_element'
 
 ---
 
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (parameters__list (NamedFunctionParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (TypeIdentifier (identifier)))))))) (expression (Expression (PrimaryExpression (FluentCall (expression (Identifier)) (parenthesis_callee (Literal (StringLiteral))))))))))
+(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (parameters_list (identifier) (type_expression (TypeIdentifier (identifier)))) (expression (Expression (PrimaryExpression (FluentCall (expression (Identifier)) (parenthesis_callee (Literal (StringLiteral))))))))))
 
 =========================
 ParameterizedFunctionType
@@ -49,6 +50,5 @@ function foo(list: (L) => List) => [list]
 
 ---
 
-(Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (parameters__list (NamedFunctionParameter (identifier (Identifier)) (type (Type (TypeUnion (types__list (ParameterizedFunctionType (parameters__list (TypeUnion (types__list (TypeIdentifier (identifier))))) (return_type (TypeUnion (types__list (TypeIdentifier (identifier)))))))))))) (expression (Expression (PrimaryExpression (List (elements__list (Expression (PrimaryExpression (Identifier)))))))))))
 
 

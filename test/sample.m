@@ -1,1 +1,11 @@
-function foo() => (a,b,c) => 1
+morph Foo mutates Bar {
+  foo: (self) =>
+    bar(
+      type(self),
+      (each) =>
+        self.'predicate'(each.'current_element')
+          ? ListElement({this=each.'filtered'})
+          -> each.'filtered',
+      'current_element',
+    )
+}

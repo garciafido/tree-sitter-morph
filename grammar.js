@@ -217,7 +217,12 @@ module.exports = grammar({
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForTypeParameters, $.type_parameters)),
       "(",
-      commaSeparated(alias($.FieldForNamedFunctionParameter, $.parameters__list)),
+        optional(seq(
+          alias($.NamedFunctionParameter, $.parameters_list),
+          repeat(seq(",",
+          alias($.NamedFunctionParameter, $.parameters_list),
+          optional(","))),
+        )),
       ")",
       optional(alias($.FieldForReturnType, $.return_type)),
       "=>",
@@ -225,9 +230,77 @@ module.exports = grammar({
     ),
 
     NamedFunctionParameter: $ => seq(
-      alias($.FieldForIdentifier, $.identifier),
-      alias($.TypeAnnotation, $.type),
+        alias($.FieldForIdentifier, $.identifier),
+        optional(seq(":", alias($.TypePrimaryExpression, $.type_expression))),
     ),
+
+    TypePrimaryExpression: $ => choice(
+      $.TypeBinaryExpression,
+      $.Type,
+      $.FluentTypeCall,
+      $.ParenthesizedTypeExpression,
+      $.Literal,
+    ),
+
+    ParenthesizedTypeExpression: $ => prec(PREC.parenthesized_expression, seq(
+      "(",
+      $.TypePrimaryExpression,
+      ")"
+    )),
+
+    FluentTypeCall: $ => prec(PREC.call, seq(
+      alias($.TypePrimaryExpression, $.expression),
+      choice(
+        seq(
+          ".",
+          alias($.CallableExpression, $.parenthesis_callee),
+          optional(seq(
+            "(",
+            commaSeparated(alias($.FieldForTypeExpression, $.parenthesis_parameters__list)),
+            ")",
+          )),
+        ),
+        seq(
+          "[",
+          commaSeparated1(alias($.FieldForTypeExpression, $.bracket_parameters__list)),
+          "]",
+        ),
+      ),
+    )),
+
+    TypeBinaryExpression: $ => choice(
+      $.TypeBitwiseDisjunction,
+      $.TypeBitwiseConjunction,
+    ),
+
+    TypeBitwiseDisjunction: $ => prec.left(PREC.bitwise_or, seq(
+      alias($.TypePrimaryExpression, $.left),
+      "|",
+      alias($.TypePrimaryExpression, $.right),
+    )),
+
+    TypeBitwiseConjunction: $ => prec.left(PREC.bitwise_and, seq(
+      alias($.TypePrimaryExpression, $.left),
+      "&",
+      alias($.TypePrimaryExpression, $.right),
+    )),
+
+    TypeCall: $ => {
+      return seq(
+        alias($.TypeCallableExpression, $.expression),
+        choice(
+          seq("(", commaSeparated(alias($.FieldForExpression, $.parenthesis_parameters__list)), ")"),
+          seq("[", commaSeparated1(alias($.FieldForExpression, $.bracket_parameters__list)), "]"),
+        ),
+      )
+    },
+
+    TypeCallableExpression: $ => prec.left(PREC.callable, choice(
+      $.CallableName,
+      $.TypeCall,
+      $.ParenthesizedTypeExpression,
+      $.Literal,
+    )),
 
     TypeParameters: $ => seq(
       "<",
@@ -729,6 +802,11 @@ module.exports = grammar({
       $.ImpossibleRule,
     )),
 
+    FieldForTypeExpression: $ => prec(PREC.expression_field+1, choice(
+      $.TypePrimaryExpression,
+      $.ImpossibleRule,
+    )),
+
     FieldForFilter: $ =>  prec(PREC.identifier_field, choice(
       $.Expression,
       $.ImpossibleRule,
@@ -756,11 +834,6 @@ module.exports = grammar({
 
     FieldForNodeTypeParameter: $ => choice(
       $.TypeParameter,
-      $.ImpossibleRule,
-    ),
-
-    FieldForNamedFunctionParameter: $ => choice(
-      $.NamedFunctionParameter,
       $.ImpossibleRule,
     ),
 

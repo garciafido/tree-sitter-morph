@@ -119,4 +119,4 @@ function foo(a) => a not in []
 
 ---
 
- (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (ERROR (FieldForIdentifier (Identifier))) (expression (Expression (RelationalExpression (PrimaryExpression (Identifier)) (NotIn) (PrimaryExpression (List))))))))
+ (Module (declarations__list (NamedFunctionDeclaration (identifier (Identifier)) (parameters_list (identifier)) (expression (Expression (RelationalExpression (PrimaryExpression (Identifier)) (NotIn) (PrimaryExpression (List))))))))
