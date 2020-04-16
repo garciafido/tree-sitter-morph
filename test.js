@@ -1,6 +1,14 @@
 const { parseSemantic } = require("./index");
 
 console.log(parseSemantic(`
-morph ToFilter mutates Filtered {
-  filtered: (a) => 1
-}`).children.declarations[0].children.members[0].children.expression);
+morph Foo mutates Bar {
+  foo: (self) =>
+    bar(
+      type(self),
+      (each) =>
+        self.'predicate'(each.'current_element')
+          ? ListElement({this=each.'filtered'})
+          -> each.'filtered',
+      'current_element',
+    )
+}`).children)
