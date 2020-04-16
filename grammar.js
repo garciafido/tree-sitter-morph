@@ -22,6 +22,7 @@ const PREC = {
   alias: 175,
   unary: 180,
   power: 190,
+  assertion: 195,
   call: 200,
 
   callable: 210,
@@ -467,14 +468,6 @@ module.exports = grammar({
       alias($.PrimaryExpression, $.right),
     )),
 
-    FluentAssertion: $ => prec.left(PREC.alias, seq(
-      alias($.PrimaryExpression, $.expression),
-      ":",
-      alias($.PrimaryExpression, $.assertion),
-      optional(":"),
-      ),
-    ),
-
     AliasExpression: $ => prec.right(PREC.alias, seq(
       alias($.PrimaryExpression, $.value),
       "as",
@@ -578,6 +571,13 @@ module.exports = grammar({
     )),
 
     Message: $ => $.Expression,
+
+    FluentAssertion: $ => prec.left(PREC.assertion, seq(
+      alias($.PrimaryExpression, $.expression),
+      ":",
+      alias($.PrimaryExpression, $.assertion),
+      optional(":"),
+    )),
 
     FluentCall: $ => prec(PREC.call, seq(
       alias($.PrimaryExpression, $.expression),
