@@ -57,7 +57,9 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.FieldForIdentifier, $.FieldForTypeParameter],
-    [$.AnonymousFunction, $.Tuple],
+    // [$.AnonymousFunction, $.Tuple],
+    [$.ConditionalExpression, $.AnonymousFunction],
+
     [$.FieldForPath, $.FieldForIdentifier],
     [$.In, $.NotIn],
     [$.Is, $.IsNot],
@@ -343,11 +345,12 @@ module.exports = grammar({
     // ** Expressions **
     // *****************
 
-    Expression: $ => choice(
+    Expression: $ => prec.left(choice(
       $.RelationalExpression,
       $.BooleanExpression,
       $.PrimaryExpression,
-    ),
+      $.AnonymousFunction,
+    )),
 
     Negation: $ => prec.left(PREC.not, seq(
       "not",
@@ -367,7 +370,7 @@ module.exports = grammar({
 
     RelationalExpression: $ => prec.left(PREC.compare, seq(
       $.PrimaryExpression,
-      repeat1(seq(
+      repeat1(prec.left(seq(
         choice(
           $.EqualTo,
           $.NotEqualTo,
@@ -381,7 +384,7 @@ module.exports = grammar({
           $.IsNot,
         ),
         $.PrimaryExpression
-      ))
+      )))
     )),
 
     Disjunction: $ => "or",
@@ -409,7 +412,6 @@ module.exports = grammar({
       $.List,
       $.Tuple,
       $.Node,
-      $.AnonymousFunction,
       $.ParenthesizedExpression,
       $.Call,
       $.FluentCall,
@@ -417,12 +419,14 @@ module.exports = grammar({
       $.Negation,
     )),
 
-    ConditionalExpression: $ => prec.left(PREC.conditional, seq(
+    // ConditionalExpression: $ => prec.left(PREC.conditional, seq(
+    ConditionalExpression: $ => prec.right(seq(
       alias($.PrimaryExpression, $.condition),
       "?",
       alias($.PrimaryExpression, $.true_value),
       "->",
       alias($.PrimaryExpression, $.false_value),
+    // )),
     )),
 
     BinaryExpression: $ => choice(
@@ -509,18 +513,19 @@ module.exports = grammar({
     ),
 
     AnonymousFunction: $ => seq(
+      "func",
       "(",
       optional(seq(
-        alias($.FieldForExpression, $.parameters__list),
+        alias($.PrimaryExpression, $.parameters__list),
         choice(
           ",",
-          repeat(seq(",", alias($.FieldForExpression, $.parameters__list))),
+          repeat(seq(",", alias($.PrimaryExpression, $.parameters__list))),
         ),
       )),
       ")",
       optional(alias($.TypeAnnotation, $.return_type)),
       "=>",
-      seq(alias($.FieldForExpression, $.expression)),
+      seq(alias($.PrimaryExpression, $.expression)),
     ),
 
     PositiveSign: $ => "+",
