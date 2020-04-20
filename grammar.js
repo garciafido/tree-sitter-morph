@@ -316,6 +316,8 @@ module.exports = grammar({
 
     NodeType: $ => "class",
 
+    VoidType: $ => "void",
+
     FunctionType: $ => "function",
 
     TypeDeclaration: $ => seq(
