@@ -129,20 +129,13 @@ module.exports = grammar({
     NodeEdgeTypeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
       alias($.FieldForIdentifier, $.identifier),
-      optional(alias($.NodeEdgeModifier, $.modifier)),
+      optional(alias($.NodeEdgeNullableModifier, $.nullable)),
       ":",
       alias($.Type, $.type),
       optional(alias($.NodeEdgeInitializer, $.initializer)),
     ),
 
-    NodeEdgeModifier: $ => choice(
-      $.NodeEdgeRequiredModifier,
-      $.NodeEdgeArrayModifier,
-    ),
-
-    NodeEdgeRequiredModifier: $ => "!",
-
-    NodeEdgeArrayModifier: $ => "[]",
+    NodeEdgeNullableModifier: $ => "?",
 
     InitializerExpression: $ => $.Expression,
 
@@ -301,6 +294,7 @@ module.exports = grammar({
       $.FloatType,
       $.CharType,
       $.NodeType,
+      $.VoidType,
       $.FunctionType,
     ),
 
@@ -619,7 +613,7 @@ module.exports = grammar({
       $.StringLiteral,
       $.StringTemplateLiteral,
       $.BooleanLiteral,
-      $.NumberLiteral,
+      $.IntegerLiteral,
       $.VoidLiteral,
     ),
 
@@ -631,11 +625,6 @@ module.exports = grammar({
     FalseLiteral: $ => "False",
 
     TrueLiteral: $ => "True",
-
-    NumberLiteral: $ => choice(
-      $.IntegerLiteral,
-      $.FloatLiteral,
-    ),
 
     VoidLiteral: $ => "Void",
 
