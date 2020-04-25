@@ -17,9 +17,9 @@ const PREC = {
   bitwise_and: 130,
   xor: 140,
   shift: 150,
-  alias: 155,
   plus: 160,
   times: 170,
+  alias: 175,
   unary: 180,
   power: 190,
   call: 200,
@@ -56,7 +56,9 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.FieldForIdentifier, $.FieldForTypeParameter],
-    [$.AnonymousFunction, $.Tuple],
+    // [$.AnonymousFunction, $.Tuple],
+    [$.ConditionalExpression, $.AnonymousFunction],
+
     [$.FieldForPath, $.FieldForIdentifier],
     [$.In, $.NotIn],
     [$.Is, $.IsNot],
@@ -129,20 +131,13 @@ module.exports = grammar({
     NodeEdgeTypeDeclaration: $ => seq(
       repeat(alias($.Decorator, $.decorators__list)),
       alias($.FieldForIdentifier, $.identifier),
-      optional(alias($.NodeEdgeModifier, $.modifier)),
+      optional(alias($.NodeEdgeNullableModifier, $.nullable)),
       ":",
       alias($.Type, $.type),
       optional(alias($.NodeEdgeInitializer, $.initializer)),
     ),
 
-    NodeEdgeModifier: $ => choice(
-      $.NodeEdgeRequiredModifier,
-      $.NodeEdgeArrayModifier,
-    ),
-
-    NodeEdgeRequiredModifier: $ => "!",
-
-    NodeEdgeArrayModifier: $ => "[]",
+    NodeEdgeNullableModifier: $ => "?",
 
     InitializerExpression: $ => $.Expression,
 
@@ -217,16 +212,17 @@ module.exports = grammar({
       alias($.FieldForIdentifier, $.identifier),
       optional(alias($.FieldForTypeParameters, $.type_parameters)),
       "(",
-      commaSeparated(alias($.FieldForNamedFunctionParameter, $.parameters__list)),
+      optional(seq(
+        alias($.FieldForExpression, $.parameters__list),
+        choice(
+          ",",
+          repeat(seq(",", alias($.FieldForExpression, $.parameters__list))),
+        ),
+      )),
       ")",
       optional(alias($.FieldForReturnType, $.return_type)),
       "=>",
       seq(alias($.FieldForExpression, $.expression)),
-    ),
-
-    NamedFunctionParameter: $ => seq(
-      alias($.FieldForIdentifier, $.identifier),
-      alias($.TypeAnnotation, $.type),
     ),
 
     TypeParameters: $ => seq(
@@ -300,6 +296,7 @@ module.exports = grammar({
       $.FloatType,
       $.CharType,
       $.NodeType,
+      $.VoidType,
       $.FunctionType,
     ),
 
@@ -314,6 +311,8 @@ module.exports = grammar({
     CharType: $ => "char",
 
     NodeType: $ => "class",
+
+    VoidType: $ => "void",
 
     FunctionType: $ => "function",
 
@@ -341,17 +340,11 @@ module.exports = grammar({
     // ** Expressions **
     // *****************
 
-    Expression: $ => choice(
+    Expression: $ => prec.left(choice(
       $.RelationalExpression,
       $.BooleanExpression,
       $.PrimaryExpression,
-      $.AliasExpression,
-    ),
-
-    AliasExpression: $ => prec.left(PREC.alias, seq(
-      alias($.FieldForExpression, $.value),
-      "as",
-      alias($.FieldForIdentifier, $.alias),
+      $.AnonymousFunction,
     )),
 
     Negation: $ => prec.left(PREC.not, seq(
@@ -372,7 +365,7 @@ module.exports = grammar({
 
     RelationalExpression: $ => prec.left(PREC.compare, seq(
       $.PrimaryExpression,
-      repeat1(seq(
+      repeat1(prec.left(seq(
         choice(
           $.EqualTo,
           $.NotEqualTo,
@@ -386,7 +379,7 @@ module.exports = grammar({
           $.IsNot,
         ),
         $.PrimaryExpression
-      ))
+      )))
     )),
 
     Disjunction: $ => "or",
@@ -414,7 +407,6 @@ module.exports = grammar({
       $.List,
       $.Tuple,
       $.Node,
-      $.AnonymousFunction,
       $.ParenthesizedExpression,
       $.Call,
       $.FluentCall,
@@ -422,12 +414,14 @@ module.exports = grammar({
       $.Negation,
     )),
 
-    ConditionalExpression: $ => prec.left(PREC.conditional, seq(
+    // ConditionalExpression: $ => prec.left(PREC.conditional, seq(
+    ConditionalExpression: $ => prec.right(seq(
       alias($.PrimaryExpression, $.condition),
       "?",
       alias($.PrimaryExpression, $.true_value),
-      ":",
+      "->",
       alias($.PrimaryExpression, $.false_value),
+    // )),
     )),
 
     BinaryExpression: $ => choice(
@@ -439,6 +433,8 @@ module.exports = grammar({
       $.BitwiseDisjunction,
       $.BitwiseConjunction,
       $.ExclusiveDisjunction,
+      $.AliasExpression,
+      $.FluentAssertion,
     ),
 
     Addition: $ => prec.left(PREC.plus, seq(
@@ -469,6 +465,20 @@ module.exports = grammar({
       alias($.PrimaryExpression, $.left),
       "%",
       alias($.PrimaryExpression, $.right),
+    )),
+
+    FluentAssertion: $ => prec.left(PREC.alias, seq(
+      alias($.PrimaryExpression, $.expression),
+      ":",
+      alias($.PrimaryExpression, $.assertion),
+      optional(":"),
+      ),
+    ),
+
+    AliasExpression: $ => prec.right(PREC.alias, seq(
+      alias($.PrimaryExpression, $.value),
+      "as",
+      alias($.PrimaryExpression, $.alias),
     )),
 
     BitwiseDisjunction: $ => prec.left(PREC.bitwise_or, seq(
@@ -506,18 +516,19 @@ module.exports = grammar({
     ),
 
     AnonymousFunction: $ => seq(
+      "func",
       "(",
       optional(seq(
-        alias($.FieldForExpression, $.parameters__list),
+        alias($.PrimaryExpression, $.parameters__list),
         choice(
           ",",
-          repeat(seq(",", alias($.FieldForExpression, $.parameters__list))),
+          repeat(seq(",", alias($.PrimaryExpression, $.parameters__list))),
         ),
       )),
       ")",
       optional(alias($.TypeAnnotation, $.return_type)),
       "=>",
-      seq(alias($.FieldForExpression, $.expression)),
+      seq(alias($.PrimaryExpression, $.expression)),
     ),
 
     PositiveSign: $ => "+",
@@ -607,7 +618,7 @@ module.exports = grammar({
       $.StringLiteral,
       $.StringTemplateLiteral,
       $.BooleanLiteral,
-      $.NumberLiteral,
+      $.IntegerLiteral,
       $.VoidLiteral,
     ),
 
@@ -619,11 +630,6 @@ module.exports = grammar({
     FalseLiteral: $ => "False",
 
     TrueLiteral: $ => "True",
-
-    NumberLiteral: $ => choice(
-      $.IntegerLiteral,
-      $.FloatLiteral,
-    ),
 
     VoidLiteral: $ => "Void",
 
@@ -759,11 +765,6 @@ module.exports = grammar({
 
     FieldForNodeTypeParameter: $ => choice(
       $.TypeParameter,
-      $.ImpossibleRule,
-    ),
-
-    FieldForNamedFunctionParameter: $ => choice(
-      $.NamedFunctionParameter,
       $.ImpossibleRule,
     ),
 
